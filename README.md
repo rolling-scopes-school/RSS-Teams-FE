@@ -8,7 +8,7 @@ Stack:
 
 Used libs:  
 1 styled-components, styled-normalize - https://askd.rocks/pres/styled-gdg/  
-2 trashable-react - https://github.com/hjylewis/trashable-react  
+2 trashable-react? - https://github.com/hjylewis/trashable-react  
 3 react-router/react-router-dom - https://reactrouter.com/  
 
 Linters: prettier, eslint.
