@@ -7,7 +7,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['prettier', 'react-hooks'],
+  plugins: ['@typescript-eslint', 'react', 'prettier', 'react-hooks'],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -35,4 +35,5 @@ module.exports = {
       version: 'detect',
     },
   },
+  globals: { React: 'writable' },
 };

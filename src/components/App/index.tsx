@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Logo } from '../../typography';
+import { Logo } from 'typography';
 import './styles.css';
 
 export const App: FC = () => {
@@ -7,9 +7,7 @@ export const App: FC = () => {
     <div className="App">
       <header className="App-header">
         <Logo />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <p>Edit code and save to reload.</p>
         <a
           className="App-link"
           href="https://reactjs.org"

@@ -1,0 +1,31 @@
+/* sf-300 - light*/
+@font-face {
+  font-style: normal;
+  font-weight: 300;
+  font-family: "SF UI Text";
+
+  src: local("SF UI Text Light"), local("SFUIText-Light"),
+  url("../assets/fonts/SFUIText-Light.woff2") format("woff2"), /* Super Modern Browsers */
+  url("../assets/fonts/SFUIText-Light.woff") format("woff"), /* Modern Browsers */
+  url("../assets/fonts/SFUIText-Light.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+/* sf-500 - med */
+@font-face {
+  font-style: normal;
+  font-weight: 500;
+  font-family: "SF UI Text";
+
+  src: local("SF UI Text Medium"), local("SFUIText-Medium"),
+  url("../assets/fonts/SFUIText-Medium.woff2") format("woff2"),
+  url("../assets/fonts/SFUIText-Medium.woff") format("woff"),
+  url("../assets/fonts/SFUIText-Medium.ttf") format("truetype");
+}
+/* sf-700 - semi */
+@font-face {
+  font-style: normal;
+  font-weight: 700;
+  font-family: "SF UI Text";
+
+  src: local("SF UI Text Bold"), local("SFUIText-Bold"),
+  url("../assets/fonts/SFUIText-Bold.woff2") format("woff2"),;
+}
