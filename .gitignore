@@ -14,6 +14,7 @@
 # misc
 .DS_Store
 .env.local
+.eslintcache
 .env.development.local
 .env.test.local
 .env.production.local
