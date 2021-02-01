@@ -1,3 +1,9 @@
+export type DefaultUser = {
+  // automatically generated after github login
+  id: number;
+  github: string;
+};
+
 export type User = {
   id: number;
   firstName: string;
@@ -23,4 +29,22 @@ export type Team = {
   password: string;
   members: User[];
   socialLink: string;
+};
+
+export type StateTeamsList = {
+  teams: Team[];
+};
+
+export type StateStudentsTable = {
+  userData: User | DefaultUser;
+};
+
+export type StateLoginPage = {
+  loginToken: string;
+};
+
+export type State = {
+  studentsTableReducer: StateStudentsTable;
+  teamsListReducer: StateTeamsList;
+  loginPageReducer: StateLoginPage;
 };

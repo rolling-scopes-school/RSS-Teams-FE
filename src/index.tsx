@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AppState } from 'store';
 import { App } from './components/App';
 import reportWebVitals from './reportWebVitals';
 import 'typography/normalize.css';
@@ -7,9 +9,11 @@ import 'typography/fonts.css';
 import 'typography/common.css';
 
 ReactDOM.render(
-  <>
-    <App />
-  </>,
+  <Router>
+    <AppState>
+      <App />
+    </AppState>
+  </Router>,
   document.getElementById('root')
 );
 
