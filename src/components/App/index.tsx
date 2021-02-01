@@ -1,11 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { TeamsList } from 'modules/TeamsList';
-import { LoginPage } from 'modules/LoginPage';
-import { StudentsTable } from 'modules/StudentsTable';
-import { selectToken } from 'modules/LoginPage/selectors';
+import { TeamsList, LoginPage, StudentsTable } from 'modules';
 import { PrivateRoute, Loader } from 'components';
+import { selectToken } from 'modules/LoginPage/selectors';
 import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
 
 export const App: FC = () => {
