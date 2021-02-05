@@ -16,12 +16,15 @@ export const WHOAMI_QUERY = gql`
       isAdmin
       courses {
         id
+        name
       }
       email
       courseIds
       teamIds
       teams {
         id
+        number
+        courseId
       }
     }
   }

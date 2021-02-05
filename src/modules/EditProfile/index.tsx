@@ -6,7 +6,7 @@ import { Logo } from 'typography';
 
 export const EditProfile: FC = () => {
   // const { loading, error, courses } = useCoursesQuery();
-  // const userData = useSelector(selectUserData);
+  // // const userData = useSelector(selectUserData);
   return (
     <div>
       <Logo />

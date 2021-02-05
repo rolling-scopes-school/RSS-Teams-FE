@@ -11,12 +11,6 @@ export const TEAMS_QUERY = gql`
         courseId
         socialLink
         memberIds
-        course {
-          id
-        }
-        members {
-          id
-        }
       }
     }
   }

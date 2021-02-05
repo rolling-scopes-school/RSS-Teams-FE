@@ -19,12 +19,6 @@ export const USERS_QUERY = gql`
         isAdmin
         courseIds
         teamIds
-        courses {
-          id
-        }
-        teams {
-          id
-        }
       }
     }
   }

@@ -14,11 +14,9 @@ export const USER_QUERY = gql`
       city
       avatar
       isAdmin
-      courses
       email
       courseIds
       teamIds
-      teams
     }
   }
 `;
