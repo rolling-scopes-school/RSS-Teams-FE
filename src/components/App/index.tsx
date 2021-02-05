@@ -22,8 +22,9 @@ export const App: FC = () => {
     dispatch({ type: SET_TOKEN, payload: loginToken });
     setLoading(false);
   }, [dispatch]);
+
   if (loading) return <Loader />;
-  console.log(!!loginToken);
+
   return (
     <Switch>
       <PrivateRoute

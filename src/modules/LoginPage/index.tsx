@@ -6,7 +6,9 @@ import { selectToken } from './selectors';
 
 export const LoginPage: FC = () => {
   const loginToken = useSelector(selectToken);
+
   if (loginToken) return <Redirect to="/" />;
+
   return (
     <div>
       <Logo />

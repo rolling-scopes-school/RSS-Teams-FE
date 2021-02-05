@@ -10,6 +10,7 @@ type ParamsType = {
 export const TokenPage: FC = () => {
   const { id } = useParams<ParamsType>();
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const loginToken = sessionStorage.getItem(AUTH_TOKEN);
     if (!loginToken) {
@@ -26,5 +27,6 @@ export const TokenPage: FC = () => {
       </div>
     );
   }
+
   return <Redirect to="/" />;
 };
