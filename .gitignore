@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/.eslintcache
 
 # testing
 /coverage
@@ -14,7 +15,6 @@
 # misc
 .DS_Store
 .env.local
-.eslintcache
 .env.development.local
 .env.test.local
 .env.production.local
