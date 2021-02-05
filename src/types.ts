@@ -1,34 +1,47 @@
 export type DefaultUser = {
   // automatically generated after github login
-  id: number;
+  id: string;
   github: string;
+  score: number;
 };
 
 export type User = {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   github: string;
   telegram: string;
   discord: string;
-  score: number | 1000; // (1000 - default)
+  score: number;
   country: string;
   city: string;
+  avatar: string;
   isAdmin: boolean;
   courses: Course[];
+  email: string | null;
+  courseIds: string[];
+  teamIds: string[];
+  teams: Team[];
 };
 
 export type Course = {
-  name: string; // predefined values
-  team: number;
+  id: string;
+  name: string;
+  teamIds: string[];
+  userIds: string[];
+  teams: Team[];
+  users: User[];
 };
 
 export type Team = {
-  id: string; // predefined values
+  id: string;
   number: number;
   password: string;
-  members: User[];
+  courseId: string;
   socialLink: string;
+  memberIds: string[];
+  course: Course;
+  members: User[];
 };
 
 export type StateTeamsList = {
@@ -36,7 +49,7 @@ export type StateTeamsList = {
 };
 
 export type StateStudentsTable = {
-  userData: User | DefaultUser;
+  userData: DefaultUser | User;
 };
 
 export type StateLoginPage = {
