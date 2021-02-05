@@ -1,7 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { TeamsList, LoginPage, StudentsTable } from 'modules';
+import {
+  TeamsList,
+  LoginPage,
+  StudentsTable,
+  TokenPage,
+  NotFoundPage,
+} from 'modules';
 import { PrivateRoute, Loader } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
@@ -12,24 +18,25 @@ export const App: FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loginToken = localStorage.getItem(AUTH_TOKEN);
+    const loginToken = sessionStorage.getItem(AUTH_TOKEN);
     dispatch({ type: SET_TOKEN, payload: loginToken });
     setLoading(false);
   }, [dispatch]);
   if (loading) return <Loader />;
+  console.log(!!loginToken);
   return (
     <Switch>
       <PrivateRoute
         path="/"
         exact
         isLoggedIn={!!loginToken}
-        component={StudentsTable}
+        component={TeamsList}
       />
       <PrivateRoute
         exact
-        path="/teamsList"
+        path="/studentsTable"
         isLoggedIn={!!loginToken}
-        component={TeamsList}
+        component={StudentsTable}
       />
       <PrivateRoute
         exact
@@ -37,7 +44,9 @@ export const App: FC = () => {
         isLoggedIn={!!loginToken}
         component={StudentsTable}
       />
+      <Route exact path="/token/:id" component={TokenPage} />
       <Route exact path="/login" component={LoginPage} />
+      <Route path="*" component={NotFoundPage} />
     </Switch>
   );
 };
