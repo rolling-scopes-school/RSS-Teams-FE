@@ -66,6 +66,7 @@ export const Button = styled.button`
   padding: 13px 50px;
   background-color: ${MAIN1_COLOR};
   color: ${(props) => props.color || WHITE_COLOR};
+  border-radius: 20px;
 `;
 
 export const Label = styled.label`

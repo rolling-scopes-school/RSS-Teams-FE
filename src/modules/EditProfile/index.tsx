@@ -21,9 +21,9 @@ export const EditProfile: FC = () => {
     <div>
       <Logo />
       <PageTitle>EDIT PROFILE</PageTitle>
-      <Label color="red">label</Label>
+      <Label>label</Label>
       <Input />
-      <Button color="green">button</Button>
+      <Button>button</Button>
     </div>
   );
 };
