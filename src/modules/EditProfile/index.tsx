@@ -3,6 +3,16 @@ import React, { FC } from 'react';
 // import { useCoursesQuery } from 'hooks/graphql';
 // import { selectUserData } from 'modules/StudentsTable/selectors';
 import { Logo } from 'typography';
+import {
+  TextRegular,
+  TextMedium,
+  TextSemiBold,
+  TextBold,
+  PageTitle,
+  Button,
+  Label,
+  Input,
+} from 'typography';
 
 export const EditProfile: FC = () => {
   // const { loading, error, courses } = useCoursesQuery();
@@ -10,7 +20,10 @@ export const EditProfile: FC = () => {
   return (
     <div>
       <Logo />
-      <p>EDIT PROFILE</p>
+      <PageTitle>EDIT PROFILE</PageTitle>
+      <Label color="red">label</Label>
+      <Input />
+      <Button color="green">button</Button>
     </div>
   );
 };
