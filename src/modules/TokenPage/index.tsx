@@ -1,6 +1,7 @@
-import { AUTH_TOKEN } from 'appConstants';
-import React, { FC, useEffect, useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
+import React, { FC, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
 import { Logo } from 'typography';
 
 type ParamsType = {
@@ -8,25 +9,23 @@ type ParamsType = {
 };
 
 export const TokenPage: FC = () => {
+  const dispatch = useDispatch();
   const { id } = useParams<ParamsType>();
-  const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     const loginToken = sessionStorage.getItem(AUTH_TOKEN);
     if (!loginToken) {
       sessionStorage.setItem(AUTH_TOKEN, id);
+      dispatch({ type: SET_TOKEN, payload: id });
     }
-    setLoading(false);
-  }, [id]);
+    history.push('/');
+  }, [id, history, dispatch]);
 
-  if (loading) {
-    return (
-      <div>
-        <Logo />
-        <p>Redirecting...</p>
-      </div>
-    );
-  }
-
-  return <Redirect to="/" />;
+  return (
+    <div>
+      <Logo />
+      <p>Redirecting...</p>
+    </div>
+  );
 };

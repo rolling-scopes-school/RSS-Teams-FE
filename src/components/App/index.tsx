@@ -7,8 +7,9 @@ import {
   StudentsTable,
   TokenPage,
   NotFoundPage,
+  EditProfile,
 } from 'modules';
-import { PrivateRoute, Loader } from 'components';
+import { Loader, PrivateRoute } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
 
@@ -18,8 +19,8 @@ export const App: FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loginToken = sessionStorage.getItem(AUTH_TOKEN);
-    dispatch({ type: SET_TOKEN, payload: loginToken });
+    const token = sessionStorage.getItem(AUTH_TOKEN);
+    dispatch({ type: SET_TOKEN, payload: token });
     setLoading(false);
   }, [dispatch]);
 
@@ -43,7 +44,7 @@ export const App: FC = () => {
         exact
         path="/editProfile"
         isLoggedIn={!!loginToken}
-        component={StudentsTable}
+        component={EditProfile}
       />
       <Route exact path="/token/:id" component={TokenPage} />
       <Route exact path="/login" component={LoginPage} />
