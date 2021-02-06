@@ -8,6 +8,6 @@ export const LinkText = styled(Link)`
 `;
 
 export const Logo = styled(SVGIcon)`
-  width: 50px;
-  height: 50px;
+  width: 84px;
+  height: 30px;
 `;
