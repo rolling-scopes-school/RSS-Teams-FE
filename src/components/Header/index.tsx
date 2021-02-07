@@ -1,21 +1,14 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { RSLogo } from 'typography';
-import styled from 'styled-components';
-import { MAIN1_COLOR } from 'appConstants/colors';
-
-const StyledHeader = styled.header`
-  background-color: ${MAIN1_COLOR};
-  padding: 25px 60px;
-  max-width: 1320px;
-  margin: 0 auto;
-`;
+import { StyledHeader } from './styled';
 
 export const Header: FC = () => {
   return (
     <StyledHeader>
-      <a href="/">
+      <Link to="/">
         <RSLogo />
-      </a>
+      </Link>
     </StyledHeader>
   );
 };
