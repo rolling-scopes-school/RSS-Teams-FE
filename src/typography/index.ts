@@ -1,6 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { ReactComponent as SVGIcon } from '../assets/svg/logo.svg';
 import { ReactComponent as RSLogoIcon } from '../assets/svg/rslogo.svg';
 import {
   WHITE_COLOR,
@@ -15,11 +13,6 @@ interface StyledTextProps {
   fontSize?: string;
   lineHeight?: string;
 }
-
-export const Logo = styled(SVGIcon)`
-  width: 50px;
-  height: 50px;
-`;
 
 export const RSLogo = styled(RSLogoIcon)`
   width: 84px;
@@ -133,10 +126,10 @@ export const Select = styled.select`
   &:-ms-input-placeholder {
     color: ${LIGHT_TEXT_COLOR};
   }
-  -webkit-appearance: none;
+  /* -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url("/uploads/media/default/0001/02/f7b4d3d2ba3fe1d8518e6e63d7740e1e73921abf.png") 96% / 15% no-repeat #eee;
+  background: url("/uploads/media/default/0001/02/f7b4d3d2ba3fe1d8518e6e63d7740e1e73921abf.png") 96% / 15% no-repeat #eee; */
   }
   select::-ms-expand { 
     display: none; /* удалите стрелку по умолчанию в IE 10 и 11 */

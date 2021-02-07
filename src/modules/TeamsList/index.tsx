@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { useTeamsQuery, useWhoAmIQuery } from 'hooks/graphql';
-import { Logo } from 'typography';
 import { Loader, Error } from 'components';
 import { Team } from 'types';
 import { Link, Redirect } from 'react-router-dom';
@@ -24,7 +23,6 @@ export const TeamsList: FC = () => {
 
   return (
     <div>
-      <Logo />
       <p>Teams length {teams.count}</p>
       {teams &&
         teams.results.map((item: Team) => {

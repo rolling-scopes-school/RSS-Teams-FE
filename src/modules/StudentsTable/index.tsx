@@ -3,7 +3,6 @@ import { useUsersQuery, useWhoAmIQuery } from 'hooks/graphql';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { User } from 'types';
-import { Logo } from 'typography';
 
 export const StudentsTable: FC = () => {
   const reactCourseId = '97c79b78-3f45-4fc1-9a62-4d99b1ee6fab';
@@ -19,7 +18,6 @@ export const StudentsTable: FC = () => {
   if (error) return <Error />;
   return (
     <div>
-      <Logo />
       <p>I am {whoAmI.github}</p>
       <p>Students count {users.count}</p>
       {users.results.map((item: User) => {
