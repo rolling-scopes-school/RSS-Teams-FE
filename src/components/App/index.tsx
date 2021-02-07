@@ -9,9 +9,10 @@ import {
   NotFoundPage,
   EditProfile,
 } from 'modules';
-import { Loader, PrivateRoute } from 'components';
+import { Loader, PrivateRoute, Header } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
+import { GlobalStyle } from 'typography';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -27,28 +28,32 @@ export const App: FC = () => {
   if (loading) return <Loader />;
 
   return (
-    <Switch>
-      <PrivateRoute
-        path="/"
-        exact
-        isLoggedIn={!!loginToken}
-        component={TeamsList}
-      />
-      <PrivateRoute
-        exact
-        path="/studentsTable"
-        isLoggedIn={!!loginToken}
-        component={StudentsTable}
-      />
-      <PrivateRoute
-        exact
-        path="/editProfile"
-        isLoggedIn={!!loginToken}
-        component={EditProfile}
-      />
-      <Route exact path="/token/:id" component={TokenPage} />
-      <Route exact path="/login" component={LoginPage} />
-      <Route path="*" component={NotFoundPage} />
-    </Switch>
+    <>
+      <GlobalStyle />
+      <Header />
+      <Switch>
+        <PrivateRoute
+          path="/"
+          exact
+          isLoggedIn={!!loginToken}
+          component={TeamsList}
+        />
+        <PrivateRoute
+          exact
+          path="/studentsTable"
+          isLoggedIn={!!loginToken}
+          component={StudentsTable}
+        />
+        <PrivateRoute
+          exact
+          path="/editProfile"
+          isLoggedIn={!!loginToken}
+          component={EditProfile}
+        />
+        <Route exact path="/token/:id" component={TokenPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route path="*" component={NotFoundPage} />
+      </Switch>
+    </>
   );
 };

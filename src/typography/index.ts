@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, createGlobalStyle } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as SVGIcon } from '../assets/svg/logo.svg';
 import { ReactComponent as RSLogoIcon } from '../assets/svg/rslogo.svg';
@@ -9,6 +9,12 @@ import {
   DARK_TEXT_COLOR,
   LIGHT_TEXT_COLOR,
 } from '../appConstants/colors';
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${BACKGROUND_COLOR};
+  }
+`;
 
 interface StyledTextProps {
   color?: string;
