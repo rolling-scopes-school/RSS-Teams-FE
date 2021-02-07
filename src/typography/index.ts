@@ -8,18 +8,13 @@ import {
   MAIN1_COLOR,
   DARK_TEXT_COLOR,
   LIGHT_TEXT_COLOR,
-} from '../appConstants/colors';
+} from 'appConstants/colors';
 
 interface StyledTextProps {
   color?: string;
   fontSize?: string;
   lineHeight?: string;
 }
-
-export const LinkText = styled(Link)`
-  font: 600 18px/22px '', sans-serif;
-  letter-spacing: 3px;
-`;
 
 export const Logo = styled(SVGIcon)`
   width: 50px;
