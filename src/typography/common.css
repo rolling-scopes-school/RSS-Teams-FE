@@ -4,6 +4,7 @@
 body {
   margin: 0;
   font: normal 16px/24px "Poppins", sans-serif;
+  background-color: #F2F8FD;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

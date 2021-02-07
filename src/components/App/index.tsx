@@ -12,7 +12,6 @@ import {
 import { Loader, PrivateRoute, Header } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
-import { GlobalStyle } from 'typography';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ export const App: FC = () => {
 
   return (
     <>
-      <GlobalStyle />
       <Header />
       <Switch>
         <PrivateRoute

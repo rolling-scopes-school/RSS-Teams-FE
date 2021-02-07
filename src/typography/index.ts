@@ -1,20 +1,14 @@
-import styled, { css, createGlobalStyle } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as SVGIcon } from '../assets/svg/logo.svg';
 import { ReactComponent as RSLogoIcon } from '../assets/svg/rslogo.svg';
 import {
   WHITE_COLOR,
-  BACKGROUND_COLOR,
+  BG_COLOR,
   MAIN1_COLOR,
   DARK_TEXT_COLOR,
   LIGHT_TEXT_COLOR,
 } from '../appConstants/colors';
-
-export const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${BACKGROUND_COLOR};
-  }
-`;
 
 interface StyledTextProps {
   color?: string;
@@ -65,23 +59,91 @@ export const TextBold = css`
 
 export const PageTitle = styled.h1`
   ${TextBold}
+  font-size: ${(props) => props.fontSize || '30px'};
+  line-height: ${(props) => props.lineHeight || '45px'};
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
+`;
+
+export const PageSubTitle = styled.h2`
+  ${TextSemiBold}
+  color: ${(props) => props.color || WHITE_COLOR};
+  font-size: ${(props) => props.fontSize || '24px'};
+  line-height: ${(props) => props.lineHeight || '36px'};
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const Button = styled.button`
   ${TextSemiBold}
   padding: 13px 50px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
   background-color: ${MAIN1_COLOR};
   color: ${(props) => props.color || WHITE_COLOR};
-  border-radius: 20px;
 `;
 
 export const Label = styled.label`
   ${TextRegular}
+  max-width: 300px;
+  margin-bottom: 10px;
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
 `;
 
 export const Input = styled.input`
   ${TextMedium}
-  background-color: ${BACKGROUND_COLOR};
-  color: ${(props) => props.color || LIGHT_TEXT_COLOR};
+  width: 300px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: ${BG_COLOR};
+  color: ${(props) => props.color || DARK_TEXT_COLOR};
+  outline: none;
+  &::-webkit-input-placeholder {
+    color: ${LIGHT_TEXT_COLOR};
+  }
+  &::-moz-placeholder {
+    color: ${LIGHT_TEXT_COLOR};
+  }
+  &:-moz-placeholder {
+    color: ${LIGHT_TEXT_COLOR};
+  }
+  &:-ms-input-placeholder {
+    color: ${LIGHT_TEXT_COLOR};
+  }
+`;
+
+export const Select = styled.select`
+  ${TextMedium}
+  width: 300px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: ${BG_COLOR};
+  color: ${(props) => props.color || DARK_TEXT_COLOR};
+  outline: none;
+  &::-webkit-input-placeholder {
+    color: ${LIGHT_TEXT_COLOR};
+  }
+  &::-moz-placeholder {
+    color: ${LIGHT_TEXT_COLOR};
+  }
+  &:-moz-placeholder {
+    color: ${LIGHT_TEXT_COLOR};
+  }
+  &:-ms-input-placeholder {
+    color: ${LIGHT_TEXT_COLOR};
+  }
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("/uploads/media/default/0001/02/f7b4d3d2ba3fe1d8518e6e63d7740e1e73921abf.png") 96% / 15% no-repeat #eee;
+  }
+  select::-ms-expand { 
+    display: none; /* удалите стрелку по умолчанию в IE 10 и 11 */
+  }
 `;
