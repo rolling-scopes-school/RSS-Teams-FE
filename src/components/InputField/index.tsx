@@ -26,7 +26,7 @@ export const InputField: FC<InputFieldProps> = ({
     <FieldWrapper>
       <Label htmlFor={name}>{labelText}</Label>
       <Input
-        id={`id-{name}`}
+        id={`id-${name}`}
         name={name}
         placeholder={placeholder}
         ref={register}
