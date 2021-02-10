@@ -1,8 +1,10 @@
 import React, { FC, useCallback } from 'react';
 
 import { useSelector } from 'react-redux';
-import { useCoursesQuery, useWhoAmIQuery } from 'hooks/graphql';
+import { useCoursesQuery } from 'hooks/graphql';
 import { selectUserData } from 'modules/StudentsTable/selectors';
+import { selectToken } from 'modules/LoginPage/selectors';
+import { Redirect } from 'react-router-dom';
 import { PageTitle, Button } from 'typography';
 import { InputField } from 'components/InputField';
 import { CourseField } from 'components/CourseField';
@@ -28,7 +30,8 @@ interface IProfileFormInput {
 
 export const EditProfile: FC = () => {
   const { loading, error, courses } = useCoursesQuery();
-  const { loadingW, errorW, whoAmI } = useWhoAmIQuery();
+  const loginToken = useSelector(selectToken);
+
   const userData = useSelector(selectUserData);
   console.log(userData);
   const {
@@ -53,6 +56,8 @@ export const EditProfile: FC = () => {
   const onSubmit = useCallback((formValues: IProfileFormInput) => {
     console.log(formValues);
   }, []);
+
+  if (!loginToken) return <Redirect to={'/login'} />;
 
   return (
     <EditProfileWrapper onSubmit={handleSubmit(onSubmit)}>

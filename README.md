@@ -8,10 +8,14 @@ Stack:
 
 Used libs:  
 1 styled-components - https://askd.rocks/pres/styled-gdg/  
-2 trashable-react? - https://github.com/hjylewis/trashable-react  
-3 react-router/react-router-dom - https://reactrouter.com/  
+2 react-router/react-router-dom - https://reactrouter.com/  
+3 react-hook-form
+4 react-window
+5 react-paginate
 
 Linters: prettier, eslint.
+
+Branch RSSFE-01 contains login via github made frontend way.
 
 App description:  
 The application is intended for use by students of The Rolling Scopes School. The purpose of the application is to enable students to collect teams from friends, and single students - to be automatically assigned to teams.
