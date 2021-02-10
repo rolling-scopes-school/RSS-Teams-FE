@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import { useTeamsQuery } from 'hooks/graphql';
-import { Logo } from 'typography';
 import { Loader, Error } from 'components';
 import { Team } from 'types';
 import { useSelector } from 'react-redux';
@@ -27,7 +26,6 @@ export const TeamsList: FC = () => {
 
   return (
     <div>
-      <Logo />
       <p>Teams length {teams.count}</p>
       {teams &&
         teams.results.map((item: Team) => {

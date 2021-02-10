@@ -9,7 +9,7 @@ import {
   NotFoundPage,
   EditProfile,
 } from 'modules';
-import { Loader, PrivateRoute } from 'components';
+import { Loader, PrivateRoute, Header } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
 import { useWhoAmIQuery } from 'hooks/graphql';
@@ -35,25 +35,29 @@ export const App: FC = () => {
   if (loading || loadingW) return <Loader />;
 
   return (
-    <Switch>
-      <PrivateRoute
-        path="/"
-        exact
-        isLoggedIn={!!loginToken}
-        newUserCheck={newUserCheck}
-        component={TeamsList}
-      />
-      <PrivateRoute
-        exact
-        path="/studentsTable"
-        isLoggedIn={!!loginToken}
-        newUserCheck={newUserCheck}
-        component={StudentsTable}
-      />
-      <Route exact path="/token/:id" component={TokenPage} />
-      <Route exact path="/login" component={LoginPage} />
-      <Route exact path="/editProfile" component={EditProfile} />
-      <Route path="*" component={NotFoundPage} />
-    </Switch>
+    <>
+      <Header />
+
+      <Switch>
+        <PrivateRoute
+          path="/"
+          exact
+          isLoggedIn={!!loginToken}
+          newUserCheck={newUserCheck}
+          component={TeamsList}
+        />
+        <PrivateRoute
+          exact
+          path="/studentsTable"
+          isLoggedIn={!!loginToken}
+          newUserCheck={newUserCheck}
+          component={StudentsTable}
+        />
+        <Route exact path="/token/:id" component={TokenPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/editProfile" component={EditProfile} />
+        <Route path="*" component={NotFoundPage} />
+      </Switch>
+    </>
   );
 };
