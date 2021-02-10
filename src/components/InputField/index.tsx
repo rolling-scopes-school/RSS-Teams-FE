@@ -1,10 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { Label, Input } from 'typography';
 
-interface InputFieldProps {
+interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   labelText: string;
   placeholder: string;
+  register: any;
+  name: string;
 }
 
 const FieldWrapper = styled.div`
@@ -13,11 +15,23 @@ const FieldWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const InputField: FC<InputFieldProps> = ({ labelText, placeholder }) => {
+export const InputField: FC<InputFieldProps> = ({
+  labelText,
+  placeholder,
+  register,
+  name,
+  ...rest
+}) => {
   return (
     <FieldWrapper>
-      <Label>{labelText}</Label>
-      <Input placeholder={placeholder} />
+      <Label htmlFor={name}>{labelText}</Label>
+      <Input
+        id={`id-{name}`}
+        name={name}
+        placeholder={placeholder}
+        ref={register}
+        {...rest}
+      />
     </FieldWrapper>
   );
 };

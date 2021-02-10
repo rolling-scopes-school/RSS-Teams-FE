@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ReactComponent as RSLogoIcon } from '../assets/svg/rslogo.svg';
+import { ReactComponent as RSLogoIcon } from 'assets/svg/rslogo.svg';
 import {
   WHITE_COLOR,
   BG_COLOR,
@@ -105,33 +105,44 @@ export const Input = styled.input`
   }
 `;
 
-export const Select = styled.select`
-  ${TextMedium}
-  width: 300px;
+export const Select = styled.div`
+  display: grid;
+  grid-template-areas: 'select';
+  align-items: center;
+  width: 100%;
+  max-width: 250px;
   padding: 8px 15px;
   border-radius: 10px;
   border: none;
   background-color: ${BG_COLOR};
-  color: ${(props) => props.color || DARK_TEXT_COLOR};
+  cursor: pointer;
+  &:after {
+    content: '*';
+    grid-area: select;
+    width: 12px;
+    height: 7px;
+    background-color: ${LIGHT_TEXT_COLOR};
+    clip-path: polygon(100% 0%, 50% 70%, 0% 0%, 0% 40%, 50% 100%, 100% 40%);
+    justify-self: end;
+  }
+`;
+
+export const SelectInner = styled.select`
+  ${TextMedium};
+  margin: 0;
+  width: 100%;
+  grid-area: select;
+  border: none;
+  background-color: ${BG_COLOR};
+  color: ${(props) => props.color || LIGHT_TEXT_COLOR};
   outline: none;
-  &::-webkit-input-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
+  &::-ms-expand {
+    display: none;
   }
-  &::-moz-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  &:-moz-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  &:-ms-input-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  /* -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  background: url("/uploads/media/default/0001/02/f7b4d3d2ba3fe1d8518e6e63d7740e1e73921abf.png") 96% / 15% no-repeat #eee; */
-  }
-  select::-ms-expand { 
-    display: none; /* удалите стрелку по умолчанию в IE 10 и 11 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  option {
+    color: ${DARK_TEXT_COLOR};
   }
 `;

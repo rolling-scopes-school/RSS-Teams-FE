@@ -1,10 +1,17 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
+
+:root {
+  --BG_COLOR: #F2F8FD;
+}
+
 body {
   margin: 0;
   font: normal 16px/24px "Poppins", sans-serif;
-  background-color: #F2F8FD;
+  background-color: var( --BG_COLOR);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
