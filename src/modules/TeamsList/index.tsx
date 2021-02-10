@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import { useTeamsQuery } from 'hooks/graphql';
-import { Logo } from 'typography';
 import { Loader, Error } from 'components';
 import { Team } from 'types';
 import { useSelector } from 'react-redux';

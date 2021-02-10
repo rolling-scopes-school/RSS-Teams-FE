@@ -4,7 +4,6 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { User } from 'types';
-import { Logo } from 'typography';
 import { selectUserData } from './selectors';
 
 export const StudentsTable: FC = () => {
@@ -20,7 +19,6 @@ export const StudentsTable: FC = () => {
   if (error) return <Error />;
   return (
     <div>
-      <Logo />
       <p>I am {userData.github}</p>
       <p>Students count {users.count}</p>
       {users.results.map((item: User) => {
