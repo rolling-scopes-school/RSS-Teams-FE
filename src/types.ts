@@ -1,10 +1,3 @@
-export type DefaultUser = {
-  // automatically generated after github login
-  id: string;
-  github: string;
-  score: number;
-};
-
 export type User = {
   id: string;
   firstName: string;
