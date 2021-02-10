@@ -1,26 +1,29 @@
-import React, { FC } from 'react';
-import { useTeamsQuery, useWhoAmIQuery } from 'hooks/graphql';
+import React, { FC, useState } from 'react';
+import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
+import { useTeamsQuery } from 'hooks/graphql';
 import { Logo } from 'typography';
 import { Loader, Error } from 'components';
 import { Team } from 'types';
-import { Link, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUserData } from 'modules/StudentsTable/selectors';
 
 export const TeamsList: FC = () => {
   const reactCourseId = '97c79b78-3f45-4fc1-9a62-4d99b1ee6fab';
-  const { loadingW, errorW, whoAmI } = useWhoAmIQuery();
+  const userData = useSelector(selectUserData);
+  const [pageNumber, setPageNumber] = useState(1);
 
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId,
-    skip: loadingW,
   });
-  const loading = loadingW || loadingT;
-  const error = errorW || errorT;
-  const isUserNew = !whoAmI?.telegram;
-  // const isUserNew = whoAmI?.telegram; // switch to enable login/registration flow
+  const loading = loadingT;
+  const error = errorT;
+  const handlePageClick = () => {
+    setPageNumber(pageNumber + 1);
+  };
 
   if (loading) return <Loader />;
   if (error) return <Error />;
-  if (isUserNew) return <Redirect to="/editProfile" />;
 
   return (
     <div>
@@ -31,6 +34,20 @@ export const TeamsList: FC = () => {
           return <div key={item.id}>Team №{item.number}</div>;
         })}
       <p>This is teams list!</p>
+      {userData && <p>My github: {userData.github}</p>}
+      <ReactPaginate
+        previousLabel={'previous'}
+        nextLabel={'next'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        pageCount={pageNumber}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination'}
+        // subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
+      />
       <Link to="/studentsTable">Dashboard</Link>
     </div>
   );
