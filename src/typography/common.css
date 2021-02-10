@@ -16,3 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+input {
+  background-color: var( --BG_COLOR);
+}

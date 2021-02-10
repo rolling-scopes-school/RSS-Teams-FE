@@ -1,57 +1,113 @@
-import React, { FC } from 'react';
-import styled from 'styled-components';
-// import { useSelector } from 'react-redux';
-// import { useCoursesQuery } from 'hooks/graphql';
-// import { selectUserData } from 'modules/StudentsTable/selectors';
+import React, { FC, useCallback } from 'react';
+
+import { useSelector } from 'react-redux';
+import { useCoursesQuery, useWhoAmIQuery } from 'hooks/graphql';
+import { selectUserData } from 'modules/StudentsTable/selectors';
 import { PageTitle, Button } from 'typography';
 import { InputField } from 'components/InputField';
-import { SelectField } from 'components/SelectField';
-import { WHITE_COLOR } from 'appConstants/colors';
+import { CourseField } from 'components/CourseField';
 
-const EditProfileWrapper = styled.div`
-  background-color: ${WHITE_COLOR};
-  width: 680px;
-  margin: 80px auto;
-  padding: 25px 30px;
-  border-radius: 20px;
-  @media screen and (max-width: 768px) {
-    width: 320px;
-    margin-top: 20px;
-    padding: 15px 10px;
-    flex-direction: column;
-  }
-`;
+import { useForm } from 'react-hook-form';
+import { EditProfileWrapper, InputsWrapper, ButtonWrapper } from './styled';
 
-const InputsWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
+type Course = {
+  courseId: string;
+  course: string;
+};
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
+interface IProfileFormInput {
+  firstName: string;
+  lastName: string;
+  discord: string;
+  telegram: string;
+  city: string;
+  coutry: string;
+  courses: Course[];
+  score: number;
+}
 
 export const EditProfile: FC = () => {
-  // const { loading, error, courses } = useCoursesQuery();
-  // // const userData = useSelector(selectUserData);
+  const { loading, error, courses } = useCoursesQuery();
+  const { loadingW, errorW, whoAmI } = useWhoAmIQuery();
+  const userData = useSelector(selectUserData);
+  console.log(userData);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    errors,
+  } = useForm<IProfileFormInput>();
+  // {
+  // defaultValues: {
+  //   firstName: userData.firstname ? userData.firstname : '',
+  //   lastName: userData.lastname,
+  //   discord: userData.discord,
+  //   telegram: userData.telegram,
+  //   city: userData.city,
+  //   coutry: userData.country,
+  //   // courses: Course[];
+  //   score: userData.score,
+  // },
+  // });
+
+  const onSubmit = useCallback((formValues: IProfileFormInput) => {
+    console.log(formValues);
+  }, []);
+
   return (
-    <EditProfileWrapper>
+    <EditProfileWrapper onSubmit={handleSubmit(onSubmit)}>
       <PageTitle>Enter your profile information</PageTitle>
       <InputsWrapper>
-        <InputField labelText="First Name" placeholder="Enter first name" />
-        <InputField labelText="Second Name" placeholder="Enter second name" />
-        <InputField labelText="Discord" placeholder="Enter discord" />
-        <InputField labelText="Telegram" placeholder="Enter telegram" />
-        <InputField labelText="City" placeholder="Enter city" />
-        <InputField labelText="Country" placeholder="Enter country" />
-        <SelectField labelText="Course" placeholder="Select course" />
-        <InputField labelText="Score" placeholder="Enter score" />
+        <InputField
+          name="firstname"
+          labelText="First Name"
+          placeholder="Enter first name"
+          register={register}
+        />
+        <InputField
+          name="secondname"
+          labelText="Second Name"
+          placeholder="Enter second name"
+          register={register}
+        />
+        <InputField
+          name="discord"
+          labelText="Discord"
+          placeholder="Enter discord"
+          register={register}
+        />
+        <InputField
+          name="telegram"
+          labelText="Telegram"
+          placeholder="Enter telegram"
+          register={register}
+        />
+        <InputField
+          name="city"
+          labelText="City"
+          placeholder="Enter city"
+          register={register}
+        />
+        <InputField
+          name="country"
+          labelText="Country"
+          placeholder="Enter country"
+          register={register}
+        />
+        <CourseField
+          name="courses"
+          labelText="Course"
+          placeholder="Select course"
+          register={register}
+          multi
+          courses={courses}
+        />
+        <InputField
+          name="score"
+          labelText="Score"
+          placeholder="Enter score"
+          register={register}
+        />
       </InputsWrapper>
       <ButtonWrapper>
         <Button>Submit</Button>
