@@ -6,4 +6,4 @@ export const SET_TOKEN = 'SET_TOKEN';
 export const BACKEND_LINK = 'https://rss-teams-dev.herokuapp.com/graphql';
 
 export const USERS_PER_PAGE = 40;
-export const TEAMS_PER_PAGE = 40;
+export const TEAMS_PER_PAGE = 10;

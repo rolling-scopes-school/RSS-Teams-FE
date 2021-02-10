@@ -5,7 +5,7 @@ import { StateLoginPage } from 'types';
 type Action = { type: string; payload: any };
 
 export const loginPageState = {
-  loginToken: '',
+  loginToken: null,
 };
 
 export const loginPageReducer: Reducer<StateLoginPage, Action> = (

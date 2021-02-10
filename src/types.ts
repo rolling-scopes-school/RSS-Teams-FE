@@ -10,18 +10,18 @@ export type User = {
   firstName: string;
   lastName: string;
   github: string;
-  telegram: string;
+  telegram: string | null;
   discord: string;
   score: number;
   country: string;
   city: string;
   avatar: string;
   isAdmin: boolean;
-  courses: Course[];
+  courses: Course[] | [];
   email: string | null;
   courseIds: string[];
   teamIds: string[];
-  teams: Team[];
+  teams: Team[] | [];
 };
 
 export type Course = {
@@ -49,11 +49,11 @@ export type StateTeamsList = {
 };
 
 export type StateStudentsTable = {
-  userData: DefaultUser | User;
+  userData: User;
 };
 
 export type StateLoginPage = {
-  loginToken: string;
+  loginToken: string | null;
 };
 
 export type State = {
