@@ -33,25 +33,19 @@ export const EditProfile: FC = () => {
   const loginToken = useSelector(selectToken);
 
   const userData = useSelector(selectUserData);
-  console.log(userData);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    errors,
-  } = useForm<IProfileFormInput>();
-  // {
-  // defaultValues: {
-  //   firstName: userData.firstname ? userData.firstname : '',
-  //   lastName: userData.lastname,
-  //   discord: userData.discord,
-  //   telegram: userData.telegram,
-  //   city: userData.city,
-  //   coutry: userData.country,
-  //   // courses: Course[];
-  //   score: userData.score,
-  // },
-  // });
+  // console.log(userData);
+  const { register, handleSubmit, watch, errors } = useForm<IProfileFormInput>({
+    defaultValues: {
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      discord: userData.discord,
+      telegram: '',
+      city: userData.city,
+      coutry: userData.country,
+      // courses: Course[],
+      score: userData.score,
+    },
+  });
 
   const onSubmit = useCallback((formValues: IProfileFormInput) => {
     console.log(formValues);
