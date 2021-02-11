@@ -1,0 +1,17 @@
+body {
+  background-color: #f2f8fd;
+}
+
+.Dashboard {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 91.66666666666667%;
+  max-width: 1320px;
+  height: 80vh;
+  margin: 0 auto;
+  padding: 10px;
+  padding-right: 0;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
