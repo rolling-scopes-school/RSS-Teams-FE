@@ -1,4 +1,8 @@
-import { WHITE_COLOR } from 'appConstants/colors';
+import {
+  WHITE_COLOR,
+  DARK_TEXT_COLOR,
+  TABLE_POPUP_BORDER_COLOR,
+} from 'appConstants/colors';
 import styled from 'styled-components';
 
 type TStyledPopup = {
@@ -18,9 +22,9 @@ export const StyledPopup = styled.div<TStyledPopup>`
   justify-content: center;
   padding: 10px;
   font-size: 1rem;
-  color: #363d48;
+  color: ${DARK_TEXT_COLOR};
   background-color: ${WHITE_COLOR};
-  border: 1px solid rgba(54, 61, 72, 0.2);
+  border: 1px solid ${TABLE_POPUP_BORDER_COLOR};
   border-radius: 10px;
   @media (max-width: 1199px) and (min-width: 992px) {
     font-size: 0.95rem;
