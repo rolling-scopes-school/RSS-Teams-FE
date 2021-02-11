@@ -2,13 +2,15 @@ import { FC } from 'react';
 import './styles.css';
 
 type PopupProps = {
-  show: boolean,
-  elements: string[],
-  stylesPopup: {
-    top: number,
-    left: number,
-  } | {}
-}
+  show: boolean;
+  elements: string[];
+  stylesPopup:
+    | {
+        top: number;
+        left: number;
+      }
+    | Record<string, unknown>;
+};
 
 export const Popup: FC<PopupProps> = (props) => {
   const classes: string[] = ['Popup', 'Popup--hide'];
