@@ -6,24 +6,32 @@ type Props = {
   path: string;
   component: FC<any>;
   exact?: boolean;
+  newUserCheck?: undefined | null | string;
 };
 
 export const PrivateRoute: FC<Props> = ({
   component: Component,
   isLoggedIn,
+  newUserCheck,
   ...rest
 }) => {
   return (
     <Route
       {...rest}
       render={(props) => {
-        return isLoggedIn ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
-          />
-        );
+        if (isLoggedIn && !!newUserCheck) {
+          return <Component {...props} />;
+        }
+        if (isLoggedIn && newUserCheck === null) {
+          return <Redirect to={'/editProfile'} />;
+        }
+        if (!isLoggedIn) {
+          return (
+            <Redirect
+              to={{ pathname: '/login', state: { from: props.location } }}
+            />
+          );
+        }
       }}
     />
   );

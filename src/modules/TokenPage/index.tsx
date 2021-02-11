@@ -2,7 +2,6 @@ import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
 import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { Logo } from 'typography';
 
 type ParamsType = {
   id: string;
@@ -24,7 +23,6 @@ export const TokenPage: FC = () => {
 
   return (
     <div>
-      <Logo />
       <p>Redirecting...</p>
     </div>
   );
