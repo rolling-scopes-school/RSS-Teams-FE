@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState, useMemo } from 'react';
+import React, { FC, MouseEvent, useState, useMemo } from 'react';
 import { StyledTableBody, StyledTableItem, StyledTableRow } from './styled';
 import './styles.css';
 

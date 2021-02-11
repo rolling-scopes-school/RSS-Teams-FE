@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Popup, TableBody, TableHead } from './components';
 import { mockData } from './mockData';
 import { StyledDashboard } from './styled';
