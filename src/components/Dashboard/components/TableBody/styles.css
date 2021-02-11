@@ -1,0 +1,253 @@
+.TableBody {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.TableBody::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f9f9fd;
+}
+
+.TableBody::-webkit-scrollbar-thumb {
+  background-color: rgba(30, 51, 87, 0.05);
+  border-radius: 20px;
+}
+
+.TableRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 150%;
+  color: #363d48;
+  border-radius: 10px;
+}
+
+.TableItem {
+  max-width: 140px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.TableRow:nth-child(2n) {
+  background-color: #f2f8fd;
+}
+
+.TableItem--0 {
+  width: 3.5%;
+}
+
+.TableItem--1 {
+  width: 16%;
+}
+
+.TableItem--2 {
+  width: 5%;
+}
+
+.TableItem--3 {
+  width: 14%;
+}
+
+.TableItem--4,
+.TableItem--5,
+.TableItem--6 {
+  width: 9.93%;
+}
+
+.TableItem--7 {
+  width: 14%;
+}
+
+.TableItem--8 {
+  width: 14%;
+}
+
+@media (max-width: 1319px) and (min-width: 1200px) {
+  .TableItem--0 {
+    width: 4%;
+  }
+
+  .TableItem--1 {
+    width: 16%;
+  }
+
+  .TableItem--2 {
+    width: 6%;
+  }
+
+  .TableItem--3 {
+    width: 14%;
+  }
+
+  .TableItem--8 {
+    width: 15%;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .TableRow {
+    font-size: 0.95rem;
+  }
+
+  .TableItem--0 {
+    width: 4.5%;
+  }
+
+  .TableItem--1 {
+    width: 18%;
+  }
+
+  .TableItem--2 {
+    width: 6%;
+  }
+
+  .TableItem--3 {
+    width: 15%;
+  }
+
+  .TableItem--7 {
+    display: none;
+  }
+
+  .TableItem--8 {
+    width: 15%;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .TableRow {
+    font-size: 0.9rem;
+  }
+
+  .TableItem--0 {
+    width: 6%;
+  }
+
+  .TableItem--1 {
+    width: 20.5%;
+  }
+
+  .TableItem--2 {
+    width: 7%;
+  }
+
+  .TableItem--3 {
+    width: 17%;
+  }
+
+  .TableItem--4 {
+    width: 11%;
+  }
+
+  .TableItem--5,
+  .TableItem--7 {
+    display: none;
+  }
+
+  .TableItem--8 {
+    width: 20%;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 550px) {
+  .TableRow {
+    padding: 10px;
+    font-size: 0.825rem;
+  }
+
+  .TableItem--0 {
+    width: 9%;
+  }
+
+  .TableItem--1 {
+    width: 28%;
+  }
+
+  .TableItem--3 {
+    width: 25%;
+  }
+
+  .TableItem--4 {
+    width: 17.5%;
+  }
+
+  .TableItem--2,
+  .TableItem--5,
+  .TableItem--7,
+  .TableItem--6 {
+    display: none;
+  }
+
+  .TableItem--8 {
+    width: 20.5%;
+  }
+}
+
+@media (max-width: 549px) and (min-width: 440px) {
+  .TableRow {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .TableItem--0 {
+    width: 11%;
+  }
+
+  .TableItem--1 {
+    width: 33%;
+  }
+
+  .TableItem--4 {
+    width: 21.5%;
+  }
+
+  .TableItem--2,
+  .TableItem--3,
+  .TableItem--5,
+  .TableItem--7,
+  .TableItem--6 {
+    display: none;
+  }
+
+  .TableItem--8 {
+    width: 27.5%;
+  }
+}
+
+@media (max-width: 439px) and (min-width: 320px) {
+  .TableRow {
+    padding: 5px;
+    font-size: 0.68rem;
+  }
+
+  .TableItem--0 {
+    width: 12%;
+  }
+
+  .TableItem--1 {
+    width: 35.5%;
+  }
+
+  .TableItem--4 {
+    width: 23.5%;
+  }
+
+  .TableItem--2,
+  .TableItem--3,
+  .TableItem--5,
+  .TableItem--7,
+  .TableItem--6 {
+    display: none;
+  }
+
+  .TableItem--8 {
+    width: 24.5%;
+  }
+}
