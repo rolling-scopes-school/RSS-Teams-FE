@@ -25,7 +25,7 @@ export const StyledTableHead = styled.thead`
   }
 `;
 
-export const StyledTableHeadRow = styled.thead`
+export const StyledTableHeadRow = styled.tr`
   display: flex;
   justify-content: space-between;
   align-items: center;
