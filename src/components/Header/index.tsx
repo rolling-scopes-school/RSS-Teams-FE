@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom';
 import { RSLogo } from 'typography';
 import { StyledHeader, Container } from './styled';
 
-export const Header: FC = () => {
+export type THeaderProps = {
+  isLogin: boolean;
+};
+
+export const Header: FC<THeaderProps> = ({ isLogin }) => {
   return (
-    <StyledHeader>
+    <StyledHeader isLogin={isLogin}>
       <Container>
         <Link to="/">
           <RSLogo />
