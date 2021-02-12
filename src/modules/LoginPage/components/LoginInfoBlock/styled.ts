@@ -12,8 +12,8 @@ export const StyledLoginInfoBlock = styled.div`
   color: ${DARK_TEXT_COLOR};
   background-color: ${WHITE_COLOR};
   border-radius: 20px;
-
   gap: 30px;
+
   @media (max-width: 1199px) and (min-width: 992px) {
     font-size: 0.95rem;
   }
@@ -25,21 +25,18 @@ export const StyledLoginInfoBlock = styled.div`
     margin: 0 auto;
     padding: 20px 15px;
     font-size: 0.825rem;
-
     gap: 25px;
   }
   @media (max-width: 549px) and (min-width: 440px) {
     margin: 0 auto;
     padding: 20px 15px;
     font-size: 0.8rem;
-
     gap: 20px;
   }
   @media (max-width: 439px) and (min-width: 320px) {
     margin: 0 auto;
     padding: 20px 15px;
     font-size: 0.68rem;
-
     gap: 15px;
   }
 `;
@@ -49,6 +46,7 @@ export const StyledLoginTitle = styled.h2`
   font-weight: 600;
   font-size: 30px;
   line-height: 45px;
+
   @media (max-width: 1199px) and (min-width: 992px) {
     font-size: 28px;
   }
@@ -81,11 +79,12 @@ export const StyledLoginTextWrapper = styled.div`
   display: flex;
   font-weight: normal;
   line-height: 150%;
-
   gap: 10px;
+
   p {
     margin: 0;
   }
+
   a {
     font-weight: 500;
     color: ${MAIN1_COLOR};

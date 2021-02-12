@@ -35,6 +35,7 @@ export const StyledLoginImage = styled(LoginImage)`
   z-index: -1;
   width: auto;
   height: 101%;
+
   @media (max-width: 991px) {
     top: 50%;
     left: 50%;
