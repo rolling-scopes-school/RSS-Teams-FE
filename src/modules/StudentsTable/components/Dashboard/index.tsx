@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Popup, TableBody, TableHead } from './components';
 import { mockData } from './mockData';
-import { StyledDashboard } from './styled';
+import { StyledTable } from './styled';
 
 const tableHeaders: string[] = [
   '№',
@@ -22,7 +22,7 @@ export const Dashboard: FC = () => {
 
   return (
     <>
-      <StyledDashboard>
+      <StyledTable>
         <TableHead tableHeaders={tableHeaders} />
         <TableBody
           users={mockData.results}
@@ -30,7 +30,7 @@ export const Dashboard: FC = () => {
           setShowPopup={setShowPopup}
           setPopupStyles={setPopupStyles}
         />
-      </StyledDashboard>
+      </StyledTable>
       <Popup
         popupElements={popupElements}
         showPopup={showPopup}
