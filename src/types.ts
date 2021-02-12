@@ -37,6 +37,15 @@ export type Team = {
   members: User[];
 };
 
+export type UserFilterInput = {
+  discord: string;
+  github: string;
+  location: string;
+  courseName: string;
+  sortingOrder: string;
+  teamFilter: boolean;
+};
+
 export type StateTeamsList = {
   teams: Team[];
 };
