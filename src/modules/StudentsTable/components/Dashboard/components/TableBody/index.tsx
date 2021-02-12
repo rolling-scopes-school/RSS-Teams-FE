@@ -70,9 +70,9 @@ export const TableBody: FC<TableBodyProps> = (props) => {
 
   return (
     <StyledTableBody>
-      {usersData.map((user: any, index: number) => (
+      {usersData.map((user: string[], index: number) => (
         <StyledTableRow key={`TableRowKey-${index}`}>
-          {user.map((item: 'string', index: number) => (
+          {user.map((item: string, index: number) => (
             <StyledTableItem
               className={`TableItem--${index}`}
               key={`TableItemKey-${index}`}
