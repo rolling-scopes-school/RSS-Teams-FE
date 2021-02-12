@@ -4,15 +4,15 @@ import { RSLogo } from 'typography';
 import { StyledHeader, Container } from './styled';
 
 export type THeaderProps = {
-  isLogin: boolean;
+  isOnLogin: boolean;
 };
 
-export const Header: FC<THeaderProps> = ({ isLogin }) => {
+export const Header: FC<THeaderProps> = ({ isOnLogin }) => {
   return (
-    <StyledHeader isLogin={isLogin}>
+    <StyledHeader isOnLogin={isOnLogin}>
       <Container>
         <Link to="/">
-          <RSLogo />
+          <RSLogo isOnLogin={isOnLogin} />
         </Link>
       </Container>
     </StyledHeader>

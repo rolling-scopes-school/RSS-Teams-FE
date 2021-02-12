@@ -14,9 +14,16 @@ interface StyledTextProps {
   lineHeight?: string;
 }
 
-export const RSLogo = styled(RSLogoIcon)`
+type TRSLogoProps = {
+  isOnLogin: boolean;
+};
+
+export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   width: 84px;
   height: 30px;
+  path {
+    fill: ${({ isOnLogin }) => (isOnLogin ? WHITE_COLOR : DARK_TEXT_COLOR)};
+  }
 `;
 
 const StyledText = css<StyledTextProps>`
