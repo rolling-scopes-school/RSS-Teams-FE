@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 import { MAIN1_COLOR } from 'appConstants/colors';
 
-export const StyledHeader = styled.header`
-  background-color: ${MAIN1_COLOR};
-  padding: 25px 60px;
+type TStyledHeaderProps = {
+  login: string | null;
+};
+
+export const StyledHeader = styled.header<TStyledHeaderProps>`
+  background-color: ${({ login }) => (login ? MAIN1_COLOR : 'transparent')};
+  padding: ${({ login }) => (login ? '25px 60px' : '40px 60px 25px 40px')};
 `;
 
 export const Container = styled.div`

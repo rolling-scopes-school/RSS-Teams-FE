@@ -18,9 +18,16 @@ type StyledButtonProps = {
   bgc?: string;
 };
 
-export const RSLogo = styled(RSLogoIcon)`
+type TRSLogoProps = {
+  login: string | null;
+};
+
+export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   width: 84px;
   height: 30px;
+  path {
+    fill: ${({ login }) => (login ? WHITE_COLOR : DARK_TEXT_COLOR)};
+  }
 `;
 
 const StyledText = css<StyledTextProps>`
