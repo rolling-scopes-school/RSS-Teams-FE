@@ -2,6 +2,13 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { selectToken } from './selectors';
+import {
+  StyledLoginImage,
+  StyledLoginPage,
+  StyledLoginPageItemsWrapper,
+  StyledLoginFakeBlock
+} from './styled';
+import { LoginInfoBlock } from './components';
 
 export const LoginPage: FC = () => {
   const loginToken = useSelector(selectToken);
@@ -9,11 +16,12 @@ export const LoginPage: FC = () => {
   if (loginToken) return <Redirect to="/" />;
 
   return (
-    <div>
-      <p>This is login page!</p>
-      <a href="https://rss-teams-dev.herokuapp.com/auth/github/">
-        Link to blink
-      </a>
-    </div>
+    <StyledLoginPage>
+      <StyledLoginPageItemsWrapper>
+        <LoginInfoBlock></LoginInfoBlock>
+        <StyledLoginImage></StyledLoginImage>
+        <StyledLoginFakeBlock></StyledLoginFakeBlock>
+      </StyledLoginPageItemsWrapper>
+    </StyledLoginPage>
   );
 };
