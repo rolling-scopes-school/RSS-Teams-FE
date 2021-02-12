@@ -6,7 +6,7 @@ import { StyledHeader, Container } from './styled';
 import { selectToken } from 'modules/LoginPage/selectors';
 
 export const Header: FC = () => {
-  const login: string | null = useSelector(selectToken);
+  const login = useSelector(selectToken);
   return (
     <StyledHeader login={login}>
       <Container>
