@@ -7,7 +7,7 @@ import {
 import styled from 'styled-components';
 
 type TStyledTableItem = {
-  changedTableItemCursor: boolean;
+  tableItemCursor: boolean;
 };
 
 export const StyledTableBody = styled.tbody`
@@ -46,6 +46,5 @@ export const StyledTableItem = styled.td<TStyledTableItem>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  cursor: ${({ changedTableItemCursor }) =>
-    changedTableItemCursor ? 'pointer' : 'unset'};
+  cursor: ${({ tableItemCursor }) => (tableItemCursor ? 'pointer' : 'unset')};
 `;

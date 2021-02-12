@@ -11,7 +11,7 @@ type TableBodyProps = {
 
 export const TableBody: FC<TableBodyProps> = (props) => {
   const { setPopupElements, setShowPopup, setPopupStyles, users } = props;
-  const [changedTableItemCursor, setTableItemCursor] = useState(false);
+  const [tableItemCursor, setTableItemCursor] = useState(false);
 
   const teamNames: string[][] = useMemo(
     () =>
@@ -78,7 +78,7 @@ export const TableBody: FC<TableBodyProps> = (props) => {
               key={`TableItemKey-${index}`}
               onMouseOver={mouseOverHandler}
               onMouseLeave={mouseLeaveHandler}
-              changedTableItemCursor={changedTableItemCursor}
+              tableItemCursor={tableItemCursor}
             >
               {item}
             </StyledTableItem>
