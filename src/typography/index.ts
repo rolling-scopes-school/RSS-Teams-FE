@@ -15,14 +15,14 @@ interface StyledTextProps {
 }
 
 type TRSLogoProps = {
-  isOnLogin: boolean;
+  login: string | null;
 };
 
 export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   width: 84px;
   height: 30px;
   path {
-    fill: ${({ isOnLogin }) => (isOnLogin ? WHITE_COLOR : DARK_TEXT_COLOR)};
+    fill: ${({ login }) => (login ? WHITE_COLOR : DARK_TEXT_COLOR)};
   }
 `;
 

@@ -3,9 +3,8 @@ import { MAIN1_COLOR } from 'appConstants/colors';
 import { THeaderProps } from './index';
 
 export const StyledHeader = styled.header<THeaderProps>`
-  background-color: ${({ isOnLogin }) =>
-    isOnLogin ? MAIN1_COLOR : 'transparent'};
-  padding: 25px 60px;
+  background-color: ${({ login }) => (login ? MAIN1_COLOR : 'transparent')};
+  padding: ${({ login }) => (login ? '25px 60px' : '40px 60px 25px 40px')};
 `;
 
 export const Container = styled.div`

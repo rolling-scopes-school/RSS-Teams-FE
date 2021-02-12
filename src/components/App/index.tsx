@@ -36,7 +36,7 @@ export const App: FC = () => {
 
   return (
     <>
-      <Header isOnLogin={!!loginToken} />
+      <Header login={loginToken} />
 
       <Switch>
         <PrivateRoute
