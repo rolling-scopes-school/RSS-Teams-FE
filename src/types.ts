@@ -46,6 +46,19 @@ export type UserFilterInput = {
   teamFilter: boolean;
 };
 
+export type UpdateUserInput = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email?: string;
+  telegram: string;
+  discord: string;
+  score?: number;
+  country: string;
+  city: string;
+  courseIds: string[];
+};
+
 export type StateTeamsList = {
   teams: Team[];
 };
