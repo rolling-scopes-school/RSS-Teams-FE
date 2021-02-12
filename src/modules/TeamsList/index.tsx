@@ -3,13 +3,14 @@ import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import { useTeamsQuery } from 'hooks/graphql';
 import { Loader, Error } from 'components';
-import { Team } from 'types';
 import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
+import { Teams } from './components/Teams';
+import { StyledTeams } from './styled';
 
 export const TeamsList: FC = () => {
-  const reactCourseId = '97c79b78-3f45-4fc1-9a62-4d99b1ee6fab';
-  const userData = useSelector(selectUserData);
+  const reactCourseId = '9c5a1bee-efb7-4eae-b306-c3d2061e9a32';
+  const userData = useSelector(selectUserData); // current User
   const [pageNumber, setPageNumber] = useState(1);
 
   const { loadingT, errorT, teams } = useTeamsQuery({
@@ -25,13 +26,9 @@ export const TeamsList: FC = () => {
   if (error) return <Error />;
 
   return (
-    <div>
-      <p>Teams length {teams.count}</p>
-      {teams &&
-        teams.results.map((item: Team) => {
-          return <div key={item.id}>Team №{item.number}</div>;
-        })}
-      <p>This is teams list!</p>
+    <StyledTeams>
+      <Teams title={'Teams'} teams={teams} />
+
       {userData && <p>My github: {userData.github}</p>}
       <ReactPaginate
         previousLabel={'previous'}
@@ -47,6 +44,6 @@ export const TeamsList: FC = () => {
         activeClassName={'active'}
       />
       <Link to="/studentsTable">Dashboard</Link>
-    </div>
+    </StyledTeams>
   );
 };
