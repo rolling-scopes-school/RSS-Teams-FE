@@ -3,7 +3,8 @@ import { useUsersQuery } from 'hooks/graphql';
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { User } from 'types';
+// import { User } from 'types';
+import { Dashboard } from './components/Dashboard';
 import { selectUserData } from './selectors';
 
 export const StudentsTable: FC = () => {
@@ -19,12 +20,7 @@ export const StudentsTable: FC = () => {
   if (error) return <Error />;
   return (
     <div>
-      <p>I am {userData.github}</p>
-      <p>Students count {users.count}</p>
-      {users.results.map((item: User) => {
-        return <div key={item.id}>{item.github}</div>;
-      })}
-      <p>This is students table!</p>
+      <Dashboard />
       <Link to="/">Teams</Link>
     </div>
   );
