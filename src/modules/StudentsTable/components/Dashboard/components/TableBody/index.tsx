@@ -45,21 +45,21 @@ export const TableBody: FC<TableBodyProps> = (props) => {
   );
 
   const mouseOverHandler = (event: MouseEvent<HTMLTableCellElement>) => {
-    const target: any = event.target;
+    const target = event.target as HTMLTableCellElement;
     if (target.scrollWidth !== target.clientWidth) {
       const style = {
         top: target.getBoundingClientRect().bottom,
         left: target.getBoundingClientRect().left - 5,
       };
       setShowPopup(true);
-      setPopupElements(target.textContent.split(','));
+      setPopupElements(target!.textContent!.split(','));
       setPopupStyles(style);
       setTableItemCursor(true);
     }
   };
 
   const mouseLeaveHandler = (event: MouseEvent<HTMLTableCellElement>) => {
-    const target: any = event.target;
+    const target = event.target as HTMLTableCellElement;
     if (target.scrollWidth !== target.clientWidth) {
       setShowPopup(false);
       setPopupElements([]);

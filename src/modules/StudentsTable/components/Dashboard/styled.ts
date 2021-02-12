@@ -4,7 +4,6 @@ import { WHITE_COLOR } from 'appConstants/colors';
 export const StyledDashboard = styled.table`
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   width: 92%;
   max-width: 1320px;
   height: calc(100vh - 111px);
