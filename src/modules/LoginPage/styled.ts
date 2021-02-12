@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { MAIN1_COLOR, WHITE_COLOR } from 'appConstants/colors';
-import { ReactComponent as LoginImage } from '../../assets/svg/loginImage.svg';
+import { ReactComponent as LoginImage } from 'assets/svg/loginImage.svg';
 
 export const StyledLoginPage = styled.div`
   position: fixed;
@@ -34,7 +34,7 @@ export const StyledLoginImage = styled(LoginImage)`
   right: 0;
   z-index: -1;
   width: auto;
-  height: 101%;
+  height: 100%;
 
   @media (max-width: 991px) {
     top: 50%;

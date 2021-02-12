@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { RSLogo } from 'typography';
 import { StyledHeader, Container } from './styled';
+import { selectToken } from 'modules/LoginPage/selectors';
 
-export type THeaderProps = {
-  login: string | null;
-};
-
-export const Header: FC<THeaderProps> = ({ login }) => {
+export const Header: FC = () => {
+  const login: string | null = useSelector(selectToken);
   return (
     <StyledHeader login={login}>
       <Container>

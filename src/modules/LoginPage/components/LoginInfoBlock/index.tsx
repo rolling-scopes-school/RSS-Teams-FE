@@ -5,7 +5,7 @@ import {
   StyledLoginRegistrationLink,
   StyledLoginTextWrapper,
 } from './styled';
-import { AUTH_BACKEND_LINK } from '../../../../appConstants';
+import { AUTH_BACKEND_LINK } from 'appConstants';
 
 export const LoginInfoBlock: FC = () => {
   return (
