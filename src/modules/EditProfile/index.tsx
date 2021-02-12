@@ -18,12 +18,12 @@ type Course = {
 };
 
 interface IProfileFormInput {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   discord: string;
   telegram: string;
   city: string;
-  coutry: string;
+  country: string;
   courses: Course[];
   score: number;
 }
@@ -33,15 +33,15 @@ export const EditProfile: FC = () => {
   const loginToken = useSelector(selectToken);
 
   const userData = useSelector(selectUserData);
-  // console.log(userData);
+  console.log(userData);
   const { register, handleSubmit, watch, errors } = useForm<IProfileFormInput>({
     defaultValues: {
-      firstName: userData.firstName,
-      lastName: userData.lastName,
+      firstname: userData.firstName,
+      lastname: userData.lastName,
       discord: userData.discord,
-      telegram: '',
+      telegram: userData.telegram || '',
       city: userData.city,
-      coutry: userData.country,
+      country: userData.country,
       // courses: Course[],
       score: userData.score,
     },
@@ -49,49 +49,146 @@ export const EditProfile: FC = () => {
 
   const onSubmit = useCallback((formValues: IProfileFormInput) => {
     console.log(formValues);
+    console.log(errors, watch);
   }, []);
 
   if (!loginToken) return <Redirect to={'/login'} />;
 
   return (
-    <EditProfileWrapper onSubmit={handleSubmit(onSubmit)}>
+    <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       <PageTitle>Enter your profile information</PageTitle>
       <InputsWrapper>
         <InputField
           name="firstname"
           labelText="First Name"
           placeholder="Enter first name"
-          register={register}
+          aria-invalid={errors.firstname ? 'true' : 'false'}
+          message={errors.firstname?.message}
+          register={register({
+            required: 'This is required.',
+            pattern: {
+              value: /^[A-Za-z]+$/i,
+              message: 'This input is letters only.',
+            },
+            minLength: {
+              value: 3,
+              message: 'minimal length is 3',
+            },
+            maxLength: {
+              value: 12,
+              message: 'This input exceed maxLength.',
+            },
+          })}
         />
         <InputField
-          name="secondname"
+          name="lastname"
           labelText="Second Name"
           placeholder="Enter second name"
-          register={register}
+          aria-invalid={errors.lastname ? 'true' : 'false'}
+          message={errors.lastname?.message}
+          register={register({
+            required: 'This is required.',
+            pattern: {
+              value: /^[A-Za-z]+$/i,
+              message: 'This input is letters only.',
+            },
+            minLength: {
+              value: 3,
+              message: 'minimal length is 3',
+            },
+            maxLength: {
+              value: 14,
+              message: 'This input exceed maxLength.',
+            },
+          })}
         />
         <InputField
           name="discord"
           labelText="Discord"
           placeholder="Enter discord"
-          register={register}
+          aria-invalid={errors.discord ? 'true' : 'false'}
+          message={errors.discord?.message}
+          register={register({
+            required: 'This is required.',
+            pattern: {
+              value: /^[A-Za-z0-9]+$/i,
+              message: 'This input is letters and digits only.',
+            },
+            minLength: {
+              value: 3,
+              message: 'minimal length is 3',
+            },
+            maxLength: {
+              value: 12,
+              message: 'This input exceed maxLength.',
+            },
+          })}
         />
         <InputField
           name="telegram"
           labelText="Telegram"
           placeholder="Enter telegram"
-          register={register}
+          message={errors.telegram?.message}
+          aria-invalid={errors.telegram ? 'true' : 'false'}
+          register={register({
+            required: 'This is required.',
+            pattern: {
+              value: /^[A-Za-z0-9]+$/i,
+              message: 'This input is letters and digits only.',
+            },
+            minLength: {
+              value: 3,
+              message: 'minimal length is 3',
+            },
+            maxLength: {
+              value: 12,
+              message: 'This input exceed maxLength.',
+            },
+          })}
         />
         <InputField
           name="city"
           labelText="City"
           placeholder="Enter city"
-          register={register}
+          message={errors.city?.message}
+          aria-invalid={errors.city ? 'true' : 'false'}
+          register={register({
+            required: 'This is required.',
+            pattern: {
+              value: /^[A-Za-z]+$/i,
+              message: 'This input is letters only.',
+            },
+            minLength: {
+              value: 3,
+              message: 'minimal length is 3',
+            },
+            maxLength: {
+              value: 12,
+              message: 'This input exceed maxLength.',
+            },
+          })}
         />
         <InputField
           name="country"
           labelText="Country"
           placeholder="Enter country"
-          register={register}
+          message={errors.country?.message}
+          aria-invalid={errors.country ? 'true' : 'false'}
+          register={register({
+            required: 'This is required.',
+            pattern: {
+              value: /^[A-Za-z]+$/i,
+              message: 'This input is letters only.',
+            },
+            minLength: {
+              value: 3,
+              message: 'minimal length is 3',
+            },
+            maxLength: {
+              value: 12,
+              message: 'This input exceed maxLength.',
+            },
+          })}
         />
         <CourseField
           name="courses"
@@ -105,7 +202,23 @@ export const EditProfile: FC = () => {
           name="score"
           labelText="Score"
           placeholder="Enter score"
-          register={register}
+          message={errors.score?.message}
+          aria-invalid={errors.score ? 'true' : 'false'}
+          register={register({
+            required: 'This is required.',
+            pattern: {
+              value: /^[0-9]+$/i,
+              message: 'This input is number only.',
+            },
+            minLength: {
+              value: 3,
+              message: 'minimal length is 3',
+            },
+            maxLength: {
+              value: 5,
+              message: 'This input exceed maxLength.',
+            },
+          })}
         />
       </InputsWrapper>
       <ButtonWrapper>

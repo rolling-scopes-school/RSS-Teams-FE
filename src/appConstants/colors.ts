@@ -7,3 +7,5 @@ export const MAIN2_LIGHT_COLOR = '#FE7888'; // light red
 export const LIGHT_TEXT_COLOR = '#7E96C2';
 export const DARK_TEXT_COLOR = '#363D48';
 export const DASHBOARD_HEADER_BG_COLOR = '#E1EEFA';
+
+export const ALERT_COLOR = '#FA6678'; // red
