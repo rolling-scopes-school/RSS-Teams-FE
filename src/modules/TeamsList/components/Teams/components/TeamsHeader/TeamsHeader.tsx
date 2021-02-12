@@ -9,7 +9,7 @@ import {
   HeaderManPic,
 } from './styled';
 import { Button } from '../../../../../../typography';
-import { DARK_TEXT_COLOR } from 'appConstants/colors';
+import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 
 export const TeamsHeader: FC = () => {
   return (
@@ -26,8 +26,12 @@ export const TeamsHeader: FC = () => {
           team. If not, you will be added to the team automatically.
         </StyledTeamHeaderSubtitle>
         <StyledButtonBlock>
-          <Button color={DARK_TEXT_COLOR}>Create team</Button>
-          <Button color={DARK_TEXT_COLOR}>Join team</Button>
+          <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR}>
+            Create team
+          </Button>
+          <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR}>
+            Join team
+          </Button>
         </StyledButtonBlock>
       </StyledTeamHeaderRight>
     </StyledTeamHeader>

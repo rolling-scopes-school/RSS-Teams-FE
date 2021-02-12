@@ -8,6 +8,7 @@ export const StyledTeamHeader = styled.div`
   color: ${WHITE_COLOR};
   background-color: ${MAIN2_COLOR};
   border-radius: 20px;
+  z-index: 0;
 `;
 
 export const StyledTeamHeaderRight = styled.div`
@@ -16,7 +17,6 @@ export const StyledTeamHeaderRight = styled.div`
 `;
 
 export const StyledTeamHeaderTitle = styled.div`
-  //font: 24px/36px;
   font-size: 24px;
   line-height: 36px;
   font-weight: 600;
@@ -24,7 +24,6 @@ export const StyledTeamHeaderTitle = styled.div`
 `;
 
 export const StyledTeamHeaderSubtitle = styled.div`
-  //font: normal 400 16px/24px;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -34,6 +33,12 @@ export const StyledTeamHeaderSubtitle = styled.div`
 export const StyledButtonBlock = styled.div`
   display: flex;
   gap: 20px;
+
+  @media (max-width: 580px) {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
 `;
 
 export const StyledTeamHeaderLeft = styled.div`
@@ -43,6 +48,7 @@ export const StyledTeamHeaderLeft = styled.div`
   bottom: 0;
   max-width: 631px;
   width: 100%;
+  z-index: -1;
 `;
 
 export const HeaderManPic = styled(HeaderMan)`
@@ -51,4 +57,8 @@ export const HeaderManPic = styled(HeaderMan)`
   bottom: 0;
   width: 284px;
   height: 254px;
+
+  @media (max-width: 580px) {
+    right: 20px;
+  }
 `;
