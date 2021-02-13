@@ -58,7 +58,7 @@ export const CourseField: FC<SelectFieldProps> = ({
         </Select>
         {multi && <PlusButton type="button"></PlusButton>}
       </SelectCource>
-      <SelectCource>
+      {/* <SelectCource>
         <Select>
           <SelectInner placeholder={placeholder} ref={register} {...rest}>
             <option value="111">222</option>
@@ -75,7 +75,7 @@ export const CourseField: FC<SelectFieldProps> = ({
           </SelectInner>
         </Select>
         {!multi && <CrossButton></CrossButton>}
-      </SelectCource>
+      </SelectCource> */}
     </FieldWrapper>
   );
 };

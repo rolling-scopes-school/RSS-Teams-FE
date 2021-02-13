@@ -14,8 +14,9 @@ interface StyledTextProps {
   lineHeight?: string;
 }
 
-type StyledButtonProps = {
+type ButtonProps = {
   bgc?: string;
+  color?: string;
 };
 
 type TRSLogoProps = {
@@ -76,7 +77,7 @@ export const PageSubTitle = styled.h2`
   }
 `;
 
-export const Button = styled.button<StyledButtonProps>`
+export const Button = styled.button<ButtonProps>`
   ${TextSemiBold};
   padding: 13px 50px;
   border-radius: 20px;
@@ -84,7 +85,7 @@ export const Button = styled.button<StyledButtonProps>`
   outline: none;
   cursor: pointer;
   background-color: ${({ bgc }) => bgc || MAIN1_COLOR};
-  color: ${(props) => props.color || WHITE_COLOR};
+  color: ${({ color }) => color || WHITE_COLOR};
 `;
 
 export const Label = styled.label`

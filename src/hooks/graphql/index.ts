@@ -1,4 +1,5 @@
-export { useTeamsQuery } from './useTeamsQuery';
-export { useUsersQuery } from './useUsersQuery';
-export { useWhoAmIQuery } from './useWhoAmIQuery';
-export { useCoursesQuery } from './useCoursesQuery';
+export { useTeamsQuery } from './queries/useTeamsQuery';
+export { useUsersQuery } from './queries/useUsersQuery';
+export { useWhoAmIQuery } from './queries/useWhoAmIQuery';
+export { useCoursesQuery } from './queries/useCoursesQuery';
+export { useUpdUserMutation } from './mutations/useUpdUserMutation';

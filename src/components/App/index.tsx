@@ -31,7 +31,7 @@ export const App: FC = () => {
     if (whoAmI?.courses[0])
       dispatch({ type: SET_CURR_COURSE, payload: whoAmI?.courses[0] });
     if (!loadingW && loading) setLoading(false);
-  }, [dispatch, loginToken, loadingW, loading]);
+  }, [dispatch, loginToken, loadingW, loading, whoAmI?.courses]);
 
   if (loading || loadingW) return <Loader />;
 
