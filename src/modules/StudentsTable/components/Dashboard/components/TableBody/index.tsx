@@ -52,7 +52,7 @@ export const TableBody: FC<TableBodyProps> = (props) => {
         left: target.getBoundingClientRect().left - 5,
       };
       setShowPopup(true);
-      setPopupElements(target!.textContent!.split(','));
+      setPopupElements(target?.textContent?.split(','));
       setPopupStyles(style);
       setTableItemCursor(true);
     }
