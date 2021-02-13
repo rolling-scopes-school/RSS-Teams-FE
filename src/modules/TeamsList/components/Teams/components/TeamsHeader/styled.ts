@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { WHITE_COLOR, MAIN2_COLOR } from 'appConstants/colors';
 import { ReactComponent as HeaderMan } from 'assets/svg/teams-man.svg';
-import { TextRegular, TextSemiBold } from 'typography';
+import { PageSubTitle, TextRegular } from 'typography';
 
 export const TeamsHeaderStyled = styled.div`
   padding: 30px;
@@ -16,18 +16,19 @@ export const TeamsHeaderStyled = styled.div`
   }
 `;
 
+export const TeamHeaderTitle = styled.h2`
+  ${PageSubTitle};
+  margin: 5px 0 18px;
+`;
+
 export const TeamsHeaderRightStyled = styled.div`
   max-width: 631px;
   width: 100%;
 `;
 
-export const TeamsHeaderTitleStyled = styled.div`
-  ${TextSemiBold};
-  margin-bottom: 10px;
-`;
-
 export const TeamsHeaderSubtitleStyled = styled.div`
   ${TextRegular};
+  color: ${WHITE_COLOR};
   margin-bottom: 30px;
 `;
 
@@ -54,8 +55,9 @@ export const TeamHeaderLeftStyled = styled.div`
 
 export const HeaderManPic = styled(HeaderMan)`
   position: absolute;
-  right: 0;
+  right: 40px;
   bottom: 0;
   width: 440px;
   height: 254px;
+  z-index: -1;
 `;

@@ -3,10 +3,10 @@ import {
   TeamsHeaderStyled,
   TeamsHeaderRightStyled,
   TeamsHeaderSubtitleStyled,
-  TeamsHeaderTitleStyled,
   TeamsHeaderButtonsBlockStyled,
   TeamHeaderLeftStyled,
   HeaderManPic,
+  TeamHeaderTitle,
 } from './styled';
 import { Button } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
@@ -14,13 +14,8 @@ import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 export const TeamsHeader: FC = () => {
   return (
     <TeamsHeaderStyled>
-      <TeamHeaderLeftStyled>
-        <HeaderManPic />
-      </TeamHeaderLeftStyled>
       <TeamsHeaderRightStyled>
-        <TeamsHeaderTitleStyled>
-          Become a member of the team!
-        </TeamsHeaderTitleStyled>
+        <TeamHeaderTitle>Become a member of the team!</TeamHeaderTitle>
         <TeamsHeaderSubtitleStyled>
           To become a member of the team you can create your own team or join
           team. If not, you will be added to the team automatically.
@@ -34,6 +29,9 @@ export const TeamsHeader: FC = () => {
           </Button>
         </TeamsHeaderButtonsBlockStyled>
       </TeamsHeaderRightStyled>
+      <TeamHeaderLeftStyled>
+        <HeaderManPic />
+      </TeamHeaderLeftStyled>
     </TeamsHeaderStyled>
   );
 };

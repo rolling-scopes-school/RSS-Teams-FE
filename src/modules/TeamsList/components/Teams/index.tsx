@@ -3,20 +3,21 @@ import { PageTitle } from 'typography';
 
 import { TeamsHeader } from './components/TeamsHeader/TeamsHeader';
 import { MyTeam } from './components/MyTeam/MyTeam';
-import { Team } from 'types';
+import { Team, TeamList } from 'types';
 
 type TeamsProps = {
-  teams: Team[];
+  teams: TeamList;
   title?: string;
+  myTeam?: Team;
 };
 
-export const Teams: FC<TeamsProps> = ({ title, teams }) => {
+export const Teams: FC<TeamsProps> = ({ title, teams, myTeam }) => {
   console.log('teams', teams);
+
   return (
     <>
       <PageTitle>{title || 'Teams'}</PageTitle>
-      <TeamsHeader />
-      <MyTeam team={teams[0]} />
+      {myTeam ? <MyTeam team={myTeam} /> : <TeamsHeader />}
     </>
   );
 };

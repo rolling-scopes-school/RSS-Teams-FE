@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
-  TeamsHeaderStyled,
-  TeamsHeaderRightStyled,
-  TeamsHeaderSubtitleStyled,
-  TeamsHeaderTitleStyled,
-  TeamHeaderLeftStyled,
-  HeaderManPic,
+  MyTeamsHeader,
+  MyTeamsHeaderRight,
+  MyTeamHeaderLeft,
+  HeaderDecor,
+  MyTeamInfoBlockWrapper,
+  MyTeamHeaderTitle,
 } from './styled';
 import { Button } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
@@ -17,33 +17,42 @@ type MyTeamProps = {
   team?: Team;
 };
 
-export const MyTeam: FC<MyTeamProps> = () => {
+export const MyTeam: FC<MyTeamProps> = ({ team }) => {
+  const [isOpen, setToggle] = useState(false);
+
+  const toggleListHandler = () => {
+    setToggle(!isOpen);
+  };
+
+  const countMember: number | undefined = team?.members.length;
   return (
-    <TeamsHeaderStyled>
-      <TeamsHeaderRightStyled>
-        <TeamsHeaderTitleStyled>
-          <p>My team </p>
-        </TeamsHeaderTitleStyled>
-        <TeamsHeaderSubtitleStyled>
+    <MyTeamsHeader>
+      <MyTeamsHeaderRight>
+        <MyTeamHeaderTitle>My team - Team {team?.number}</MyTeamHeaderTitle>
+        <MyTeamInfoBlockWrapper>
           <MyTeamInfoBlock
             title={'Invitation password'}
-            value={'q4w2t4'}
+            value={team?.password}
             icon={'info'}
           />
           <MyTeamInfoBlock
             title={'Link to group'}
-            value={'t.me/ololo123'}
+            value={team?.socialLink}
             icon={'edit'}
           />
-        </TeamsHeaderSubtitleStyled>
-      </TeamsHeaderRightStyled>
-      <TeamHeaderLeftStyled>
-        <HeaderManPic />
+        </MyTeamInfoBlockWrapper>
+      </MyTeamsHeaderRight>
+      <MyTeamHeaderLeft>
+        <HeaderDecor />
         <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR}>
           Leave team
         </Button>
-        <MembersListToggle open={false} countMembers={3} />
-      </TeamHeaderLeftStyled>
-    </TeamsHeaderStyled>
+        <MembersListToggle
+          open={isOpen}
+          countMembers={countMember}
+          onToggleList={toggleListHandler}
+        />
+      </MyTeamHeaderLeft>
+    </MyTeamsHeader>
   );
 };

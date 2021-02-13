@@ -27,7 +27,8 @@ export const TeamsList: FC = () => {
 
   return (
     <StyledTeams>
-      <Teams teams={teams} />
+      {/* TODO: Replace when getting real data "myTeam" */}
+      <Teams teams={teams} myTeam={teams.results[0]} />
 
       {userData && <p>My github: {userData.github}</p>}
       <ReactPaginate
