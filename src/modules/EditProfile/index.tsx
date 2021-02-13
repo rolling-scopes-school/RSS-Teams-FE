@@ -10,6 +10,7 @@ import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
 
 import { EditProfileWrapper, InputsWrapper, ButtonWrapper } from './styled';
+import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 
 const testUpdatedData = {
   id: '8b63e270-a57b-44d7-ba97-747cc332bcc6',
@@ -41,6 +42,8 @@ export const EditProfile: FC = memo(() => {
   const { updateUser, loadingM } = useUpdUserMutation({
     user: testUpdatedData,
   });
+
+  const isUserNew = userData.telegram === null;
 
   console.log('userDataRedux', userData);
   const { register, handleSubmit, errors } = useForm<IProfileFormInput>({
@@ -233,7 +236,12 @@ export const EditProfile: FC = memo(() => {
         />
       </InputsWrapper>
       <ButtonWrapper>
-        <Button>Submit</Button>
+        {!isUserNew && (
+          <Button bgc={BG_COLOR} color={MAIN1_COLOR}>
+            Cancel
+          </Button>
+        )}
+        <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
       </ButtonWrapper>
     </EditProfileWrapper>
   );
