@@ -27,7 +27,7 @@ export const TeamsList: FC = () => {
 
   return (
     <StyledTeams>
-      <Teams title={'Teams'} teams={teams} />
+      <Teams teams={teams} />
 
       {userData && <p>My github: {userData.github}</p>}
       <ReactPaginate

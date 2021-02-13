@@ -1,20 +1,22 @@
 import React, { FC } from 'react';
-import { PageTitle } from '../../../../typography';
-// import { Team } from 'types';
+import { PageTitle } from 'typography';
 
 import { TeamsHeader } from './components/TeamsHeader/TeamsHeader';
+import { MyTeam } from './components/MyTeam/MyTeam';
+import { Team } from 'types';
 
 type TeamsProps = {
-  title: string;
-  teams: any;
+  teams: Team[];
+  title?: string;
 };
 
-export const Teams: FC<TeamsProps> = (props) => {
-  console.log('teams', props.teams);
+export const Teams: FC<TeamsProps> = ({ title, teams }) => {
+  console.log('teams', teams);
   return (
     <>
-      <PageTitle>{props.title}</PageTitle>
+      <PageTitle>{title || 'Teams'}</PageTitle>
       <TeamsHeader />
+      <MyTeam team={teams[0]} />
     </>
   );
 };
