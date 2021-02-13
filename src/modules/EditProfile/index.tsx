@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
@@ -10,17 +10,18 @@ import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
 
 import { EditProfileWrapper, InputsWrapper, ButtonWrapper } from './styled';
+import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 
 const testUpdatedData = {
   id: '8b63e270-a57b-44d7-ba97-747cc332bcc6',
-  firstName: 'serge',
-  lastName: 'qefds',
-  telegram: 'wewq4',
-  discord: 'werwer',
+  firstName: 'saaaaaaattttttqqqrg',
+  lastName: 'saaaaaaaacatttttttcccg',
+  telegram: 'szzzzzzzg',
+  discord: 'snrg',
   score: 9999,
-  country: 'wewr',
-  city: 'wewrewrew',
-  courseIds: ['4dc87a18-0ef2-414a-a906-37111f458d21'],
+  country: 'waffs',
+  city: 'filled',
+  courseIds: ['9c5a1bee-efb7-4eae-b306-c3d2061e9a32'],
 };
 interface IProfileFormInput {
   firstName: string;
@@ -34,13 +35,14 @@ interface IProfileFormInput {
 }
 
 export const EditProfile: FC = memo(() => {
-  // const history = useHistory();
+  const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
   const { loading, courses } = useCoursesQuery();
   const { updateUser, loadingM } = useUpdUserMutation({
     user: testUpdatedData,
   });
+  const isUserNew = userData.telegram === null;
 
   console.log('userDataRedux', userData);
   const { register, handleSubmit, errors } = useForm<IProfileFormInput>({
@@ -59,11 +61,11 @@ export const EditProfile: FC = memo(() => {
   const onSubmit = (formValues: IProfileFormInput) => {
     console.log(formValues);
     updateUser();
-    // history.push('/');
+    history.push('/');
   };
 
   if (!loginToken) return <Redirect to={'/login'} />;
-  if (loading || loadingM) return <Loader />;
+  if (loading || loadingM || userData.id === '') return <Loader />;
 
   return (
     <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
@@ -71,6 +73,7 @@ export const EditProfile: FC = memo(() => {
       <InputsWrapper>
         <InputField
           name="firstName"
+          value={userData.firstName}
           labelText="First Name"
           placeholder="Enter first name"
           aria-invalid={errors.firstName ? 'true' : 'false'}
@@ -233,7 +236,18 @@ export const EditProfile: FC = memo(() => {
         />
       </InputsWrapper>
       <ButtonWrapper>
-        <Button>Submit</Button>
+        {!isUserNew && (
+          <Button
+            type="button"
+            bgc={BG_COLOR}
+            color={MAIN1_COLOR}
+            onClick={history.goBack}
+            style={{ marginRight: '20px' }}
+          >
+            Cancel
+          </Button>
+        )}
+        <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
       </ButtonWrapper>
     </EditProfileWrapper>
   );

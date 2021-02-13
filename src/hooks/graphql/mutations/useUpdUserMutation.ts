@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { UPD_USER_MUTATION } from 'graphql/mutations';
+import { WHOAMI_QUERY } from 'graphql/queries';
 import { UpdateUserInput } from 'types';
 
 type Props = {
@@ -7,12 +8,19 @@ type Props = {
 };
 
 export const useUpdUserMutation = ({ user }: Props) => {
-  const [updateUser, { data, loading }] = useMutation(UPD_USER_MUTATION, {
+  const [updateUser, { loading }] = useMutation(UPD_USER_MUTATION, {
     variables: {
       user,
     },
+    update(cache, { data: { updateUser } }) {
+      cache.writeQuery({
+        query: WHOAMI_QUERY,
+        data: {
+          updateUser,
+        },
+      });
+    },
   });
-  console.log('i am data from mutation', data);
   return {
     updateUser,
     loadingM: loading,

@@ -8,6 +8,7 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   register: any;
   name: string;
   message?: string | undefined;
+  value?: string;
 }
 
 export const InputField: FC<InputFieldProps> = ({
