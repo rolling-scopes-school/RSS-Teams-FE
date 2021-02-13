@@ -5,16 +5,17 @@ import { useTeamsQuery } from 'hooks/graphql';
 import { Loader, Error } from 'components';
 import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
+import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Teams } from './components/Teams';
 import { StyledTeams } from './styled';
 
 export const TeamsList: FC = () => {
-  const reactCourseId = '9c5a1bee-efb7-4eae-b306-c3d2061e9a32';
-  const userData = useSelector(selectUserData); // current User
+  const currCourse = useSelector(selectCurrCourse);
+  const userData = useSelector(selectUserData);
   const [pageNumber, setPageNumber] = useState(1);
 
   const { loadingT, errorT, teams } = useTeamsQuery({
-    reactCourseId,
+    reactCourseId: currCourse.id,
   });
   const loading = loadingT;
   const error = errorT;
