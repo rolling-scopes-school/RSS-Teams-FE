@@ -105,7 +105,7 @@ export const EditProfile: FC = memo(() => {
         <InputField
           name="lastName"
           labelText="Last Name"
-          placeholder="Enter second name"
+          placeholder="Enter last name"
           aria-invalid={errors.lastName ? 'true' : 'false'}
           message={errors.lastName?.message}
           onChange={changeInputValue}
