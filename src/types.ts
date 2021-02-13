@@ -20,10 +20,10 @@ export type User = {
 export type Course = {
   id: string;
   name: string;
-  teamIds: string[];
-  userIds: string[];
-  teams: Team[];
-  users: User[];
+  teamIds?: string[];
+  userIds?: string[];
+  teams?: Team[];
+  users?: User[];
 };
 
 export type Team = {
@@ -47,6 +47,7 @@ export type StateStudentsTable = {
 
 export type StateLoginPage = {
   loginToken: string | null;
+  currCourse: Course;
 };
 
 export type State = {
