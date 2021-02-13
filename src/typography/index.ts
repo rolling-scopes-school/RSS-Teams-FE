@@ -26,6 +26,7 @@ type TRSLogoProps = {
 export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   width: 84px;
   height: 30px;
+  margin-top: 5px;
   path {
     fill: ${({ login }) => (login ? WHITE_COLOR : DARK_TEXT_COLOR)};
   }

@@ -6,7 +6,10 @@ type Action = { type: string; payload: any };
 
 export const loginPageState = {
   loginToken: null,
-  currCourse: '',
+  currCourse: {
+    id: '',
+    name: '',
+  },
 };
 
 export const loginPageReducer: Reducer<StateLoginPage, Action> = (
