@@ -242,17 +242,18 @@ export const EditProfile: FC = memo(() => {
         />
       </InputsWrapper>
       <ButtonWrapper>
-        {isUserNew && (
+        {!isUserNew && (
           <Button
             type="button"
             bgc={BG_COLOR}
             color={MAIN1_COLOR}
+            mr="20px"
             onClick={history.goBack}
           >
             Cancel
           </Button>
         )}
-        <Button>{!isUserNew ? 'Submit' : 'Save'}</Button>
+        <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
       </ButtonWrapper>
     </EditProfileWrapper>
   );
