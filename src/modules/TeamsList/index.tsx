@@ -6,14 +6,15 @@ import { Loader, Error } from 'components';
 import { Team } from 'types';
 import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
+import { selectCurrCourse } from 'modules/LoginPage/selectors';
 
 export const TeamsList: FC = () => {
-  const reactCourseId = '97c79b78-3f45-4fc1-9a62-4d99b1ee6fab';
+  const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
   const [pageNumber, setPageNumber] = useState(1);
 
   const { loadingT, errorT, teams } = useTeamsQuery({
-    reactCourseId,
+    reactCourseId: currCourse.id,
   });
   const loading = loadingT;
   const error = errorT;
