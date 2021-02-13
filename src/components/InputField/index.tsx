@@ -8,7 +8,7 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   register: any;
   name: string;
   message?: string | undefined;
-  value?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputField: FC<InputFieldProps> = ({
@@ -17,6 +17,7 @@ export const InputField: FC<InputFieldProps> = ({
   register,
   name,
   message,
+  onChange,
 }) => {
   return (
     <FieldWrapper>
@@ -27,6 +28,7 @@ export const InputField: FC<InputFieldProps> = ({
         placeholder={placeholder}
         ref={register}
         autoComplete="off"
+        onChange={onChange}
       />
       <ValidationAlert>{message}</ValidationAlert>
     </FieldWrapper>

@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -8,6 +8,7 @@ import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
 import { PageTitle, Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
+import { Course, UpdateUserInput } from 'types';
 
 import { EditProfileWrapper, InputsWrapper, ButtonWrapper } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
@@ -23,43 +24,49 @@ const testUpdatedData = {
   city: 'filled',
   courseIds: ['9c5a1bee-efb7-4eae-b306-c3d2061e9a32'],
 };
-interface IProfileFormInput {
-  firstName: string;
-  lastName: string;
-  discord: string;
-  telegram: string;
-  city: string;
-  country: string;
-  coursesIds: string[];
-  score: number;
-}
 
 export const EditProfile: FC = memo(() => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
   const { loading, courses } = useCoursesQuery();
+
+  const [inputValues, setInputValues] = useState<UpdateUserInput>({
+    id: userData.id,
+    firstName: userData.firstName || '',
+    lastName: userData.lastName || '',
+    discord: userData.discord || '',
+    telegram: userData.telegram || '',
+    city: userData.city || '',
+    country: userData.country || '',
+    courseIds: userData.courseIds || '',
+    score: userData.score,
+  });
+
   const { updateUser, loadingM } = useUpdUserMutation({
     user: testUpdatedData,
   });
   const isUserNew = userData.telegram === null;
 
-  console.log('userDataRedux', userData);
-  const { register, handleSubmit, errors } = useForm<IProfileFormInput>({
-    defaultValues: {
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      discord: userData.discord,
-      telegram: userData.telegram || '',
-      city: userData.city,
-      country: userData.country,
-      // courses: Course[],
-      score: userData.score,
-    },
+  const currentYear = new Date(Date.now()).getFullYear();
+  const currentCourses = courses?.filter(({ name }: Course) =>
+    name.includes(`${currentYear}`)
+  );
+
+  const { register, handleSubmit, errors } = useForm<UpdateUserInput>({
+    defaultValues: inputValues,
   });
 
-  const onSubmit = (formValues: IProfileFormInput) => {
-    console.log(formValues);
+  const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setInputValues({
+      ...inputValues,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = (formValues: UpdateUserInput) => {
+    console.log('formValues', formValues);
     updateUser();
     history.push('/');
   };
@@ -78,6 +85,7 @@ export const EditProfile: FC = memo(() => {
           placeholder="Enter first name"
           aria-invalid={errors.firstName ? 'true' : 'false'}
           message={errors.firstName?.message}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -96,10 +104,11 @@ export const EditProfile: FC = memo(() => {
         />
         <InputField
           name="lastName"
-          labelText="Second Name"
-          placeholder="Enter second name"
+          labelText="Last Name"
+          placeholder="Enter last name"
           aria-invalid={errors.lastName ? 'true' : 'false'}
           message={errors.lastName?.message}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -122,6 +131,7 @@ export const EditProfile: FC = memo(() => {
           placeholder="Enter discord"
           aria-invalid={errors.discord ? 'true' : 'false'}
           message={errors.discord?.message}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -144,6 +154,7 @@ export const EditProfile: FC = memo(() => {
           placeholder="Enter telegram"
           message={errors.telegram?.message}
           aria-invalid={errors.telegram ? 'true' : 'false'}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -166,6 +177,7 @@ export const EditProfile: FC = memo(() => {
           placeholder="Enter city"
           message={errors.city?.message}
           aria-invalid={errors.city ? 'true' : 'false'}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -188,6 +200,7 @@ export const EditProfile: FC = memo(() => {
           placeholder="Enter country"
           message={errors.country?.message}
           aria-invalid={errors.country ? 'true' : 'false'}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -210,7 +223,7 @@ export const EditProfile: FC = memo(() => {
           placeholder="Select course"
           register={register}
           multi
-          courses={courses}
+          courses={currentCourses}
         />
         <InputField
           name="score"
@@ -218,6 +231,7 @@ export const EditProfile: FC = memo(() => {
           placeholder="Enter score"
           message={errors.score?.message}
           aria-invalid={errors.score ? 'true' : 'false'}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -241,8 +255,8 @@ export const EditProfile: FC = memo(() => {
             type="button"
             bgc={BG_COLOR}
             color={MAIN1_COLOR}
+            mr="20px"
             onClick={history.goBack}
-            style={{ marginRight: '20px' }}
           >
             Cancel
           </Button>
