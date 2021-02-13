@@ -17,6 +17,7 @@ interface StyledTextProps {
 type ButtonProps = {
   bgc?: string;
   color?: string;
+  mr?: string;
 };
 
 type TRSLogoProps = {
@@ -78,7 +79,8 @@ export const PageSubTitle = styled.h2`
 `;
 
 export const Button = styled.button<ButtonProps>`
-  ${TextSemiBold};
+  ${TextSemiBold}
+  margin-right: ${({ mr }) => mr || 0};
   padding: 13px 50px;
   border-radius: 20px;
   border: none;
