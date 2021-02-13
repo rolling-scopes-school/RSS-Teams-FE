@@ -8,7 +8,7 @@ import { Dashboard } from './components/Dashboard';
 // import { selectUserData } from './selectors';
 
 export const StudentsTable: FC = () => {
-  const reactCourseId = '97c79b78-3f45-4fc1-9a62-4d99b1ee6fab';
+  const reactCourseId = '9c5a1bee-efb7-4eae-b306-c3d2061e9a32';
   // const userData = useSelector(selectUserData);
   const { loadingU, errorU, users } = useUsersQuery({
     reactCourseId,

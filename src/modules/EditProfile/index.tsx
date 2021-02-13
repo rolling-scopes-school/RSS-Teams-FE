@@ -1,43 +1,52 @@
-import React, { FC, useCallback } from 'react';
-
+import React, { FC, memo, useCallback } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useCoursesQuery } from 'hooks/graphql';
+import { useForm } from 'react-hook-form';
+
+import { Loader, InputField, CourseField } from 'components';
+import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
+import { PageTitle, Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
-import { Redirect } from 'react-router-dom';
-import { PageTitle, Button } from 'typography';
-import { InputField } from 'components/InputField';
-import { CourseField } from 'components/CourseField';
 
-import { useForm } from 'react-hook-form';
 import { EditProfileWrapper, InputsWrapper, ButtonWrapper } from './styled';
 
-type Course = {
-  courseId: string;
-  course: string;
+const testUpdatedData = {
+  id: '8b63e270-a57b-44d7-ba97-747cc332bcc6',
+  firstName: 'serge',
+  lastName: 'qefds',
+  telegram: 'wewq4',
+  discord: 'werwer',
+  score: 9999,
+  country: 'wewr',
+  city: 'wewrewrew',
+  courseIds: ['4dc87a18-0ef2-414a-a906-37111f458d21'],
 };
-
 interface IProfileFormInput {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   discord: string;
   telegram: string;
   city: string;
   country: string;
-  courses: Course[];
+  coursesIds: string[];
   score: number;
 }
 
-export const EditProfile: FC = () => {
-  const { loading, error, courses } = useCoursesQuery();
+export const EditProfile: FC = memo(() => {
+  const history = useHistory();
   const loginToken = useSelector(selectToken);
-
   const userData = useSelector(selectUserData);
-  console.log(userData);
+  const { loading, error, courses } = useCoursesQuery();
+  const { updateUser, loadingM } = useUpdUserMutation({
+    user: testUpdatedData,
+  });
+
+  console.log('userDataRedux', userData);
   const { register, handleSubmit, watch, errors } = useForm<IProfileFormInput>({
     defaultValues: {
-      firstname: userData.firstName,
-      lastname: userData.lastName,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
       discord: userData.discord,
       telegram: userData.telegram || '',
       city: userData.city,
@@ -47,23 +56,25 @@ export const EditProfile: FC = () => {
     },
   });
 
-  const onSubmit = useCallback((formValues: IProfileFormInput) => {
+  const onSubmit = (formValues: IProfileFormInput) => {
     console.log(formValues);
-    console.log(errors, watch);
-  }, []);
+    updateUser();
+    // history.push('/');
+  };
 
   if (!loginToken) return <Redirect to={'/login'} />;
+  if (loading || loadingM) return <Loader />;
 
   return (
     <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       <PageTitle>Enter your profile information</PageTitle>
       <InputsWrapper>
         <InputField
-          name="firstname"
+          name="firstName"
           labelText="First Name"
           placeholder="Enter first name"
-          aria-invalid={errors.firstname ? 'true' : 'false'}
-          message={errors.firstname?.message}
+          aria-invalid={errors.firstName ? 'true' : 'false'}
+          message={errors.firstName?.message}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -81,11 +92,11 @@ export const EditProfile: FC = () => {
           })}
         />
         <InputField
-          name="lastname"
+          name="lastName"
           labelText="Second Name"
           placeholder="Enter second name"
-          aria-invalid={errors.lastname ? 'true' : 'false'}
-          message={errors.lastname?.message}
+          aria-invalid={errors.lastName ? 'true' : 'false'}
+          message={errors.lastName?.message}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -226,4 +237,4 @@ export const EditProfile: FC = () => {
       </ButtonWrapper>
     </EditProfileWrapper>
   );
-};
+});

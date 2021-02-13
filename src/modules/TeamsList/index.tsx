@@ -1,5 +1,4 @@
-import React, { FC, useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useTeamsQuery } from 'hooks/graphql';
 import { Loader, Error } from 'components';
@@ -8,18 +7,14 @@ import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 
 export const TeamsList: FC = () => {
-  const reactCourseId = '97c79b78-3f45-4fc1-9a62-4d99b1ee6fab';
+  const reactCourseId = '9c5a1bee-efb7-4eae-b306-c3d2061e9a32';
   const userData = useSelector(selectUserData);
-  const [pageNumber, setPageNumber] = useState(1);
 
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId,
   });
   const loading = loadingT;
   const error = errorT;
-  const handlePageClick = () => {
-    setPageNumber(pageNumber + 1);
-  };
 
   if (loading) return <Loader />;
   if (error) return <Error />;
@@ -33,20 +28,17 @@ export const TeamsList: FC = () => {
         })}
       <p>This is teams list!</p>
       {userData && <p>My github: {userData.github}</p>}
-      <ReactPaginate
-        previousLabel={'previous'}
-        nextLabel={'next'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        pageCount={pageNumber}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        // subContainerClassName={'pages pagination'}
-        activeClassName={'active'}
-      />
+      {userData && <p>My firstName: {userData.firstName}</p>}
+      {userData && <p>My lastName: {userData.lastName}</p>}
+      {userData && <p>My telegram: {userData.telegram}</p>}
+      {userData && <p>My discord: {userData.discord}</p>}
+      {userData && <p>My score: {userData.score}</p>}
+      {userData && <p>My country: {userData.country}</p>}
+      {userData && <p>My city: {userData.city}</p>}
+      {userData && <p>My courseIds: {userData.courseIds[0]}</p>}
       <Link to="/studentsTable">Dashboard</Link>
+      <br />
+      <Link to="/editProfile"> Edit Profile</Link>
     </div>
   );
 };

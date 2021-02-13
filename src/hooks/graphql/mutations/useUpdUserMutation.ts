@@ -12,7 +12,7 @@ export const useUpdUserMutation = ({ user }: Props) => {
       user,
     },
   });
-
+  console.log('i am data from mutation', data);
   return {
     updateUser,
     loadingM: loading,
