@@ -7,7 +7,7 @@ export const StyledNav = styled.nav`
   justify-content: center;
   align-items: center;
   align-self: flex-end;
-  font: 1rem 400 24px;
+  font: 400 1rem/24px 'Poppins', sans-serif;
 `;
 
 export const StyledNavList = styled.ul`

@@ -22,7 +22,7 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
   height: fit-content;
   min-height: 40px;
   overflow: hidden;
-  font: 1rem 500 24px;
+  font: 400 1rem/24px 'Poppins', sans-serif;
   color: ${WHITE_COLOR};
   background-color: ${MAIN1_DARK_COLOR};
   border-radius: 10px;
