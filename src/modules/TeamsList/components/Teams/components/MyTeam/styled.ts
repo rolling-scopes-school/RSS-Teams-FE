@@ -10,11 +10,11 @@ export const MyTeamsHeader = styled.div`
   background-color: ${MAIN2_COLOR};
   border-radius: 20px;
   z-index: 0;
+  margin-bottom: 40px;
 
   @media (max-width: 580px) {
     overflow: hidden;
   }
-  margin: 0;
 `;
 
 export const MyTeamHeaderTitle = styled.h2`

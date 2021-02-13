@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as ChevronArrow } from 'assets/svg/chevron-arrow.svg';
+import { WHITE_COLOR } from 'appConstants/colors';
 
 type MembersToggleButtonProps = {
   open: boolean;
@@ -11,6 +12,11 @@ export const MembersListToggleStyled = styled.div`
   align-items: center;
   width: 134px;
   cursor: pointer;
+  color: ${({ color }) => color || WHITE_COLOR};
+
+  path {
+    stroke: ${({ color }) => color || WHITE_COLOR};
+  }
 `;
 
 export const Chevron = styled(ChevronArrow)<MembersToggleButtonProps>`
