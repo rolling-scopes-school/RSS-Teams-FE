@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
@@ -35,7 +35,7 @@ interface IProfileFormInput {
 }
 
 export const EditProfile: FC = memo(() => {
-  // const history = useHistory();
+  const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
   const { loading, courses } = useCoursesQuery();
@@ -242,12 +242,17 @@ export const EditProfile: FC = memo(() => {
         />
       </InputsWrapper>
       <ButtonWrapper>
-        {!isUserNew && (
-          <Button bgc={BG_COLOR} color={MAIN1_COLOR}>
+        {isUserNew && (
+          <Button
+            type="button"
+            bgc={BG_COLOR}
+            color={MAIN1_COLOR}
+            onClick={history.goBack}
+          >
             Cancel
           </Button>
         )}
-        <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
+        <Button>{!isUserNew ? 'Submit' : 'Save'}</Button>
       </ButtonWrapper>
     </EditProfileWrapper>
   );
