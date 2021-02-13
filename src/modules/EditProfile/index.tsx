@@ -45,6 +45,12 @@ export const EditProfile: FC = memo(() => {
 
   const isUserNew = userData.telegram === null;
 
+  const currentYear = new Date(Date.now()).getFullYear();
+  const allCoursesData = courses;
+  const currentCourses = allCoursesData?.filter(({ name }: any) =>
+    name.includes(currentYear)
+  );
+
   console.log('userDataRedux', userData);
   const { register, handleSubmit, errors } = useForm<IProfileFormInput>({
     defaultValues: {
@@ -210,7 +216,7 @@ export const EditProfile: FC = memo(() => {
           placeholder="Select course"
           register={register}
           multi
-          courses={courses}
+          courses={currentCourses}
         />
         <InputField
           name="score"
