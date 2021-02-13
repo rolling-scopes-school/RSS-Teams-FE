@@ -1,5 +1,5 @@
-import React, { FC, memo, useCallback } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import React, { FC, memo } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
@@ -34,16 +34,16 @@ interface IProfileFormInput {
 }
 
 export const EditProfile: FC = memo(() => {
-  const history = useHistory();
+  // const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
-  const { loading, error, courses } = useCoursesQuery();
+  const { loading, courses } = useCoursesQuery();
   const { updateUser, loadingM } = useUpdUserMutation({
     user: testUpdatedData,
   });
 
   console.log('userDataRedux', userData);
-  const { register, handleSubmit, watch, errors } = useForm<IProfileFormInput>({
+  const { register, handleSubmit, errors } = useForm<IProfileFormInput>({
     defaultValues: {
       firstName: userData.firstName,
       lastName: userData.lastName,
