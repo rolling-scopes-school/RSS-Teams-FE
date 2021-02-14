@@ -1,58 +1,55 @@
-import React, { FC, MouseEvent, useState, useMemo } from 'react';
+import React, { FC, MouseEvent, useState, useMemo, ReactText } from 'react';
 import { StyledTableBody, StyledTableItem, StyledTableRow } from './styled';
 import './styles.css';
+import { User, Course, Team } from 'types';
 
 type TableBodyProps = {
-  setPopupElements: (styles: any) => void;
+  setPopupElements: (styles: string[]) => void;
   setShowPopup: (show: boolean) => void;
-  setPopupStyles: (styles: any) => void;
-  users: any[];
+  setPopupStyles: (styles: { top: number; left: number } | null) => void;
+  users: User[];
 };
 
 export const TableBody: FC<TableBodyProps> = (props) => {
   const { setPopupElements, setShowPopup, setPopupStyles, users } = props;
   const [tableItemCursor, setTableItemCursor] = useState(false);
 
-  const teamNames: string[][] = useMemo(
+  const usersData: Array<string[] | ReactText[]> = useMemo(
     () =>
-      users.map((user: any) => {
-        user.teamName = user.teams.find(
-          (team: any) => team.id === user.teamIds[0]
-        )
-          ? user.teams.find((team: any) => team.id === user.teamIds[0]).id
-          : 'No team yet.';
-        return user.teamName;
-      }),
-    [users]
-  );
-  const usersData: string[][] = useMemo(
-    () =>
-      users.map((user: any, index: number) => {
+      users.map((user: User, index: number) => {
         return [
-          index + 1,
-          `${user.firstName} ${user.lastName}`,
+          `${index + 1}`,
+          `${user.firstName} ${user.lastName || null}`,
           user.score,
-          teamNames[index],
-          user.telegram,
-          user.discord,
-          user.github,
+          user.teams.length
+            ? (user.teams as Array<Team>)
+                .map((team: Team) => `${team.number}`)
+                .join(', ')
+            : 'No team yet.',
+          user.telegram || 'No telegram.',
+          user.discord || 'No discord.',
+          user.github || 'No github.',
           `${user.country},
           ${user.city}`,
-          user.courses.map((course: any) => course.name).join(', '),
+          user.courses.length
+            ? (user.courses as Array<Course>)
+                .map((course: Course) => course.name)
+                .join(', ')
+            : 'No courses.',
         ];
       }),
-    [users, teamNames]
+    [users]
   );
 
   const mouseOverHandler = (event: MouseEvent<HTMLTableCellElement>) => {
     const target = event.target as HTMLTableCellElement;
     if (target.scrollWidth !== target.clientWidth) {
-      const style = {
+      const style: { top: number; left: number } = {
         top: target.getBoundingClientRect().bottom,
         left: target.getBoundingClientRect().left - 5,
       };
       setShowPopup(true);
-      setPopupElements(target?.textContent?.split(','));
+      setPopupElements(target?.textContent?.split(',') as string[]);
       setPopupStyles(style);
       setTableItemCursor(true);
     }
@@ -70,9 +67,9 @@ export const TableBody: FC<TableBodyProps> = (props) => {
 
   return (
     <StyledTableBody>
-      {usersData.map((user: string[], index: number) => (
+      {usersData.map((user: string[] | ReactText[], index: number) => (
         <StyledTableRow key={`TableRowKey-${index}`}>
-          {user.map((item: string, index: number) => (
+          {(user as string[]).map((item: string, index: number) => (
             <StyledTableItem
               className={`TableItem--${index}`}
               key={`TableItemKey-${index}`}

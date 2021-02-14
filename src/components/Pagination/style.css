@@ -1,0 +1,146 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto 60px auto;
+
+  gap: 10px;
+  padding-inline-start: 0;
+}
+
+.pagination li {
+  list-style: none;
+}
+
+.pagination li a {
+  outline: none;
+}
+
+.pageContainer,
+.previous,
+.next,
+.break {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.previous > img,
+.next > img {
+  width: 12px;
+  height: 12px;
+}
+
+.previous.disabled,
+.next.disabled {
+  cursor: unset;
+  opacity: 0.7;
+}
+
+.activePageContainer {
+  background-color: #6550f6;
+  cursor: unset;
+}
+
+.pageLink,
+.break > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 400 1rem/24px "Poppins", sans-serif;
+  color: #7e96c2;
+  text-decoration: none;
+}
+
+.activePageLink {
+  color: #ffffff;
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .pagination {
+    margin: 35px auto 50px auto;
+  }
+
+  .pageLink,
+  .break > a {
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .pagination {
+    margin: 30px auto 50px auto;
+  }
+
+  .pageLink,
+  .break > a {
+    font-size: 0.9rem;
+  }
+
+  .pageContainer,
+  .previous,
+  .next,
+  .break {
+    width: 35px;
+    height: 35px;
+  }
+}
+@media (max-width: 767px) and (min-width: 550px) {
+  .pagination {
+    margin: 30px auto 45px auto;
+  }
+
+  .pageLink,
+  .break > a {
+    font-size: 0.825rem;
+  }
+
+  .pageContainer,
+  .previous,
+  .next,
+  .break {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (max-width: 549px) and (min-width: 440px) {
+  .pagination {
+    margin: 25px auto 40px auto;
+  }
+
+  .pageLink,
+  .break > a {
+    font-size: 0.8rem;
+  }
+
+  .pageContainer,
+  .previous,
+  .next,
+  .break {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (max-width: 439px) and (min-width: 320px) {
+  .pagination {
+    margin: 20px auto 35px auto;
+  }
+
+  .pageLink,
+  .break > a {
+    font-size: 0.68rem;
+  }
+
+  .pageContainer,
+  .previous,
+  .next,
+  .break {
+    width: 25px;
+    height: 25px;
+  }
+}

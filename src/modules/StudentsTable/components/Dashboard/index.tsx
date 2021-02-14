@@ -1,7 +1,10 @@
 import React, { FC, useState } from 'react';
 import { Popup, TableBody, TableHead } from './components';
-import { mockData } from './mockData';
-import { StyledDashboard } from './styled';
+import { StyledTable } from './styled';
+import { useUsersQuery } from 'hooks/graphql';
+import { useSelector } from 'react-redux';
+import { selectCurrCourse } from 'modules/LoginPage/selectors';
+import { User } from 'types';
 
 const tableHeaders: string[] = [
   '№',
@@ -15,22 +18,29 @@ const tableHeaders: string[] = [
   'Courses',
 ];
 
-export const Dashboard: FC = () => {
-  const [popupElements, setPopupElements] = useState([]);
+type DashboardProps = {
+  users: User[];
+};
+
+export const Dashboard: FC<DashboardProps> = ({ users }) => {
+  const [popupElements, setPopupElements] = useState<string[]>([]);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupStyles, setPopupStyles] = useState(null);
+  const [popupStyles, setPopupStyles] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
 
   return (
     <>
-      <StyledDashboard>
+      <StyledTable>
         <TableHead tableHeaders={tableHeaders} />
         <TableBody
-          users={mockData.results}
+          users={users}
           setPopupElements={setPopupElements}
           setShowPopup={setShowPopup}
           setPopupStyles={setPopupStyles}
         />
-      </StyledDashboard>
+      </StyledTable>
       <Popup
         popupElements={popupElements}
         showPopup={showPopup}
