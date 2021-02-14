@@ -15,7 +15,12 @@ export const MembersListToggle: FC<MembersListToggle> = ({
   color,
 }) => {
   return (
-    <MembersListToggleStyled onClick={onToggleList} color={color}>
+    <MembersListToggleStyled
+      onClick={() => {
+        !!countMembers ? onToggleList() : null;
+      }}
+      color={color}
+    >
       <div>{countMembers ? countMembers : 0} members</div>
       <Chevron open={open} />
     </MembersListToggleStyled>

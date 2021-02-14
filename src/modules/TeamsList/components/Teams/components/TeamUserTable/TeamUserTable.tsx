@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { TeamUserTableStyled, TeamUserTableHeaderStyled } from './styled';
+import { StyledTeamUserTable } from './styled';
 import { User } from 'types';
 
 const tableHeaders: string[] = [
@@ -32,21 +32,27 @@ const getTableRow = (member: User, index: number) => {
   );
 };
 
-export const TeamUserTable: FC<TeamUserTableProps> = ({ members }) => {
-  const headerCells = tableHeaders.map((collumnName: string, index: number) => (
-    <th key={index}>{collumnName}</th>
+const getHeaderCells = (colName: string[]) => {
+  const headerRow = colName.map((columnName: string, index: number) => (
+    <th key={index}>{columnName}</th>
   ));
+  return <tr>{headerRow}</tr>;
+};
 
+export const TeamUserTable: FC<TeamUserTableProps> = ({ members }) => {
   const rows = members?.map((member: User, index: number) =>
     getTableRow(member, index)
   );
 
   return (
-    <TeamUserTableStyled>
-      <TeamUserTableHeaderStyled>
-        <tr>{headerCells}</tr>
-      </TeamUserTableHeaderStyled>
-      <tbody>{rows}</tbody>
-    </TeamUserTableStyled>
+    <StyledTeamUserTable>
+      <thead>{getHeaderCells(tableHeaders)}</thead>
+      <tbody>
+        {rows}
+        {rows}
+        {rows}
+        {rows}
+      </tbody>
+    </StyledTeamUserTable>
   );
 };
