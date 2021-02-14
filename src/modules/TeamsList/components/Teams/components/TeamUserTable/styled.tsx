@@ -29,6 +29,12 @@ export const StyledTeamUserTable = styled.table`
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
       }
+
+      @media (max-width: 992px) {
+        &:nth-child(4) {
+          display: none;
+        }
+      }
     }
   }
 
@@ -53,25 +59,11 @@ export const StyledTeamUserTable = styled.table`
       border-bottom-right-radius: 10px;
       border-top-right-radius: 10px;
     }
+
+    @media (max-width: 992px) {
+      &:nth-child(4) {
+        display: none;
+      }
+    }
   }
 `;
-
-// export const TeamUserTableHeaderStyled = styled.thead`
-//   background-color: ${DASHBOARD_HEADER_BG_COLOR};
-//   color: ${LIGHT_TEXT_COLOR};
-//
-//   th {
-//     padding: 10px;
-//     text-align: left;
-//
-//     &:first-child {
-//       border-bottom-left-radius: 10px;
-//       border-top-left-radius: 10px;
-//     }
-//
-//     &:last-child {
-//       border-bottom-right-radius: 10px;
-//       border-top-right-radius: 10px;
-//     }
-//   }
-// `;

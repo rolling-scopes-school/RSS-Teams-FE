@@ -87,6 +87,10 @@ export const TableWrapper = styled.div<TableWrapperProps>`
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   transition: all 0.3s;
+
+  @media screen and (max-width: 768px) {
+    overflow-x: ${({ open }) => (open ? 'scroll' : 'auto')};
+  }
 `;
 
 export const HeaderDecor = styled(HeaderDecoration)`

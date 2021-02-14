@@ -50,7 +50,9 @@ export const MyTeam: FC<MyTeamProps> = ({ team }) => {
         <HeaderDecor />
       </div>
       <TableWrapper open={isOpen}>
-        {isOpen ? <TeamUserTable members={team?.members} /> : null}
+        {isOpen ? (
+          <TeamUserTable members={team?.members} isMyTeam={true} />
+        ) : null}
       </TableWrapper>
     </StyledMyTeam>
   );

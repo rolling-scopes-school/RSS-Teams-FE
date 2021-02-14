@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { StyledTeamUserTable } from './styled';
 import { User } from 'types';
+import { ExpelButton } from './components/ExpelButton/ExpelButton';
 
 const tableHeaders: string[] = [
   '№',
@@ -15,39 +16,59 @@ const tableHeaders: string[] = [
 
 type TeamUserTableProps = {
   members: User[] | undefined;
+  isMyTeam?: boolean;
 };
 
-const getTableRow = (member: User, index: number) => {
+const formatSocialLinks = (link: string | null): string => {
+  if (link) {
+    return '@' + link.replace('@', '');
+  }
+  return '';
+};
+
+const getTableRow = (member: User, index: number, isMyTeam?: boolean) => {
+  console.log('isMyTeam', isMyTeam);
   return (
     <tr key={member.discord + index}>
       <td>{index + 1}</td>
       <td>{`${member.firstName} ${member.lastName}`}</td>
       <td>{member.score}</td>
-      <td>@{member.telegram?.replace('@', '')}</td>
-      <td>@{member.discord?.replace('@', '')}</td>
-      <td>@{member.github?.replace('@', '')}</td>
+      <td>{formatSocialLinks(member.telegram)}</td>
+      <td>{formatSocialLinks(member.discord)}</td>
+      <td>{formatSocialLinks(member.github)}</td>
       <td>{`${member.city}, ${member.country}`}</td>
-      <td>x</td>
+      {isMyTeam ? (
+        <td>
+          {/*TODO: Сделать проверку на текущего пользователя*/}
+          <ExpelButton />
+        </td>
+      ) : null}
     </tr>
   );
 };
 
-const getHeaderCells = (colName: string[]) => {
-  const headerRow = colName.map((columnName: string, index: number) => (
-    <th key={index}>{columnName}</th>
-  ));
+const getHeaderCells = (colName: string[], isMyTeam: boolean | undefined) => {
+  const headerRow = colName.map((columnName: string, index: number) => {
+    return !isMyTeam && columnName === 'Action' ? null : (
+      <th key={index}>{columnName}</th>
+    );
+  });
   return <tr>{headerRow}</tr>;
 };
 
-export const TeamUserTable: FC<TeamUserTableProps> = ({ members }) => {
+export const TeamUserTable: FC<TeamUserTableProps> = ({
+  members,
+  isMyTeam,
+}) => {
   const rows = members?.map((member: User, index: number) =>
-    getTableRow(member, index)
+    getTableRow(member, index, isMyTeam)
   );
 
   return (
     <StyledTeamUserTable>
-      <thead>{getHeaderCells(tableHeaders)}</thead>
+      <thead>{getHeaderCells(tableHeaders, isMyTeam)}</thead>
       <tbody>
+        {/*TODO: Удалить множественные строки */}
         {rows}
         {rows}
         {rows}
