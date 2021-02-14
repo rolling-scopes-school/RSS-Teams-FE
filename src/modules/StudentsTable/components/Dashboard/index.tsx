@@ -23,7 +23,7 @@ type DashboardProps = {
 };
 
 export const Dashboard: FC<DashboardProps> = ({ users }) => {
-  const [popupElements, setPopupElements] = useState<string[] | undefined>([]);
+  const [popupElements, setPopupElements] = useState<string[]>([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupStyles, setPopupStyles] = useState<{
     top: number;

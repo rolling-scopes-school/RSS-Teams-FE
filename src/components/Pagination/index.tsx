@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import ReactPaginate from 'react-paginate';
 import './style.css';
-import leftArrow from '../../assets/svg/paginateArrowLeft.svg';
-import rightArrow from '../../assets/svg/paginateArrowRight.svg';
+import leftArrow from 'assets/svg/paginateArrowLeft.svg';
+import rightArrow from 'assets/svg/paginateArrowRight.svg';
 
 type PaginationProps = {
   pageCount: number;
@@ -12,8 +12,8 @@ type PaginationProps = {
 export const Pagination: FC<PaginationProps> = ({ pageCount, changePage }) => {
   return (
     <ReactPaginate
-      previousLabel={<img src={leftArrow} />}
-      nextLabel={<img src={rightArrow} />}
+      previousLabel={<img src={leftArrow} alt="Previous" />}
+      nextLabel={<img src={rightArrow} alt="Next" />}
       breakLabel={'...'}
       pageCount={pageCount}
       marginPagesDisplayed={1}

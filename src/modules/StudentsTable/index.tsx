@@ -1,9 +1,9 @@
+import React, { FC, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { USERS_PER_PAGE } from 'appConstants';
 import { Loader, Error, Pagination } from 'components';
 import { useUsersQuery } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
-import React, { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Dashboard } from './components/Dashboard';
 
 export const StudentsTable: FC = () => {
