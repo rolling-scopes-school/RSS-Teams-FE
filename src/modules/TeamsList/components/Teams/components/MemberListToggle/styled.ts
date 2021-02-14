@@ -3,7 +3,7 @@ import { ReactComponent as ChevronArrow } from 'assets/svg/chevron-arrow.svg';
 import { WHITE_COLOR } from 'appConstants/colors';
 
 type MembersToggleButtonProps = {
-  open: boolean;
+  isOpen: boolean;
 };
 
 export const MembersListToggleStyled = styled.div`
@@ -15,12 +15,12 @@ export const MembersListToggleStyled = styled.div`
   color: ${({ color }) => color || WHITE_COLOR};
 
   path {
-    stroke: ${({ color }) => color || WHITE_COLOR};
+    stroke: currentColor;
   }
 `;
 
 export const Chevron = styled(ChevronArrow)<MembersToggleButtonProps>`
-  transform: rotateX(${({ open }) => (open ? '180deg' : '0deg')});
+  transform: rotateX(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
   margin-left: 10px;
   transition: all 0.3s;
 `;

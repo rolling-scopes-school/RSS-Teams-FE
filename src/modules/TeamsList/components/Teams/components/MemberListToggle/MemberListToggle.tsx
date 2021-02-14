@@ -3,14 +3,14 @@ import { MembersListToggleStyled, Chevron } from './styled';
 
 type MembersListToggle = {
   countMembers: number | undefined;
-  open: boolean;
+  isOpen: boolean;
   onToggleList: () => void;
   color?: string;
 };
 
 export const MembersListToggle: FC<MembersListToggle> = ({
   countMembers,
-  open,
+  isOpen,
   onToggleList,
   color,
 }) => {
@@ -22,7 +22,7 @@ export const MembersListToggle: FC<MembersListToggle> = ({
       color={color}
     >
       <div>{countMembers ? countMembers : 0} members</div>
-      <Chevron open={open} />
+      <Chevron isOpen={isOpen} />
     </MembersListToggleStyled>
   );
 };

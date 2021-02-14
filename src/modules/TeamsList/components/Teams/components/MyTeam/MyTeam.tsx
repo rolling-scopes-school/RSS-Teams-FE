@@ -12,10 +12,10 @@ type MyTeamProps = {
 };
 
 export const MyTeam: FC<MyTeamProps> = ({ team }) => {
-  const [isOpen, setToggle] = useState(false);
+  const [isOpen, setOpenState] = useState(false);
 
   const toggleListHandler = () => {
-    setToggle(!isOpen);
+    setOpenState(!isOpen);
   };
 
   const countMember: number | undefined = team?.members.length;
@@ -42,7 +42,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team }) => {
         </div>
         <div className={'myTeam__toggle'}>
           <MembersListToggle
-            open={isOpen}
+            isOpen={isOpen}
             countMembers={countMember}
             onToggleList={toggleListHandler}
           />

@@ -31,7 +31,7 @@ export const TeamItem: FC<TeamItemProps> = ({
         </div>
         <MembersListToggle
           countMembers={countMember}
-          open={isOpen}
+          isOpen={isOpen}
           onToggleList={toggleListHandler}
           color={LIGHT_TEXT_COLOR}
         />

@@ -27,7 +27,6 @@ const formatSocialLinks = (link: string | null): string => {
 };
 
 const getTableRow = (member: User, index: number, isMyTeam?: boolean) => {
-  console.log('isMyTeam', isMyTeam);
   return (
     <tr key={member.discord + index}>
       <td>{index + 1}</td>
