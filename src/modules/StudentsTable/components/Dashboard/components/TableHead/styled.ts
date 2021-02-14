@@ -9,7 +9,6 @@ export const StyledTableHead = styled.thead`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
   padding: 10px 20px;
   color: ${LIGHT_TEXT_COLOR};
   background-color: ${DASHBOARD_HEADER_BG_COLOR};

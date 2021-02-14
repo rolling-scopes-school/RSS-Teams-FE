@@ -9,7 +9,6 @@ export const StyledTable = styled.table`
   height: calc(100vh - 111px);
   margin: 0 auto;
   padding: 10px;
-  padding-right: 0;
   font-size: 1rem;
   background-color: ${WHITE_COLOR};
   border-radius: 20px;
