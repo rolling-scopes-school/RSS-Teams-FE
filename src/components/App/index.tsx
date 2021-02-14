@@ -21,8 +21,8 @@ export const App: FC = () => {
   const { loadingW, whoAmI } = useWhoAmIQuery({
     skip: loginToken === null,
   });
-  const newUserCheck = whoAmI?.telegram;
-  // const newUserCheck = 'vasya333'; // switch with variable above to disable login/registration flow
+  // const newUserCheck = whoAmI?.telegram;
+  const newUserCheck = 'vasya333'; // switch with variable above to disable login/registration flow
 
   useEffect(() => {
     if (!loginToken) {

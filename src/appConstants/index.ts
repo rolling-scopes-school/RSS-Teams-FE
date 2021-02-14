@@ -1,4 +1,4 @@
-export { BACKEND_LINK } from './api';
+export { BACKEND_LINK, AUTH_BACKEND_LINK } from './api';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_TEAMS = 'SET_TEAMS';
