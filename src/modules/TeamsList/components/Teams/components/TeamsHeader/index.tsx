@@ -21,10 +21,10 @@ export const TeamsHeader: FC = () => {
           team. If not, you will be added to the team automatically.
         </TeamsHeaderSubtitleStyled>
         <TeamsHeaderButtonsBlockStyled>
-          <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR}>
+          <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR} type={'button'}>
             Create team
           </Button>
-          <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR}>
+          <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR} type={'button'}>
             Join team
           </Button>
         </TeamsHeaderButtonsBlockStyled>

@@ -12,6 +12,7 @@ export const TeamItemStyled = styled.div`
     padding: 20px 30px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   .teamItem__name {

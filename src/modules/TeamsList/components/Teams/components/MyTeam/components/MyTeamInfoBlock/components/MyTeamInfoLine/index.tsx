@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { InfoLineStyled, CopyClipboardButton } from './styled';
 
 type MyTeamInfoLine = {
-  value: string | undefined;
+  value?: string;
 };
 
 export const MyTeamInfoLine: FC<MyTeamInfoLine> = ({ value }) => {
@@ -11,11 +11,11 @@ export const MyTeamInfoLine: FC<MyTeamInfoLine> = ({ value }) => {
       console.log(err);
     });
   };
-  const curValue = value ? value : '';
+  const currValue = value || '';
   return (
     <InfoLineStyled>
-      <div>{curValue}</div>
-      <CopyClipboardButton onClick={() => copyInfo(curValue)} />
+      <div>{currValue}</div>
+      <CopyClipboardButton onClick={() => copyInfo(currValue)} />
     </InfoLineStyled>
   );
 };

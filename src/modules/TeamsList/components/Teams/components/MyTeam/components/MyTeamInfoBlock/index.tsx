@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { StyledMyTeamInfoBlock, InfoButton, EditButton } from './styled';
-import { MyTeamInfoLine } from './components/MyTeamInfoLine/MyTeamInfoLine';
+import { MyTeamInfoLine } from './components/MyTeamInfoLine';
 
 type MyTeamInfoBlockProps = {
   title: string;
   icon: 'info' | 'edit';
-  value: string | undefined;
+  value: string;
 };
 
 export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({

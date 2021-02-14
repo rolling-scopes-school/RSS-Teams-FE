@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import { TeamItemStyled, TeamItemTableWrapper } from './styled';
 import { User } from 'types';
-import { MembersListToggle } from '../MemberListToggle/MemberListToggle';
+import { MembersListToggle } from '../MemberListToggle';
 import { LIGHT_TEXT_COLOR } from 'appConstants/colors';
-import { TeamUserTable } from '../TeamUserTable/TeamUserTable';
+import { TeamUserTable } from '../TeamUserTable';
 
 type TeamItemProps = {
   name: string;
@@ -26,9 +26,9 @@ export const TeamItem: FC<TeamItemProps> = ({
     <TeamItemStyled>
       <div className={'teamItem__header'}>
         <div className={'teamItem__name'}>{name}</div>
-        <div className={'teamItem__description'}>
-          {description ? description : null}
-        </div>
+        {description && (
+          <div className={'teamItem__description'}>{description}</div>
+        )}
         <MembersListToggle
           countMembers={countMember}
           isOpen={isOpen}
@@ -37,7 +37,7 @@ export const TeamItem: FC<TeamItemProps> = ({
         />
       </div>
       <TeamItemTableWrapper open={isOpen}>
-        {isOpen ? <TeamUserTable members={members} /> : null}
+        {isOpen && <TeamUserTable members={members} />}
       </TeamItemTableWrapper>
     </TeamItemStyled>
   );

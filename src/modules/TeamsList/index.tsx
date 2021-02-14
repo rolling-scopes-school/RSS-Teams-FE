@@ -23,18 +23,8 @@ export const TeamsList: FC = () => {
 
   return (
     <StyledTeams>
-      {/* TODO: Replace when getting real data "myTeam" */}
-      <Teams teams={teams} myTeam={teams.results[0]} />
+      <Teams teams={teams} myTeam={teams.results[0]} userId={userData.id} />
 
-      {userData && <p>My github: {userData.github}</p>}
-      {/*{userData && <p>My firstName: {userData.firstName}</p>}*/}
-      {/*{userData && <p>My lastName: {userData.lastName}</p>}*/}
-      {/*{userData && <p>My telegram: {userData.telegram}</p>}*/}
-      {/*{userData && <p>My discord: {userData.discord}</p>}*/}
-      {/*{userData && <p>My score: {userData.score}</p>}*/}
-      {/*{userData && <p>My country: {userData.country}</p>}*/}
-      {/*{userData && <p>My city: {userData.city}</p>}*/}
-      {/*{userData && <p>My courseIds: {userData.courseIds[0]}</p>}*/}
       <Link to="/studentsTable">Dashboard</Link>
       <br />
       <Link to="/editProfile"> Edit Profile</Link>

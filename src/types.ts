@@ -38,7 +38,7 @@ export type Team = {
 };
 
 export type TeamList = {
-  count: number | null;
+  count: number;
   results: Team[];
 };
 

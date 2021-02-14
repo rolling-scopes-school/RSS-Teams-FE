@@ -7,7 +7,7 @@ const tableHeaders: string[] = [
   '№',
   'First / Last Name',
   'Score',
-  'TeamItem Number',
+  'Index Number',
   'Telegram',
   'Discord',
   'Github',
