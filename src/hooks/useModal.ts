@@ -6,15 +6,11 @@ export const useModal = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
 
-  console.log('111', open);
   const onOpen = useCallback(() => {
-    console.log('222');
-    // setTimeout(() => setOpen(true), 0);
     setOpen(true);
   }, []);
 
   const onClose = useCallback(() => {
-    console.log('333');
     setOpen(false);
   }, []);
 

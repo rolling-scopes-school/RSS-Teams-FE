@@ -10,12 +10,11 @@ export const useOutsideClick = (ref: any, callback: any) => {
     };
 
     if (ref.current) {
-      document.addEventListener('click', handleClick);
-      console.log('listener was set');
+      document.addEventListener('click', handleClick, true);
     }
 
     return () => {
-      document.removeEventListener('click', handleClick);
+      document.removeEventListener('click', handleClick, true);
     };
   }, [ref, callback]);
 };
