@@ -10,7 +10,7 @@ export const InfoLineStyled = styled.div`
   align-items: center;
 `;
 
-export const InfoLineCopyButton = styled(CopyIcon)`
+export const CopyClipboardButton = styled(CopyIcon)`
   width: 16px;
   height: 16px;
   min-width: 16px;

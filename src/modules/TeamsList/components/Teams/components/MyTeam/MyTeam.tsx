@@ -1,12 +1,5 @@
 import React, { FC, useState } from 'react';
-import {
-  MyTeamsHeader,
-  MyTeamsHeaderRight,
-  MyTeamHeaderLeft,
-  HeaderDecor,
-  MyTeamInfoBlockWrapper,
-  MyTeamHeaderTitle,
-} from './styled';
+import { StyledMyTeam, HeaderDecor, TableWrapper } from './styled';
 import { Button } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import { Team } from 'types';
@@ -27,36 +20,38 @@ export const MyTeam: FC<MyTeamProps> = ({ team }) => {
 
   const countMember: number | undefined = team?.members.length;
   return (
-    <>
-      <MyTeamsHeader>
-        <MyTeamsHeaderRight>
-          <MyTeamHeaderTitle>My team - Team {team?.number}</MyTeamHeaderTitle>
-          <MyTeamInfoBlockWrapper>
-            <MyTeamInfoBlock
-              title={'Invitation password'}
-              value={team?.password}
-              icon={'info'}
-            />
-            <MyTeamInfoBlock
-              title={'Link to group'}
-              value={team?.socialLink}
-              icon={'edit'}
-            />
-          </MyTeamInfoBlockWrapper>
-        </MyTeamsHeaderRight>
-        <MyTeamHeaderLeft>
-          <HeaderDecor />
+    <StyledMyTeam open={isOpen}>
+      <div className={'myTeam__header'}>
+        <h2 className={'myTeam__title'}>My team - Team {team?.number}</h2>
+        <div className={'myTeam__info-wrapper'}>
+          <MyTeamInfoBlock
+            title={'Invitation password'}
+            value={team?.password}
+            icon={'info'}
+          />
+          <MyTeamInfoBlock
+            title={'Link to group'}
+            value={team?.socialLink}
+            icon={'edit'}
+          />
+        </div>
+        <div className={'myTeam__button'}>
           <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR}>
             Leave team
           </Button>
+        </div>
+        <div className={'myTeam__toggle'}>
           <MembersListToggle
             open={isOpen}
             countMembers={countMember}
             onToggleList={toggleListHandler}
           />
-        </MyTeamHeaderLeft>
-      </MyTeamsHeader>
-      {isOpen ? <TeamUserTable members={team?.members} /> : null}
-    </>
+        </div>
+        <HeaderDecor />
+      </div>
+      <TableWrapper open={isOpen}>
+        {isOpen ? <TeamUserTable members={team?.members} /> : null}
+      </TableWrapper>
+    </StyledMyTeam>
   );
 };

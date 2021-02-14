@@ -15,6 +15,11 @@ export const TeamsHeaderStyled = styled.div`
   @media (max-width: 580px) {
     overflow: hidden;
   }
+
+  // h2 {
+  //   ${PageSubTitle};
+  //   margin: 5px 0 18px;
+  // }
 `;
 
 export const TeamHeaderTitle = styled.h2`

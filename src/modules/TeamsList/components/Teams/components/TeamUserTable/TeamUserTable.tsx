@@ -36,7 +36,6 @@ export const TeamUserTable: FC<TeamUserTableProps> = ({ members }) => {
   const headerCells = tableHeaders.map((collumnName: string, index: number) => (
     <th key={index}>{collumnName}</th>
   ));
-  console.log('members', members);
 
   const rows = members?.map((member: User, index: number) =>
     getTableRow(member, index)

@@ -10,7 +10,7 @@ import { TextBold } from '../../../../../../typography';
 export const TeamUserTableStyled = styled.table`
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  //margin-top: 20px;
   transition: all 0.3s ease-in-out;
 
   tr:nth-child(even) {

@@ -14,7 +14,6 @@ export const MembersListToggle: FC<MembersListToggle> = ({
   onToggleList,
   color,
 }) => {
-  console.log('State Open:', onToggleList);
   return (
     <MembersListToggleStyled onClick={onToggleList} color={color}>
       <div>{countMembers ? countMembers : 0} members</div>

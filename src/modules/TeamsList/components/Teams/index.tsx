@@ -13,8 +13,6 @@ type TeamsProps = {
 };
 
 export const Teams: FC<TeamsProps> = ({ title, teams, myTeam }) => {
-  console.log('teams', teams);
-
   const teamsList: React.ReactNode = teams.results.map((team, index) => {
     return (
       <TeamItem

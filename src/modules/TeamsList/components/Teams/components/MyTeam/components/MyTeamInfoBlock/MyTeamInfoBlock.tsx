@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import { MyTeamInfoTitle, MyTeamInfoBlockStyled } from './styled';
+import { StyledMyTeamInfoBlock, InfoButton, EditButton } from './styled';
 import { MyTeamInfoLine } from './components/MyTeamInfoLine/MyTeamInfoLine';
-import { MyTeamInfoEditButton } from './components/MyTeamInfoEditButton/MyTeamInfoEditButton';
 
 type MyTeamInfoBlockProps = {
   title: string;
@@ -15,10 +14,10 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
   value,
 }) => {
   return (
-    <MyTeamInfoBlockStyled>
-      <MyTeamInfoTitle>{title}</MyTeamInfoTitle>
+    <StyledMyTeamInfoBlock>
+      <div className={'infoBlock__title'}>{title}</div>
       <MyTeamInfoLine value={value} />
-      <MyTeamInfoEditButton icon={icon} />
-    </MyTeamInfoBlockStyled>
+      {icon === 'edit' ? <EditButton /> : <InfoButton />}
+    </StyledMyTeamInfoBlock>
   );
 };

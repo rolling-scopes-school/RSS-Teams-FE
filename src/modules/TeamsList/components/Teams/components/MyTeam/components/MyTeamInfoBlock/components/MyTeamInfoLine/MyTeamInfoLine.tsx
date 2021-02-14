@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { InfoLineStyled, InfoLineCopyButton } from './styled';
+import { InfoLineStyled, CopyClipboardButton } from './styled';
 
 type MyTeamInfoLine = {
   value: string | undefined;
@@ -15,9 +15,7 @@ export const MyTeamInfoLine: FC<MyTeamInfoLine> = ({ value }) => {
   return (
     <InfoLineStyled>
       <div>{curValue}</div>
-      <InfoLineCopyButton
-        onClick={() => copyInfo(curValue)}
-      ></InfoLineCopyButton>
+      <CopyClipboardButton onClick={() => copyInfo(curValue)} />
     </InfoLineStyled>
   );
 };
