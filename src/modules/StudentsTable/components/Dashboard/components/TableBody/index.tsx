@@ -11,37 +11,30 @@ type TableBodyProps = {
 
 export const TableBody: FC<TableBodyProps> = (props) => {
   const { setPopupElements, setShowPopup, setPopupStyles, users } = props;
+  console.log('🚀 ~ file: index.tsx ~ line 14 ~ users', users);
   const [tableItemCursor, setTableItemCursor] = useState(false);
 
-  const teamNames: string[][] = useMemo(
-    () =>
-      users.map((user: any) => {
-        user.teamName = user.teams.find(
-          (team: any) => team.id === user.teamIds[0]
-        )
-          ? user.teams.find((team: any) => team.id === user.teamIds[0]).id
-          : 'No team yet.';
-        return user.teamName;
-      }),
-    [users]
-  );
   const usersData: string[][] = useMemo(
     () =>
       users.map((user: any, index: number) => {
         return [
           index + 1,
-          `${user.firstName} ${user.lastName}`,
+          `${user.firstName} ${user.lastName || null}`,
           user.score,
-          teamNames[index],
-          user.telegram,
-          user.discord,
-          user.github,
+          user.teams.length
+            ? user.teams.map((team: any) => team.number).join(', ')
+            : 'No team yet.',
+          user.telegram || 'No telegram.',
+          user.discord || 'No discord.',
+          user.github || 'No github.',
           `${user.country},
           ${user.city}`,
-          user.courses.map((course: any) => course.name).join(', '),
+          user.courses.length
+            ? user.courses.map((course: any) => course.name).join(', ')
+            : 'No courses.',
         ];
       }),
-    [users, teamNames]
+    [users]
   );
 
   const mouseOverHandler = (event: MouseEvent<HTMLTableCellElement>) => {

@@ -22,7 +22,16 @@ export const USERS_QUERY = gql`
         email
         isAdmin
         courseIds
+        courses {
+          id
+          name
+        }
         teamIds
+        teams {
+          id
+          number
+          courseId
+        }
       }
     }
   }
