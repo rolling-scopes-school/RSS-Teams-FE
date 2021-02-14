@@ -1,4 +1,4 @@
-import React, { FC, memo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -12,48 +12,40 @@ import { Course, UpdateUserInput } from 'types';
 
 import { EditProfileWrapper, InputsWrapper, ButtonWrapper } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
+import { CURRENT_YEAR } from 'appConstants';
 
-const testUpdatedData = {
-  id: '8b63e270-a57b-44d7-ba97-747cc332bcc6',
-  firstName: 'saaaaaaattttttqqqrg',
-  lastName: 'saaaaaaaacatttttttcccg',
-  telegram: 'szzzzzzzg',
-  discord: 'snrg',
-  score: 9999,
-  country: 'waffs',
-  city: 'filled',
-  courseIds: ['9c5a1bee-efb7-4eae-b306-c3d2061e9a32'],
-};
-
-export const EditProfile: FC = memo(() => {
+export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
   const { loading, courses } = useCoursesQuery();
-
-  const [inputValues, setInputValues] = useState<UpdateUserInput>({
-    id: userData.id,
-    firstName: userData.firstName || '',
-    lastName: userData.lastName || '',
-    discord: userData.discord || '',
-    telegram: userData.telegram || '',
-    city: userData.city || '',
-    country: userData.country || '',
-    courseIds: userData.courseIds || '',
-    score: userData.score,
-  });
+  const defaultData = useMemo(
+    () => ({
+      id: userData.id,
+      firstName: userData.firstName || '',
+      lastName: userData.lastName || '',
+      discord: userData.discord || '',
+      telegram: userData.telegram || '',
+      city: userData.city || '',
+      country: userData.country || '',
+      courseIds: ['9c5a1bee-efb7-4eae-b306-c3d2061e9a32'],
+      score: userData.score,
+    }),
+    [userData]
+  );
+  const [inputValues, setInputValues] = useState<UpdateUserInput>(defaultData);
 
   const { updateUser, loadingM } = useUpdUserMutation({
-    user: testUpdatedData,
+    user: inputValues,
   });
+
   const isUserNew = userData.telegram === null;
 
-  const currentYear = new Date(Date.now()).getFullYear();
   const currentCourses = courses?.filter(({ name }: Course) =>
-    name.includes(`${currentYear}`)
+    name.includes(`${CURRENT_YEAR}`)
   );
 
-  const { register, handleSubmit, errors } = useForm<UpdateUserInput>({
+  const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
     defaultValues: inputValues,
   });
 
@@ -71,8 +63,15 @@ export const EditProfile: FC = memo(() => {
     history.push('/');
   };
 
+  useEffect(() => {
+    if (userData.id !== '' && !inputValues.id) {
+      setInputValues(defaultData);
+      reset(defaultData);
+    }
+  }, [reset, inputValues, defaultData, userData]);
+
   if (!loginToken) return <Redirect to={'/login'} />;
-  if (loading || loadingM || userData.id === '') return <Loader />;
+  if (loading || loadingM) return <Loader />;
 
   return (
     <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
@@ -265,4 +264,4 @@ export const EditProfile: FC = memo(() => {
       </ButtonWrapper>
     </EditProfileWrapper>
   );
-});
+};
