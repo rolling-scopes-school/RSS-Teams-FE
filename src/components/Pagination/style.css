@@ -13,6 +13,12 @@
 }
 
 .pagination li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
   outline: none;
 }
 
@@ -23,16 +29,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
   background-color: #ffffff;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.previous > img,
-.next > img {
+.previous a img,
+.next a img {
   width: 12px;
   height: 12px;
 }
@@ -82,10 +85,7 @@
     font-size: 0.9rem;
   }
 
-  .pageContainer,
-  .previous,
-  .next,
-  .break {
+  .pagination li a {
     width: 35px;
     height: 35px;
   }
@@ -100,12 +100,15 @@
     font-size: 0.825rem;
   }
 
-  .pageContainer,
-  .previous,
-  .next,
-  .break {
+  .pagination li a {
     width: 30px;
     height: 30px;
+  }
+
+  .previous a img,
+  .next a img {
+    width: 10px;
+    height: 10px;
   }
 }
 @media (max-width: 549px) and (min-width: 440px) {
@@ -118,12 +121,15 @@
     font-size: 0.8rem;
   }
 
-  .pageContainer,
-  .previous,
-  .next,
-  .break {
+  .pagination li a {
     width: 30px;
     height: 30px;
+  }
+
+  .previous a img,
+  .next a img {
+    width: 10px;
+    height: 10px;
   }
 }
 @media (max-width: 439px) and (min-width: 320px) {
@@ -136,11 +142,14 @@
     font-size: 0.68rem;
   }
 
-  .pageContainer,
-  .previous,
-  .next,
-  .break {
+  .pagination li a {
     width: 25px;
     height: 25px;
+  }
+
+  .previous a img,
+  .next a img {
+    width: 9px;
+    height: 9px;
   }
 }
