@@ -11,7 +11,6 @@ export const StudentsTable: FC = () => {
   const currCourse = useSelector(selectCurrCourse);
   const { loadingU, errorU, users } = useUsersQuery({
     reactCourseId: currCourse.id,
-    skip: !!page,
     page: page,
   });
   const loading = loadingU;
@@ -23,8 +22,8 @@ export const StudentsTable: FC = () => {
   const pageCount: number = Math.ceil(users.count / USERS_PER_PAGE);
   return (
     <div>
-      <Dashboard users={users.results} />
-      <Pagination pageCount={pageCount} changePage={setPage} />
+      <Dashboard users={users.results} page={page} />
+      <Pagination pageCount={pageCount} changePage={setPage} page={page} />
     </div>
   );
 };

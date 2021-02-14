@@ -2,23 +2,25 @@ import React, { FC, MouseEvent, useState, useMemo, ReactText } from 'react';
 import { StyledTableBody, StyledTableItem, StyledTableRow } from './styled';
 import './styles.css';
 import { User, Course, Team } from 'types';
+import { USERS_PER_PAGE } from 'appConstants';
 
 type TableBodyProps = {
   setPopupElements: (styles: string[]) => void;
   setShowPopup: (show: boolean) => void;
   setPopupStyles: (styles: { top: number; left: number } | null) => void;
   users: User[];
+  page: number;
 };
 
 export const TableBody: FC<TableBodyProps> = (props) => {
-  const { setPopupElements, setShowPopup, setPopupStyles, users } = props;
+  const { setPopupElements, setShowPopup, setPopupStyles, users, page } = props;
   const [tableItemCursor, setTableItemCursor] = useState(false);
 
   const usersData: Array<string[] | ReactText[]> = useMemo(
     () =>
       users.map((user: User, index: number) => {
         return [
-          `${index + 1}`,
+          `${index + 1 + page * USERS_PER_PAGE}`,
           `${user.firstName} ${user.lastName || null}`,
           user.score,
           user.teams.length
