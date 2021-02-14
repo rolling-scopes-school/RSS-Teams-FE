@@ -6,3 +6,4 @@ export { Header } from './Header';
 export { InputField } from './InputField';
 export { CourseField } from './CourseField';
 export { Pagination } from './Pagination';
+export { Modal } from './Modal';
