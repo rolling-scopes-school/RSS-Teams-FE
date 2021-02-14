@@ -17,7 +17,7 @@ const tableHeaders: string[] = [
 
 type DashboardProps = {
   users: User[];
-  page: number
+  page: number;
 };
 
 export const Dashboard: FC<DashboardProps> = ({ users, page }) => {
