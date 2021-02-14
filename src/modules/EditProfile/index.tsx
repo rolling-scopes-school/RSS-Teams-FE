@@ -10,7 +10,12 @@ import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput } from 'types';
 
-import { EditProfileWrapper, InputsWrapper, ButtonWrapper } from './styled';
+import {
+  EditProfileWrapper,
+  InputsWrapper,
+  ButtonWrapper,
+  FormWrapper,
+} from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR } from 'appConstants';
 
@@ -74,194 +79,196 @@ export const EditProfile: FC = () => {
   if (loading || loadingM) return <Loader />;
 
   return (
-    <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      <PageTitle>Enter your profile information</PageTitle>
-      <InputsWrapper>
-        <InputField
-          name="firstName"
-          value={userData.firstName}
-          labelText="First Name"
-          placeholder="Enter first name"
-          aria-invalid={errors.firstName ? 'true' : 'false'}
-          message={errors.firstName?.message}
-          onChange={changeInputValue}
-          register={register({
-            required: 'This is required.',
-            pattern: {
-              value: /^[A-Za-z]+$/i,
-              message: 'This input is letters only.',
-            },
-            minLength: {
-              value: 3,
-              message: 'minimal length is 3',
-            },
-            maxLength: {
-              value: 12,
-              message: 'This input exceed maxLength.',
-            },
-          })}
-        />
-        <InputField
-          name="lastName"
-          labelText="Last Name"
-          placeholder="Enter last name"
-          aria-invalid={errors.lastName ? 'true' : 'false'}
-          message={errors.lastName?.message}
-          onChange={changeInputValue}
-          register={register({
-            required: 'This is required.',
-            pattern: {
-              value: /^[A-Za-z]+$/i,
-              message: 'This input is letters only.',
-            },
-            minLength: {
-              value: 3,
-              message: 'minimal length is 3',
-            },
-            maxLength: {
-              value: 14,
-              message: 'This input exceed maxLength.',
-            },
-          })}
-        />
-        <InputField
-          name="discord"
-          labelText="Discord"
-          placeholder="Enter discord"
-          aria-invalid={errors.discord ? 'true' : 'false'}
-          message={errors.discord?.message}
-          onChange={changeInputValue}
-          register={register({
-            required: 'This is required.',
-            pattern: {
-              value: /^[A-Za-z0-9]+$/i,
-              message: 'This input is letters and digits only.',
-            },
-            minLength: {
-              value: 3,
-              message: 'minimal length is 3',
-            },
-            maxLength: {
-              value: 12,
-              message: 'This input exceed maxLength.',
-            },
-          })}
-        />
-        <InputField
-          name="telegram"
-          labelText="Telegram"
-          placeholder="Enter telegram"
-          message={errors.telegram?.message}
-          aria-invalid={errors.telegram ? 'true' : 'false'}
-          onChange={changeInputValue}
-          register={register({
-            required: 'This is required.',
-            pattern: {
-              value: /^[A-Za-z0-9]+$/i,
-              message: 'This input is letters and digits only.',
-            },
-            minLength: {
-              value: 3,
-              message: 'minimal length is 3',
-            },
-            maxLength: {
-              value: 12,
-              message: 'This input exceed maxLength.',
-            },
-          })}
-        />
-        <InputField
-          name="city"
-          labelText="City"
-          placeholder="Enter city"
-          message={errors.city?.message}
-          aria-invalid={errors.city ? 'true' : 'false'}
-          onChange={changeInputValue}
-          register={register({
-            required: 'This is required.',
-            pattern: {
-              value: /^[A-Za-z]+$/i,
-              message: 'This input is letters only.',
-            },
-            minLength: {
-              value: 3,
-              message: 'minimal length is 3',
-            },
-            maxLength: {
-              value: 12,
-              message: 'This input exceed maxLength.',
-            },
-          })}
-        />
-        <InputField
-          name="country"
-          labelText="Country"
-          placeholder="Enter country"
-          message={errors.country?.message}
-          aria-invalid={errors.country ? 'true' : 'false'}
-          onChange={changeInputValue}
-          register={register({
-            required: 'This is required.',
-            pattern: {
-              value: /^[A-Za-z]+$/i,
-              message: 'This input is letters only.',
-            },
-            minLength: {
-              value: 3,
-              message: 'minimal length is 3',
-            },
-            maxLength: {
-              value: 12,
-              message: 'This input exceed maxLength.',
-            },
-          })}
-        />
-        <CourseField
-          name="courses"
-          labelText="Course"
-          placeholder="Select course"
-          register={register}
-          multi
-          courses={currentCourses}
-        />
-        <InputField
-          name="score"
-          labelText="Score"
-          placeholder="Enter score"
-          message={errors.score?.message}
-          aria-invalid={errors.score ? 'true' : 'false'}
-          onChange={changeInputValue}
-          register={register({
-            required: 'This is required.',
-            pattern: {
-              value: /^[0-9]+$/i,
-              message: 'This input is number only.',
-            },
-            minLength: {
-              value: 3,
-              message: 'minimal length is 3',
-            },
-            maxLength: {
-              value: 5,
-              message: 'This input exceed maxLength.',
-            },
-          })}
-        />
-      </InputsWrapper>
-      <ButtonWrapper>
-        {!isUserNew && (
-          <Button
-            type="button"
-            bgc={BG_COLOR}
-            color={MAIN1_COLOR}
-            mr="20px"
-            onClick={history.goBack}
-          >
-            Cancel
-          </Button>
-        )}
-        <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
-      </ButtonWrapper>
-    </EditProfileWrapper>
+    <FormWrapper>
+      <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+        <PageTitle>Enter your profile information</PageTitle>
+        <InputsWrapper>
+          <InputField
+            name="firstName"
+            value={userData.firstName}
+            labelText="First Name"
+            placeholder="Enter first name"
+            aria-invalid={errors.firstName ? 'true' : 'false'}
+            message={errors.firstName?.message}
+            onChange={changeInputValue}
+            register={register({
+              required: 'This is required.',
+              pattern: {
+                value: /^[A-Za-z]+$/i,
+                message: 'This input is letters only.',
+              },
+              minLength: {
+                value: 3,
+                message: 'minimal length is 3',
+              },
+              maxLength: {
+                value: 12,
+                message: 'This input exceed maxLength.',
+              },
+            })}
+          />
+          <InputField
+            name="lastName"
+            labelText="Last Name"
+            placeholder="Enter last name"
+            aria-invalid={errors.lastName ? 'true' : 'false'}
+            message={errors.lastName?.message}
+            onChange={changeInputValue}
+            register={register({
+              required: 'This is required.',
+              pattern: {
+                value: /^[A-Za-z]+$/i,
+                message: 'This input is letters only.',
+              },
+              minLength: {
+                value: 3,
+                message: 'minimal length is 3',
+              },
+              maxLength: {
+                value: 14,
+                message: 'This input exceed maxLength.',
+              },
+            })}
+          />
+          <InputField
+            name="discord"
+            labelText="Discord"
+            placeholder="Enter discord"
+            aria-invalid={errors.discord ? 'true' : 'false'}
+            message={errors.discord?.message}
+            onChange={changeInputValue}
+            register={register({
+              required: 'This is required.',
+              pattern: {
+                value: /^[A-Za-z0-9]+$/i,
+                message: 'This input is letters and digits only.',
+              },
+              minLength: {
+                value: 3,
+                message: 'minimal length is 3',
+              },
+              maxLength: {
+                value: 12,
+                message: 'This input exceed maxLength.',
+              },
+            })}
+          />
+          <InputField
+            name="telegram"
+            labelText="Telegram"
+            placeholder="Enter telegram"
+            message={errors.telegram?.message}
+            aria-invalid={errors.telegram ? 'true' : 'false'}
+            onChange={changeInputValue}
+            register={register({
+              required: 'This is required.',
+              pattern: {
+                value: /^[A-Za-z0-9]+$/i,
+                message: 'This input is letters and digits only.',
+              },
+              minLength: {
+                value: 3,
+                message: 'minimal length is 3',
+              },
+              maxLength: {
+                value: 12,
+                message: 'This input exceed maxLength.',
+              },
+            })}
+          />
+          <InputField
+            name="city"
+            labelText="City"
+            placeholder="Enter city"
+            message={errors.city?.message}
+            aria-invalid={errors.city ? 'true' : 'false'}
+            onChange={changeInputValue}
+            register={register({
+              required: 'This is required.',
+              pattern: {
+                value: /^[A-Za-z]+$/i,
+                message: 'This input is letters only.',
+              },
+              minLength: {
+                value: 3,
+                message: 'minimal length is 3',
+              },
+              maxLength: {
+                value: 12,
+                message: 'This input exceed maxLength.',
+              },
+            })}
+          />
+          <InputField
+            name="country"
+            labelText="Country"
+            placeholder="Enter country"
+            message={errors.country?.message}
+            aria-invalid={errors.country ? 'true' : 'false'}
+            onChange={changeInputValue}
+            register={register({
+              required: 'This is required.',
+              pattern: {
+                value: /^[A-Za-z]+$/i,
+                message: 'This input is letters only.',
+              },
+              minLength: {
+                value: 3,
+                message: 'minimal length is 3',
+              },
+              maxLength: {
+                value: 12,
+                message: 'This input exceed maxLength.',
+              },
+            })}
+          />
+          <CourseField
+            name="courses"
+            labelText="Course"
+            placeholder="Select course"
+            register={register}
+            multi
+            courses={currentCourses}
+          />
+          <InputField
+            name="score"
+            labelText="Score"
+            placeholder="Enter score"
+            message={errors.score?.message}
+            aria-invalid={errors.score ? 'true' : 'false'}
+            onChange={changeInputValue}
+            register={register({
+              required: 'This is required.',
+              pattern: {
+                value: /^[0-9]+$/i,
+                message: 'This input is number only.',
+              },
+              minLength: {
+                value: 3,
+                message: 'minimal length is 3',
+              },
+              maxLength: {
+                value: 5,
+                message: 'This input exceed maxLength.',
+              },
+            })}
+          />
+        </InputsWrapper>
+        <ButtonWrapper>
+          {!isUserNew && (
+            <Button
+              type="button"
+              bgc={BG_COLOR}
+              color={MAIN1_COLOR}
+              mr="20px"
+              onClick={history.goBack}
+            >
+              Cancel
+            </Button>
+          )}
+          <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
+        </ButtonWrapper>
+      </EditProfileWrapper>
+    </FormWrapper>
   );
 };

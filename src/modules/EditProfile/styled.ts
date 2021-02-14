@@ -4,7 +4,6 @@ import { WHITE_COLOR } from 'appConstants/colors';
 export const EditProfileWrapper = styled.form`
   background-color: ${WHITE_COLOR};
   width: 680px;
-  margin: 80px auto;
   padding: 25px 30px;
   border-radius: 20px;
   @media screen and (max-width: 768px) {
@@ -12,6 +11,19 @@ export const EditProfileWrapper = styled.form`
     margin-top: 20px;
     padding: 15px 10px;
     flex-direction: column;
+  }
+`;
+
+export const FormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
   }
 `;
 
