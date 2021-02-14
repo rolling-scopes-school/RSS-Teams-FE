@@ -7,15 +7,21 @@ import rightArrow from 'assets/svg/paginateArrowRight.svg';
 type PaginationProps = {
   pageCount: number;
   changePage: (page: number) => void;
+  page: number;
 };
 
-export const Pagination: FC<PaginationProps> = ({ pageCount, changePage }) => {
+export const Pagination: FC<PaginationProps> = ({
+  pageCount,
+  changePage,
+  page,
+}) => {
   return (
     <ReactPaginate
       previousLabel={<img src={leftArrow} alt="Previous" />}
       nextLabel={<img src={rightArrow} alt="Next" />}
       breakLabel={'...'}
       pageCount={pageCount}
+      initialPage={page}
       marginPagesDisplayed={1}
       pageRangeDisplayed={5}
       containerClassName={'pagination'}

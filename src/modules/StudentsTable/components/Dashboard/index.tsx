@@ -1,9 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Popup, TableBody, TableHead } from './components';
 import { StyledTable } from './styled';
-import { useUsersQuery } from 'hooks/graphql';
-import { useSelector } from 'react-redux';
-import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { User } from 'types';
 
 const tableHeaders: string[] = [
@@ -20,9 +17,10 @@ const tableHeaders: string[] = [
 
 type DashboardProps = {
   users: User[];
+  page: number
 };
 
-export const Dashboard: FC<DashboardProps> = ({ users }) => {
+export const Dashboard: FC<DashboardProps> = ({ users, page }) => {
   const [popupElements, setPopupElements] = useState<string[]>([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupStyles, setPopupStyles] = useState<{
@@ -39,6 +37,7 @@ export const Dashboard: FC<DashboardProps> = ({ users }) => {
           setPopupElements={setPopupElements}
           setShowPopup={setShowPopup}
           setPopupStyles={setPopupStyles}
+          page={page}
         />
       </StyledTable>
       <Popup
