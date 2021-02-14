@@ -2,7 +2,6 @@ import React, { FC, MouseEvent, useState, useMemo, ReactText } from 'react';
 import { StyledTableBody, StyledTableItem, StyledTableRow } from './styled';
 import './styles.css';
 import { User, Course, Team } from 'types';
-import { SetStateAction } from 'react';
 
 type TableBodyProps = {
   setPopupElements: (styles: string[] | undefined) => void;

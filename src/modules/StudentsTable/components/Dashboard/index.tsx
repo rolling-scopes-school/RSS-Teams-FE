@@ -4,6 +4,7 @@ import { StyledTable } from './styled';
 import { useUsersQuery } from 'hooks/graphql';
 import { useSelector } from 'react-redux';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
+import { User } from 'types';
 
 const tableHeaders: string[] = [
   '№',
@@ -17,22 +18,24 @@ const tableHeaders: string[] = [
   'Courses',
 ];
 
-export const Dashboard: FC = () => {
+type DashboardProps = {
+  users: User[];
+};
+
+export const Dashboard: FC<DashboardProps> = ({ users }) => {
   const [popupElements, setPopupElements] = useState<string[] | undefined>([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupStyles, setPopupStyles] = useState<{
     top: number;
     left: number;
   } | null>(null);
-  const currCourse = useSelector(selectCurrCourse);
-  const { users } = useUsersQuery({ reactCourseId: currCourse.id });
 
   return (
     <>
       <StyledTable>
         <TableHead tableHeaders={tableHeaders} />
         <TableBody
-          users={users.results}
+          users={users}
           setPopupElements={setPopupElements}
           setShowPopup={setShowPopup}
           setPopupStyles={setPopupStyles}
