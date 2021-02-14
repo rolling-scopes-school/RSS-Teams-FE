@@ -3,14 +3,11 @@ import { useUsersQuery } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-// import { User } from 'types';
 import { Dashboard } from './components/Dashboard';
-// import { selectUserData } from './selectors';
 
 export const StudentsTable: FC = () => {
   const currCourse = useSelector(selectCurrCourse);
-  // const userData = useSelector(selectUserData);
-  const { loadingU, errorU, users } = useUsersQuery({
+  const { loadingU, errorU } = useUsersQuery({
     reactCourseId: currCourse.id,
   });
   const loading = loadingU;

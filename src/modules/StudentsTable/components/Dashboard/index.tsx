@@ -18,13 +18,14 @@ const tableHeaders: string[] = [
 ];
 
 export const Dashboard: FC = () => {
-  const [popupElements, setPopupElements] = useState([]);
+  const [popupElements, setPopupElements] = useState<string[] | undefined>([]);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupStyles, setPopupStyles] = useState(null);
+  const [popupStyles, setPopupStyles] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
   const currCourse = useSelector(selectCurrCourse);
-
   const { users } = useUsersQuery({ reactCourseId: currCourse.id });
-  console.log('🚀 ~ file: index.tsx ~ line 28 ~ users', users);
 
   return (
     <>

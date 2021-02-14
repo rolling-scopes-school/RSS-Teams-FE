@@ -1,28 +1,31 @@
-import React, { FC, MouseEvent, useState, useMemo } from 'react';
+import React, { FC, MouseEvent, useState, useMemo, ReactText } from 'react';
 import { StyledTableBody, StyledTableItem, StyledTableRow } from './styled';
 import './styles.css';
+import { User, Course, Team } from 'types';
+import { SetStateAction } from 'react';
 
 type TableBodyProps = {
-  setPopupElements: (styles: any) => void;
+  setPopupElements: (styles: string[] | undefined) => void;
   setShowPopup: (show: boolean) => void;
-  setPopupStyles: (styles: any) => void;
-  users: any[];
+  setPopupStyles: (styles: { top: number; left: number } | null) => void;
+  users: User[];
 };
 
 export const TableBody: FC<TableBodyProps> = (props) => {
   const { setPopupElements, setShowPopup, setPopupStyles, users } = props;
-  console.log('🚀 ~ file: index.tsx ~ line 14 ~ users', users);
   const [tableItemCursor, setTableItemCursor] = useState(false);
 
-  const usersData: string[][] = useMemo(
+  const usersData: Array<[string | number] | ReactText[]> = useMemo(
     () =>
-      users.map((user: any, index: number) => {
+      users.map((user: User, index: number) => {
         return [
           index + 1,
           `${user.firstName} ${user.lastName || null}`,
           user.score,
           user.teams.length
-            ? user.teams.map((team: any) => team.number).join(', ')
+            ? (user.teams as Array<Team>)
+                .map((team: Team) => team.number)
+                .join(', ')
             : 'No team yet.',
           user.telegram || 'No telegram.',
           user.discord || 'No discord.',
@@ -30,7 +33,9 @@ export const TableBody: FC<TableBodyProps> = (props) => {
           `${user.country},
           ${user.city}`,
           user.courses.length
-            ? user.courses.map((course: any) => course.name).join(', ')
+            ? (user.courses as Array<Course>)
+                .map((course: Course) => course.name)
+                .join(', ')
             : 'No courses.',
         ];
       }),
@@ -40,12 +45,12 @@ export const TableBody: FC<TableBodyProps> = (props) => {
   const mouseOverHandler = (event: MouseEvent<HTMLTableCellElement>) => {
     const target = event.target as HTMLTableCellElement;
     if (target.scrollWidth !== target.clientWidth) {
-      const style = {
+      const style: { top: number; left: number } = {
         top: target.getBoundingClientRect().bottom,
         left: target.getBoundingClientRect().left - 5,
       };
       setShowPopup(true);
-      setPopupElements(target?.textContent?.split(','));
+      setPopupElements(target?.textContent?.split(',') as string[]);
       setPopupStyles(style);
       setTableItemCursor(true);
     }
@@ -63,9 +68,9 @@ export const TableBody: FC<TableBodyProps> = (props) => {
 
   return (
     <StyledTableBody>
-      {usersData.map((user: string[], index: number) => (
+      {usersData.map((user: [string | number] | ReactText[], index: number) => (
         <StyledTableRow key={`TableRowKey-${index}`}>
-          {user.map((item: string, index: number) => (
+          {user.map((item: string | number, index: number) => (
             <StyledTableItem
               className={`TableItem--${index}`}
               key={`TableItemKey-${index}`}
