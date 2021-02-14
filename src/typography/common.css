@@ -5,18 +5,18 @@
 }
 
 :root {
-  --BG_COLOR: #F2F8FD;
+  --BG_COLOR: #f2f8fd;
 }
 
 body {
   margin: 0;
   font: normal 16px/24px "Poppins", sans-serif;
-  background-color: var( --BG_COLOR);
+  background-color: var(--BG_COLOR);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 input {
-  background-color: var( --BG_COLOR);
+  background-color: var(--BG_COLOR);
 }
