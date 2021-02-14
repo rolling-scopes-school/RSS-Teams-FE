@@ -11,7 +11,12 @@ import {
 } from 'modules';
 import { Loader, PrivateRoute, Header } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
-import { AUTH_TOKEN, SET_CURR_COURSE, SET_TOKEN } from 'appConstants';
+import {
+  AUTH_TOKEN,
+  SET_CURR_COURSE,
+  SET_TOKEN,
+  SET_USER_DATA,
+} from 'appConstants';
 import { useWhoAmIQuery } from 'hooks/graphql';
 
 export const App: FC = () => {
@@ -28,10 +33,15 @@ export const App: FC = () => {
       const token = sessionStorage.getItem(AUTH_TOKEN);
       if (token) dispatch({ type: SET_TOKEN, payload: token });
     }
+
+    if (!!whoAmI) {
+      dispatch({ type: SET_USER_DATA, payload: whoAmI });
+    }
     if (whoAmI?.courses[0])
       dispatch({ type: SET_CURR_COURSE, payload: whoAmI?.courses[0] });
-    if (!loadingW && loading) setLoading(false);
-  }, [dispatch, loginToken, loadingW, loading, whoAmI?.courses]);
+
+    if (!loadingW) setLoading(false);
+  }, [dispatch, loginToken, loadingW, loading, whoAmI]);
 
   if (loading || loadingW) return <Loader />;
 

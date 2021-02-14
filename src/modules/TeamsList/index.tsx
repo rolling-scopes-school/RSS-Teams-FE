@@ -37,9 +37,6 @@ export const TeamsList: FC = () => {
       {userData && <p>My country: {userData.country}</p>}
       {userData && <p>My city: {userData.city}</p>}
       {userData && <p>My courseIds: {userData.courseIds[0]}</p>}
-      <Link to="/studentsTable">Dashboard</Link>
-      <br />
-      <Link to="/editProfile"> Edit Profile</Link>
     </div>
   );
 };
