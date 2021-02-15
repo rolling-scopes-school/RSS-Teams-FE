@@ -1,3 +1,21 @@
+.List {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll !important;
+}
+
+.List::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f9f9fd;
+}
+
+.List::-webkit-scrollbar-thumb {
+  background-color: #1e33570d;
+  border-radius: 20px;
+}
+
 .TableItem--0 {
   width: 3.5%;
 }
@@ -191,11 +209,11 @@
   }
 
   .TableItem--1 {
-    width: 35.5%;
+    width: 36%;
   }
 
   .TableItem--4 {
-    width: 23.5%;
+    width: 23%;
   }
 
   .TableItem--2,
