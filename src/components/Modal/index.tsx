@@ -1,25 +1,30 @@
-import React, { useEffect, useRef } from 'react';
+import React, { SyntheticEvent, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
-import styles from './index.module.css';
 import styled from 'styled-components';
+import styles from './index.module.css';
 import { PageTitle, Label, Button, InvertedButton } from 'typography/index';
 
 type Props = {
   title: string;
   text: string;
-  open: boolean;
-  hideOnOutsideClick?: boolean;
-  hideOnEsc?: boolean;
+  open?: boolean;
+  // hideOnOutsideClick?: boolean;
+  // hideOnEsc?: boolean;
   children: React.ReactNode;
   onClose(): void;
-  onSubmit(e: any): void;
+  onSubmit?: (e: SyntheticEvent) => void;
+  okText?: string;
+  cancelText?: string;
 } & typeof defaultProps;
 
 const defaultProps = {
+  open: false,
   hideOnOutsideClick: true,
   hideOnEsc: true,
+  okText: 'Yes!',
+  cancelText: 'No',
 };
 
 const ModalWindow = styled.div`
@@ -49,7 +54,10 @@ export const Modal = (props: Props) => {
     hideOnEsc,
     onClose,
     onSubmit,
+    okText,
+    cancelText,
   } = props;
+
   const insideRef = useRef<HTMLDivElement>(null);
 
   const close = (e: React.MouseEvent | MouseEvent) => {
@@ -99,20 +107,23 @@ export const Modal = (props: Props) => {
           <Label>{text}</Label>
           {children}
           <ButtonsBlock>
-            <InvertedButton>{CancelText}</InvertedButton>
-            <Button onClick={onSubmit}>{OKText}</Button>
+            {onSubmit ? (
+              <>
+                <InvertedButton onClick={onClose}>{cancelText}</InvertedButton>
+                <Button
+                  onClick={(e) => {
+                    // console.log(children || 'children are empty');
+                    onSubmit(e);
+                  }}
+                >
+                  {okText}
+                </Button>
+              </>
+            ) : (
+              <Button onClick={onClose}>{cancelText}</Button>
+            )}
           </ButtonsBlock>
         </ModalWindow>
-      </div>
-    </div>,
-    document.body
-  );
-
-  return ReactDOM.createPortal(
-    <div className={styles.overlay} onClick={onOutClick}>
-      <div className={styles.container} ref={insideRef}>
-        <IconClose className={styles.icon} onClick={close} />
-        {children}
       </div>
     </div>,
     document.body

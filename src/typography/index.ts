@@ -125,6 +125,10 @@ export const Input = styled.input`
   }
 `;
 
+export const ModalInput = styled(Input)`
+  margin-top: 20px;
+`;
+
 export const Select = styled.div`
   display: grid;
   grid-template-areas: 'select';

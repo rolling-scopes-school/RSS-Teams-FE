@@ -18,7 +18,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 1320px;
+  max-width: 1440px;
   @media (max-width: 1199px) and (min-width: 992px) {
     font-size: 0.95rem;
   }

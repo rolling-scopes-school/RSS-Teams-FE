@@ -16,8 +16,9 @@
 /* setting max width to container can break other modals */
 .container {
   position: relative;
-  display: inline-block;
-  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  width: 440px;
   margin: 20vh auto;
   padding: 30px 40px;
   text-align: center;
