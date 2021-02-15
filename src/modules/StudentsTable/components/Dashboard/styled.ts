@@ -26,11 +26,11 @@ export const StyledTable = styled.div`
     font-size: 0.825rem;
   }
   @media (max-width: 549px) and (min-width: 440px) {
-    height: calc(100vh - 260px);
+    height: calc(100vh - 278px);
     font-size: 0.8rem;
   }
   @media (max-width: 439px) and (min-width: 320px) {
-    height: calc(100vh - 220px);
+    height: calc(100vh - 230px);
     font-size: 0.68rem;
   }
 `;
