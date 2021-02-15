@@ -28,7 +28,6 @@ export const TeamsList: FC = () => {
   if (error) return <Error />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
-  console.log('teams', teams);
   return (
     <>
       <StyledTeams>
