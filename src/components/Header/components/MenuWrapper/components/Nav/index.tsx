@@ -11,7 +11,11 @@ type TAppNavigation = {
   [key: string]: string;
 };
 
-export const Nav: FC = () => {
+type NavProps = {
+  setDisplayCoursesList: (display: boolean) => void;
+};
+
+export const Nav: FC<NavProps> = ({ setDisplayCoursesList }) => {
   const appNavigation: TAppNavigation = {
     ['/studentsTable']: 'Dashboard',
     ['/']: 'Teams',
@@ -28,6 +32,7 @@ export const Nav: FC = () => {
                 to={Object.keys(appNavigation)[index]}
                 exact
                 activeClassName="activeNavLink"
+                onClick={() => setDisplayCoursesList(false)}
               >
                 {link}
                 <StyledHeaderActiveElement />
