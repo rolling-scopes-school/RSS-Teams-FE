@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Popup, TableBody, TableHead } from './components';
-import { mockData } from './mockData';
-import { StyledDashboard } from './styled';
+import { StyledTable } from './styled';
+import { User } from 'types';
 
 const tableHeaders: string[] = [
   '№',
@@ -15,22 +15,31 @@ const tableHeaders: string[] = [
   'Courses',
 ];
 
-export const Dashboard: FC = () => {
-  const [popupElements, setPopupElements] = useState([]);
+type DashboardProps = {
+  users: User[];
+  page: number;
+};
+
+export const Dashboard: FC<DashboardProps> = ({ users, page }) => {
+  const [popupElements, setPopupElements] = useState<string[]>([]);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupStyles, setPopupStyles] = useState(null);
+  const [popupStyles, setPopupStyles] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
 
   return (
     <>
-      <StyledDashboard>
+      <StyledTable>
         <TableHead tableHeaders={tableHeaders} />
         <TableBody
-          users={mockData.results}
+          users={users}
           setPopupElements={setPopupElements}
           setShowPopup={setShowPopup}
           setPopupStyles={setPopupStyles}
+          page={page}
         />
-      </StyledDashboard>
+      </StyledTable>
       <Popup
         popupElements={popupElements}
         showPopup={showPopup}

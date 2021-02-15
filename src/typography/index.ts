@@ -31,6 +31,23 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   path {
     fill: ${({ login }) => (login ? WHITE_COLOR : DARK_TEXT_COLOR)};
   }
+
+  @media (max-width: 991px) and (min-width: 768px) {
+    width: 80px;
+    height: 28px;
+  }
+  @media (max-width: 767px) and (min-width: 550px) {
+    width: 76px;
+    height: 24px;
+  }
+  @media (max-width: 549px) and (min-width: 440px) {
+    width: 72px;
+    height: 22px;
+  }
+  @media (max-width: 439px) and (min-width: 320px) {
+    width: 70px;
+    height: 20px;
+  }
 `;
 
 const StyledText = css<StyledTextProps>`
