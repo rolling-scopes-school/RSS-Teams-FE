@@ -1,5 +1,5 @@
 import React, { FC, InputHTMLAttributes } from 'react';
-import { Label, Input } from 'typography';
+import { Input } from 'typography';
 import { FieldWrapper, ValidationAlert, FLabel } from './styled';
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -8,6 +8,7 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   register: any;
   name: string;
   message?: string | undefined;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputField: FC<InputFieldProps> = ({
@@ -16,7 +17,7 @@ export const InputField: FC<InputFieldProps> = ({
   register,
   name,
   message,
-  ...rest
+  onChange,
 }) => {
   return (
     <FieldWrapper>
@@ -27,7 +28,7 @@ export const InputField: FC<InputFieldProps> = ({
         placeholder={placeholder}
         ref={register}
         autoComplete="off"
-        {...rest}
+        onChange={onChange}
       />
       <ValidationAlert>{message}</ValidationAlert>
     </FieldWrapper>

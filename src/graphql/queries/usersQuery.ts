@@ -1,8 +1,12 @@
 import { gql } from '@apollo/client';
 
 export const USERS_QUERY = gql`
-  query getUsers($courseId: String!, $pagination: PaginationInput!) {
-    users(courseId: $courseId, pagination: $pagination) {
+  query getUsers(
+    $courseId: String!
+    $pagination: PaginationInput!
+    $filter: UserFilterInput
+  ) {
+    users(courseId: $courseId, pagination: $pagination, filter: $filter) {
       count
       results {
         id

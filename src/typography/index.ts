@@ -14,6 +14,12 @@ interface StyledTextProps {
   lineHeight?: string;
 }
 
+type ButtonProps = {
+  bgc?: string;
+  color?: string;
+  mr?: string;
+};
+
 type TRSLogoProps = {
   login: string | null;
 };
@@ -21,6 +27,7 @@ type TRSLogoProps = {
 export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   width: 84px;
   height: 30px;
+  margin-top: 5px;
   path {
     fill: ${({ login }) => (login ? WHITE_COLOR : DARK_TEXT_COLOR)};
   }
@@ -71,15 +78,21 @@ export const PageSubTitle = styled.h2`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   ${TextSemiBold}
+  margin-right: ${({ mr }) => mr || 0};
   padding: 13px 50px;
   border-radius: 20px;
   border: none;
   outline: none;
   cursor: pointer;
-  background-color: ${MAIN1_COLOR};
-  color: ${(props) => props.color || WHITE_COLOR};
+  background-color: ${({ bgc }) => bgc || MAIN1_COLOR};
+  color: ${({ color }) => color || WHITE_COLOR};
+`;
+
+export const InvertedButton = styled(Button)`
+  background-color: ${BG_COLOR};
+  color: ${MAIN1_COLOR};
 `;
 
 export const Label = styled.label`

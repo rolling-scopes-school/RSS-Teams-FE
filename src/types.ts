@@ -20,10 +20,10 @@ export type User = {
 export type Course = {
   id: string;
   name: string;
-  teamIds: string[];
-  userIds: string[];
-  teams: Team[];
-  users: User[];
+  teamIds?: string[];
+  userIds?: string[];
+  teams?: Team[];
+  users?: User[];
 };
 
 export type Team = {
@@ -37,6 +37,28 @@ export type Team = {
   members: User[];
 };
 
+export type UserFilterInput = {
+  discord: string;
+  github: string;
+  location: string;
+  courseName: string;
+  sortingOrder: string;
+  teamFilter: boolean;
+};
+
+export type UpdateUserInput = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email?: string;
+  telegram: string;
+  discord: string;
+  score?: number;
+  country: string;
+  city: string;
+  courseIds: string[];
+};
+
 export type StateTeamsList = {
   teams: Team[];
 };
@@ -47,6 +69,7 @@ export type StateStudentsTable = {
 
 export type StateLoginPage = {
   loginToken: string | null;
+  currCourse: Course;
 };
 
 export type State = {

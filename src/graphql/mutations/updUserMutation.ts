@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const USER_QUERY = gql`
-  query getUser($github: String!) {
-    user(github: $github) {
+export const UPD_USER_MUTATION = gql`
+  mutation updateUser($user: UpdateUserInput!) {
+    updateUser(user: $user) {
       id
       firstName
       lastName
@@ -14,9 +14,18 @@ export const USER_QUERY = gql`
       city
       avatar
       isAdmin
+      courses {
+        id
+        name
+      }
       email
       courseIds
       teamIds
+      teams {
+        id
+        number
+        courseId
+      }
     }
   }
 `;

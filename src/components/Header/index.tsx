@@ -4,15 +4,22 @@ import { useSelector } from 'react-redux';
 import { RSLogo } from 'typography';
 import { StyledHeader, Container } from './styled';
 import { selectToken } from 'modules/LoginPage/selectors';
+import { MenuWrapper } from './components';
+import { selectUserData } from 'modules/StudentsTable/selectors';
 
 export const Header: FC = () => {
-  const login = useSelector(selectToken);
+  const loginToken = useSelector(selectToken);
+  const userData = useSelector(selectUserData);
+
+  const newUserCheck = userData?.telegram;
+
   return (
-    <StyledHeader login={login}>
+    <StyledHeader login={loginToken}>
       <Container>
         <Link to="/">
-          <RSLogo login={login} />
+          <RSLogo login={loginToken} />
         </Link>
+        {newUserCheck && loginToken && <MenuWrapper />}
       </Container>
     </StyledHeader>
   );

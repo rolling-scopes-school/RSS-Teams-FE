@@ -1,69 +1,90 @@
-import React, { FC, useCallback } from 'react';
-
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useCoursesQuery } from 'hooks/graphql';
+import { useForm } from 'react-hook-form';
+
+import { Loader, InputField, CourseField } from 'components';
+import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
+import { PageTitle, Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
-import { Redirect } from 'react-router-dom';
-import { PageTitle, Button } from 'typography';
-import { InputField } from 'components/InputField';
-import { CourseField } from 'components/CourseField';
+import { Course, UpdateUserInput } from 'types';
 
-import { useForm } from 'react-hook-form';
 import { EditProfileWrapper, InputsWrapper, ButtonWrapper } from './styled';
-
-type Course = {
-  courseId: string;
-  course: string;
-};
-
-interface IProfileFormInput {
-  firstname: string;
-  lastname: string;
-  discord: string;
-  telegram: string;
-  city: string;
-  country: string;
-  courses: Course[];
-  score: number;
-}
+import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
+import { CURRENT_YEAR } from 'appConstants';
 
 export const EditProfile: FC = () => {
-  const { loading, error, courses } = useCoursesQuery();
+  const history = useHistory();
   const loginToken = useSelector(selectToken);
-
   const userData = useSelector(selectUserData);
-  console.log(userData);
-  const { register, handleSubmit, watch, errors } = useForm<IProfileFormInput>({
-    defaultValues: {
-      firstname: userData.firstName,
-      lastname: userData.lastName,
-      discord: userData.discord,
+  const { loading, courses } = useCoursesQuery();
+  const defaultData = useMemo(
+    () => ({
+      id: userData.id,
+      firstName: userData.firstName || '',
+      lastName: userData.lastName || '',
+      discord: userData.discord || '',
       telegram: userData.telegram || '',
-      city: userData.city,
-      country: userData.country,
-      // courses: Course[],
+      city: userData.city || '',
+      country: userData.country || '',
+      courseIds: ['9c5a1bee-efb7-4eae-b306-c3d2061e9a32'],
       score: userData.score,
-    },
+    }),
+    [userData]
+  );
+  const [inputValues, setInputValues] = useState<UpdateUserInput>(defaultData);
+
+  const { updateUser, loadingM } = useUpdUserMutation({
+    user: inputValues,
   });
 
-  const onSubmit = useCallback((formValues: IProfileFormInput) => {
-    console.log(formValues);
-    console.log(errors, watch);
-  }, []);
+  const isUserNew = userData.telegram === null;
+
+  const currentCourses = courses?.filter(({ name }: Course) =>
+    name.includes(`${CURRENT_YEAR}`)
+  );
+
+  const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
+    defaultValues: inputValues,
+  });
+
+  const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setInputValues({
+      ...inputValues,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = (formValues: UpdateUserInput) => {
+    console.log('formValues', formValues);
+    updateUser();
+    history.push('/');
+  };
+
+  useEffect(() => {
+    if (userData.id !== '' && !inputValues.id) {
+      setInputValues(defaultData);
+      reset(defaultData);
+    }
+  }, [reset, inputValues, defaultData, userData]);
 
   if (!loginToken) return <Redirect to={'/login'} />;
+  if (loading || loadingM) return <Loader />;
 
   return (
     <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       <PageTitle>Enter your profile information</PageTitle>
       <InputsWrapper>
         <InputField
-          name="firstname"
+          name="firstName"
+          value={userData.firstName}
           labelText="First Name"
           placeholder="Enter first name"
-          aria-invalid={errors.firstname ? 'true' : 'false'}
-          message={errors.firstname?.message}
+          aria-invalid={errors.firstName ? 'true' : 'false'}
+          message={errors.firstName?.message}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -81,11 +102,12 @@ export const EditProfile: FC = () => {
           })}
         />
         <InputField
-          name="lastname"
-          labelText="Second Name"
-          placeholder="Enter second name"
-          aria-invalid={errors.lastname ? 'true' : 'false'}
-          message={errors.lastname?.message}
+          name="lastName"
+          labelText="Last Name"
+          placeholder="Enter last name"
+          aria-invalid={errors.lastName ? 'true' : 'false'}
+          message={errors.lastName?.message}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -108,6 +130,7 @@ export const EditProfile: FC = () => {
           placeholder="Enter discord"
           aria-invalid={errors.discord ? 'true' : 'false'}
           message={errors.discord?.message}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -130,6 +153,7 @@ export const EditProfile: FC = () => {
           placeholder="Enter telegram"
           message={errors.telegram?.message}
           aria-invalid={errors.telegram ? 'true' : 'false'}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -152,6 +176,7 @@ export const EditProfile: FC = () => {
           placeholder="Enter city"
           message={errors.city?.message}
           aria-invalid={errors.city ? 'true' : 'false'}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -174,6 +199,7 @@ export const EditProfile: FC = () => {
           placeholder="Enter country"
           message={errors.country?.message}
           aria-invalid={errors.country ? 'true' : 'false'}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -196,7 +222,7 @@ export const EditProfile: FC = () => {
           placeholder="Select course"
           register={register}
           multi
-          courses={courses}
+          courses={currentCourses}
         />
         <InputField
           name="score"
@@ -204,6 +230,7 @@ export const EditProfile: FC = () => {
           placeholder="Enter score"
           message={errors.score?.message}
           aria-invalid={errors.score ? 'true' : 'false'}
+          onChange={changeInputValue}
           register={register({
             required: 'This is required.',
             pattern: {
@@ -222,7 +249,18 @@ export const EditProfile: FC = () => {
         />
       </InputsWrapper>
       <ButtonWrapper>
-        <Button>Submit</Button>
+        {!isUserNew && (
+          <Button
+            type="button"
+            bgc={BG_COLOR}
+            color={MAIN1_COLOR}
+            mr="20px"
+            onClick={history.goBack}
+          >
+            Cancel
+          </Button>
+        )}
+        <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
       </ButtonWrapper>
     </EditProfileWrapper>
   );
