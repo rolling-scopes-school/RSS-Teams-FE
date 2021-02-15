@@ -30,6 +30,10 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
   ul {
     margin-top: ${({ isClicked }) => (isClicked ? '0px' : '-100%')};
   }
+
+  @media (max-width: 945px) and (min-width: 320px) {
+    display: none;
+  }
 `;
 
 export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectList>`
@@ -50,6 +54,22 @@ export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectL
   svg {
     transform: ${({ isClicked }) =>
       isClicked ? 'rotate(180deg)' : 'rotate(0deg)'};
+  }
+
+  @media (max-width: 1199px) and (min-width: 992px) {
+    font-size: 0.95rem;
+  }
+  @media (max-width: 991px) and (min-width: 768px) {
+    font-size: 0.9rem;
+  }
+  @media (max-width: 767px) and (min-width: 550px) {
+    font-size: 0.825rem;
+  }
+  @media (max-width: 549px) and (min-width: 440px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 439px) and (min-width: 320px) {
+    font-size: 0.68rem;
   }
 `;
 
@@ -85,10 +105,13 @@ export const StyledCoursesSelectInfo = styled.div<TStyledCoursesSelectInfo>`
   }
 
   p {
+    overflow: hidden;
+    max-width: 155px;
     margin-left: 5px;
     margin-right: ${({ hover }) => (hover ? '16px' : '31px')};
     font-weight: 500;
-    line-height: 27px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 `;
 
