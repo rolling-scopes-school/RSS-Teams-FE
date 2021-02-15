@@ -32,7 +32,6 @@ export const StyledTableRow = styled.tr`
   align-items: center;
   padding: 20px;
   font-weight: 400;
-  font-size: 1rem;
   line-height: 150%;
   color: ${DARK_TEXT_COLOR};
   border-radius: 10px;

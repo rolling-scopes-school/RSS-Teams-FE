@@ -44,10 +44,11 @@ export const Modal = (props: Props) => {
     title,
     text,
     open,
-    onClose,
     children,
     hideOnOutsideClick,
     hideOnEsc,
+    onClose,
+    onSubmit,
   } = props;
   const insideRef = useRef<HTMLDivElement>(null);
 
@@ -98,8 +99,8 @@ export const Modal = (props: Props) => {
           <Label>{text}</Label>
           {children}
           <ButtonsBlock>
-            <InvertedButton>No</InvertedButton>
-            <Button>Yes!</Button>
+            <InvertedButton>{CancelText}</InvertedButton>
+            <Button onClick={onSubmit}>{OKText}</Button>
           </ButtonsBlock>
         </ModalWindow>
       </div>
