@@ -1,21 +1,18 @@
-import React, { FC, MouseEvent, useState, useMemo, ReactText } from 'react';
-import { StyledTableBody, StyledTableItem, StyledTableRow } from './styled';
+import React, { FC, useMemo, ReactText } from 'react';
+import { FixedSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { StyledTableBody } from './styled';
 import './styles.css';
 import { User, Course, Team } from 'types';
 import { USERS_PER_PAGE } from 'appConstants';
+import { TableRow } from './components/TableRow';
 
 type TableBodyProps = {
-  setPopupElements: (styles: string[]) => void;
-  setShowPopup: (show: boolean) => void;
-  setPopupStyles: (styles: { top: number; left: number } | null) => void;
   users: User[];
   page: number;
 };
 
-export const TableBody: FC<TableBodyProps> = (props) => {
-  const { setPopupElements, setShowPopup, setPopupStyles, users, page } = props;
-  const [tableItemCursor, setTableItemCursor] = useState(false);
-
+export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
   const usersData: Array<string[] | ReactText[]> = useMemo(
     () =>
       users.map((user: User, index: number) => {
@@ -40,50 +37,25 @@ export const TableBody: FC<TableBodyProps> = (props) => {
             : 'No courses.',
         ];
       }),
-    [users]
+    [users, page]
   );
-
-  const mouseOverHandler = (event: MouseEvent<HTMLTableCellElement>) => {
-    const target = event.target as HTMLTableCellElement;
-    if (target.scrollWidth !== target.clientWidth) {
-      const style: { top: number; left: number } = {
-        top: target.getBoundingClientRect().bottom,
-        left: target.getBoundingClientRect().left - 5,
-      };
-      setShowPopup(true);
-      setPopupElements(target?.textContent?.split(',') as string[]);
-      setPopupStyles(style);
-      setTableItemCursor(true);
-    }
-  };
-
-  const mouseLeaveHandler = (event: MouseEvent<HTMLTableCellElement>) => {
-    const target = event.target as HTMLTableCellElement;
-    if (target.scrollWidth !== target.clientWidth) {
-      setShowPopup(false);
-      setPopupElements([]);
-      setPopupStyles(null);
-      setTableItemCursor(false);
-    }
-  };
 
   return (
     <StyledTableBody>
-      {usersData.map((user: string[] | ReactText[], index: number) => (
-        <StyledTableRow key={`TableRowKey-${index}`}>
-          {(user as string[]).map((item: string, index: number) => (
-            <StyledTableItem
-              className={`TableItem--${index}`}
-              key={`TableItemKey-${index}`}
-              onMouseOver={mouseOverHandler}
-              onMouseLeave={mouseLeaveHandler}
-              tableItemCursor={tableItemCursor}
-            >
-              {item}
-            </StyledTableItem>
-          ))}
-        </StyledTableRow>
-      ))}
+      <AutoSizer>
+        {({ height, width }) => (
+          <List
+            className="List"
+            height={height}
+            itemSize={40}
+            itemCount={usersData.length}
+            itemData={usersData}
+            width={width}
+          >
+            {TableRow}
+          </List>
+        )}
+      </AutoSizer>
     </StyledTableBody>
   );
 };
