@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, MouseEvent, useState } from 'react';
 import { InfoLineStyled, CopyClipboardButton } from './styled';
 import { TablePopup } from 'components/TablePopup';
 
@@ -14,12 +14,20 @@ export const MyTeamInfoLine: FC<MyTeamInfoLine> = ({ value }) => {
       console.log(err);
     });
   };
+
+  const mouseOverHandler = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLDivElement;
+    if (target.scrollWidth !== target.clientWidth) {
+      setShowPopup(true);
+    }
+  };
+
   const currValue: string = value || '';
   return (
     <InfoLineStyled>
       <div
         className={'info__text'}
-        onMouseOver={() => setShowPopup(true)}
+        onMouseOver={mouseOverHandler}
         onMouseLeave={() => setShowPopup(false)}
       >
         {currValue}
