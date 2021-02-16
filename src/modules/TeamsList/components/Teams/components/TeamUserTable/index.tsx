@@ -19,9 +19,9 @@ export const TeamUserTable: FC<TeamUserTableProps> = ({
     <StyledTeamUserTable>
       <thead>
         <tr>
-          {TABLE_TEAMS_HEADERS.map((columnName: string, index: number) => {
+          {TABLE_TEAMS_HEADERS.map((columnName: string) => {
             return !isMyTeam && columnName === 'Action' ? null : (
-              <th key={index}>{columnName}</th>
+              <th key={columnName}>{columnName}</th>
             );
           })}
         </tr>
@@ -31,7 +31,7 @@ export const TeamUserTable: FC<TeamUserTableProps> = ({
           members.map((member: User, index: number) => {
             return (
               <TableRow
-                key={index}
+                key={member.id}
                 count={index + 1}
                 member={member}
                 isMyTeam={isMyTeam}

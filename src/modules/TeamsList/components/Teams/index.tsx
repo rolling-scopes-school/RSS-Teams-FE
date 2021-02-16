@@ -25,7 +25,7 @@ export const Teams: FC<TeamsProps> = ({
     {teams.count &&
       teams.results.map((team) => (
         <TeamItem
-          key={`team-${Math.random()}`}
+          key={`team-${team.number}}`}
           name={`Team ${team.number}`}
           countMember={team.members.length}
           members={team.members}
