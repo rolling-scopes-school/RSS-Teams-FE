@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Modal } from 'components';
 import { ModalInput } from 'typography';
+import { ReactComponent as CopyIcon } from 'assets/svg/copy.svg';
 
 type Props = {
   title: string;
@@ -14,27 +15,26 @@ type Props = {
 } & typeof defaultProps;
 
 const defaultProps = {
-  open: false,
-  okText: 'Yes!',
-  cancelText: 'No',
+  // okText: 'Yes!',
+  // cancelText: 'No',
 };
 
 export const ModalCreated: FC<Props> = ({
   title,
   text,
   open,
-  okText,
+  // okText,
   cancelText,
   onClose,
   onSubmit,
   password,
 }) => {
-  const [inputValue, setInputValue] = useState<string>('');
+  // const [inputValue, setInputValue] = useState<string>('');
 
-  const onSubmitModal = () => {
-    onClose();
-    if (onSubmit) onSubmit('ModalCreated');
-  };
+  // const onSubmitModal = () => {
+  //   onClose();
+  //   if (onSubmit) onSubmit('ModalCreated');
+  // };
 
   return (
     <Modal
@@ -43,13 +43,14 @@ export const ModalCreated: FC<Props> = ({
       open={open}
       onClose={onClose}
       // onSubmit={onSubmitModal}
-      okText={okText}
+      // okText={okText}
       cancelText={cancelText}
       hideOnOutsideClick={true}
       hideOnEsc={true}
     >
       {/* disable input ? with copy button  */}
       <ModalInput name="InputValue" value={password} readOnly />
+      <CopyIcon />
     </Modal>
   );
 };

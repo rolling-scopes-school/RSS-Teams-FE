@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Modal } from 'components';
 import { ModalInput } from 'typography';
 
@@ -9,13 +9,12 @@ type Props = {
   onSubmit?: (e: string) => void;
   onClose: () => void;
   okText?: string;
-  cancelText?: string;
+  // cancelText?: string;
 } & typeof defaultProps;
 
 const defaultProps = {
   open: false,
-  okText: 'Yes!',
-  cancelText: 'No',
+  okText: 'Create team',
 };
 
 export const ModalCreateTeam: FC<Props> = ({
@@ -23,15 +22,19 @@ export const ModalCreateTeam: FC<Props> = ({
   text,
   open,
   okText,
-  cancelText,
   onClose,
   onSubmit,
 }) => {
   const [inputValue, setInputValue] = useState<string>('');
+  useEffect(() => {
+    setInputValue('');
+  }, [open]);
 
   const onSubmitModal = () => {
-    onClose();
-    if (onSubmit) onSubmit(inputValue);
+    if (onSubmit && inputValue) {
+      onClose();
+      onSubmit(inputValue);
+    }
   };
 
   const InputChange = (e: any) => {
@@ -46,7 +49,7 @@ export const ModalCreateTeam: FC<Props> = ({
       onClose={onClose}
       onSubmit={onSubmitModal}
       okText={okText}
-      cancelText={cancelText}
+      // cancelText={cancelText}
       hideOnOutsideClick={true}
       hideOnEsc={true}
     >

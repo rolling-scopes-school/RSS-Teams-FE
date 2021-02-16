@@ -12,9 +12,8 @@ type Props = {
 } & typeof defaultProps;
 
 const defaultProps = {
-  open: false,
-  okText: 'Yes!',
-  cancelText: 'No',
+  // okText: 'Yes!',
+  // cancelText: 'No',
 };
 
 export const ModalExpel: FC<Props> = ({
@@ -42,13 +41,6 @@ export const ModalExpel: FC<Props> = ({
       cancelText={cancelText}
       hideOnOutsideClick={true}
       hideOnEsc={true}
-    >
-      {/* <input
-        name="GroupLink"
-        required
-        value={inputValue}
-        onChange={InputChange}
-      /> */}
-    </Modal>
+    />
   );
 };

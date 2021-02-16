@@ -10,12 +10,6 @@ type Props = {
   onClose: () => void;
   okText?: string;
   cancelText?: string;
-} & typeof defaultProps;
-
-const defaultProps = {
-  open: false,
-  okText: 'Yes!',
-  cancelText: 'No',
 };
 
 export const ModalJoin: FC<Props> = ({
@@ -31,9 +25,12 @@ export const ModalJoin: FC<Props> = ({
   useEffect(() => {
     setInputValue('');
   }, [open]);
-  const onSubmitModal = (e: any) => {
-    onClose();
-    if (onSubmit && inputValue) onSubmit(inputValue);
+
+  const onSubmitModal = () => {
+    if (onSubmit && inputValue) {
+      onClose();
+      onSubmit(inputValue);
+    }
   };
 
   const InputChange = (e: any) => {

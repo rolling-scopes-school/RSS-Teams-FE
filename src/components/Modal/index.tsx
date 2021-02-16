@@ -12,7 +12,7 @@ type Props = {
   open?: boolean;
   // hideOnOutsideClick?: boolean;
   // hideOnEsc?: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClose(): void;
   onSubmit?: (e: SyntheticEvent) => void;
   okText?: string;
@@ -24,7 +24,7 @@ const defaultProps = {
   hideOnOutsideClick: true,
   hideOnEsc: true,
   okText: 'Yes!',
-  cancelText: 'No',
+  // cancelText: 'No',
 };
 
 const ModalWindow = styled.div`
@@ -41,7 +41,7 @@ const ButtonsBlock = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 `;
 
 export const Modal = (props: Props) => {
@@ -108,17 +108,32 @@ export const Modal = (props: Props) => {
           {children}
           <ButtonsBlock>
             {onSubmit ? (
-              <>
-                <InvertedButton onClick={onClose}>{cancelText}</InvertedButton>
-                <Button
-                  onClick={(e) => {
-                    // console.log(children || 'children are empty');
-                    onSubmit(e);
-                  }}
-                >
-                  {okText}
-                </Button>
-              </>
+              cancelText ? (
+                <>
+                  <InvertedButton onClick={onClose}>
+                    {cancelText}
+                  </InvertedButton>
+                  <Button
+                    onClick={(e) => {
+                      // console.log(children || 'children are empty');
+                      onSubmit(e);
+                    }}
+                  >
+                    {okText}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    onClick={(e) => {
+                      // console.log(children || 'children are empty');
+                      onSubmit(e);
+                    }}
+                  >
+                    {okText}
+                  </Button>
+                </>
+              )
             ) : (
               <Button onClick={onClose}>{cancelText}</Button>
             )}
