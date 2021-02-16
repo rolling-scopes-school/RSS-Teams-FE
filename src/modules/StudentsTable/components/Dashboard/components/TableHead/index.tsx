@@ -5,11 +5,19 @@ import {
   StyledTableHeader,
 } from './styled';
 
-type TableHeadProps = {
-  [key: string]: string[];
-};
+const tableHeaders: string[] = [
+  '№',
+  'First / Last Name',
+  'Score',
+  'Team Number',
+  'Telegram',
+  'Discord',
+  'Github',
+  'Location',
+  'Courses',
+];
 
-export const TableHead: FC<TableHeadProps> = ({ tableHeaders }) => (
+export const TableHead: FC = () => (
   <StyledTableHead>
     <StyledTableHeadRow>
       {tableHeaders.map((tableHeader: string, index: number) => (
