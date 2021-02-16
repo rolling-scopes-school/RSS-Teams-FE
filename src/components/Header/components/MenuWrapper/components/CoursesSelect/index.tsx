@@ -1,8 +1,8 @@
+import React, { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SET_CURR_COURSE } from 'appConstants';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
-import React, { FC, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Course } from 'types';
 import {
   StyledCoursesSelectWrapper,
@@ -12,9 +12,16 @@ import {
   StyledCoursesSelectArrow,
 } from './styled';
 
-export const CoursesSelect: FC = () => {
+type CoursesSelectProps = {
+  displayCoursesList: boolean;
+  setDisplayCoursesList: (display: boolean) => void;
+};
+
+export const CoursesSelect: FC<CoursesSelectProps> = ({
+  displayCoursesList,
+  setDisplayCoursesList,
+}) => {
   const dispatch = useDispatch();
-  const [displayCoursesList, setDisplayCoursesList] = useState(false);
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
 

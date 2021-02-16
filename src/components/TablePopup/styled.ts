@@ -6,18 +6,16 @@ import {
 import styled from 'styled-components';
 
 type TStyledPopup = {
-  popupStyles: {
-    top: number;
-    left: number;
-  } | null;
-  showPopup: boolean;
+  dataLength: number;
 };
 
 export const StyledPopup = styled.div<TStyledPopup>`
-  position: fixed;
-  top: ${({ popupStyles }) => (popupStyles ? `${popupStyles.top}px` : 0)};
-  left: ${({ popupStyles }) => (popupStyles ? `${popupStyles.left}px` : 0)};
-  display: ${({ showPopup }) => (showPopup ? 'flex' : 'none')};
+  position: absolute;
+  top: ${({ dataLength }) => dataLength < 0.5 && '95%'};
+  bottom: ${({ dataLength }) => dataLength > 0.5 && '95%'};
+  right: 0;
+  z-index: 2;
+  display: 'flex';
   flex-direction: column;
   justify-content: center;
   padding: 10px;
@@ -39,6 +37,7 @@ export const StyledPopup = styled.div<TStyledPopup>`
     font-size: 0.8rem;
   }
   @media (max-width: 439px) and (min-width: 320px) {
+    left: -5px;
     padding: 5px;
     font-size: 0.68rem;
   }
@@ -47,4 +46,5 @@ export const StyledPopup = styled.div<TStyledPopup>`
 export const StyledPopupItem = styled.p`
   margin: 0;
   line-height: 17px;
+  text-align: justify;
 `;
