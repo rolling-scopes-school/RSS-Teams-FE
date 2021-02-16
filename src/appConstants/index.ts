@@ -10,7 +10,7 @@ export const USERS_PER_PAGE = 40;
 export const TEAMS_PER_PAGE = 10;
 export const CURRENT_YEAR = new Date(Date.now()).getFullYear();
 
-export const TABLE_HEADERS: string[] = [
+export const TABLE_HEADERS = [
   '№',
   'First / Last Name',
   'Score',
