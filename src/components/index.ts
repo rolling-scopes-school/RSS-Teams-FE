@@ -8,3 +8,7 @@ export { CourseField } from './CourseField';
 export { Pagination } from './Pagination';
 export { Modal } from './Modal';
 export { TablePopup } from './TablePopup';
+export { ModalExpel } from './ModalExpel';
+export { ModalJoin } from './ModalJoin';
+export { ModalCreateTeam } from './ModalCreateTeam';
+export { ModalCreated } from './ModalCreated';

@@ -107,6 +107,11 @@ export const Button = styled.button<ButtonProps>`
   color: ${({ color }) => color || WHITE_COLOR};
 `;
 
+export const InvertedButton = styled(Button)`
+  background-color: ${BG_COLOR};
+  color: ${MAIN1_COLOR};
+`;
+
 export const Label = styled.label`
   ${TextRegular}
   max-width: 300px;
@@ -135,6 +140,10 @@ export const Input = styled.input`
   &:-ms-input-placeholder {
     color: ${LIGHT_TEXT_COLOR};
   }
+`;
+
+export const ModalInput = styled(Input)`
+  margin-top: 20px;
 `;
 
 export const Select = styled.div`

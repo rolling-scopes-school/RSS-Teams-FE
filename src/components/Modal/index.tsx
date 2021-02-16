@@ -1,24 +1,63 @@
-import React, { useEffect, useRef } from 'react';
+import React, { SyntheticEvent, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
+import styled from 'styled-components';
 import styles from './index.module.css';
+import { PageTitle, Label, Button, InvertedButton } from 'typography/index';
 
 type Props = {
-  open: boolean;
-  hideOnOutsideClick?: boolean;
-  hideOnEsc?: boolean;
-  children: any;
+  title: string;
+  text: string;
+  open?: boolean;
+  // hideOnOutsideClick?: boolean;
+  // hideOnEsc?: boolean;
+  children?: React.ReactNode;
   onClose(): void;
+  onSubmit?: (e: SyntheticEvent) => void;
+  okText?: string;
+  cancelText?: string;
 } & typeof defaultProps;
 
 const defaultProps = {
+  open: false,
   hideOnOutsideClick: true,
   hideOnEsc: true,
+  okText: 'Yes!',
+  // cancelText: 'No',
 };
 
+const ModalWindow = styled.div`
+  /* width: 440px; */
+  /* height: 269px; */
+  left: 500px;
+  top: 315px;
+
+  background: #ffffff;
+  border-radius: 20px;
+`;
+
+const ButtonsBlock = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 10px;
+`;
+
 export const Modal = (props: Props) => {
-  const { open, onClose, children, hideOnOutsideClick, hideOnEsc } = props;
+  const {
+    title,
+    text,
+    open,
+    children,
+    hideOnOutsideClick,
+    hideOnEsc,
+    onClose,
+    onSubmit,
+    okText,
+    cancelText,
+  } = props;
+
   const insideRef = useRef<HTMLDivElement>(null);
 
   const close = (e: React.MouseEvent | MouseEvent) => {
@@ -63,7 +102,43 @@ export const Modal = (props: Props) => {
     <div className={styles.overlay} onClick={onOutClick}>
       <div className={styles.container} ref={insideRef}>
         <IconClose className={styles.icon} onClick={close} />
-        {children}
+        <ModalWindow>
+          <PageTitle>{title}</PageTitle>
+          <Label>{text}</Label>
+          {children}
+          <ButtonsBlock>
+            {onSubmit ? (
+              cancelText ? (
+                <>
+                  <InvertedButton onClick={onClose}>
+                    {cancelText}
+                  </InvertedButton>
+                  <Button
+                    onClick={(e) => {
+                      // console.log(children || 'children are empty');
+                      onSubmit(e);
+                    }}
+                  >
+                    {okText}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    onClick={(e) => {
+                      // console.log(children || 'children are empty');
+                      onSubmit(e);
+                    }}
+                  >
+                    {okText}
+                  </Button>
+                </>
+              )
+            ) : (
+              <Button onClick={onClose}>{cancelText}</Button>
+            )}
+          </ButtonsBlock>
+        </ModalWindow>
       </div>
     </div>,
     document.body

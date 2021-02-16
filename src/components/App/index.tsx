@@ -8,6 +8,7 @@ import {
   TokenPage,
   NotFoundPage,
   EditProfile,
+  ModalSamples,
 } from 'modules';
 import { Loader, PrivateRoute, Header } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
@@ -63,6 +64,13 @@ export const App: FC = () => {
           isLoggedIn={!!loginToken}
           newUserCheck={newUserCheck}
           component={StudentsTable}
+        />
+        <PrivateRoute
+          path="/modals"
+          exact
+          isLoggedIn={!!loginToken}
+          newUserCheck={newUserCheck}
+          component={ModalSamples}
         />
         <Route exact path="/token/:id" component={TokenPage} />
         <Route exact path="/login" component={LoginPage} />

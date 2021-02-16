@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useTeamsQuery } from 'hooks/graphql';
-import { Loader, Error, Modal } from 'components';
+import { Loader, Error } from 'components';
 import { Team } from 'types';
 import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -10,9 +10,6 @@ import { Button } from 'typography';
 export const TeamsList: FC = () => {
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
-  const [modalOpened, setModalOpened] = useState<boolean>(false);
-  const hideModal = () => setModalOpened(false);
-  const showModal = () => setModalOpened(true);
 
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId: currCourse.id,
@@ -41,16 +38,9 @@ export const TeamsList: FC = () => {
         {userData && <p>My country: {userData.country}</p>}
         {userData && <p>My city: {userData.city}</p>}
         {userData && <p>My courseIds: {userData.courseIds[0]}</p>}
-        <Button type="button" onClick={showModal}>
-          Open modal
-        </Button>
+
+        <p> Go to /modals for ModalsSamples</p>
       </div>
-      <Modal open={modalOpened} onClose={hideModal}>
-        <div>
-          <div>Title</div>
-          <div>Text</div>
-        </div>
-      </Modal>
     </>
   );
 };
