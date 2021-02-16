@@ -8,6 +8,12 @@ export const InfoLineStyled = styled.div`
   color: ${WHITE_COLOR};
   display: flex;
   align-items: center;
+
+  .info__text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const CopyClipboardButton = styled(CopyIcon)`

@@ -44,6 +44,9 @@ export const StyledTeamUserTable = styled.table`
   td {
     color: ${DARK_TEXT_COLOR};
     padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     &:nth-child(2) {
       ${TextBold};
