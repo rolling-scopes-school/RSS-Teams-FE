@@ -13,7 +13,12 @@ type TeamsProps = {
   userId: string;
 };
 
-export const Teams: FC<TeamsProps> = ({ title, teams, myTeam, userId }) => (
+export const Teams: FC<TeamsProps> = ({
+  title = 'Teams',
+  teams,
+  myTeam,
+  userId,
+}) => (
   <>
     <PageTitle>{title}</PageTitle>
     {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
@@ -28,7 +33,3 @@ export const Teams: FC<TeamsProps> = ({ title, teams, myTeam, userId }) => (
       ))}
   </>
 );
-
-Teams.defaultProps = {
-  title: 'Teams',
-};
