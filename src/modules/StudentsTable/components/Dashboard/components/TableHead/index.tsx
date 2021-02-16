@@ -1,18 +1,15 @@
 import React, { FC } from 'react';
+import { TABLE_HEADERS } from 'appConstants';
 import {
   StyledTableHead,
   StyledTableHeadRow,
   StyledTableHeader,
 } from './styled';
 
-type TableHeadProps = {
-  [key: string]: string[];
-};
-
-export const TableHead: FC<TableHeadProps> = ({ tableHeaders }) => (
+export const TableHead: FC = () => (
   <StyledTableHead>
     <StyledTableHeadRow>
-      {tableHeaders.map((tableHeader: string, index: number) => (
+      {TABLE_HEADERS.map((tableHeader: string, index: number) => (
         <StyledTableHeader
           className={`TableItem--${index}`}
           key={`TableHeaderKey-${index}`}
