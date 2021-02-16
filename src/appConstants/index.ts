@@ -11,7 +11,7 @@ export const TEAMS_PER_PAGE = 10;
 export const CURRENT_YEAR = new Date(Date.now()).getFullYear();
 
 export const TABLE_HEADERS = [
-  '№',
+  '#',
   'First / Last Name',
   'Score',
   'Team Number',
@@ -20,4 +20,15 @@ export const TABLE_HEADERS = [
   'Github',
   'Location',
   'Courses',
+];
+
+export const TABLE_TEAMS_HEADERS = [
+  '#',
+  'First / Last Name',
+  'Score',
+  'Telegram',
+  'Discord',
+  'Github',
+  'Location',
+  'Action',
 ];

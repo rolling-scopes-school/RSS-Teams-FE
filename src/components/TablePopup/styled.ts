@@ -15,7 +15,7 @@ export const StyledPopup = styled.div<TStyledPopup>`
   bottom: ${({ dataLength }) => dataLength > 0.5 && '95%'};
   right: 0;
   z-index: 2;
-  display: 'flex';
+  display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 10px;
