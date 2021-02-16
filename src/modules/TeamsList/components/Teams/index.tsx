@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { PageTitle } from 'typography';
 
-import { TeamsHeader } from './components/TeamsHeader';
-import { MyTeam } from './components/MyTeam';
+import { TeamsHeader } from './components';
+import { MyTeam } from './components';
 import { Team, TeamList } from 'types';
-import { TeamItem } from './components/TeamItem';
+import { TeamItem } from './components';
 
 type TeamsProps = {
   teams: TeamList;
@@ -15,12 +15,12 @@ type TeamsProps = {
 
 export const Teams: FC<TeamsProps> = ({ title, teams, myTeam, userId }) => (
   <>
-    <PageTitle>{title || 'Teams'}</PageTitle>
+    <PageTitle>{title}</PageTitle>
     {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
     {teams.count &&
-      teams.results.map((team, index) => (
+      teams.results.map((team) => (
         <TeamItem
-          key={index}
+          key={`team-${Math.random()}`}
           name={`Team ${team.number}`}
           countMember={team.members.length}
           members={team.members}
@@ -28,3 +28,7 @@ export const Teams: FC<TeamsProps> = ({ title, teams, myTeam, userId }) => (
       ))}
   </>
 );
+
+Teams.defaultProps = {
+  title: 'Teams',
+};

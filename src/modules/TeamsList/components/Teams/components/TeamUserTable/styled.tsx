@@ -47,6 +47,7 @@ export const StyledTeamUserTable = styled.table`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    max-width: 150px;
 
     &:nth-child(2) {
       ${TextBold};

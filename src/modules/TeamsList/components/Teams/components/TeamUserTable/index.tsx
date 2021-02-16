@@ -2,17 +2,7 @@ import React, { FC } from 'react';
 import { StyledTeamUserTable } from './styled';
 import { User } from 'types';
 import { TableRow } from './components/TableRow';
-
-const tableHeaders: string[] = [
-  '№',
-  'First / Last Name',
-  'Score',
-  'Telegram',
-  'Discord',
-  'Github',
-  'Location',
-  'Action',
-];
+import { tableHeaders } from './columnHeadersList';
 
 type TeamUserTableProps = {
   members?: User[];

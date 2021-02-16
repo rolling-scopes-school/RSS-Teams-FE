@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { ExpelButton } from '../ExpelButton';
-import { User } from '../../../../../../../../types';
+import { User } from 'types';
+import { TableCell } from './components';
+import { ExpelButton } from './components';
 
 type TableRowProps = {
   member: User;
@@ -8,9 +9,6 @@ type TableRowProps = {
   isMyTeam?: boolean;
   userId?: string;
 };
-
-const formatSocialLinks = (link: string | null): string =>
-  link ? '@' + link.replace('@', '') : '';
 
 export const TableRow: FC<TableRowProps> = ({
   member,
@@ -31,14 +29,14 @@ export const TableRow: FC<TableRowProps> = ({
   } = member;
   return (
     <tr>
-      <td>{count}</td>
-      <td>{`${firstName} ${lastName}`}</td>
-      <td>{score}</td>
-      <td>{formatSocialLinks(telegram)}</td>
-      <td>{formatSocialLinks(discord)}</td>
-      <td>{formatSocialLinks(github)}</td>
-      <td>{`${city}, ${country}`}</td>
-      {isMyTeam && <td>{id !== userId && <ExpelButton />}</td>}
+      <TableCell value={count.toString(10)} />
+      <TableCell value={`${firstName} ${lastName}`} />
+      <TableCell value={score} />
+      <TableCell value={telegram} isSocialLink={true} />
+      <TableCell value={discord} isSocialLink={true} />
+      <TableCell value={github} isSocialLink={true} />
+      <TableCell value={`${city}, ${country}`} />
+      {isMyTeam && <TableCell value={id !== userId && <ExpelButton />} />}
     </tr>
   );
 };
