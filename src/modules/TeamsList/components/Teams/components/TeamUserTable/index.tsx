@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyledTeamUserTable } from './styled';
 import { User } from 'types';
 import { TableRow } from './components/TableRow';
-import { tableHeaders } from './columnHeadersList';
+import { TABLE_TEAMS_HEADERS } from 'appConstants';
 
 type TeamUserTableProps = {
   members?: User[];
@@ -19,7 +19,7 @@ export const TeamUserTable: FC<TeamUserTableProps> = ({
     <StyledTeamUserTable>
       <thead>
         <tr>
-          {tableHeaders.map((columnName: string, index: number) => {
+          {TABLE_TEAMS_HEADERS.map((columnName: string, index: number) => {
             return !isMyTeam && columnName === 'Action' ? null : (
               <th key={index}>{columnName}</th>
             );

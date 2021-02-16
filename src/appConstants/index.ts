@@ -21,3 +21,15 @@ export const TABLE_HEADERS = [
   'Location',
   'Courses',
 ];
+
+export const TABLE_TEAMS_HEADERS = [
+  '№',
+  'First / Last Name',
+  'Score',
+  'Team Number',
+  'Telegram',
+  'Discord',
+  'Github',
+  'Location',
+  'Courses',
+];
