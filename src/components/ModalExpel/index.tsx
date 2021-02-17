@@ -9,11 +9,6 @@ type Props = {
   onClose: () => void;
   okText?: string;
   cancelText?: string;
-} & typeof defaultProps;
-
-const defaultProps = {
-  // okText: 'Yes!',
-  // cancelText: 'No',
 };
 
 export const ModalExpel: FC<Props> = ({
