@@ -9,9 +9,10 @@ import { PageTitle, Label, Button, InvertedButton } from 'typography/index';
 type Props = {
   title: string;
   text: string;
+  text2?: string;
   open?: boolean;
-  // hideOnOutsideClick?: boolean;
-  // hideOnEsc?: boolean;
+  hideOnOutsideClick?: boolean;
+  hideOnEsc?: boolean;
   children?: React.ReactNode;
   onClose(): void;
   onSubmit?: (e: SyntheticEvent) => void;
@@ -24,12 +25,10 @@ const defaultProps = {
   hideOnOutsideClick: true,
   hideOnEsc: true,
   okText: 'Yes!',
-  // cancelText: 'No',
+  text2: '',
 };
 
 const ModalWindow = styled.div`
-  /* width: 440px; */
-  /* height: 269px; */
   left: 500px;
   top: 315px;
 
@@ -48,6 +47,7 @@ export const Modal = (props: Props) => {
   const {
     title,
     text,
+    text2,
     open,
     children,
     hideOnOutsideClick,
@@ -105,6 +105,9 @@ export const Modal = (props: Props) => {
         <ModalWindow>
           <PageTitle>{title}</PageTitle>
           <Label>{text}</Label>
+          <p>
+            <Label>{text2}</Label>
+          </p>
           {children}
           <ButtonsBlock>
             {onSubmit ? (
@@ -115,7 +118,6 @@ export const Modal = (props: Props) => {
                   </InvertedButton>
                   <Button
                     onClick={(e) => {
-                      // console.log(children || 'children are empty');
                       onSubmit(e);
                     }}
                   >
@@ -126,7 +128,6 @@ export const Modal = (props: Props) => {
                 <>
                   <Button
                     onClick={(e) => {
-                      // console.log(children || 'children are empty');
                       onSubmit(e);
                     }}
                   >

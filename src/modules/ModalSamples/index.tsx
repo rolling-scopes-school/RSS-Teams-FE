@@ -1,17 +1,10 @@
 import React, { FC, useState } from 'react';
-import { useTeamsQuery } from 'hooks/graphql';
 import {
-  Loader,
-  Error,
   ModalExpel,
   ModalJoin,
   ModalCreated,
   ModalCreateTeam,
 } from 'components';
-import { Team } from 'types';
-import { useSelector } from 'react-redux';
-import { selectUserData } from 'modules/StudentsTable/selectors';
-import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Button } from 'typography';
 
 export const ModalSamples: FC = () => {
@@ -41,9 +34,6 @@ export const ModalSamples: FC = () => {
   };
 
   const password = 'password';
-
-  const createdText =
-    'You are automatically added there.<br>If you want to invite friends - tell them your team password:';
 
   return (
     <>
@@ -100,16 +90,14 @@ export const ModalSamples: FC = () => {
         onSubmit={onSubmit}
         onClose={hideModal4}
         okText="Join team"
-        // cancelText="No"
       />
 
       <ModalCreated
         title="New team created!"
-        text={createdText}
+        text="You are automatically added there."
+        text2="If you want to invite friends - tell them your team password:"
         open={modalOpened5}
-        // onSubmit={onSubmit}
         onClose={hideModal5}
-        // okText="Yes!"
         cancelText="Got it!"
         password={password}
       />
