@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useRef } from 'react';
+import React, { FC, SyntheticEvent, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import styles from './index.module.css';
 import { PageTitle, Label, Button, InvertedButton } from 'typography/index';
 
-type Props = {
+type ModalProps = {
   title: string;
   text: string;
   text2?: string;
@@ -24,8 +24,6 @@ const defaultProps = {
   open: false,
   hideOnOutsideClick: true,
   hideOnEsc: true,
-  okText: 'Yes!',
-  text2: '',
 };
 
 const ModalWindow = styled.div`
@@ -43,21 +41,19 @@ const ButtonsBlock = styled.div`
   margin-bottom: 10px;
 `;
 
-export const Modal = (props: Props) => {
-  const {
-    title,
-    text,
-    text2,
-    open,
-    children,
-    hideOnOutsideClick,
-    hideOnEsc,
-    onClose,
-    onSubmit,
-    okText,
-    cancelText,
-  } = props;
-
+export const Modal: FC<ModalProps> = ({
+  title,
+  text,
+  text2,
+  open,
+  children,
+  hideOnOutsideClick,
+  hideOnEsc,
+  onClose,
+  onSubmit,
+  okText,
+  cancelText,
+}) => {
   const insideRef = useRef<HTMLDivElement>(null);
 
   const close = (e: React.MouseEvent | MouseEvent) => {
