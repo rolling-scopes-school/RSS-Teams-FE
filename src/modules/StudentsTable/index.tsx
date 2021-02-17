@@ -5,6 +5,7 @@ import { Loader, Error, Pagination } from 'components';
 import { useUsersQuery } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Dashboard } from './components/Dashboard';
+import { StudentTableWrapper, TableTitle } from './styled';
 
 export const StudentsTable: FC = () => {
   const [page, setPage] = useState<number>(0);
@@ -21,9 +22,10 @@ export const StudentsTable: FC = () => {
 
   const pageCount: number = Math.ceil(users.count / USERS_PER_PAGE);
   return (
-    <div>
+    <StudentTableWrapper>
+      <TableTitle>Dashboard</TableTitle>
       <Dashboard users={users.results} page={page} />
       <Pagination pageCount={pageCount} changePage={setPage} page={page} />
-    </div>
+    </StudentTableWrapper>
   );
 };

@@ -37,6 +37,11 @@ export type Team = {
   members: User[];
 };
 
+export type TeamList = {
+  count: number;
+  results: Team[];
+};
+
 export type UserFilterInput = {
   discord: string;
   github: string;

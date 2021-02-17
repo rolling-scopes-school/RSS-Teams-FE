@@ -9,3 +9,26 @@ export const SET_CURR_COURSE = 'SET_CURR_COURSE';
 export const USERS_PER_PAGE = 40;
 export const TEAMS_PER_PAGE = 10;
 export const CURRENT_YEAR = new Date(Date.now()).getFullYear();
+
+export const TABLE_HEADERS = [
+  '#',
+  'First / Last Name',
+  'Score',
+  'Team Number',
+  'Telegram',
+  'Discord',
+  'Github',
+  'Location',
+  'Courses',
+];
+
+export const TABLE_TEAMS_HEADERS = [
+  '#',
+  'First / Last Name',
+  'Score',
+  'Telegram',
+  'Discord',
+  'Github',
+  'Location',
+  'Action',
+];
