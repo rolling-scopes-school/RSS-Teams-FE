@@ -11,6 +11,17 @@ export const TEAMS_QUERY = gql`
         courseId
         socialLink
         memberIds
+        members {
+          id
+          firstName
+          lastName
+          github
+          telegram
+          discord
+          score
+          country
+          city
+        }
       }
     }
   }

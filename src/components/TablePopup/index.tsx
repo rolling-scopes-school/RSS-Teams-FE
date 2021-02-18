@@ -1,22 +1,17 @@
 import React, { FC } from 'react';
 import { StyledPopup, StyledPopupItem } from './styled';
 
-type PopupProps = {
-  showPopup: boolean;
+type TablePopupProps = {
+  dataLength: number;
   popupElements: string[];
-  popupStyles: {
-    top: number;
-    left: number;
-  } | null;
 };
 
-export const Popup: FC<PopupProps> = ({
+export const TablePopup: FC<TablePopupProps> = ({
   popupElements,
-  popupStyles,
-  showPopup,
+  dataLength,
 }) => {
   return (
-    <StyledPopup showPopup={showPopup} popupStyles={popupStyles}>
+    <StyledPopup dataLength={dataLength}>
       {popupElements?.map((element: string, index: number) => (
         <StyledPopupItem key={`PopupKey-${index}`}>{element}</StyledPopupItem>
       ))}

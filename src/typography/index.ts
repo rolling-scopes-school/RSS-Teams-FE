@@ -31,6 +31,23 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   path {
     fill: ${({ login }) => (login ? WHITE_COLOR : DARK_TEXT_COLOR)};
   }
+
+  @media (max-width: 991px) and (min-width: 768px) {
+    width: 80px;
+    height: 28px;
+  }
+  @media (max-width: 767px) and (min-width: 550px) {
+    width: 76px;
+    height: 24px;
+  }
+  @media (max-width: 549px) and (min-width: 440px) {
+    width: 72px;
+    height: 22px;
+  }
+  @media (max-width: 439px) and (min-width: 320px) {
+    width: 70px;
+    height: 20px;
+  }
 `;
 
 const StyledText = css<StyledTextProps>`
@@ -40,27 +57,27 @@ const StyledText = css<StyledTextProps>`
 `;
 
 export const TextRegular = css`
-  ${StyledText}
+  ${StyledText};
   font-weight: 400;
 `;
 
 export const TextMedium = css`
-  ${StyledText}
+  ${StyledText};
   font-weight: 500;
 `;
 
 export const TextSemiBold = css`
-  ${StyledText}
+  ${StyledText};
   font-weight: 600;
 `;
 
 export const TextBold = css`
-  ${StyledText}
+  ${StyledText};
   font-weight: 700;
 `;
 
 export const PageTitle = styled.h1`
-  ${TextBold}
+  ${TextBold};
   font-size: ${(props) => props.fontSize || '30px'};
   line-height: ${(props) => props.lineHeight || '45px'};
   @media screen and (max-width: 768px) {
@@ -69,7 +86,7 @@ export const PageTitle = styled.h1`
 `;
 
 export const PageSubTitle = styled.h2`
-  ${TextSemiBold}
+  ${TextSemiBold};
   color: ${(props) => props.color || WHITE_COLOR};
   font-size: ${(props) => props.fontSize || '24px'};
   line-height: ${(props) => props.lineHeight || '36px'};
@@ -96,14 +113,14 @@ export const InvertedButton = styled(Button)`
 `;
 
 export const Label = styled.label`
-  ${TextRegular}
+  ${TextRegular};
   max-width: 300px;
   margin-bottom: 10px;
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
 `;
 
 export const Input = styled.input`
-  ${TextMedium}
+  ${TextMedium};
   width: 300px;
   padding: 8px 15px;
   border-radius: 10px;
