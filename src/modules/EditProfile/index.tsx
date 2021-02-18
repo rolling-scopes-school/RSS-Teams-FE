@@ -25,7 +25,7 @@ export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
-  const [userCourses, setUserCourses] = useState<Course[]>([]);
+  const [userCourses, setUserCourses] = useState<Course[]>(userData.courses);
   const { loading, courses } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
@@ -77,8 +77,11 @@ export const EditProfile: FC = () => {
     history.push('/');
   };
 
-  const localCourseUpdate = (course: Course) =>
-    setUserCourses([...userCourses, course]);
+  const localCourseUpdate = (course: Course) => {
+    if (course) {
+      setUserCourses([...userCourses, course]);
+    }
+  };
 
   useEffect(() => {
     if (userData.id !== '' && !inputValues.id) {
