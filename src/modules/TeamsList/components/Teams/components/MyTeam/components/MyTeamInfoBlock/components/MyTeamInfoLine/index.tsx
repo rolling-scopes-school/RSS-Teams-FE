@@ -9,10 +9,19 @@ type MyTeamInfoLine = {
 
 export const MyTeamInfoLine: FC<MyTeamInfoLine> = ({ value }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
   const copyInfo = (value: string) => {
-    navigator.clipboard.writeText(value).catch((err) => {
-      console.log(err);
-    });
+    navigator.clipboard
+      .writeText(value)
+      .then(() => {
+        setIsCopy(true);
+        setTimeout(() => {
+          setIsCopy(false);
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const mouseOverHandler = (event: MouseEvent<HTMLElement>) => {
@@ -24,7 +33,7 @@ export const MyTeamInfoLine: FC<MyTeamInfoLine> = ({ value }) => {
 
   const currValue: string = value || '';
   return (
-    <InfoLineStyled>
+    <InfoLineStyled blink={isCopy}>
       <div
         className={'info__text'}
         onMouseOver={mouseOverHandler}
