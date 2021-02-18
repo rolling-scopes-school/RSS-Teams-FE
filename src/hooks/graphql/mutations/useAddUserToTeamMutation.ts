@@ -17,22 +17,13 @@ export const useAddUserToTeamMutation = ({ data }: Props) => {
     },
 
     update(cache, { data: { addUserToTeam } }) {
-      const data: TeamList | null = cache.readQuery({
-        query: TEAMS_QUERY,
-        variables: {
-          courseId: courseId,
-          pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
-        },
-      });
-
-      const userTeam = data?.results.find(
-        (team: Team) => team.password === teamPassword
-      );
-      const updatedUser = {
-        ...addUserToTeam,
-        teams: [...addUserToTeam.teams, userTeam],
-        teamIds: [...addUserToTeam.teamIds, userTeam?.id],
-      };
+      // const data: TeamList | null = cache.readQuery({
+      //   query: TEAMS_QUERY,
+      //   variables: {
+      //     courseId: courseId,
+      //     pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+      //   },
+      // });
 
       // const updatedResults = data?.results.map((team: Team) => {
       //   if (team.password === teamPassword) {
@@ -48,7 +39,7 @@ export const useAddUserToTeamMutation = ({ data }: Props) => {
       cache.writeQuery({
         query: WHOAMI_QUERY,
         data: {
-          updatedUser,
+          addUserToTeam,
         },
       });
 

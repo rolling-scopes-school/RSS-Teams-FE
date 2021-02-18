@@ -19,57 +19,47 @@ export const useRemoveUseFromTeamMutation = ({ data }: Props) => {
       },
 
       update(cache, { data: { removeUserFromTeam } }) {
-        const data: TeamList | null = cache.readQuery({
-          query: TEAMS_QUERY,
-          variables: {
-            courseId: courseId,
-            pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
-          },
-        });
+        // const data: TeamList | null = cache.readQuery({
+        //   query: TEAMS_QUERY,
+        //   variables: {
+        //     courseId: courseId,
+        //     pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+        //   },
+        // });
 
-        const updatedUser = {
-          ...removeUserFromTeam,
-          teams: removeUserFromTeam.teams.filter(
-            (team: Team) => team.id !== teamId
-          ),
-          teamIds: removeUserFromTeam.teamsIds.filter(
-            (teamIdOfArray: string) => teamIdOfArray !== teamId
-          ),
-        };
-
-        const updatedRemovedResults = data?.results.map((team: Team) => {
-          if (team.id === teamId) {
-            return {
-              ...team,
-              members: team.members.filter(
-                (member: User) => member.id !== userId
-              ),
-              memberIds: team.memberIds.filter(
-                (memberId: string) => memberId !== userId
-              ),
-            };
-          }
-          return team;
-        });
+        // const updatedRemovedResults = data?.results.map((team: Team) => {
+        //   if (team.id === teamId) {
+        //     return {
+        //       ...team,
+        //       members: team.members.filter(
+        //         (member: User) => member.id !== userId
+        //       ),
+        //       memberIds: team.memberIds.filter(
+        //         (memberId: string) => memberId !== userId
+        //       ),
+        //     };
+        //   }
+        //   return team;
+        // });
 
         cache.writeQuery({
           query: WHOAMI_QUERY,
           data: {
-            updatedUser,
+            removeUserFromTeam,
           },
         });
 
-        cache.writeQuery({
-          query: TEAMS_QUERY,
-          data: {
-            count: data?.count,
-            results: updatedRemovedResults,
-          },
-          variables: {
-            courseId: courseId,
-            pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
-          },
-        });
+        // cache.writeQuery({
+        //   query: TEAMS_QUERY,
+        //   data: {
+        //     count: data?.count,
+        //     results: updatedRemovedResults,
+        //   },
+        //   variables: {
+        //     courseId: courseId,
+        //     pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+        //   },
+        // });
       },
     }
   );
