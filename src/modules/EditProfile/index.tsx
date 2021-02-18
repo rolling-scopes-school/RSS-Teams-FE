@@ -15,6 +15,8 @@ import {
   InputsWrapper,
   ButtonWrapper,
   FormWrapper,
+  UserCourseListItem,
+  UserCoursesListTitle,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR } from 'appConstants';
@@ -42,7 +44,10 @@ export const EditProfile: FC = () => {
   const [inputValues, setInputValues] = useState<UpdateUserInput>(defaultData);
 
   const { updateUser, loadingM } = useUpdUserMutation({
-    user: inputValues,
+    user: {
+      ...inputValues,
+      courseIds: userCourses.map((course: Course) => course.id),
+    },
   });
 
   const isUserNew = userData.telegram === null;
@@ -230,18 +235,25 @@ export const EditProfile: FC = () => {
               },
             })}
           />
-          {userCourses.map((item: Course) => {
-            return <div key={item.id}>{item.name}</div>;
-          })}
-          <CourseField
-            name="courses"
-            labelText="Course"
-            placeholder="Select course"
-            register={register}
-            multi
-            onAdd={localCourseUpdate}
-            courses={currentCourses}
-          />
+          <div>
+            <UserCoursesListTitle>Course</UserCoursesListTitle>
+            {userCourses.map((item: Course) => {
+              return (
+                <UserCourseListItem key={item.id}>
+                  {item.name}
+                </UserCourseListItem>
+              );
+            })}
+
+            <CourseField
+              name="courses"
+              placeholder="Select course"
+              register={register}
+              multi
+              onAdd={localCourseUpdate}
+              courses={currentCourses}
+            />
+          </div>
           <InputField
             name="score"
             labelText="Score"

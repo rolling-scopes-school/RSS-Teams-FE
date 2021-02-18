@@ -8,7 +8,7 @@ type Course = {
 };
 
 interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  labelText: string;
+  labelText?: string;
   placeholder: string;
   multi?: boolean;
   register: any;
@@ -38,7 +38,7 @@ export const CourseField: FC<SelectFieldProps> = ({
   // console.log(courseOptions);
   return (
     <FieldWrapper>
-      <Label>{labelText}</Label>
+      {labelText && <Label>{labelText}</Label>}
       <SelectCource>
         <Select>
           <SelectInner
@@ -66,7 +66,7 @@ export const CourseField: FC<SelectFieldProps> = ({
               setSelectedCourse(0);
             }}
             type="button"
-          ></PlusButton>
+          />
         )}
       </SelectCource>
     </FieldWrapper>
