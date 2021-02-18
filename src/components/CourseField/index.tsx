@@ -1,12 +1,6 @@
-import React, { FC, SelectHTMLAttributes } from 'react';
+import React, { FC, SelectHTMLAttributes, useState } from 'react';
 import { Label, Select, SelectInner } from 'typography';
-import {
-  FieldWrapper,
-  SelectCource,
-  PlusButton,
-  CrossButton,
-  PlaceholderOption,
-} from './styled';
+import { FieldWrapper, SelectCource, PlusButton } from './styled';
 
 type Course = {
   id: string;
@@ -19,6 +13,7 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   multi?: boolean;
   register: any;
   courses: Course[];
+  onAdd: any;
 }
 // {/* <select style="color:gray" onchange="this.style.color='black'"></select> */}
 export const CourseField: FC<SelectFieldProps> = ({
@@ -27,13 +22,15 @@ export const CourseField: FC<SelectFieldProps> = ({
   multi = false,
   register,
   courses,
+  onAdd,
   ...rest
 }) => {
+  const [selectedCourse, setSelectedCourse] = useState<any>(0);
   const courseOptions = courses
-    ? courses.map((c) => {
+    ? courses.map((course: Course) => {
         return (
-          <option key={c.id} value={c.id}>
-            {c.name}
+          <option key={course.id} value={course.id}>
+            {course.name}
           </option>
         );
       })
@@ -48,6 +45,12 @@ export const CourseField: FC<SelectFieldProps> = ({
             placeholder={placeholder}
             ref={register}
             defaultValue="0"
+            value={selectedCourse}
+            onChange={(e: any) =>
+              setSelectedCourse(
+                courses.find((course: Course) => course.id === e.target.value)
+              )
+            }
             {...rest}
           >
             <option disabled hidden value="0">
@@ -56,26 +59,16 @@ export const CourseField: FC<SelectFieldProps> = ({
             {courseOptions}
           </SelectInner>
         </Select>
-        {multi && <PlusButton type="button"></PlusButton>}
+        {multi && (
+          <PlusButton
+            onClick={() => {
+              onAdd(selectedCourse);
+              setSelectedCourse(0);
+            }}
+            type="button"
+          ></PlusButton>
+        )}
       </SelectCource>
-      {/* <SelectCource>
-        <Select>
-          <SelectInner placeholder={placeholder} ref={register} {...rest}>
-            <option value="111">222</option>
-            <option value="333">444</option>
-          </SelectInner>
-        </Select>
-        {multi && <CrossButton type="button"></CrossButton>}
-      </SelectCource>
-      <SelectCource>
-        <Select>
-          <SelectInner placeholder={placeholder} ref={register} {...rest}>
-            <option value="111">222</option>
-            <option value="333">444</option>
-          </SelectInner>
-        </Select>
-        {!multi && <CrossButton></CrossButton>}
-      </SelectCource> */}
     </FieldWrapper>
   );
 };

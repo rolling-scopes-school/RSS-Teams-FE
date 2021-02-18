@@ -23,6 +23,7 @@ export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
+  const [userCourses, setUserCourses] = useState<Course[]>([]);
   const { loading, courses } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
@@ -46,9 +47,12 @@ export const EditProfile: FC = () => {
 
   const isUserNew = userData.telegram === null;
 
-  const currentCourses = courses?.filter(({ name }: Course) =>
-    name.includes(`${CURRENT_YEAR}`)
-  );
+  const currentCourses = courses
+    ?.filter(({ name }: Course) => name.includes(`${CURRENT_YEAR}`))
+    .filter(
+      (item: Course) =>
+        !userCourses.filter((uItem: Course) => uItem.name === item.name).length
+    );
 
   const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
     defaultValues: inputValues,
@@ -68,9 +72,13 @@ export const EditProfile: FC = () => {
     history.push('/');
   };
 
+  const localCourseUpdate = (course: Course) =>
+    setUserCourses([...userCourses, course]);
+
   useEffect(() => {
     if (userData.id !== '' && !inputValues.id) {
       setInputValues(defaultData);
+      setUserCourses(userData.courses);
       reset(defaultData);
     }
   }, [reset, inputValues, defaultData, userData]);
@@ -222,12 +230,16 @@ export const EditProfile: FC = () => {
               },
             })}
           />
+          {userCourses.map((item: Course) => {
+            return <div key={item.id}>{item.name}</div>;
+          })}
           <CourseField
             name="courses"
             labelText="Course"
             placeholder="Select course"
             register={register}
             multi
+            onAdd={localCourseUpdate}
             courses={currentCourses}
           />
           <InputField
