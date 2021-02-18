@@ -1,4 +1,7 @@
 import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { ACTIVE_MODAL_LEAVE } from 'appConstants';
+
 import { StyledMyTeam, HeaderDecor, TableWrapper } from './styled';
 import { Button } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
@@ -6,6 +9,7 @@ import { Team } from 'types';
 import { MembersListToggle } from '../MemberListToggle';
 import { MyTeamInfoBlock } from './components/MyTeamInfoBlock';
 import { TeamUserTable } from '../TeamUserTable';
+import { type } from 'os';
 
 type MyTeamProps = {
   team: Team;
@@ -18,6 +22,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   const toggleListHandler = () => {
     setOpenState(!isOpen);
   };
+  const dispatch = useDispatch();
 
   const countMember = team.members.length;
   return (
@@ -37,7 +42,14 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
           />
         </div>
         <div className={'myTeam__button'}>
-          <Button bgc={WHITE_COLOR} color={DARK_TEXT_COLOR} type={'button'}>
+          <Button
+            bgc={WHITE_COLOR}
+            color={DARK_TEXT_COLOR}
+            type={'button'}
+            onClick={() =>
+              dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true })
+            }
+          >
             Leave team
           </Button>
         </div>

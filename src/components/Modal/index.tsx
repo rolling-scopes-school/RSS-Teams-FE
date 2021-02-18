@@ -10,7 +10,7 @@ type ModalProps = {
   title: string;
   text: string;
   text2?: string;
-  open?: boolean;
+  open: boolean;
   hideOnOutsideClick?: boolean;
   hideOnEsc?: boolean;
   children?: React.ReactNode;
@@ -21,7 +21,6 @@ type ModalProps = {
 } & typeof defaultProps;
 
 const defaultProps = {
-  open: false,
   hideOnOutsideClick: true,
   hideOnEsc: true,
 };

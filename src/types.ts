@@ -65,7 +65,7 @@ export type UpdateUserInput = {
 };
 
 export type StateTeamsList = {
-  teams: Team[];
+  teams: Team[] | [];
   isActiveModalExpel: boolean;
   isActiveModalLeave: boolean;
   isActiveModalJoin: boolean;

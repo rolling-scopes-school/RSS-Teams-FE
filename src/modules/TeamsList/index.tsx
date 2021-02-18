@@ -9,19 +9,40 @@ import {
   ModalCreated,
   Pagination,
 } from 'components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Teams } from './components/Teams';
 import { StyledTeams } from './styled';
 import { Button } from 'typography';
-import { TEAMS_PER_PAGE } from 'appConstants';
+import {
+  TEAMS_PER_PAGE,
+  ACTIVE_MODAL_EXPEL,
+  ACTIVE_MODAL_LEAVE,
+  ACTIVE_MODAL_JOIN,
+  ACTIVE_MODAL_CREATE_TEAM,
+  ACTIVE_MODAL_CREATED,
+} from 'appConstants';
+import {
+  selectIsActiveModalCreated,
+  selectIsActiveModalCreateTeam,
+  selectIsActiveModalExpel,
+  selectIsActiveModalJoin,
+  selectIsActiveModalLeave,
+} from './selectors';
+import { StateTeamsList } from 'types';
 
+const password = 'password';
 export const TeamsList: FC = () => {
   const [page, setPage] = useState<number>(0);
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
-
+  const isActiveModalExpel = useSelector(selectIsActiveModalExpel);
+  const isActiveModalLeave = useSelector(selectIsActiveModalLeave);
+  const isActiveModalJoin = useSelector(selectIsActiveModalJoin);
+  const isActiveModalCreateTeam = useSelector(selectIsActiveModalCreateTeam);
+  const isActiveModalCreated = useSelector(selectIsActiveModalCreated);
+  const dispatch = useDispatch();
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId: currCourse.id,
     page: page,
@@ -32,57 +53,60 @@ export const TeamsList: FC = () => {
   if (loading) return <Loader />;
   if (error) return <Error />;
 
+  const onSubmit = (e: string) => {
+    console.log('onSubmit', e);
+  };
+
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
   return (
     <>
       <StyledTeams>
         <Teams teams={teams} myTeam={teams.results[0]} userId={userData.id} />
         <Pagination pageCount={pageCount} changePage={setPage} page={page} />
-        <Button type="button" onClick={showModal}>
-          Open modal
-        </Button>
       </StyledTeams>
       <ModalExpel
         title="Leave Team"
         text="Are you sure want to leave team?"
-        open={modalOpened1}
+        open={isActiveModalLeave}
         onSubmit={onSubmit}
-        onClose={hideModal1}
+        onClose={() => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: false })}
         okText="Yes!"
         cancelText="No"
       />
       <ModalExpel
         title="Expel User"
         text="Are you sure want to expel user?"
-        open={modalOpened2}
+        open={isActiveModalExpel}
         onSubmit={onSubmit}
-        onClose={hideModal2}
+        onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
         okText="Yes!"
         cancelText="No"
       />
       <ModalCreateTeam
         title="Create Team"
         text="Please enter your team telegram / discord / viber / ets. group link."
-        open={modalOpened3}
+        open={isActiveModalCreateTeam}
         onSubmit={onSubmit}
-        onClose={hideModal3}
+        onClose={() =>
+          dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: false })
+        }
         okText="Create team"
       />
 
       <ModalJoin
         title="Join team"
         text="Please enter your team password."
-        open={modalOpened4}
+        open={isActiveModalJoin}
         onSubmit={onSubmit}
-        onClose={hideModal4}
+        onClose={() => dispatch({ type: ACTIVE_MODAL_JOIN, payload: false })}
         okText="Join team"
       />
       <ModalCreated
         title="New team created!"
         text="You are automatically added there."
         text2="If you want to invite friends - tell them your team password:"
-        open={modalOpened5}
-        onClose={hideModal5}
+        open={isActiveModalCreated}
+        onClose={() => dispatch({ type: ACTIVE_MODAL_CREATED, payload: false })}
         cancelText="Got it!"
         password={password}
       />
