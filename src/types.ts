@@ -66,6 +66,11 @@ export type UpdateUserInput = {
 
 export type StateTeamsList = {
   teams: Team[];
+  isActiveModalExpel: boolean;
+  isActiveModalLeave: boolean;
+  isActiveModalJoin: boolean;
+  isActiveModalCreateTeam: boolean;
+  isActiveModalCreated: boolean;
 };
 
 export type StateStudentsTable = {
