@@ -62,8 +62,8 @@ export const TeamsList: FC = () => {
     }
   };
 
-  const myTeam = teams.results.find(
-    (team: Team) => team.members.indexOf(userData) !== -1
+  const myTeam = userData.teams.find(
+    (team: Team) => team.courseId === currCourse.id
   );
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);

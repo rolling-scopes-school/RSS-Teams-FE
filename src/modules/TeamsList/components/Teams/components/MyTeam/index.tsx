@@ -24,36 +24,36 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   };
   const dispatch = useDispatch();
 
+  const leaveTeam = () => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true });
+
   const countMember = team.members.length;
   return (
     <StyledMyTeam open={isOpen}>
-      <div className={'myTeam__header'}>
-        <h2 className={'myTeam__title'}>My team - Team {team.number}</h2>
-        <div className={'myTeam__info-wrapper'}>
+      <div className="myTeam__header">
+        <h2 className="myTeam__title">My team - Team {team.number}</h2>
+        <div className="myTeam__info-wrapper">
           <MyTeamInfoBlock
-            title={'Invitation password'}
+            title="Invitation password"
             value={team.password}
-            icon={'info'}
+            icon="info"
           />
           <MyTeamInfoBlock
-            title={'Link to group'}
+            title="Link to group"
             value={team.socialLink}
-            icon={'edit'}
+            icon="edit"
           />
         </div>
-        <div className={'myTeam__button'}>
+        <div className="myTeam__button">
           <Button
             bgc={WHITE_COLOR}
             color={DARK_TEXT_COLOR}
-            type={'button'}
-            onClick={() =>
-              dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true })
-            }
+            type="button"
+            onClick={leaveTeam}
           >
             Leave team
           </Button>
         </div>
-        <div className={'myTeam__toggle'}>
+        <div className="myTeam__toggle">
           <MembersListToggle
             isOpen={isOpen}
             countMembers={countMember}
