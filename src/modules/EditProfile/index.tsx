@@ -50,6 +50,8 @@ export const EditProfile: FC = () => {
     },
   });
 
+  const [isValidCoursesList, setValidCoursesList] = useState(true);
+
   const isUserNew = userData.telegram === null;
 
   const currentCourses = courses
@@ -72,14 +74,18 @@ export const EditProfile: FC = () => {
   };
 
   const onSubmit = (formValues: UpdateUserInput) => {
-    console.log('formValues', formValues);
-    updateUser();
-    history.push('/');
+    if (userCourses.length) {
+      updateUser();
+      history.push('/');
+    } else {
+      setValidCoursesList(false);
+    }
   };
 
   const localCourseUpdate = (course: Course) => {
     if (course) {
       setUserCourses([...userCourses, course]);
+      setValidCoursesList(true);
     }
   };
 
@@ -255,6 +261,7 @@ export const EditProfile: FC = () => {
               multi
               onAdd={localCourseUpdate}
               courses={currentCourses}
+              isValid={isValidCoursesList}
             />
           </div>
           <InputField

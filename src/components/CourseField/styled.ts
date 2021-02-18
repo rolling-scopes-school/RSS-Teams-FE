@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BG_COLOR, LIGHT_TEXT_COLOR } from 'appConstants/colors';
+import { BG_COLOR } from 'appConstants/colors';
 
 export const FieldWrapper = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const FieldWrapper = styled.div`
 
 export const SelectCource = styled.div`
   width: 300px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

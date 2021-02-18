@@ -1,6 +1,7 @@
 import React, { FC, SelectHTMLAttributes, useState } from 'react';
 import { Label, Select, SelectInner } from 'typography';
 import { FieldWrapper, SelectCource, PlusButton } from './styled';
+import { ValidationAlert } from '../InputField/styled';
 
 type Course = {
   id: string;
@@ -14,6 +15,7 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   register: any;
   courses: Course[];
   onAdd: any;
+  isValid: boolean;
 }
 // {/* <select style="color:gray" onchange="this.style.color='black'"></select> */}
 export const CourseField: FC<SelectFieldProps> = ({
@@ -23,6 +25,7 @@ export const CourseField: FC<SelectFieldProps> = ({
   register,
   courses,
   onAdd,
+  isValid,
   ...rest
 }) => {
   const [selectedCourse, setSelectedCourse] = useState<any>(0);
@@ -68,6 +71,11 @@ export const CourseField: FC<SelectFieldProps> = ({
           />
         )}
       </SelectCource>
+      {!isValid && (
+        <ValidationAlert>
+          You need to choose at least one course
+        </ValidationAlert>
+      )}
     </FieldWrapper>
   );
 };
