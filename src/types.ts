@@ -37,6 +37,11 @@ export type Team = {
   members: User[];
 };
 
+export type TeamList = {
+  count: number;
+  results: Team[];
+};
+
 export type UserFilterInput = {
   discord: string;
   github: string;
@@ -60,7 +65,12 @@ export type UpdateUserInput = {
 };
 
 export type StateTeamsList = {
-  teams: Team[];
+  teams: Team[] | [];
+  isActiveModalExpel: boolean;
+  isActiveModalLeave: boolean;
+  isActiveModalJoin: boolean;
+  isActiveModalCreateTeam: boolean;
+  isActiveModalCreated: boolean;
 };
 
 export type StateStudentsTable = {

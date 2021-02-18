@@ -1,18 +1,50 @@
 import React, { FC, useState } from 'react';
 import { useTeamsQuery } from 'hooks/graphql';
-import { Loader, Error } from 'components';
-import { Team } from 'types';
-import { useSelector } from 'react-redux';
+import {
+  Loader,
+  Error,
+  ModalExpel,
+  ModalJoin,
+  ModalCreateTeam,
+  ModalCreated,
+  Pagination,
+} from 'components';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
-import { Button } from 'typography';
+import { Teams } from './components/Teams';
+import { StyledTeams } from './styled';
+import {
+  TEAMS_PER_PAGE,
+  ACTIVE_MODAL_EXPEL,
+  ACTIVE_MODAL_LEAVE,
+  ACTIVE_MODAL_JOIN,
+  ACTIVE_MODAL_CREATE_TEAM,
+  ACTIVE_MODAL_CREATED,
+} from 'appConstants';
+import {
+  selectIsActiveModalCreated,
+  selectIsActiveModalCreateTeam,
+  selectIsActiveModalExpel,
+  selectIsActiveModalJoin,
+  selectIsActiveModalLeave,
+} from './selectors';
+import { Team } from 'types';
 
+const password = 'password';
 export const TeamsList: FC = () => {
+  const [page, setPage] = useState<number>(0);
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
-
+  const isActiveModalExpel = useSelector(selectIsActiveModalExpel);
+  const isActiveModalLeave = useSelector(selectIsActiveModalLeave);
+  const isActiveModalJoin = useSelector(selectIsActiveModalJoin);
+  const isActiveModalCreateTeam = useSelector(selectIsActiveModalCreateTeam);
+  const isActiveModalCreated = useSelector(selectIsActiveModalCreated);
+  const dispatch = useDispatch();
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId: currCourse.id,
+    page: page,
   });
   const loading = loadingT;
   const error = errorT;
@@ -20,27 +52,77 @@ export const TeamsList: FC = () => {
   if (loading) return <Loader />;
   if (error) return <Error />;
 
+  const onSubmit = (e: string) => {
+    console.log('onSubmit', e);
+  };
+
+  const onSubmitJoinModal = (e: string) => {
+    if (!teams.results.find((team: Team) => team.password === e)) {
+      console.log('Wrong password');
+    }
+  };
+
+  const myTeam = teams.results.find(
+    (team: Team) => team.members.indexOf(userData) !== -1
+  );
+
+  const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
   return (
     <>
-      <div>
-        <p>Teams length {teams.count}</p>
-        {teams &&
-          teams.results.map((item: Team) => {
-            return <div key={item.id}>Team №{item.number}</div>;
-          })}
-        <p>This is teams list!</p>
-        {userData && <p>My github: {userData.github}</p>}
-        {userData && <p>My firstName: {userData.firstName}</p>}
-        {userData && <p>My lastName: {userData.lastName}</p>}
-        {userData && <p>My telegram: {userData.telegram}</p>}
-        {userData && <p>My discord: {userData.discord}</p>}
-        {userData && <p>My score: {userData.score}</p>}
-        {userData && <p>My country: {userData.country}</p>}
-        {userData && <p>My city: {userData.city}</p>}
-        {userData && <p>My courseIds: {userData.courseIds[0]}</p>}
+      <StyledTeams>
+        <Teams teams={teams} myTeam={myTeam} userId={userData.id} />
+        <Pagination pageCount={pageCount} changePage={setPage} page={page} />
+      </StyledTeams>
 
-        <p> Go to /modals for ModalsSamples</p>
-      </div>
+      <ModalExpel
+        title="Leave Team"
+        text="Are you sure want to leave team?"
+        open={isActiveModalLeave}
+        onSubmit={onSubmit}
+        onClose={() => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: false })}
+        okText="Yes!"
+        cancelText="No"
+      />
+
+      <ModalExpel
+        title="Expel User"
+        text="Are you sure want to expel user?"
+        open={isActiveModalExpel}
+        onSubmit={onSubmit}
+        onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
+        okText="Yes!"
+        cancelText="No"
+      />
+
+      <ModalCreateTeam
+        title="Create Team"
+        text="Please enter your team telegram / discord / viber / ets. group link."
+        open={isActiveModalCreateTeam}
+        onSubmit={onSubmit}
+        onClose={() =>
+          dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: false })
+        }
+        okText="Create team"
+      />
+
+      <ModalJoin
+        title="Join team"
+        text="Please enter your team password."
+        open={isActiveModalJoin}
+        onSubmit={onSubmitJoinModal}
+        onClose={() => dispatch({ type: ACTIVE_MODAL_JOIN, payload: false })}
+        okText="Join team"
+      />
+
+      <ModalCreated
+        title="New team created!"
+        text="You are automatically added there."
+        text2="If you want to invite friends - tell them your team password:"
+        open={isActiveModalCreated}
+        onClose={() => dispatch({ type: ACTIVE_MODAL_CREATED, payload: false })}
+        cancelText="Got it!"
+        password={password}
+      />
     </>
   );
 };

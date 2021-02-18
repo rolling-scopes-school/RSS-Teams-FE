@@ -37,9 +37,7 @@ export const TableItem: FC<TableItemProps> = ({ item, index, dataLength }) => {
       tableItemCursor={tableItemCursor}
     >
       <div className={`TableItem__first-element`}>{item}</div>
-      {showPopup ? (
-        <TablePopup popupElements={popupElements} dataLength={dataLength} />
-      ) : null}
+      {showPopup && <TablePopup {...{ popupElements, dataLength }} />}
     </StyledTableItem>
   );
 };

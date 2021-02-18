@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useRef } from 'react';
+import React, { FC, SyntheticEvent, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
@@ -6,12 +6,13 @@ import styled from 'styled-components';
 import styles from './index.module.css';
 import { PageTitle, Label, Button, InvertedButton } from 'typography/index';
 
-type Props = {
+type ModalProps = {
   title: string;
   text: string;
-  open?: boolean;
-  // hideOnOutsideClick?: boolean;
-  // hideOnEsc?: boolean;
+  text2?: string;
+  open: boolean;
+  hideOnOutsideClick?: boolean;
+  hideOnEsc?: boolean;
   children?: React.ReactNode;
   onClose(): void;
   onSubmit?: (e: SyntheticEvent) => void;
@@ -20,16 +21,11 @@ type Props = {
 } & typeof defaultProps;
 
 const defaultProps = {
-  open: false,
   hideOnOutsideClick: true,
   hideOnEsc: true,
-  okText: 'Yes!',
-  // cancelText: 'No',
 };
 
 const ModalWindow = styled.div`
-  /* width: 440px; */
-  /* height: 269px; */
   left: 500px;
   top: 315px;
 
@@ -44,20 +40,19 @@ const ButtonsBlock = styled.div`
   margin-bottom: 10px;
 `;
 
-export const Modal = (props: Props) => {
-  const {
-    title,
-    text,
-    open,
-    children,
-    hideOnOutsideClick,
-    hideOnEsc,
-    onClose,
-    onSubmit,
-    okText,
-    cancelText,
-  } = props;
-
+export const Modal: FC<ModalProps> = ({
+  title,
+  text,
+  text2,
+  open,
+  children,
+  hideOnOutsideClick,
+  hideOnEsc,
+  onClose,
+  onSubmit,
+  okText,
+  cancelText,
+}) => {
   const insideRef = useRef<HTMLDivElement>(null);
 
   const close = (e: React.MouseEvent | MouseEvent) => {
@@ -105,6 +100,9 @@ export const Modal = (props: Props) => {
         <ModalWindow>
           <PageTitle>{title}</PageTitle>
           <Label>{text}</Label>
+          <p>
+            <Label>{text2}</Label>
+          </p>
           {children}
           <ButtonsBlock>
             {onSubmit ? (
@@ -115,7 +113,6 @@ export const Modal = (props: Props) => {
                   </InvertedButton>
                   <Button
                     onClick={(e) => {
-                      // console.log(children || 'children are empty');
                       onSubmit(e);
                     }}
                   >
@@ -126,7 +123,6 @@ export const Modal = (props: Props) => {
                 <>
                   <Button
                     onClick={(e) => {
-                      // console.log(children || 'children are empty');
                       onSubmit(e);
                     }}
                   >

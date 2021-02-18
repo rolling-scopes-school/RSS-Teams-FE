@@ -22,7 +22,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1320px;
 
   @media (max-width: 549px) and (min-width: 320px) {
     flex-direction: column;

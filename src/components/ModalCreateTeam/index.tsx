@@ -9,7 +9,6 @@ type Props = {
   onSubmit?: (e: string) => void;
   onClose: () => void;
   okText?: string;
-  // cancelText?: string;
 } & typeof defaultProps;
 
 const defaultProps = {
@@ -49,7 +48,6 @@ export const ModalCreateTeam: FC<Props> = ({
       onClose={onClose}
       onSubmit={onSubmitModal}
       okText={okText}
-      // cancelText={cancelText}
       hideOnOutsideClick={true}
       hideOnEsc={true}
     >
