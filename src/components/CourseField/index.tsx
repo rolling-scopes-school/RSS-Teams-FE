@@ -1,12 +1,6 @@
 import React, { FC, SelectHTMLAttributes } from 'react';
 import { Label, Select, SelectInner } from 'typography';
-import {
-  FieldWrapper,
-  SelectCource,
-  PlusButton,
-  CrossButton,
-  PlaceholderOption,
-} from './styled';
+import { FieldWrapper, SelectCource, PlusButton } from './styled';
 
 type Course = {
   id: string;
@@ -20,7 +14,7 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   register: any;
   courses: Course[];
 }
-// {/* <select style="color:gray" onchange="this.style.color='black'"></select> */}
+
 export const CourseField: FC<SelectFieldProps> = ({
   labelText,
   placeholder,
@@ -58,24 +52,6 @@ export const CourseField: FC<SelectFieldProps> = ({
         </Select>
         {multi && <PlusButton type="button"></PlusButton>}
       </SelectCource>
-      {/* <SelectCource>
-        <Select>
-          <SelectInner placeholder={placeholder} ref={register} {...rest}>
-            <option value="111">222</option>
-            <option value="333">444</option>
-          </SelectInner>
-        </Select>
-        {multi && <CrossButton type="button"></CrossButton>}
-      </SelectCource>
-      <SelectCource>
-        <Select>
-          <SelectInner placeholder={placeholder} ref={register} {...rest}>
-            <option value="111">222</option>
-            <option value="333">444</option>
-          </SelectInner>
-        </Select>
-        {!multi && <CrossButton></CrossButton>}
-      </SelectCource> */}
     </FieldWrapper>
   );
 };
