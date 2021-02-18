@@ -38,7 +38,6 @@ export const CourseField: FC<SelectFieldProps> = ({
         );
       })
     : null;
-  // console.log(courseOptions);
   return (
     <FieldWrapper>
       {labelText && <Label>{labelText}</Label>}
@@ -47,7 +46,7 @@ export const CourseField: FC<SelectFieldProps> = ({
           <SelectInner
             placeholder={placeholder}
             ref={register}
-            value={selectedCourse}
+            value={selectedCourse.id || 0}
             onChange={(e: any) =>
               setSelectedCourse(
                 courses.find((course: Course) => course.id === e.target.value)
