@@ -120,15 +120,13 @@ export const Modal: FC<ModalProps> = ({
                   </Button>
                 </>
               ) : (
-                <>
-                  <Button
-                    onClick={(e) => {
-                      onSubmit(e);
-                    }}
-                  >
-                    {okText}
-                  </Button>
-                </>
+                <Button
+                  onClick={(e) => {
+                    onSubmit(e);
+                  }}
+                >
+                  {okText}
+                </Button>
               )
             ) : (
               <Button onClick={onClose}>{cancelText}</Button>

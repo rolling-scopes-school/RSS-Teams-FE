@@ -42,12 +42,8 @@ export const ModalCreateTeam: FC<Props> = ({
 
   return (
     <Modal
-      title={title}
-      text={text}
-      open={open}
-      onClose={onClose}
+      {...{ title, text, open, onClose, okText }}
       onSubmit={onSubmitModal}
-      okText={okText}
       hideOnOutsideClick={true}
       hideOnEsc={true}
     >

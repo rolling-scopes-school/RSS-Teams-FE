@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Modal } from 'components';
 import { ModalInput, InvertedButton } from 'typography';
 import { BG_COLOR } from 'appConstants/colors';
-
+import { ReactComponent as CopyIcon } from 'assets/svg/copy2clip.svg';
 const InputWithCopy = styled.div`
   position: relative;
 `;
@@ -54,12 +54,8 @@ export const ModalCreated: FC<Props> = ({
 }) => {
   return (
     <Modal
-      title={title}
-      text={text}
+      {...{ title, text, open, onClose, cancelText }}
       text2={text2}
-      open={open}
-      onClose={onClose}
-      cancelText={cancelText}
       hideOnOutsideClick={true}
       hideOnEsc={true}
     >

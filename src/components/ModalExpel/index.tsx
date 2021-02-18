@@ -27,13 +27,8 @@ export const ModalExpel: FC<Props> = ({
 
   return (
     <Modal
-      title={title}
-      text={text}
-      open={open}
-      onClose={onClose}
+      {...{ title, text, open, onClose, okText, cancelText }}
       onSubmit={onSubmitModal}
-      okText={okText}
-      cancelText={cancelText}
       hideOnOutsideClick={true}
       hideOnEsc={true}
     />

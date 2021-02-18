@@ -15,6 +15,11 @@ import { useDispatch } from 'react-redux';
 
 export const TeamsHeader: FC = () => {
   const dispatch = useDispatch();
+  const onClickCreateTeam = () =>
+    dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: true });
+  const onClickJoinTeam = () =>
+    dispatch({ type: ACTIVE_MODAL_JOIN, payload: true });
+
   return (
     <TeamsHeaderStyled>
       <TeamsHeaderRightStyled>
@@ -27,18 +32,16 @@ export const TeamsHeader: FC = () => {
           <Button
             bgc={WHITE_COLOR}
             color={DARK_TEXT_COLOR}
-            type={'button'}
-            onClick={() =>
-              dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: true })
-            }
+            type="button"
+            onClick={onClickCreateTeam}
           >
             Create team
           </Button>
           <Button
             bgc={WHITE_COLOR}
             color={DARK_TEXT_COLOR}
-            type={'button'}
-            onClick={() => dispatch({ type: ACTIVE_MODAL_JOIN, payload: true })}
+            type="button"
+            onClick={onClickJoinTeam}
           >
             Join team
           </Button>
