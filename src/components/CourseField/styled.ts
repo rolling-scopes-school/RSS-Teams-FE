@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BG_COLOR, LIGHT_TEXT_COLOR } from 'appConstants/colors';
+import { BG_COLOR } from 'appConstants/colors';
 
 export const FieldWrapper = styled.div`
   display: flex;

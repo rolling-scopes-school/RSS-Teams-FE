@@ -53,8 +53,7 @@ export const ModalCreated: FC<Props> = ({
 }) => {
   return (
     <Modal
-      {...{ title, text, open, onClose, cancelText }}
-      text2={text2}
+      {...{ title, text, text2, open, onClose, cancelText }}
       hideOnOutsideClick={true}
       hideOnEsc={true}
     >
