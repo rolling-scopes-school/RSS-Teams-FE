@@ -14,7 +14,6 @@ import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Teams } from './components/Teams';
 import { StyledTeams } from './styled';
-import { Button } from 'typography';
 import {
   TEAMS_PER_PAGE,
   ACTIVE_MODAL_EXPEL,
@@ -30,7 +29,7 @@ import {
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
 } from './selectors';
-import { StateTeamsList } from 'types';
+import { Team } from 'types';
 
 const password = 'password';
 export const TeamsList: FC = () => {
@@ -57,13 +56,24 @@ export const TeamsList: FC = () => {
     console.log('onSubmit', e);
   };
 
+  const onSubmitJoinModal = (e: string) => {
+    if (!teams.results.find((team: Team) => team.password === e)) {
+      console.log('Wrong password');
+    }
+  };
+
+  const myTeam = teams.results.find(
+    (team: Team) => team.members.indexOf(userData) !== -1
+  );
+
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
   return (
     <>
       <StyledTeams>
-        <Teams teams={teams} myTeam={teams.results[0]} userId={userData.id} />
+        <Teams teams={teams} myTeam={myTeam} userId={userData.id} />
         <Pagination pageCount={pageCount} changePage={setPage} page={page} />
       </StyledTeams>
+
       <ModalExpel
         title="Leave Team"
         text="Are you sure want to leave team?"
@@ -73,6 +83,7 @@ export const TeamsList: FC = () => {
         okText="Yes!"
         cancelText="No"
       />
+
       <ModalExpel
         title="Expel User"
         text="Are you sure want to expel user?"
@@ -82,6 +93,7 @@ export const TeamsList: FC = () => {
         okText="Yes!"
         cancelText="No"
       />
+
       <ModalCreateTeam
         title="Create Team"
         text="Please enter your team telegram / discord / viber / ets. group link."
@@ -97,10 +109,11 @@ export const TeamsList: FC = () => {
         title="Join team"
         text="Please enter your team password."
         open={isActiveModalJoin}
-        onSubmit={onSubmit}
+        onSubmit={onSubmitJoinModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_JOIN, payload: false })}
         okText="Join team"
       />
+
       <ModalCreated
         title="New team created!"
         text="You are automatically added there."
