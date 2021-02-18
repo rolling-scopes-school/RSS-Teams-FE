@@ -15,7 +15,7 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
 }) => {
   return (
     <StyledMyTeamInfoBlock>
-      <div className={'infoBlock__title'}>{title}</div>
+      <div className="infoBlock__title">{title}</div>
       <MyTeamInfoLine value={value} />
       {icon === 'edit' ? <EditButton /> : <InfoButton />}
     </StyledMyTeamInfoBlock>

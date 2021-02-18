@@ -28,4 +28,19 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 0.1rem;
   }
+  @media (max-width: 1199px) and (min-width: 992px) {
+    font-size: 0.95rem;
+  }
+  @media (max-width: 991px) and (min-width: 768px) {
+    font-size: 0.9rem;
+  }
+  @media (max-width: 767px) and (min-width: 550px) {
+    font-size: 0.825rem;
+  }
+  @media (max-width: 549px) and (min-width: 440px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 439px) and (min-width: 320px) {
+    font-size: 0.68rem;
+  }
 `;

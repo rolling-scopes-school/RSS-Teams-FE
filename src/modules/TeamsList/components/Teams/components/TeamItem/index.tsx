@@ -24,10 +24,10 @@ export const TeamItem: FC<TeamItemProps> = ({
   };
   return (
     <TeamItemStyled>
-      <div className={'teamItem__header'}>
-        <div className={'teamItem__name'}>{name}</div>
+      <div className="teamItem__header">
+        <div className="teamItem__name">{name}</div>
         {description && (
-          <div className={'teamItem__description'}>{description}</div>
+          <div className="teamItem__description">{description}</div>
         )}
         <MembersListToggle
           countMembers={countMember}

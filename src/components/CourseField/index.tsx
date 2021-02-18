@@ -17,7 +17,7 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   onAdd: any;
   isValid: boolean;
 }
-// {/* <select style="color:gray" onchange="this.style.color='black'"></select> */}
+
 export const CourseField: FC<SelectFieldProps> = ({
   labelText,
   placeholder,
