@@ -96,7 +96,7 @@ export const PageSubTitle = styled.h2`
 `;
 
 export const Button = styled.button<ButtonProps>`
-  ${TextSemiBold}
+  ${TextSemiBold};
   margin-right: ${({ mr }) => mr || 0};
   padding: 13px 50px;
   border-radius: 20px;
@@ -139,16 +139,16 @@ export const Input = styled.input`
 
 export const Select = styled.div`
   display: grid;
+  position: relative;
   grid-template-areas: 'select';
   align-items: center;
   width: 100%;
   max-width: 250px;
-  padding: 8px 15px;
-  border-radius: 10px;
-  border: none;
   background-color: ${BG_COLOR};
+  border-radius: 10px;
   cursor: pointer;
   &:after {
+    position: absolute;
     content: '*';
     grid-area: select;
     width: 12px;
@@ -156,6 +156,7 @@ export const Select = styled.div`
     background-color: ${LIGHT_TEXT_COLOR};
     clip-path: polygon(100% 0%, 50% 70%, 0% 0%, 0% 40%, 50% 100%, 100% 40%);
     justify-self: end;
+    right: 10px;
   }
 `;
 
@@ -164,8 +165,10 @@ export const SelectInner = styled.select`
   margin: 0;
   width: 100%;
   grid-area: select;
+  padding: 8px 15px;
   border: none;
-  background-color: ${BG_COLOR};
+  border-radius: 10px;
+  background-color: transparent;
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
   outline: none;
   &::-ms-expand {
@@ -174,6 +177,8 @@ export const SelectInner = styled.select`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  z-index: 1;
+  cursor: pointer;
   option {
     color: ${DARK_TEXT_COLOR};
   }
