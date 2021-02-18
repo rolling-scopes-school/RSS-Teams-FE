@@ -44,7 +44,6 @@ export const CourseField: FC<SelectFieldProps> = ({
           <SelectInner
             placeholder={placeholder}
             ref={register}
-            defaultValue="0"
             value={selectedCourse}
             onChange={(e: any) =>
               setSelectedCourse(
