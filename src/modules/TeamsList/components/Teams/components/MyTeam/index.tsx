@@ -24,6 +24,8 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   };
   const dispatch = useDispatch();
 
+  const leaveTeam = () => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true });
+
   const countMember = team.members.length;
   return (
     <StyledMyTeam open={isOpen}>
@@ -46,9 +48,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
             bgc={WHITE_COLOR}
             color={DARK_TEXT_COLOR}
             type="button"
-            onClick={() =>
-              dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true })
-            }
+            onClick={leaveTeam}
           >
             Leave team
           </Button>
