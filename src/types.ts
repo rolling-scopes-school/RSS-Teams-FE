@@ -64,6 +64,20 @@ export type UpdateUserInput = {
   courseIds: string[];
 };
 
+export type AddUserToTeamInput = {
+  userId: string;
+  courseId: string;
+  teamPassword: string;
+  page: number;
+};
+
+export type RemoveUserFromTeamInput = {
+  userId: string;
+  teamId: string;
+  page: number;
+  courseId: string;
+};
+
 export type StateTeamsList = {
   teams: Team[];
 };
