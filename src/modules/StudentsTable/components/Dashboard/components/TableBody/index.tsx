@@ -47,7 +47,7 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
           <List
             className="List"
             height={height}
-            itemSize={40}
+            itemSize={64}
             itemCount={usersData.length}
             itemData={usersData}
             width={width}
