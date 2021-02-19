@@ -9,18 +9,6 @@ export const CREATE_TEAM_MUTATION = gql`
       courseId
       socialLink
       memberIds
-      course {
-        id
-        name
-        teamIds
-        userIds
-        teams {
-          id
-        }
-        users {
-          id
-        }
-      }
       members {
         id
         firstName

@@ -27,20 +27,22 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
           },
         });
 
-        const updatedRemovedResults = data?.teams.results.map((team: Team) => {
-          if (team.id === teamId) {
-            return {
-              ...team,
-              members: team.members.filter(
-                (member: User) => member.id !== userId
-              ),
-              memberIds: team.memberIds.filter(
-                (memberId: string) => memberId !== userId
-              ),
-            };
-          }
-          return team;
-        });
+        const updatedRemovedResults = data?.teams.results
+          .map((team: Team) => {
+            if (team.id === teamId) {
+              return {
+                ...team,
+                members: team.members.filter(
+                  (member: User) => member.id !== userId
+                ),
+                memberIds: team.memberIds.filter(
+                  (memberId: string) => memberId !== userId
+                ),
+              };
+            }
+            return team;
+          })
+          .filter((team: Team | undefined) => !!team?.members.length);
 
         cache.writeQuery({
           query: WHOAMI_QUERY,

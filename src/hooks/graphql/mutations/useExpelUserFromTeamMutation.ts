@@ -27,6 +27,10 @@ export const useExpelUserFromTeamMutation = ({ data }: Props) => {
           },
         });
 
+        const userData: { whoAmI: User } | null = cache.readQuery({
+          query: WHOAMI_QUERY,
+        });
+
         const updatedRemovedResults = data?.teams.results.map((team: Team) => {
           if (team.id === teamId) {
             return {
@@ -40,10 +44,6 @@ export const useExpelUserFromTeamMutation = ({ data }: Props) => {
             };
           }
           return team;
-        });
-
-        const userData: { whoAmI: User } | null = cache.readQuery({
-          query: WHOAMI_QUERY,
         });
 
         const updatedTeams = (userData?.whoAmI.teams as Team[]).map(
@@ -66,7 +66,7 @@ export const useExpelUserFromTeamMutation = ({ data }: Props) => {
         cache.writeQuery({
           query: WHOAMI_QUERY,
           data: {
-            ...userData,
+            ...userData?.whoAmI,
             teams: updatedTeams,
           },
         });

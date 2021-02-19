@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent } from 'react';
+import React, { FC } from 'react';
 import { Modal } from 'components';
 
 type Props = {

@@ -1,8 +1,7 @@
 import { useMutation } from '@apollo/client';
-import { TEAMS_PER_PAGE } from 'appConstants';
 import { ADD_USER_TO_TEAM_MUTATION } from 'graphql/mutations';
-import { TEAMS_QUERY, WHOAMI_QUERY } from 'graphql/queries';
-import { AddUserToTeamInput, Team, TeamList } from 'types';
+import { WHOAMI_QUERY } from 'graphql/queries';
+import { AddUserToTeamInput } from 'types';
 
 type Props = {
   data: AddUserToTeamInput;
