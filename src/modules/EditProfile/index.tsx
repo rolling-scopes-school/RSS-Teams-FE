@@ -117,7 +117,7 @@ export const EditProfile: FC = () => {
               required: 'This is required.',
               pattern: {
                 value: /^[A-Za-z]+$/i,
-                message: 'This input is letters only.',
+                message: 'This input is latin letters only.',
               },
               minLength: {
                 value: 3,
@@ -140,7 +140,7 @@ export const EditProfile: FC = () => {
               required: 'This is required.',
               pattern: {
                 value: /^[A-Za-z]+$/i,
-                message: 'This input is letters only.',
+                message: 'This input is latin letters only.',
               },
               minLength: {
                 value: 3,
@@ -162,15 +162,15 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z0-9]+$/i,
-                message: 'This input is letters and digits only.',
+                value: /^[A-Za-z0-9@#_]+$/i,
+                message: 'This input is latin letters and digits only.',
               },
               minLength: {
                 value: 3,
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 50,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -185,15 +185,15 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z0-9]+$/i,
-                message: 'This input is letters and digits only.',
+                value: /^[A-Za-z0-9@_]+$/i,
+                message: 'This input is latin letters and digits only.',
               },
               minLength: {
                 value: 3,
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 50,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -208,8 +208,8 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z]+$/i,
-                message: 'This input is letters only.',
+                value: /^[A-Za-z\-]+$/i,
+                message: 'This input is latin letters only.',
               },
               minLength: {
                 value: 3,
@@ -231,8 +231,8 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z]+$/i,
-                message: 'This input is letters only.',
+                value: /^[A-Za-z\-]+$/i,
+                message: 'This input is latin letters only.',
               },
               minLength: {
                 value: 3,
