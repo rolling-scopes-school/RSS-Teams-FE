@@ -28,7 +28,6 @@ export const ModalJoin: FC<Props> = ({
 
   const onSubmitModal = () => {
     if (onSubmit && inputValue) {
-      onClose();
       onSubmit(inputValue);
     }
   };

@@ -23,8 +23,22 @@ export const WHOAMI_QUERY = gql`
       teamIds
       teams {
         id
+        password
         number
         courseId
+        socialLink
+        memberIds
+        members {
+          id
+          firstName
+          lastName
+          github
+          telegram
+          discord
+          score
+          country
+          city
+        }
       }
     }
   }

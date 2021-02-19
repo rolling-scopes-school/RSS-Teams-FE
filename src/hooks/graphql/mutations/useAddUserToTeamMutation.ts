@@ -9,51 +9,18 @@ type Props = {
 };
 
 export const useAddUserToTeamMutation = ({ data }: Props) => {
-  const { teamPassword, courseId, page, userId } = data;
-  const dataForMutation = { userId, courseId, teamPassword };
   const [addUserToTeam, { loading }] = useMutation(ADD_USER_TO_TEAM_MUTATION, {
     variables: {
-      data: dataForMutation,
+      data: data,
     },
 
     update(cache, { data: { addUserToTeam } }) {
-      // const data: TeamList | null = cache.readQuery({
-      //   query: TEAMS_QUERY,
-      //   variables: {
-      //     courseId: courseId,
-      //     pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
-      //   },
-      // });
-
-      // const updatedResults = data?.results.map((team: Team) => {
-      //   if (team.password === teamPassword) {
-      //     return {
-      //       ...team,
-      //       members: [...team.members, addUserToTeam],
-      //       memberIds: [...team.memberIds, addUserToTeam.id],
-      //     };
-      //   }
-      //   return team;
-      // });
-
       cache.writeQuery({
         query: WHOAMI_QUERY,
         data: {
           addUserToTeam,
         },
       });
-
-      // cache.writeQuery({
-      //   query: TEAMS_QUERY,
-      //   data: {
-      //     count: data?.count,
-      //     results: updatedResults,
-      //   },
-      //   variables: {
-      //     courseId: courseId,
-      //     pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
-      //   },
-      // });
     },
   });
   return {

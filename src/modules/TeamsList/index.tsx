@@ -30,6 +30,7 @@ import {
   selectIsActiveModalLeave,
 } from './selectors';
 import { Team } from 'types';
+import { useAddUserToTeamMutation } from 'hooks/graphql/mutations/useAddUserToTeamMutation';
 
 const password = 'password';
 export const TeamsList: FC = () => {
@@ -48,6 +49,22 @@ export const TeamsList: FC = () => {
   });
   const loading = loadingT;
   const error = errorT;
+  const [teamPassword, setTeamPassword] = useState<string>('');
+  const [textJoinModal, setTextJoinModal] = useState<string>(
+    'Please enter your team password.'
+  );
+  let myTeam = userData.teams
+    ? userData.teams.find((team: Team) => team.courseId === currCourse.id)
+    : undefined;
+  const [userCourseTeam, setUserCourseTeam] = useState(myTeam);
+
+  const { addUserToTeam } = useAddUserToTeamMutation({
+    data: {
+      courseId: currCourse.id,
+      teamPassword: teamPassword,
+      userId: userData.id,
+    },
+  });
 
   if (loading) return <Loader />;
   if (error) return <Error />;
@@ -57,20 +74,31 @@ export const TeamsList: FC = () => {
   };
 
   const onSubmitJoinModal = (e: string) => {
-    if (!teams.results.find((team: Team) => team.password === e)) {
-      console.log('Wrong password');
-    }
+    setTeamPassword(e);
+    addUserToTeam().then((userNew) => {
+      if (
+        !userNew.data.addUserToTeam.teams ||
+        !userNew.data.addUserToTeam.teams.find(
+          (team: Team) => team.password === e
+        )
+      ) {
+        setTextJoinModal('Wrong password!');
+      } else {
+        myTeam = userNew.data.addUserToTeam.teams.find(
+          (team: Team) => team.courseId === currCourse.id
+        );
+        setTextJoinModal('Please enter your team password.');
+        setUserCourseTeam(myTeam);
+        dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
+      }
+    });
   };
-
-  const myTeam = userData.teams.find(
-    (team: Team) => team.courseId === currCourse.id
-  );
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
   return (
     <>
       <StyledTeams>
-        <Teams teams={teams} myTeam={myTeam} userId={userData.id} />
+        <Teams teams={teams} myTeam={userCourseTeam} userId={userData.id} />
         <Pagination pageCount={pageCount} changePage={setPage} page={page} />
       </StyledTeams>
 
@@ -107,7 +135,7 @@ export const TeamsList: FC = () => {
 
       <ModalJoin
         title="Join team"
-        text="Please enter your team password."
+        text={textJoinModal}
         open={isActiveModalJoin}
         onSubmit={onSubmitJoinModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_JOIN, payload: false })}
