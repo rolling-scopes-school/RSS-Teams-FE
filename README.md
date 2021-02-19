@@ -1,4 +1,5 @@
-# RSS-Teams-FE
+# RSS-Teams-FE 
+Link to deployment - https://rss-teams.web.app/login
 
 Stack:  
 1 React - https://reactjs.org/  
