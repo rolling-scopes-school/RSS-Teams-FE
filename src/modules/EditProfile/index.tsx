@@ -208,7 +208,7 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z]+$/i,
+                value: /^[A-Za-z\-]+$/i,
                 message: 'This input is latin letters only.',
               },
               minLength: {
@@ -231,7 +231,7 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z]+$/i,
+                value: /^[A-Za-z\-]+$/i,
                 message: 'This input is latin letters only.',
               },
               minLength: {
