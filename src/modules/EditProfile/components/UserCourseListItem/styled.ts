@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { BG_COLOR, DARK_TEXT_COLOR } from 'appConstants/colors';
-import { PlusButton } from '../../../../components/CourseField/styled';
+import { PlusButton } from 'components/CourseField/styled';
 
 export const UserCourseListItemStyled = styled.div`
   display: flex;

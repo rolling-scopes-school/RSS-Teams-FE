@@ -3,6 +3,8 @@ import { Label, Select, SelectInner } from 'typography';
 import { FieldWrapper, SelectCource, PlusButton } from './styled';
 import { ValidationAlert } from '../InputField/styled';
 
+import { ReactComponent as CheckSvgIcon } from 'assets/svg/check.svg';
+
 type Course = {
   id: string;
   name: string;
@@ -71,7 +73,9 @@ export const CourseField: FC<SelectFieldProps> = ({
             }}
             type="button"
             active={isAddCourse}
-          />
+          >
+            <CheckSvgIcon />
+          </PlusButton>
         )}
       </SelectCource>
       {!isValid && (
