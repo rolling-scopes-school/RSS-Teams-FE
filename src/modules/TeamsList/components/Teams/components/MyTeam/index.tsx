@@ -25,7 +25,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
 
   const leaveTeam = () => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true });
 
-  const countMember = team.members.length;
+  const countMember = team?.members?.length;
   return (
     <StyledMyTeam open={isOpen}>
       <div className="myTeam__header">
