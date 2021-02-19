@@ -170,10 +170,6 @@ export const EditProfile: FC = () => {
                 value: 3,
                 message: 'minimal length is 3',
               },
-              maxLength: {
-                value: 12,
-                message: 'This input exceed maxLength.',
-              },
             })}
           />
           <InputField
@@ -192,10 +188,6 @@ export const EditProfile: FC = () => {
               minLength: {
                 value: 3,
                 message: 'minimal length is 3',
-              },
-              maxLength: {
-                value: 12,
-                message: 'This input exceed maxLength.',
               },
             })}
           />
