@@ -8,11 +8,11 @@
 
 .List::-webkit-scrollbar {
   width: 10px;
-  background-color: #f9f9fd;
+  background-color: var(--WHITE_COLOR);
 }
 
 .List::-webkit-scrollbar-thumb {
-  background-color: #1e33570d;
+  background-color: var(--SCROLL_THUMB_COLOR);
   border-radius: 20px;
 }
 
