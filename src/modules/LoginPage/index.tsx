@@ -6,7 +6,6 @@ import {
   StyledLoginImage,
   StyledLoginPage,
   StyledLoginPageItemsWrapper,
-  StyledLoginFakeBlock,
 } from './styled';
 import { LoginInfoBlock } from './components';
 
@@ -19,9 +18,8 @@ export const LoginPage: FC = () => {
     <StyledLoginPage>
       <StyledLoginPageItemsWrapper>
         <LoginInfoBlock />
-        <StyledLoginImage />
-        <StyledLoginFakeBlock />
       </StyledLoginPageItemsWrapper>
+      <StyledLoginImage />
     </StyledLoginPage>
   );
 };
