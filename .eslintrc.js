@@ -23,12 +23,13 @@ module.exports = {
     'react/prop-types': 'off',
     'react/display-name': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    'prettier/prettier': 'error',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-reqiures': 'off',
   },
 
   settings: {

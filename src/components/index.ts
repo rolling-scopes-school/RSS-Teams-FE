@@ -1,3 +1,14 @@
 export { App } from './App';
 export { Loader } from './Loader';
+export { Error } from './Error';
 export { PrivateRoute } from './PrivateRoute';
+export { Header } from './Header';
+export { InputField } from './InputField';
+export { CourseField } from './CourseField';
+export { Pagination } from './Pagination';
+export { Modal } from './Modal';
+export { ModalExpel } from './ModalExpel';
+export { ModalJoin } from './ModalJoin';
+export { ModalCreateTeam } from './ModalCreateTeam';
+export { ModalCreated } from './ModalCreated';
+export { TablePopup } from './TablePopup';

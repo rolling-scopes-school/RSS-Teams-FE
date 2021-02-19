@@ -1,7 +1,24 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --BG_COLOR: #f2f8fd;
+  --OVERLAY_COLOR: rgba(54, 61, 72, 0.3);
+  --WHITE_COLOR: #ffffff;
+}
+
 body {
   margin: 0;
-  font-family: "SF UI Text", sans-serif;
+  font: normal 16px/24px "Poppins", sans-serif;
+  background-color: var(--BG_COLOR);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+input {
+  background-color: var(--BG_COLOR);
 }

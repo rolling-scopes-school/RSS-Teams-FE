@@ -1,11 +1,15 @@
-import { SET_TOKEN } from 'appConstants';
+import { SET_TOKEN, SET_CURR_COURSE } from 'appConstants';
 import { Reducer } from 'redux';
 import { StateLoginPage } from 'types';
 
 type Action = { type: string; payload: any };
 
 export const loginPageState = {
-  loginToken: '',
+  loginToken: null,
+  currCourse: {
+    id: '',
+    name: '',
+  },
 };
 
 export const loginPageReducer: Reducer<StateLoginPage, Action> = (
@@ -17,6 +21,11 @@ export const loginPageReducer: Reducer<StateLoginPage, Action> = (
       return {
         ...state,
         loginToken: action.payload,
+      };
+    case SET_CURR_COURSE:
+      return {
+        ...state,
+        currCourse: action.payload,
       };
     default:
       return state;

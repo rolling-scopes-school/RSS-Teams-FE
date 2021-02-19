@@ -1,46 +1,85 @@
-export type DefaultUser = {
-  // automatically generated after github login
-  id: number;
-  github: string;
-};
-
 export type User = {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   github: string;
-  telegram: string;
+  telegram: string | null;
   discord: string;
-  score: number | 1000; // (1000 - default)
+  score: number;
   country: string;
   city: string;
+  avatar: string;
   isAdmin: boolean;
-  courses: Course[];
+  courses: Course[] | [];
+  email: string | null;
+  courseIds: string[];
+  teamIds: string[];
+  teams: Team[] | [];
 };
 
 export type Course = {
-  name: string; // predefined values
-  team: number;
+  id: string;
+  name: string;
+  teamIds?: string[];
+  userIds?: string[];
+  teams?: Team[];
+  users?: User[];
 };
 
 export type Team = {
-  id: string; // predefined values
+  id: string;
   number: number;
   password: string;
-  members: User[];
+  courseId: string;
   socialLink: string;
+  memberIds: string[];
+  course: Course;
+  members: User[];
+};
+
+export type TeamList = {
+  count: number;
+  results: Team[];
+};
+
+export type UserFilterInput = {
+  discord: string;
+  github: string;
+  location: string;
+  courseName: string;
+  sortingOrder: string;
+  teamFilter: boolean;
+};
+
+export type UpdateUserInput = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email?: string;
+  telegram: string;
+  discord: string;
+  score?: number;
+  country: string;
+  city: string;
+  courseIds: string[];
 };
 
 export type StateTeamsList = {
-  teams: Team[];
+  teams: Team[] | [];
+  isActiveModalExpel: boolean;
+  isActiveModalLeave: boolean;
+  isActiveModalJoin: boolean;
+  isActiveModalCreateTeam: boolean;
+  isActiveModalCreated: boolean;
 };
 
 export type StateStudentsTable = {
-  userData: User | DefaultUser;
+  userData: User;
 };
 
 export type StateLoginPage = {
-  loginToken: string;
+  loginToken: string | null;
+  currCourse: Course;
 };
 
 export type State = {
