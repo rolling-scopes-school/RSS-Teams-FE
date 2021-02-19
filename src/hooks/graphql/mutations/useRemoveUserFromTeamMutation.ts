@@ -19,15 +19,15 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
       },
 
       update(cache, { data: { removeUserFromTeam } }) {
-        const data: TeamList | null = cache.readQuery({
+        const data: { teams: TeamList } | null = cache.readQuery({
           query: TEAMS_QUERY,
           variables: {
             courseId: courseId,
-            pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+            pagination: { skip: page! * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
           },
         });
 
-        const updatedRemovedResults = data?.results.map((team: Team) => {
+        const updatedRemovedResults = data?.teams.results.map((team: Team) => {
           if (team.id === teamId) {
             return {
               ...team,
@@ -42,6 +42,8 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
           return team;
         });
 
+        console.log(updatedRemovedResults);
+
         cache.writeQuery({
           query: WHOAMI_QUERY,
           data: {
@@ -52,12 +54,14 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
         cache.writeQuery({
           query: TEAMS_QUERY,
           data: {
-            count: data?.count,
-            results: updatedRemovedResults,
+            teams: {
+              count: data?.teams?.count,
+              results: updatedRemovedResults,
+            },
           },
           variables: {
             courseId: courseId,
-            pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+            pagination: { skip: page! * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
           },
         });
       },

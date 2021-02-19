@@ -23,8 +23,22 @@ export const REMOVE_USER_FROM_TEAM_MUTATION = gql`
       teamIds
       teams {
         id
+        password
         number
         courseId
+        socialLink
+        memberIds
+        members {
+          id
+          firstName
+          lastName
+          github
+          telegram
+          discord
+          score
+          country
+          city
+        }
       }
     }
   }

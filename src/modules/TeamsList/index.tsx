@@ -21,6 +21,7 @@ import {
   ACTIVE_MODAL_JOIN,
   ACTIVE_MODAL_CREATE_TEAM,
   ACTIVE_MODAL_CREATED,
+  SET_USER_DATA,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -31,6 +32,7 @@ import {
 } from './selectors';
 import { Team } from 'types';
 import { useAddUserToTeamMutation } from 'hooks/graphql/mutations/useAddUserToTeamMutation';
+import { useRemoveUserFromTeamMutation } from 'hooks/graphql/mutations/useRemoveUserFromTeamMutation';
 
 const password = 'password';
 export const TeamsList: FC = () => {
@@ -49,7 +51,6 @@ export const TeamsList: FC = () => {
   });
   const loading = loadingT;
   const error = errorT;
-  const [teamPassword, setTeamPassword] = useState<string>('');
   const [textJoinModal, setTextJoinModal] = useState<string>(
     'Please enter your team password.'
   );
@@ -60,9 +61,18 @@ export const TeamsList: FC = () => {
 
   const { addUserToTeam } = useAddUserToTeamMutation({
     data: {
-      courseId: currCourse.id,
-      teamPassword: teamPassword,
       userId: userData.id,
+      courseId: currCourse.id,
+      teamPassword: '',
+    },
+  });
+
+  const { removeUserFromTeam } = useRemoveUserFromTeamMutation({
+    data: {
+      teamId: myTeam ? myTeam.id : '',
+      userId: userData.id,
+      courseId: currCourse.id,
+      page: page,
     },
   });
 
@@ -74,8 +84,15 @@ export const TeamsList: FC = () => {
   };
 
   const onSubmitJoinModal = (e: string) => {
-    setTeamPassword(e);
-    addUserToTeam().then((userNew) => {
+    addUserToTeam({
+      variables: {
+        data: {
+          courseId: currCourse.id,
+          userId: userData.id,
+          teamPassword: e,
+        },
+      },
+    }).then((userNew) => {
       if (
         !userNew.data.addUserToTeam.teams ||
         !userNew.data.addUserToTeam.teams.find(
@@ -89,8 +106,19 @@ export const TeamsList: FC = () => {
         );
         setTextJoinModal('Please enter your team password.');
         setUserCourseTeam(myTeam);
+        dispatch({ type: SET_USER_DATA, payload: userNew.data.addUserToTeam });
         dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
       }
+    });
+  };
+
+  const onSubmitLeaveModal = () => {
+    removeUserFromTeam().then((userNew) => {
+      setUserCourseTeam(undefined);
+      dispatch({
+        type: SET_USER_DATA,
+        payload: userNew.data.removeUserFromTeam,
+      });
     });
   };
 
@@ -106,7 +134,7 @@ export const TeamsList: FC = () => {
         title="Leave Team"
         text="Are you sure want to leave team?"
         open={isActiveModalLeave}
-        onSubmit={onSubmit}
+        onSubmit={onSubmitLeaveModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: false })}
         okText="Yes!"
         cancelText="No"
@@ -138,7 +166,10 @@ export const TeamsList: FC = () => {
         text={textJoinModal}
         open={isActiveModalJoin}
         onSubmit={onSubmitJoinModal}
-        onClose={() => dispatch({ type: ACTIVE_MODAL_JOIN, payload: false })}
+        onClose={() => {
+          setTextJoinModal('Please enter your team password.');
+          dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
+        }}
         okText="Join team"
       />
 

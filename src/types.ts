@@ -73,8 +73,8 @@ export type AddUserToTeamInput = {
 export type RemoveUserFromTeamInput = {
   userId: string;
   teamId: string;
-  page: number;
-  courseId: string;
+  page?: number;
+  courseId?: string;
 };
 
 export type CreateTeamInput = {
