@@ -80,6 +80,7 @@ export const PageTitle = styled.h1`
   ${TextBold};
   font-size: ${(props) => props.fontSize || '30px'};
   line-height: ${(props) => props.lineHeight || '45px'};
+  margin-top: 0;
   @media screen and (max-width: 768px) {
     font-size: 24px;
   }

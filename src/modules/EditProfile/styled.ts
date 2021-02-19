@@ -9,7 +9,7 @@ import {
 export const EditProfileWrapper = styled.form`
   background-color: ${WHITE_COLOR};
   width: 680px;
-  padding: 25px 30px;
+  padding: 30px;
   border-radius: 20px;
   @media screen and (max-width: 768px) {
     width: 320px;

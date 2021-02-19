@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { BG_COLOR } from 'appConstants/colors';
+import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
+
+type TPlusButton = {
+  active?: boolean;
+};
 
 export const FieldWrapper = styled.div`
   display: flex;
@@ -26,10 +30,21 @@ export const CourseButton = styled.button`
   cursor: pointer;
 `;
 
-export const PlusButton = styled(CourseButton)`
+export const PlusButton = styled(CourseButton)<TPlusButton>`
   background: ${BG_COLOR}
     url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 1.00024V15.0004' stroke='%237E96C2' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M15 8L0.999838 8' stroke='%237E96C2' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A")
     no-repeat center center;
+  background-color: ${({ active }) => (active ? MAIN1_COLOR : BG_COLOR)}
+};
+
+  @keyframes blink {
+    0% {
+      filter: brightness(100%);
+    }
+    100% {
+      filter: brightness(90%);
+    }
+  }
 `;
 
 export const CrossButton = styled(CourseButton)`

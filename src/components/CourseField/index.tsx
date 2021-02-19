@@ -29,6 +29,7 @@ export const CourseField: FC<SelectFieldProps> = ({
   ...rest
 }) => {
   const [selectedCourse, setSelectedCourse] = useState<any>(0);
+  const [isAddCourse, setAddCourse] = useState(false);
   const courseOptions = courses
     ? courses.map((course: Course) => {
         return (
@@ -47,11 +48,12 @@ export const CourseField: FC<SelectFieldProps> = ({
             placeholder={placeholder}
             ref={register}
             value={selectedCourse.id || 0}
-            onChange={(e: any) =>
+            onChange={(e: any) => {
               setSelectedCourse(
                 courses.find((course: Course) => course.id === e.target.value)
-              )
-            }
+              );
+              setAddCourse(true);
+            }}
             {...rest}
           >
             <option disabled hidden value="0">
@@ -65,8 +67,10 @@ export const CourseField: FC<SelectFieldProps> = ({
             onClick={() => {
               onAdd(selectedCourse);
               setSelectedCourse(0);
+              setAddCourse(false);
             }}
             type="button"
+            active={isAddCourse}
           />
         )}
       </SelectCource>
