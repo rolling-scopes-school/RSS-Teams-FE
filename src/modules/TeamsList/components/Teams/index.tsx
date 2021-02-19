@@ -22,7 +22,7 @@ export const Teams: FC<TeamsProps> = ({
   <>
     <PageTitle>{title}</PageTitle>
     {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
-    {teams.count &&
+    {teams.count !== 0 &&
       teams.results.map((team) => (
         <TeamItem
           key={`team-${team.number}}`}
