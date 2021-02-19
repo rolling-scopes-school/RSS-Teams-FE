@@ -63,6 +63,7 @@ export const EditProfile: FC = () => {
 
   const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
     defaultValues: inputValues,
+    mode: 'onChange',
   });
 
   const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -244,26 +245,6 @@ export const EditProfile: FC = () => {
               },
             })}
           />
-          <div>
-            <UserCoursesListTitle>Course</UserCoursesListTitle>
-            {userCourses.map((item: Course) => {
-              return (
-                <UserCourseListItem key={item.id}>
-                  {item.name}
-                </UserCourseListItem>
-              );
-            })}
-
-            <CourseField
-              name="courses"
-              placeholder="Select course"
-              register={register}
-              multi
-              onAdd={localCourseUpdate}
-              courses={currentCourses}
-              isValid={isValidCoursesList}
-            />
-          </div>
           <InputField
             name="score"
             labelText="Score"
@@ -287,7 +268,28 @@ export const EditProfile: FC = () => {
               },
             })}
           />
+          <div>
+            <UserCoursesListTitle>Course</UserCoursesListTitle>
+            {userCourses.map((item: Course) => {
+              return (
+                <UserCourseListItem key={item.id}>
+                  {item.name}
+                </UserCourseListItem>
+              );
+            })}
+
+            <CourseField
+              name="courses"
+              placeholder="Select course"
+              register={register}
+              multi
+              onAdd={localCourseUpdate}
+              courses={currentCourses}
+              isValid={isValidCoursesList}
+            />
+          </div>
         </InputsWrapper>
+
         <ButtonWrapper>
           {!isUserNew && (
             <Button
