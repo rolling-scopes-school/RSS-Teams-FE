@@ -6,6 +6,7 @@ import {
   ACTIVE_MODAL_JOIN,
   ACTIVE_MODAL_CREATE_TEAM,
   ACTIVE_MODAL_CREATED,
+  SET_TEAM_MEMBER_EXPEL_ID,
 } from 'appConstants';
 import { StateTeamsList } from 'types';
 
@@ -18,6 +19,7 @@ export const teamsListState = {
   isActiveModalJoin: false,
   isActiveModalCreateTeam: false,
   isActiveModalCreated: false,
+  teamMemberExpelId: '',
 };
 
 export const teamsListReducer: Reducer<StateTeamsList, Action> = (
@@ -54,6 +56,11 @@ export const teamsListReducer: Reducer<StateTeamsList, Action> = (
       return {
         ...state,
         isActiveModalCreated: action.payload,
+      };
+    case SET_TEAM_MEMBER_EXPEL_ID:
+      return {
+        ...state,
+        teamMemberExpelId: action.payload,
       };
 
     default:

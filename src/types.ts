@@ -89,6 +89,7 @@ export type StateTeamsList = {
   isActiveModalJoin: boolean;
   isActiveModalCreateTeam: boolean;
   isActiveModalCreated: boolean;
+  teamMemberExpelId: string;
 };
 
 export type StateStudentsTable = {

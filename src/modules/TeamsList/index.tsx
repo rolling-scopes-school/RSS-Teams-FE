@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, SyntheticEvent, useState } from 'react';
 import { useTeamsQuery } from 'hooks/graphql';
 import {
   Loader,
@@ -29,10 +29,12 @@ import {
   selectIsActiveModalExpel,
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
+  selectTeamMemberExpelId,
 } from './selectors';
 import { Team } from 'types';
 import { useAddUserToTeamMutation } from 'hooks/graphql/mutations/useAddUserToTeamMutation';
 import { useRemoveUserFromTeamMutation } from 'hooks/graphql/mutations/useRemoveUserFromTeamMutation';
+import { useExpelUserFromTeamMutation } from 'hooks/graphql/mutations/useExpelUserFromTeamMutation';
 
 const password = 'password';
 export const TeamsList: FC = () => {
@@ -44,6 +46,7 @@ export const TeamsList: FC = () => {
   const isActiveModalJoin = useSelector(selectIsActiveModalJoin);
   const isActiveModalCreateTeam = useSelector(selectIsActiveModalCreateTeam);
   const isActiveModalCreated = useSelector(selectIsActiveModalCreated);
+  const teamMemberId = useSelector(selectTeamMemberExpelId);
   const dispatch = useDispatch();
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId: currCourse.id,
@@ -54,10 +57,6 @@ export const TeamsList: FC = () => {
   const [textJoinModal, setTextJoinModal] = useState<string>(
     'Please enter your team password.'
   );
-  let myTeam = userData.teams
-    ? userData.teams.find((team: Team) => team.courseId === currCourse.id)
-    : undefined;
-  const [userCourseTeam, setUserCourseTeam] = useState(myTeam);
 
   const { addUserToTeam } = useAddUserToTeamMutation({
     data: {
@@ -69,8 +68,23 @@ export const TeamsList: FC = () => {
 
   const { removeUserFromTeam } = useRemoveUserFromTeamMutation({
     data: {
-      teamId: myTeam ? myTeam.id : '',
+      teamId: userData.teams.length
+        ? userData.teams.find((team: Team) => team.courseId === currCourse.id)!
+            .id
+        : '',
       userId: userData.id,
+      courseId: currCourse.id,
+      page: page,
+    },
+  });
+
+  const { expelUserFromTeam } = useExpelUserFromTeamMutation({
+    data: {
+      teamId: userData.teams.length
+        ? userData.teams.find((team: Team) => team.courseId === currCourse.id)!
+            .id
+        : '',
+      userId: teamMemberId,
       courseId: currCourse.id,
       page: page,
     },
@@ -101,11 +115,7 @@ export const TeamsList: FC = () => {
       ) {
         setTextJoinModal('Wrong password!');
       } else {
-        myTeam = userNew.data.addUserToTeam.teams.find(
-          (team: Team) => team.courseId === currCourse.id
-        );
         setTextJoinModal('Please enter your team password.');
-        setUserCourseTeam(myTeam);
         dispatch({ type: SET_USER_DATA, payload: userNew.data.addUserToTeam });
         dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
       }
@@ -114,7 +124,6 @@ export const TeamsList: FC = () => {
 
   const onSubmitLeaveModal = () => {
     removeUserFromTeam().then((userNew) => {
-      setUserCourseTeam(undefined);
       dispatch({
         type: SET_USER_DATA,
         payload: userNew.data.removeUserFromTeam,
@@ -122,11 +131,25 @@ export const TeamsList: FC = () => {
     });
   };
 
+  const onSubmitExpelModal = () => {
+    expelUserFromTeam();
+  };
+
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
   return (
     <>
       <StyledTeams>
-        <Teams teams={teams} myTeam={userCourseTeam} userId={userData.id} />
+        <Teams
+          teams={teams}
+          myTeam={
+            userData.teams.length
+              ? userData.teams.find(
+                  (team: Team) => team.courseId === currCourse.id
+                )
+              : undefined
+          }
+          userId={userData.id}
+        />
         <Pagination pageCount={pageCount} changePage={setPage} page={page} />
       </StyledTeams>
 
@@ -144,7 +167,7 @@ export const TeamsList: FC = () => {
         title="Expel User"
         text="Are you sure want to expel user?"
         open={isActiveModalExpel}
-        onSubmit={onSubmit}
+        onSubmit={onSubmitExpelModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
         okText="Yes!"
         cancelText="No"

@@ -43,6 +43,24 @@ const client = new ApolloClient({
           },
         },
       },
+      Team: {
+        fields: {
+          members: {
+            merge(_, incoming) {
+              return incoming;
+            },
+          },
+        },
+      },
+      Query: {
+        fields: {
+          teams: {
+            merge(_, incoming) {
+              return incoming;
+            },
+          },
+        },
+      },
     },
   }),
   connectToDevTools: true,

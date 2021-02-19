@@ -8,17 +8,17 @@ type Props = {
   data: RemoveUserFromTeamInput;
 };
 
-export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
+export const useExpelUserFromTeamMutation = ({ data }: Props) => {
   const { teamId, page, userId, courseId } = data;
   const dataForMutation = { userId, teamId };
-  const [removeUserFromTeam, { loading }] = useMutation(
+  const [expelUserFromTeam, { loading }] = useMutation(
     REMOVE_USER_FROM_TEAM_MUTATION,
     {
       variables: {
         data: dataForMutation,
       },
 
-      update(cache, { data: { removeUserFromTeam } }) {
+      update(cache, { data: { expelUserFromTeam } }) {
         const data: { teams: TeamList } | null = cache.readQuery({
           query: TEAMS_QUERY,
           variables: {
@@ -42,10 +42,32 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
           return team;
         });
 
+        const userData: { whoAmI: User } | null = cache.readQuery({
+          query: WHOAMI_QUERY,
+        });
+
+        const updatedTeams = (userData?.whoAmI.teams as Team[]).map(
+          (team: Team) => {
+            if (team.id === teamId) {
+              return {
+                ...team,
+                members: team.members.filter(
+                  (member: User) => member.id !== userId
+                ),
+                memberIds: team.memberIds.filter(
+                  (memberId: string) => memberId !== userId
+                ),
+              };
+            }
+            return team;
+          }
+        );
+
         cache.writeQuery({
           query: WHOAMI_QUERY,
           data: {
-            removeUserFromTeam,
+            ...userData,
+            teams: updatedTeams,
           },
         });
 
@@ -66,7 +88,7 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
     }
   );
   return {
-    removeUserFromTeam,
+    expelUserFromTeam,
     loadingM: loading,
   };
 };
