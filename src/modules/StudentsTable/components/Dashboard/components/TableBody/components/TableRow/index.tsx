@@ -9,13 +9,16 @@ type TableItemProps = {
 };
 
 export const TableRow: FC<TableItemProps> = ({ index, style, data }) => {
+  const optimalItemIndexCount = 2;
   return (
     <StyledTableRow key={`TableRowKey-${index}`} style={style}>
       {data[index].map((item: string, ind: number) => (
         <TableItem
           item={item}
           index={ind}
-          dataLength={index / (data.length - 1)}
+          dataLength={
+            index > optimalItemIndexCount ? index / (data.length - 1) : 0
+          }
           key={`TableItemKey-${ind}`}
         />
       ))}
