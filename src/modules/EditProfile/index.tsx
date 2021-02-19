@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { Loader, InputField, CourseField } from 'components';
@@ -18,7 +18,7 @@ import {
   UserCoursesListTitle,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import { CURRENT_YEAR } from 'appConstants';
+import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
 import { UserCourseListItem } from './components/UserCourseListItem';
 
 export interface IOldCourses extends Course {
@@ -36,7 +36,6 @@ export const EditProfile: FC = () => {
   });
 
   const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
-  // const [userCourses, setUserCourses] = useState<Course[]>(userData.courses);
   const { loading, courses } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
@@ -63,6 +62,8 @@ export const EditProfile: FC = () => {
 
   const [isValidCoursesList, setValidCoursesList] = useState(true);
 
+  const dispatch = useDispatch();
+
   const isUserNew = userData.telegram === null;
 
   const currentCourses = courses
@@ -87,8 +88,10 @@ export const EditProfile: FC = () => {
 
   const onSubmit = () => {
     if (userCourses.length) {
-      updateUser();
-      history.push('/');
+      updateUser().then((data) => {
+        dispatch({ type: SET_USER_DATA, payload: data.data.updateUser });
+        history.push('/');
+      });
     } else {
       setValidCoursesList(false);
     }
@@ -320,7 +323,6 @@ export const EditProfile: FC = () => {
             />
           </div>
         </InputsWrapper>
-
         <ButtonWrapper>
           {!isUserNew && (
             <Button

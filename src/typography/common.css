@@ -7,6 +7,7 @@
 :root {
   --BG_COLOR: #f2f8fd;
   --OVERLAY_COLOR: rgba(54, 61, 72, 0.3);
+  --SCROLL_THUMB_COLOR: #1e33570d;
   --WHITE_COLOR: #ffffff;
 }
 
