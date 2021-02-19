@@ -78,6 +78,11 @@ export type RemoveUserFromTeamInput = {
   courseId: string;
 };
 
+export type CreateTeamInput = {
+  socialLink: string;
+  courseId: string;
+};
+
 export type StateTeamsList = {
   teams: Team[];
 };

@@ -8,7 +8,7 @@ type Props = {
   data: RemoveUserFromTeamInput;
 };
 
-export const useRemoveUseFromTeamMutation = ({ data }: Props) => {
+export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
   const { teamId, page, userId, courseId } = data;
   const dataForMutation = { userId, teamId };
   const [removeUserFromTeam, { loading }] = useMutation(
