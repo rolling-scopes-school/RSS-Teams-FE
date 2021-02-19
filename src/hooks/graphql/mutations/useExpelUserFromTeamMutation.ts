@@ -18,12 +18,12 @@ export const useExpelUserFromTeamMutation = ({ data }: Props) => {
         data: dataForMutation,
       },
 
-      update(cache, { data: { expelUserFromTeam } }) {
+      update(cache, { data: {} }) {
         const data: { teams: TeamList } | null = cache.readQuery({
           query: TEAMS_QUERY,
           variables: {
             courseId: courseId,
-            pagination: { skip: page! * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+            pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
           },
         });
 
@@ -81,7 +81,7 @@ export const useExpelUserFromTeamMutation = ({ data }: Props) => {
           },
           variables: {
             courseId: courseId,
-            pagination: { skip: page! * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+            pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
           },
         });
       },
