@@ -17,14 +17,14 @@ export type User = {
   teams: Team[] | [];
 };
 
-export type Course = {
+export interface Course {
   id: string;
   name: string;
   teamIds?: string[];
   userIds?: string[];
   teams?: Team[];
   users?: User[];
-};
+}
 
 export type Team = {
   id: string;
