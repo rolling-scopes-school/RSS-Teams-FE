@@ -8,7 +8,7 @@ export const UserCourseListItemStyled = styled.div`
   div {
     flex-grow: 1;
     padding: 8px 15px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 10px;
     background-color: ${BG_COLOR};
     color: ${DARK_TEXT_COLOR};

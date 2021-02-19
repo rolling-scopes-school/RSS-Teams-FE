@@ -32,6 +32,7 @@ export const InputsWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 10px;
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
