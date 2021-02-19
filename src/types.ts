@@ -84,7 +84,12 @@ export type CreateTeamInput = {
 };
 
 export type StateTeamsList = {
-  teams: Team[];
+  teams: Team[] | [];
+  isActiveModalExpel: boolean;
+  isActiveModalLeave: boolean;
+  isActiveModalJoin: boolean;
+  isActiveModalCreateTeam: boolean;
+  isActiveModalCreated: boolean;
 };
 
 export type StateStudentsTable = {
