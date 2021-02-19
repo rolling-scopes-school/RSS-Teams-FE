@@ -25,8 +25,7 @@ export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
-  // const [userCourses, setUserCourses] = useState<Course[]>(userData.courses);
-  const [userCourses, setUserCourses] = useState<Course[]>([]);
+  const [userCourses, setUserCourses] = useState<Course[]>(userData.courses);
   const { loading, courses } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
