@@ -9,7 +9,7 @@ export const FieldWrapper = styled.div`
 
 export const SelectCource = styled.div`
   width: 300px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

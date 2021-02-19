@@ -9,7 +9,6 @@ import { Team } from 'types';
 import { MembersListToggle } from '../MemberListToggle';
 import { MyTeamInfoBlock } from './components/MyTeamInfoBlock';
 import { TeamUserTable } from '../TeamUserTable';
-import { type } from 'os';
 
 type MyTeamProps = {
   team: Team;

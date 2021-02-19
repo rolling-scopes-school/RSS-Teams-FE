@@ -5,7 +5,7 @@ import { Label } from 'typography';
 export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 `;
 
 export const ValidationAlert = styled.div`

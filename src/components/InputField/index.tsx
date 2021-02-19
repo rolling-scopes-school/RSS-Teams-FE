@@ -3,12 +3,12 @@ import { Input } from 'typography';
 import { FieldWrapper, ValidationAlert, FLabel } from './styled';
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  labelText: string;
-  placeholder: string;
-  register: any;
-  name: string;
+  labelText?: string;
+  placeholder?: string;
+  register?: any;
+  name?: string;
   message?: string | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputField: FC<InputFieldProps> = ({
