@@ -21,7 +21,9 @@ export const MembersListToggle: FC<MembersListToggle> = ({
       }}
       color={color}
     >
-      <div>{countMembers} members</div>
+      <div>
+        {countMembers || 0} {countMembers === 1 ? 'member' : 'members'}
+      </div>
       <Chevron open={isOpen} />
     </MembersListToggleStyled>
   );

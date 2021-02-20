@@ -2,7 +2,7 @@ import React, { FC, InputHTMLAttributes } from 'react';
 import { Input } from 'typography';
 import { FieldWrapper, ValidationAlert, FLabel } from './styled';
 
-interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   labelText?: string;
   placeholder?: string;
   register?: any;

@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const WHOAMI_QUERY = gql`
-  query getWhoAMi {
-    whoAmI {
+export const ADD_USER_TO_TEAM_MUTATION = gql`
+  mutation addUserToTeam($data: AddUserToTeamInput!) {
+    addUserToTeam(data: $data) {
       id
       firstName
       lastName
