@@ -19,11 +19,10 @@ import {
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
-import { UserCourseListItem } from './components/UserCourseListItem';
-
-export interface IOldCourses extends Course {
-  isNew: boolean;
-}
+import {
+  IOldCourses,
+  UserCourseListItem,
+} from './components/UserCourseListItem';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
