@@ -10,7 +10,7 @@ export type User = {
   city: string;
   avatar: string;
   isAdmin: boolean;
-  courses: Course[] | [];
+  courses: Course[];
   email: string | null;
   courseIds: string[];
   teamIds: string[];
