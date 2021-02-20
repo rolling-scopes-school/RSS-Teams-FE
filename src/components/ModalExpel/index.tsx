@@ -22,7 +22,9 @@ export const ModalExpel: FC<Props> = ({
 }) => {
   const onSubmitModal = () => {
     onClose();
-    if (onSubmit) onSubmit();
+    if (onSubmit) {
+      onSubmit();
+    }
   };
 
   return (

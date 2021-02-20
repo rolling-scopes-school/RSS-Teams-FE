@@ -23,7 +23,7 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
           query: TEAMS_QUERY,
           variables: {
             courseId: courseId,
-            pagination: { skip: page! * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+            pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
           },
         });
 
@@ -61,7 +61,7 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
           },
           variables: {
             courseId: courseId,
-            pagination: { skip: page! * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+            pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
           },
         });
       },

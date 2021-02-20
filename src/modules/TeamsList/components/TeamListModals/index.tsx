@@ -55,10 +55,9 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
 
   const { removeUserFromTeam } = useRemoveUserFromTeamMutation({
     data: {
-      teamId: userData.teams.length
-        ? userData.teams.find((team: Team) => team.courseId === currCourse.id)!
-            .id
-        : '',
+      teamId:
+        userData.teams.find((team: Team) => team.courseId === currCourse.id)
+          ?.id ?? '',
       userId: userData.id,
       courseId: currCourse.id,
       page: page,
@@ -67,10 +66,9 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
 
   const { expelUserFromTeam } = useExpelUserFromTeamMutation({
     data: {
-      teamId: userData.teams.length
-        ? userData.teams.find((team: Team) => team.courseId === currCourse.id)!
-            .id
-        : '',
+      teamId:
+        userData.teams.find((team: Team) => team.courseId === currCourse.id)
+          ?.id ?? '',
       userId: teamMemberId,
       courseId: currCourse.id,
       page: page,

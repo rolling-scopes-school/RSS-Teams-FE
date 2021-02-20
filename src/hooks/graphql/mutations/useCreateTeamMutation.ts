@@ -21,24 +21,31 @@ export const useCreateTeamMutation = ({ team }: Props) => {
         query: TEAMS_QUERY,
         variables: {
           courseId: courseId,
-          pagination: { skip: page! * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+          pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
         },
       });
       const userData: { whoAmI: User } | null = cache.readQuery({
         query: WHOAMI_QUERY,
       });
-      const updatedResults = data!.teams
-        ? [...data!.teams?.results, createTeam]
+
+      const updatedResults = data?.teams
+        ? [...data?.teams?.results, createTeam]
         : [createTeam];
+
+      const updatedUser = {
+        ...userData?.whoAmI,
+        teams: userData?.whoAmI?.teams
+          ? [...userData?.whoAmI?.teams, createTeam]
+          : [createTeam],
+        teamIds: userData?.whoAmI?.teamIds
+          ? [...userData?.whoAmI?.teamIds, createTeam.id]
+          : [createTeam.id],
+      };
 
       cache.writeQuery({
         query: WHOAMI_QUERY,
         data: {
-          whoAmI: {
-            ...userData?.whoAmI,
-            teams: [...userData!.whoAmI.teams, createTeam],
-            teamIds: [...userData!.whoAmI.teamIds, createTeam.id],
-          },
+          whoAmI: updatedUser,
         },
       });
 
@@ -52,7 +59,7 @@ export const useCreateTeamMutation = ({ team }: Props) => {
         },
         variables: {
           courseId: courseId,
-          pagination: { skip: page! * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
+          pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
         },
       });
     },
