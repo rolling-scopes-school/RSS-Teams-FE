@@ -5,7 +5,6 @@ import {
   BG_COLOR,
   MAIN1_COLOR,
   DARK_TEXT_COLOR,
-  DASHBOARD_HEADER_BG_COLOR,
   LIGHT_TEXT_COLOR,
 } from 'appConstants/colors';
 
