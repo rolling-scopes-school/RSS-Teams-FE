@@ -13,12 +13,15 @@ export const InfoLineStyled = styled.div<TInfoLineStyled>`
   display: flex;
   align-items: center;
   border-radius: 5px;
-  animation: ${({ blink }) => (blink ? 'blink 1s' : 'none')};
 
   .info__text {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    animation: ${({ blink }) => (blink ? 'blink 1s' : 'none')};
+    border-radius: 3px;
+    padding: 0 7px;
+    margin-left: -7px;
   }
 
   @keyframes blink {
@@ -36,5 +39,5 @@ export const CopyClipboardButton = styled(CopyIcon)`
   height: 16px;
   min-width: 16px;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 3px;
 `;
