@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const WHOAMI_QUERY = gql`
-  query getWhoAMi {
-    whoAmI {
+export const REMOVE_USER_FROM_TEAM_MUTATION = gql`
+  mutation removeUserFromTeam($data: RemoveUserFromTeamInput!) {
+    removeUserFromTeam(data: $data) {
       id
       firstName
       lastName

@@ -5,6 +5,7 @@ import {
   BG_COLOR,
   MAIN1_COLOR,
   DARK_TEXT_COLOR,
+  DASHBOARD_HEADER_BG_COLOR,
   LIGHT_TEXT_COLOR,
 } from 'appConstants/colors';
 
@@ -24,10 +25,15 @@ type TRSLogoProps = {
   login: string | null;
 };
 
+type ModalInputProps = {
+  blink?: boolean;
+};
+
 export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   width: 84px;
   height: 30px;
   margin-top: 5px;
+  margin-bottom: 22%;
   path {
     fill: ${({ login }) => (login ? WHITE_COLOR : DARK_TEXT_COLOR)};
   }
@@ -43,10 +49,12 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   @media (max-width: 549px) and (min-width: 440px) {
     width: 72px;
     height: 22px;
+    margin-bottom: 0;
   }
   @media (max-width: 439px) and (min-width: 320px) {
     width: 70px;
     height: 20px;
+    margin-bottom: -1%;
   }
 `;
 
@@ -80,6 +88,7 @@ export const PageTitle = styled.h1`
   ${TextBold};
   font-size: ${(props) => props.fontSize || '30px'};
   line-height: ${(props) => props.lineHeight || '45px'};
+  margin-top: 0;
   @media screen and (max-width: 768px) {
     font-size: 24px;
   }
@@ -142,7 +151,17 @@ export const Input = styled.input`
   }
 `;
 
-export const ModalInput = styled(Input)`
+export const ModalInput = styled(Input)<ModalInputProps>`
+  @keyframes blinkInput {
+    from {
+      background-color: rgb(101, 80, 246, 0.5);
+    }
+    to {
+      background-color: ${BG_COLOR};
+    }
+  }
+
+  animation: ${({ blink }) => (blink ? 'blinkInput 1s' : 'none')};
   margin-top: 20px;
 `;
 

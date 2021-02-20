@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Modal } from 'components';
 import { ModalInput, InvertedButton } from 'typography';
@@ -31,17 +31,6 @@ const defaultProps = {
   text2: '',
 };
 
-const CopyToClipboard = (text: string) => {
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      console.log('copied');
-    })
-    .catch((err) => {
-      console.log('Something went wrong', err);
-    });
-};
-
 export const ModalCreated: FC<Props> = ({
   title,
   text,
@@ -51,6 +40,22 @@ export const ModalCreated: FC<Props> = ({
   onClose,
   password,
 }) => {
+  const [isCopy, setIsCopy] = useState(false);
+
+  const CopyToClipboard = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setIsCopy(true);
+        setTimeout(() => {
+          setIsCopy(false);
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log('Something went wrong', err);
+      });
+  };
+
   return (
     <Modal
       {...{ title, text, text2, open, onClose, cancelText }}
@@ -58,7 +63,12 @@ export const ModalCreated: FC<Props> = ({
       hideOnEsc={true}
     >
       <InputWithCopy>
-        <ModalInput name="InputValue" value={password} readOnly />
+        <ModalInput
+          name="InputValue"
+          value={password}
+          readOnly
+          blink={isCopy}
+        />
         <CopyButton onClick={() => CopyToClipboard(password)} />
       </InputWithCopy>
     </Modal>

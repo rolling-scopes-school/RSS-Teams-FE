@@ -1,9 +1,11 @@
 import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { StyledMyTeamInfoBlock, InfoButton } from './styled';
 import { MyTeamInfoLine } from './components/MyTeamInfoLine';
 import { ReactComponent as InfoIcon } from 'assets/svg/info.svg';
 import { ReactComponent as EditIcon } from 'assets/svg/edit.svg';
 import NotificationPopup from './components/NotificationPopup';
+import { ACTIVE_MODAL_UPDATE_SOCIAL_LINK } from 'appConstants';
 
 type MyTeamInfoBlockProps = {
   title: string;
@@ -16,6 +18,7 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
   icon,
   value,
 }) => {
+  const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
   return (
     <StyledMyTeamInfoBlock>
@@ -35,7 +38,11 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
         </InfoButton>
       ) : (
         <InfoButton onClick={() => console.log('Info notification')}>
-          <EditIcon />
+          <EditIcon
+            onClick={() =>
+              dispatch({ type: ACTIVE_MODAL_UPDATE_SOCIAL_LINK, payload: true })
+            }
+          />
         </InfoButton>
       )}
     </StyledMyTeamInfoBlock>
