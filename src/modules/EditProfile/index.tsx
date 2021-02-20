@@ -29,12 +29,10 @@ export const EditProfile: FC = () => {
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
 
-  const oldCourses: IOldCourses[] = (userData.courses as Course[]).map(
-    (course: Course) => ({
-      ...course,
-      isNew: true,
-    })
-  );
+  const oldCourses: IOldCourses[] = userData.courses.map((course: Course) => ({
+    ...course,
+    isNew: true,
+  }));
 
   const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
   const { loading, courses } = useCoursesQuery();
