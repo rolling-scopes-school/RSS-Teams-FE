@@ -10,7 +10,7 @@ type Props = {
 export const useAddUserToTeamMutation = ({ data }: Props) => {
   const [addUserToTeam, { loading }] = useMutation(ADD_USER_TO_TEAM_MUTATION, {
     variables: {
-      data: data,
+      data,
     },
 
     update(cache, { data: { addUserToTeam } }) {

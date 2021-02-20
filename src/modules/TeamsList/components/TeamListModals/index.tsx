@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   ModalExpel,
   ModalJoin,
@@ -22,11 +23,13 @@ import {
   selectTeamMemberExpelId,
 } from '../../selectors';
 import { Team } from 'types';
-import { useAddUserToTeamMutation } from 'hooks/graphql/mutations/useAddUserToTeamMutation';
-import { useRemoveUserFromTeamMutation } from 'hooks/graphql/mutations/useRemoveUserFromTeamMutation';
-import { useExpelUserFromTeamMutation } from 'hooks/graphql/mutations/useExpelUserFromTeamMutation';
-import { useCreateTeamMutation } from 'hooks/graphql/mutations/useCreateTeamMutation';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  useAddUserToTeamMutation,
+  useRemoveUserFromTeamMutation,
+  useExpelUserFromTeamMutation,
+  useCreateTeamMutation,
+} from 'hooks/graphql';
+
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 
@@ -34,7 +37,8 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const [textJoinModal, setTextJoinModal] = useState<string>(
     'Please enter your team password.'
   );
-  const [teamPassword, setTeamPassword] = useState<string>('');
+  const [teamPassword, setTeamPassword] = useState<string>(''); // move to redux
+  console.log('🚀 ~ file: index.tsx ~ line 41 ~ teamPassword', teamPassword);
   const dispatch = useDispatch();
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
@@ -49,7 +53,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     data: {
       userId: userData.id,
       courseId: currCourse.id,
-      teamPassword: '',
+      teamPassword,
     },
   });
 
@@ -84,27 +88,18 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     },
   });
 
-  const onSubmitJoinModal = (e: string) => {
-    addUserToTeam({
-      variables: {
-        data: {
-          courseId: currCourse.id,
-          userId: userData.id,
-          teamPassword: e,
-        },
-      },
-    }).then((userNew) => {
-      if (
-        !userNew.data.addUserToTeam.teams ||
-        !userNew.data.addUserToTeam.teams.find(
-          (team: Team) => team.password === e
-        )
-      ) {
+  const onSubmitJoinModal = async (e: string) => {
+    addUserToTeam().then(({ data: { addUserToTeam } }) => {
+      const isPasswordIncorrect =
+        !addUserToTeam.teams ||
+        !addUserToTeam.teams.find((team: Team) => team.password === e);
+      if (isPasswordIncorrect) {
         setTextJoinModal('Wrong password!');
       } else {
         setTextJoinModal('Please enter your team password.');
-        dispatch({ type: SET_USER_DATA, payload: userNew.data.addUserToTeam });
+        dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
         dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
+        setTeamPassword('');
       }
     });
   };
@@ -172,6 +167,8 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         text={textJoinModal}
         open={isActiveModalJoin}
         onSubmit={onSubmitJoinModal}
+        onChange={setTeamPassword}
+        value={teamPassword}
         onClose={() => {
           setTextJoinModal('Please enter your team password.');
           dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });

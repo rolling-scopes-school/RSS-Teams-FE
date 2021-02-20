@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Modal } from 'components';
 import { ModalInput } from 'typography';
 
@@ -8,6 +8,8 @@ type Props = {
   open: boolean;
   onSubmit?: (e: string) => void;
   onClose: () => void;
+  onChange: any;
+  value: string;
   okText?: string;
   cancelText?: string;
 };
@@ -17,24 +19,26 @@ export const ModalJoin: FC<Props> = ({
   text,
   open,
   okText,
+  value,
+  onChange,
   cancelText,
   onClose,
   onSubmit,
 }) => {
-  const [inputValue, setInputValue] = useState<string>('');
-  useEffect(() => {
-    setInputValue('');
-  }, [open]);
+  // const [inputValue, setInputValue] = useState<string>('');
+  // useEffect(() => {
+  //   setInputValue('');
+  // }, [open]);
 
   const onSubmitModal = () => {
-    if (onSubmit && inputValue) {
-      onSubmit(inputValue);
+    if (onSubmit && value) {
+      onSubmit(value);
     }
   };
 
-  const InputChange = (e: any) => {
-    setInputValue(e.target.value);
-  };
+  // const InputChange = (e: any) => {
+  //   setInputValue(e.target.value);
+  // };
 
   return (
     <Modal
@@ -47,8 +51,8 @@ export const ModalJoin: FC<Props> = ({
         placeholder="Enter team password"
         name="InputValue"
         required
-        value={inputValue}
-        onChange={InputChange}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         type="password"
       />
     </Modal>
