@@ -15,17 +15,27 @@ import {
   InputsWrapper,
   ButtonWrapper,
   FormWrapper,
-  UserCourseListItem,
   UserCoursesListTitle,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
+import { UserCourseListItem } from './components/UserCourseListItem';
+
+export interface IOldCourses extends Course {
+  isNew: boolean;
+}
 
 export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
-  const [userCourses, setUserCourses] = useState<Course[]>(userData.courses);
+
+  const oldCourses: IOldCourses[] = [...userData.courses].map((course) => {
+    const orgCourse: IOldCourses = { ...course, isNew: true };
+    return orgCourse;
+  });
+
+  const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
   const { loading, courses } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
@@ -65,6 +75,7 @@ export const EditProfile: FC = () => {
 
   const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
     defaultValues: inputValues,
+    mode: 'onChange',
   });
 
   const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -86,20 +97,36 @@ export const EditProfile: FC = () => {
     }
   };
 
-  const localCourseUpdate = (course: Course) => {
+  const localCourseUpdate = (course: IOldCourses) => {
     if (course) {
       setUserCourses([...userCourses, course]);
       setValidCoursesList(true);
     }
   };
 
+  const localCourseSub = (course: IOldCourses) => {
+    if (course) {
+      const copyCourses: IOldCourses[] = [...userCourses];
+
+      const index = copyCourses.findIndex((item: IOldCourses) => {
+        return item.id === course.id;
+      });
+
+      if (index >= 0) {
+        copyCourses.splice(index, 1);
+      }
+
+      setUserCourses([...copyCourses]);
+      setValidCoursesList(true);
+    }
+  };
   useEffect(() => {
     if (userData.id !== '' && !inputValues.id) {
       setInputValues(defaultData);
-      setUserCourses(userData.courses);
+      setUserCourses(oldCourses);
       reset(defaultData);
     }
-  }, [reset, inputValues, defaultData, userData]);
+  }, [reset, inputValues, defaultData, userData, oldCourses]);
 
   if (!loginToken) return <Redirect to={'/login'} />;
   if (loading || loadingM) return <Loader />;
@@ -248,26 +275,6 @@ export const EditProfile: FC = () => {
               },
             })}
           />
-          <div>
-            <UserCoursesListTitle>Course</UserCoursesListTitle>
-            {userCourses.map((item: Course) => {
-              return (
-                <UserCourseListItem key={item.id}>
-                  {item.name}
-                </UserCourseListItem>
-              );
-            })}
-
-            <CourseField
-              name="courses"
-              placeholder="Select course"
-              register={register}
-              multi
-              onAdd={localCourseUpdate}
-              courses={currentCourses}
-              isValid={isValidCoursesList}
-            />
-          </div>
           <InputField
             name="score"
             labelText="Score"
@@ -291,6 +298,30 @@ export const EditProfile: FC = () => {
               },
             })}
           />
+          <div>
+            <UserCoursesListTitle>Course</UserCoursesListTitle>
+            {userCourses.map((item: IOldCourses) => {
+              return (
+                <UserCourseListItem
+                  key={item.id}
+                  deleteButton={item.isNew}
+                  course={item}
+                  onSub={localCourseSub}
+                >
+                  {item.name}
+                </UserCourseListItem>
+              );
+            })}
+            <CourseField
+              name="courses"
+              placeholder="Select course"
+              register={register}
+              multi
+              onAdd={localCourseUpdate}
+              courses={currentCourses}
+              isValid={isValidCoursesList}
+            />
+          </div>
         </InputsWrapper>
         <ButtonWrapper>
           {!isUserNew && (
