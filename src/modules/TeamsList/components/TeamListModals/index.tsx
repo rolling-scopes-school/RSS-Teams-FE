@@ -105,10 +105,10 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   };
 
   const onSubmitLeaveModal = () => {
-    removeUserFromTeam().then((userNew) => {
+    removeUserFromTeam().then(({ data: { removeUserFromTeam } }) => {
       dispatch({
         type: SET_USER_DATA,
-        payload: userNew.data.removeUserFromTeam,
+        payload: removeUserFromTeam,
       });
     });
   };
@@ -116,7 +116,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const onSubmitExpelModal = () => {
     expelUserFromTeam();
   };
-
+  // TODO : MAKE SYNC WITH input
   const onSubmitCreateTeam = (e: string) => {
     createTeam({
       variables: {
@@ -126,8 +126,8 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
           ownerId: userData.id,
         },
       },
-    }).then((newTeam) => {
-      setTeamPassword(newTeam.data.createTeam.password);
+    }).then(({ data: { createTeam } }) => {
+      setTeamPassword(createTeam.password);
       dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
     });
   };
