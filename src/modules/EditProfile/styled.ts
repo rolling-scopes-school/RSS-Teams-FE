@@ -5,11 +5,12 @@ import {
   LIGHT_TEXT_COLOR,
   WHITE_COLOR,
 } from 'appConstants/colors';
+import { PageTitle } from '../../typography';
 
 export const EditProfileWrapper = styled.form`
   background-color: ${WHITE_COLOR};
   width: 680px;
-  padding: 25px 30px;
+  padding: 30px;
   border-radius: 20px;
   @media screen and (max-width: 768px) {
     width: 320px;
@@ -30,6 +31,11 @@ export const FormWrapper = styled.div`
     align-items: center;
     height: auto;
   }
+`;
+
+export const FormTitle = styled(PageTitle)`
+  margin-top: 0;
+  margin-bottom: 32px;
 `;
 
 export const InputsWrapper = styled.div`
