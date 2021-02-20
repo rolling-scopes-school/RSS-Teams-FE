@@ -19,21 +19,22 @@ import {
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
-import { UserCourseListItem } from './components/UserCourseListItem';
-
-export interface IOldCourses extends Course {
-  isNew: boolean;
-}
+import {
+  IOldCourses,
+  UserCourseListItem,
+} from './components/UserCourseListItem';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
 
-  const oldCourses: IOldCourses[] = [...userData.courses].map((course) => {
-    const orgCourse: IOldCourses = { ...course, isNew: true };
-    return orgCourse;
-  });
+  const oldCourses: IOldCourses[] = (userData.courses as Course[]).map(
+    (course: Course) => ({
+      ...course,
+      isNew: true,
+    })
+  );
 
   const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
   const { loading, courses } = useCoursesQuery();
