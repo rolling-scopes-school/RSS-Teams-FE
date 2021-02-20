@@ -55,11 +55,11 @@ export const ButtonWrapper = styled.div`
 
 export const UserCoursesListTitle = styled.div`
   color: ${LIGHT_TEXT_COLOR};
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 `;
 export const UserCourseListItem = styled.div`
   padding: 8px 15px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 10px;
   background-color: ${BG_COLOR};
   color: ${DARK_TEXT_COLOR};
