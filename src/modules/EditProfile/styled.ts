@@ -5,7 +5,7 @@ import {
   LIGHT_TEXT_COLOR,
   WHITE_COLOR,
 } from 'appConstants/colors';
-import { PageTitle } from '../../typography';
+import { PageTitle } from 'typography';
 
 export const EditProfileWrapper = styled.form`
   background-color: ${WHITE_COLOR};
@@ -43,6 +43,7 @@ export const InputsWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 10px;
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
@@ -57,6 +58,7 @@ export const UserCoursesListTitle = styled.div`
   color: ${LIGHT_TEXT_COLOR};
   margin-bottom: 10px;
 `;
+
 export const UserCourseListItem = styled.div`
   padding: 8px 15px;
   margin-bottom: 20px;
