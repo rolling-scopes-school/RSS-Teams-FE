@@ -64,6 +64,26 @@ export type UpdateUserInput = {
   courseIds: string[];
 };
 
+export type AddUserToTeamInput = {
+  userId: string;
+  courseId: string;
+  teamPassword: string;
+};
+
+export type RemoveUserFromTeamInput = {
+  userId: string;
+  teamId: string;
+  page: number;
+  courseId: string;
+};
+
+export type CreateTeamInput = {
+  socialLink: string;
+  courseId: string;
+  ownerId: string;
+  page: number;
+};
+
 export type StateTeamsList = {
   teams: Team[] | [];
   isActiveModalExpel: boolean;
@@ -71,6 +91,7 @@ export type StateTeamsList = {
   isActiveModalJoin: boolean;
   isActiveModalCreateTeam: boolean;
   isActiveModalCreated: boolean;
+  teamMemberExpelId: string;
 };
 
 export type StateStudentsTable = {

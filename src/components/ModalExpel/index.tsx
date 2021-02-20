@@ -5,7 +5,7 @@ type Props = {
   title: string;
   text: string;
   open: boolean;
-  onSubmit?: (e: string) => void;
+  onSubmit?: () => void;
   onClose: () => void;
   okText?: string;
   cancelText?: string;
@@ -22,7 +22,9 @@ export const ModalExpel: FC<Props> = ({
 }) => {
   const onSubmitModal = () => {
     onClose();
-    if (onSubmit) onSubmit('Modalexpel');
+    if (onSubmit) {
+      onSubmit();
+    }
   };
 
   return (

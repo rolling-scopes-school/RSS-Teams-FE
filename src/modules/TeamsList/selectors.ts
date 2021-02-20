@@ -14,3 +14,6 @@ export const selectIsActiveModalCreateTeam = (state: State) =>
 
 export const selectIsActiveModalCreated = (state: State) =>
   state.teamsListReducer.isActiveModalCreated;
+
+export const selectTeamMemberExpelId = (state: State) =>
+  state.teamsListReducer.teamMemberExpelId;

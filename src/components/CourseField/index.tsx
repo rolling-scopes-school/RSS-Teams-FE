@@ -16,8 +16,8 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   multi?: boolean;
   register: any;
   courses: Course[];
-  onAdd: any;
-  isValid: boolean;
+  onAdd?: any;
+  isValid?: boolean;
 }
 
 export const CourseField: FC<SelectFieldProps> = ({
