@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { MinusButton, UserCourseListItemStyled } from './styled';
 import { Course } from 'types';
-import { IOldCourses } from '../../index';
 
 import { ReactComponent as CrossSvgIcon } from 'assets/svg/cross.svg';
 
@@ -10,6 +9,10 @@ type TUserCourseListItem = {
   onSub: (c: IOldCourses) => void;
   course: Course;
 };
+
+export interface IOldCourses extends Course {
+  isNew: boolean;
+}
 
 export const UserCourseListItem: FC<TUserCourseListItem> = ({
   children,
