@@ -1,13 +1,16 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { Modal } from 'components';
 import { ModalInput } from 'typography';
+import { SET_SOCIAL_LINK } from 'appConstants';
 
 type Props = {
   title: string;
   text: string;
   open: boolean;
-  onSubmit?: (e: string) => void;
+  onSubmit?: () => void;
   onClose: () => void;
+  value: string;
   okText?: string;
 } & typeof defaultProps;
 
@@ -21,23 +24,17 @@ export const ModalCreateTeam: FC<Props> = ({
   text,
   open,
   okText,
+  value,
   onClose,
   onSubmit,
 }) => {
-  const [inputValue, setInputValue] = useState<string>('');
-  useEffect(() => {
-    setInputValue('');
-  }, [open]);
+  const dispatch = useDispatch();
 
   const onSubmitModal = () => {
-    if (onSubmit && inputValue) {
+    if (onSubmit) {
       onClose();
-      onSubmit(inputValue);
+      onSubmit();
     }
-  };
-
-  const InputChange = (e: any) => {
-    setInputValue(e.target.value);
   };
 
   return (
@@ -50,8 +47,10 @@ export const ModalCreateTeam: FC<Props> = ({
       <ModalInput
         name="inputValue"
         required
-        value={inputValue}
-        onChange={InputChange}
+        value={value}
+        onChange={(e) =>
+          dispatch({ type: SET_SOCIAL_LINK, payload: e.target.value })
+        }
         placeholder="Enter group link"
       />
     </Modal>

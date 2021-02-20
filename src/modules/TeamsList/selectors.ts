@@ -17,3 +17,9 @@ export const selectIsActiveModalCreated = (state: State) =>
 
 export const selectTeamMemberExpelId = (state: State) =>
   state.teamsListReducer.teamMemberExpelId;
+
+export const selectTeamPassword = (state: State) =>
+  state.teamsListReducer.teamPassword;
+
+export const selectSocialLink = (state: State) =>
+  state.teamsListReducer.socialLink;

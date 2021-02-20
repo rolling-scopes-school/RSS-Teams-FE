@@ -13,6 +13,8 @@ import {
   ACTIVE_MODAL_CREATE_TEAM,
   ACTIVE_MODAL_CREATED,
   SET_USER_DATA,
+  SET_TEAM_PASSWORD,
+  SET_SOCIAL_LINK,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -20,7 +22,9 @@ import {
   selectIsActiveModalExpel,
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
+  selectSocialLink,
   selectTeamMemberExpelId,
+  selectTeamPassword,
 } from '../../selectors';
 import { Team } from 'types';
 import {
@@ -29,7 +33,6 @@ import {
   useExpelUserFromTeamMutation,
   useCreateTeamMutation,
 } from 'hooks/graphql';
-
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 
@@ -37,8 +40,6 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const [textJoinModal, setTextJoinModal] = useState<string>(
     'Please enter your team password.'
   );
-  const [teamPassword, setTeamPassword] = useState<string>(''); // move to redux
-  console.log('🚀 ~ file: index.tsx ~ line 41 ~ teamPassword', teamPassword);
   const dispatch = useDispatch();
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
@@ -48,6 +49,8 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const isActiveModalCreateTeam = useSelector(selectIsActiveModalCreateTeam);
   const isActiveModalCreated = useSelector(selectIsActiveModalCreated);
   const teamMemberId = useSelector(selectTeamMemberExpelId);
+  const teamPassword = useSelector(selectTeamPassword);
+  const socialLink = useSelector(selectSocialLink);
 
   const { addUserToTeam } = useAddUserToTeamMutation({
     data: {
@@ -64,7 +67,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
           ?.id ?? '',
       userId: userData.id,
       courseId: currCourse.id,
-      page: page,
+      page,
     },
   });
 
@@ -75,16 +78,16 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
           ?.id ?? '',
       userId: teamMemberId,
       courseId: currCourse.id,
-      page: page,
+      page,
     },
   });
 
   const { createTeam } = useCreateTeamMutation({
     team: {
-      socialLink: '',
+      socialLink,
       courseId: currCourse.id,
       ownerId: userData.id,
-      page: page,
+      page,
     },
   });
 
@@ -99,7 +102,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         setTextJoinModal('Please enter your team password.');
         dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
         dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
-        setTeamPassword('');
+        dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
       }
     });
   };
@@ -116,18 +119,10 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const onSubmitExpelModal = () => {
     expelUserFromTeam();
   };
-  // TODO : MAKE SYNC WITH input
-  const onSubmitCreateTeam = (e: string) => {
-    createTeam({
-      variables: {
-        team: {
-          courseId: currCourse.id,
-          socialLink: e,
-          ownerId: userData.id,
-        },
-      },
-    }).then(({ data: { createTeam } }) => {
-      setTeamPassword(createTeam.password);
+
+  const onSubmitCreateTeam = () => {
+    createTeam().then(({ data: { createTeam } }) => {
+      dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
       dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
     });
   };
@@ -157,9 +152,11 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         text="Please enter your team telegram / discord / viber / ets. group link."
         open={isActiveModalCreateTeam}
         onSubmit={onSubmitCreateTeam}
-        onClose={() =>
-          dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: false })
-        }
+        value={socialLink}
+        onClose={() => {
+          dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: false });
+          dispatch({ type: SET_SOCIAL_LINK, payload: '' });
+        }}
         okText="Create team"
       />
       <ModalJoin
@@ -167,7 +164,6 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         text={textJoinModal}
         open={isActiveModalJoin}
         onSubmit={onSubmitJoinModal}
-        onChange={setTeamPassword}
         value={teamPassword}
         onClose={() => {
           setTextJoinModal('Please enter your team password.');

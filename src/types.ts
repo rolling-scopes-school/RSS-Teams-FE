@@ -92,6 +92,8 @@ export type StateTeamsList = {
   isActiveModalCreateTeam: boolean;
   isActiveModalCreated: boolean;
   teamMemberExpelId: string;
+  teamPassword: string;
+  socialLink: string;
 };
 
 export type StateStudentsTable = {

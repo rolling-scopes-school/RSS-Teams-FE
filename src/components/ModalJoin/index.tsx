@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { Modal } from 'components';
 import { ModalInput } from 'typography';
+import { SET_TEAM_PASSWORD } from 'appConstants';
 
 type Props = {
   title: string;
@@ -8,7 +10,6 @@ type Props = {
   open: boolean;
   onSubmit?: (e: string) => void;
   onClose: () => void;
-  onChange: any;
   value: string;
   okText?: string;
   cancelText?: string;
@@ -20,25 +21,17 @@ export const ModalJoin: FC<Props> = ({
   open,
   okText,
   value,
-  onChange,
   cancelText,
   onClose,
   onSubmit,
 }) => {
-  // const [inputValue, setInputValue] = useState<string>('');
-  // useEffect(() => {
-  //   setInputValue('');
-  // }, [open]);
+  const dispatch = useDispatch();
 
   const onSubmitModal = () => {
     if (onSubmit && value) {
       onSubmit(value);
     }
   };
-
-  // const InputChange = (e: any) => {
-  //   setInputValue(e.target.value);
-  // };
 
   return (
     <Modal
@@ -52,7 +45,9 @@ export const ModalJoin: FC<Props> = ({
         name="InputValue"
         required
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) =>
+          dispatch({ type: SET_TEAM_PASSWORD, payload: e.target.value })
+        }
         type="password"
       />
     </Modal>
