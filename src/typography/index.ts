@@ -5,6 +5,7 @@ import {
   BG_COLOR,
   MAIN1_COLOR,
   DARK_TEXT_COLOR,
+  DASHBOARD_HEADER_BG_COLOR,
   LIGHT_TEXT_COLOR,
 } from 'appConstants/colors';
 
@@ -22,6 +23,10 @@ type ButtonProps = {
 
 type TRSLogoProps = {
   login: string | null;
+};
+
+type ModalInputProps = {
+  blink?: boolean;
 };
 
 export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
@@ -146,7 +151,17 @@ export const Input = styled.input`
   }
 `;
 
-export const ModalInput = styled(Input)`
+export const ModalInput = styled(Input)<ModalInputProps>`
+  @keyframes blinkInput {
+    from {
+      background-color: rgb(101, 80, 246, 0.5);
+    }
+    to {
+      background-color: ${BG_COLOR};
+    }
+  }
+
+  animation: ${({ blink }) => (blink ? 'blinkInput 1s' : 'none')};
   margin-top: 20px;
 `;
 
