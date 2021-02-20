@@ -84,6 +84,11 @@ export type CreateTeamInput = {
   page: number;
 };
 
+export type UpdateTeamInput = {
+  id: string;
+  socialLink: string;
+};
+
 export type StateTeamsList = {
   teams: Team[] | [];
   isActiveModalExpel: boolean;
@@ -91,6 +96,7 @@ export type StateTeamsList = {
   isActiveModalJoin: boolean;
   isActiveModalCreateTeam: boolean;
   isActiveModalCreated: boolean;
+  isActiveModalUpdateSocialLink: boolean;
   teamMemberExpelId: string;
   teamPassword: string;
   socialLink: string;

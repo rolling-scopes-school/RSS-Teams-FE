@@ -7,3 +7,4 @@ export { useRemoveUserFromTeamMutation } from './mutations/useRemoveUserFromTeam
 export { useExpelUserFromTeamMutation } from './mutations/useExpelUserFromTeamMutation';
 export { useCreateTeamMutation } from './mutations/useCreateTeamMutation';
 export { useAddUserToTeamMutation } from './mutations/useAddUserToTeamMutation';
+export { useUpdateTeamMutation } from './mutations/useUpdateTeamMutation';

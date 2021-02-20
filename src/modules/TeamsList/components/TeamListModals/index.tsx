@@ -5,6 +5,7 @@ import {
   ModalJoin,
   ModalCreateTeam,
   ModalCreated,
+  ModalUpdateSocialLink,
 } from 'components';
 import {
   ACTIVE_MODAL_EXPEL,
@@ -15,6 +16,7 @@ import {
   SET_USER_DATA,
   SET_TEAM_PASSWORD,
   SET_SOCIAL_LINK,
+  ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -22,6 +24,7 @@ import {
   selectIsActiveModalExpel,
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
+  selectIsActiveModalUpdateSocialLink,
   selectSocialLink,
   selectTeamMemberExpelId,
   selectTeamPassword,
@@ -32,6 +35,7 @@ import {
   useRemoveUserFromTeamMutation,
   useExpelUserFromTeamMutation,
   useCreateTeamMutation,
+  useUpdateTeamMutation,
 } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -48,6 +52,9 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const isActiveModalJoin = useSelector(selectIsActiveModalJoin);
   const isActiveModalCreateTeam = useSelector(selectIsActiveModalCreateTeam);
   const isActiveModalCreated = useSelector(selectIsActiveModalCreated);
+  const isActiveModalUpdateSocialLink = useSelector(
+    selectIsActiveModalUpdateSocialLink
+  );
   const teamMemberId = useSelector(selectTeamMemberExpelId);
   const teamPassword = useSelector(selectTeamPassword);
   const socialLink = useSelector(selectSocialLink);
@@ -91,6 +98,15 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     },
   });
 
+  const { updateTeam } = useUpdateTeamMutation({
+    team: {
+      socialLink,
+      id:
+        userData.teams.find((team: Team) => team.courseId === currCourse.id)
+          ?.id ?? '',
+    },
+  });
+
   const onSubmitJoinModal = async (e: string) => {
     addUserToTeam().then(({ data: { addUserToTeam } }) => {
       const isPasswordIncorrect =
@@ -125,6 +141,10 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
       dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
       dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
     });
+  };
+
+  const onSubmitUpdateSocialLink = (closeCallBack: () => void) => {
+    updateTeam().then(() => closeCallBack());
   };
 
   return (
@@ -179,6 +199,18 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         onClose={() => dispatch({ type: ACTIVE_MODAL_CREATED, payload: false })}
         cancelText="Got it!"
         password={teamPassword}
+      />
+      <ModalUpdateSocialLink
+        title="Link to group"
+        text="Please enter new group link."
+        open={isActiveModalUpdateSocialLink}
+        onSubmit={onSubmitUpdateSocialLink}
+        value={socialLink}
+        onClose={() => {
+          dispatch({ type: ACTIVE_MODAL_UPDATE_SOCIAL_LINK, payload: false });
+          dispatch({ type: SET_SOCIAL_LINK, payload: '' });
+        }}
+        okText="Update link"
       />
     </>
   );

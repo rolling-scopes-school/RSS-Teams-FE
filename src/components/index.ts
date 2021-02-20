@@ -11,4 +11,5 @@ export { ModalExpel } from './ModalExpel';
 export { ModalJoin } from './ModalJoin';
 export { ModalCreateTeam } from './ModalCreateTeam';
 export { ModalCreated } from './ModalCreated';
+export { ModalUpdateSocialLink } from './ModalUpdateSocialLink';
 export { TablePopup } from './TablePopup';
