@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { Loader, InputField, CourseField } from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
-import { PageTitle, Button } from 'typography';
+import { Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput } from 'types';
@@ -16,6 +16,7 @@ import {
   ButtonWrapper,
   FormWrapper,
   UserCoursesListTitle,
+  FormTitle,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
@@ -133,7 +134,7 @@ export const EditProfile: FC = () => {
   return (
     <FormWrapper>
       <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-        <PageTitle>Enter your profile information</PageTitle>
+        <FormTitle>Enter your profile information</FormTitle>
         <InputsWrapper>
           <InputField
             name="firstName"

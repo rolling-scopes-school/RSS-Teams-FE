@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { LIGHT_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
+import {
+  BG_COLOR,
+  DARK_TEXT_COLOR,
+  LIGHT_TEXT_COLOR,
+  WHITE_COLOR,
+} from 'appConstants/colors';
+import { PageTitle } from 'typography';
 
 export const EditProfileWrapper = styled.form`
   background-color: ${WHITE_COLOR};
@@ -27,6 +33,11 @@ export const FormWrapper = styled.div`
   }
 `;
 
+export const FormTitle = styled(PageTitle)`
+  margin-top: 0;
+  margin-bottom: 32px;
+`;
+
 export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -45,5 +56,13 @@ export const ButtonWrapper = styled.div`
 
 export const UserCoursesListTitle = styled.div`
   color: ${LIGHT_TEXT_COLOR};
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+`;
+
+export const UserCourseListItem = styled.div`
+  padding: 8px 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: ${BG_COLOR};
+  color: ${DARK_TEXT_COLOR};
 `;
