@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
+import { ACTIVE_MODAL_EXPEL, SET_TEAM_MEMBER_EXPEL_ID } from 'appConstants';
 import { User } from 'types';
 import { TableCell } from './components';
 import { ExpelButton } from './components';
+import { useDispatch } from 'react-redux';
 
 type TableRowProps = {
   member: User;
@@ -27,6 +29,7 @@ export const TableRow: FC<TableRowProps> = ({
     city,
     id,
   } = member;
+  const dispatch = useDispatch();
   return (
     <tr>
       <TableCell value={count.toString(10)} />
@@ -36,7 +39,20 @@ export const TableRow: FC<TableRowProps> = ({
       <TableCell value={discord} isSocialLink={true} />
       <TableCell value={github} isSocialLink={true} />
       <TableCell value={`${city}, ${country}`} />
-      {isMyTeam && <TableCell value={id !== userId && <ExpelButton />} />}
+      {isMyTeam && (
+        <TableCell
+          value={
+            id !== userId && (
+              <ExpelButton
+                onClickHandler={() => {
+                  dispatch({ type: ACTIVE_MODAL_EXPEL, payload: true });
+                  dispatch({ type: SET_TEAM_MEMBER_EXPEL_ID, payload: id });
+                }}
+              />
+            )
+          }
+        />
+      )}
     </tr>
   );
 };

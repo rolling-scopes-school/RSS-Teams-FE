@@ -5,8 +5,6 @@ import {
   MAIN2_COLOR,
 } from 'appConstants/colors';
 import { TextRegular } from 'typography';
-import { ReactComponent as InfoIcon } from 'assets/svg/info.svg';
-import { ReactComponent as EditIcon } from 'assets/svg/edit.svg';
 
 export const StyledMyTeamInfoBlock = styled.div`
   position: relative;
@@ -44,10 +42,6 @@ const InfoBlockButton = css`
   border-radius: 5px;
 `;
 
-export const InfoButton = styled(InfoIcon)`
-  ${InfoBlockButton};
-`;
-
-export const EditButton = styled(EditIcon)`
+export const InfoButton = styled.div`
   ${InfoBlockButton};
 `;

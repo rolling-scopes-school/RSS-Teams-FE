@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ReactComponent as ChevronArrow } from 'assets/svg/chevron-arrow.svg';
 import { WHITE_COLOR } from 'appConstants/colors';
 
 type ChevronProps = {
@@ -19,7 +18,7 @@ export const MembersListToggleStyled = styled.div`
   }
 `;
 
-export const Chevron = styled(ChevronArrow)<ChevronProps>`
+export const Chevron = styled.div<ChevronProps>`
   transform: rotateX(${({ open }) => (open ? '180deg' : '0deg')});
   margin-left: 10px;
   transition: all 0.3s;

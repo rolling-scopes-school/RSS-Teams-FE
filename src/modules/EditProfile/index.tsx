@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { Loader, InputField, CourseField } from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
-import { PageTitle, Button } from 'typography';
+import { Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput } from 'types';
@@ -15,17 +15,27 @@ import {
   InputsWrapper,
   ButtonWrapper,
   FormWrapper,
-  UserCourseListItem,
   UserCoursesListTitle,
+  FormTitle,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import { CURRENT_YEAR } from 'appConstants';
+import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
+import {
+  IOldCourses,
+  UserCourseListItem,
+} from './components/UserCourseListItem';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
-  const [userCourses, setUserCourses] = useState<Course[]>(userData.courses);
+
+  const oldCourses: IOldCourses[] = userData.courses.map((course: Course) => ({
+    ...course,
+    isNew: true,
+  }));
+
+  const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
   const { loading, courses } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
@@ -52,6 +62,8 @@ export const EditProfile: FC = () => {
 
   const [isValidCoursesList, setValidCoursesList] = useState(true);
 
+  const dispatch = useDispatch();
+
   const isUserNew = userData.telegram === null;
 
   const currentCourses = courses
@@ -76,27 +88,45 @@ export const EditProfile: FC = () => {
 
   const onSubmit = () => {
     if (userCourses.length) {
-      updateUser();
-      history.push('/');
+      updateUser().then((data) => {
+        dispatch({ type: SET_USER_DATA, payload: data.data.updateUser });
+        history.push('/');
+      });
     } else {
       setValidCoursesList(false);
     }
   };
 
-  const localCourseUpdate = (course: Course) => {
+  const localCourseUpdate = (course: IOldCourses) => {
     if (course) {
       setUserCourses([...userCourses, course]);
       setValidCoursesList(true);
     }
   };
 
+  const localCourseSub = (course: IOldCourses) => {
+    if (course) {
+      const copyCourses: IOldCourses[] = [...userCourses];
+
+      const index = copyCourses.findIndex((item: IOldCourses) => {
+        return item.id === course.id;
+      });
+
+      if (index >= 0) {
+        copyCourses.splice(index, 1);
+      }
+
+      setUserCourses([...copyCourses]);
+      setValidCoursesList(true);
+    }
+  };
   useEffect(() => {
     if (userData.id !== '' && !inputValues.id) {
       setInputValues(defaultData);
-      setUserCourses(userData.courses);
+      setUserCourses(oldCourses);
       reset(defaultData);
     }
-  }, [reset, inputValues, defaultData, userData]);
+  }, [reset, inputValues, defaultData, userData, oldCourses]);
 
   if (!loginToken) return <Redirect to={'/login'} />;
   if (loading || loadingM) return <Loader />;
@@ -104,7 +134,7 @@ export const EditProfile: FC = () => {
   return (
     <FormWrapper>
       <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-        <PageTitle>Enter your profile information</PageTitle>
+        <FormTitle>Enter your profile information</FormTitle>
         <InputsWrapper>
           <InputField
             name="firstName"
@@ -125,7 +155,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -148,7 +178,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 14,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -163,15 +193,15 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z0-9@#_]+$/i,
-                message: 'This input is latin letters and digits only.',
+                value: /^[A-Za-z0-9@#_() \-]+$/i,
+                message: 'Only latin letters, digits and "@#_() ".',
               },
               minLength: {
                 value: 3,
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 50,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -194,7 +224,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 50,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -217,7 +247,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -240,7 +270,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -270,14 +300,18 @@ export const EditProfile: FC = () => {
           />
           <div>
             <UserCoursesListTitle>Course</UserCoursesListTitle>
-            {userCourses.map((item: Course) => {
+            {userCourses.map((item: IOldCourses) => {
               return (
-                <UserCourseListItem key={item.id}>
+                <UserCourseListItem
+                  key={item.id}
+                  deleteButton={item.isNew}
+                  course={item}
+                  onSub={localCourseSub}
+                >
                   {item.name}
                 </UserCourseListItem>
               );
             })}
-
             <CourseField
               name="courses"
               placeholder="Select course"

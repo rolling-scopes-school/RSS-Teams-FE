@@ -15,5 +15,5 @@ export const ValidationAlert = styled.div`
 `;
 
 export const FLabel = styled(Label)`
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 `;

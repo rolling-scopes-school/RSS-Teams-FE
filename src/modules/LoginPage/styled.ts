@@ -15,7 +15,7 @@ export const StyledLoginPage = styled.div`
   width: 100%;
   height: 100vh;
   margin: 0 auto;
-  background-color: ${WHITE_COLOR};
+  background: linear-gradient(90deg, ${WHITE_COLOR} 85%, ${MAIN1_COLOR} 85%);
 `;
 
 export const StyledLoginPageItemsWrapper = styled.div`
@@ -41,14 +41,4 @@ export const StyledLoginImage = styled(LoginImage)`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-`;
-
-export const StyledLoginFakeBlock = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -2;
-  width: 30%;
-  height: 100%;
-  background-color: ${MAIN1_COLOR};
 `;
