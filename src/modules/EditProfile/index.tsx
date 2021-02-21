@@ -155,7 +155,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -178,7 +178,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 14,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -193,15 +193,15 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z0-9@#_]+$/i,
-                message: 'This input is latin letters and digits only.',
+                value: /^[A-Za-z0-9@#_() \-]+$/i,
+                message: 'Only latin letters, digits and "@#_() ".',
               },
               minLength: {
                 value: 3,
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 50,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -224,7 +224,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 50,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -247,7 +247,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -270,7 +270,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
