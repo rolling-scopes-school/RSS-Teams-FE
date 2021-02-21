@@ -13,6 +13,7 @@ import { Loader, PrivateRoute, Header } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import {
   AUTH_TOKEN,
+  CURRENT_COURSE,
   SET_CURR_COURSE,
   SET_TOKEN,
   SET_USER_DATA,
@@ -38,13 +39,16 @@ export const App: FC = () => {
       dispatch({ type: SET_USER_DATA, payload: whoAmI });
     }
     if (whoAmI?.courses[0]) {
-      if (!localStorage.getItem('currCourse')) {
-        localStorage.setItem('currCourse', JSON.stringify(whoAmI?.courses[0]));
+      if (!localStorage.getItem(CURRENT_COURSE)) {
+        localStorage.setItem(
+          CURRENT_COURSE,
+          JSON.stringify(whoAmI?.courses[0])
+        );
       }
-      const currCourse = JSON.parse(
-        localStorage.getItem('currCourse') as string
+      const currentCourse = JSON.parse(
+        localStorage.getItem(CURRENT_COURSE) as string
       );
-      dispatch({ type: SET_CURR_COURSE, payload: currCourse });
+      dispatch({ type: SET_CURR_COURSE, payload: currentCourse });
     }
 
     if (!loadingW) setLoading(false);
