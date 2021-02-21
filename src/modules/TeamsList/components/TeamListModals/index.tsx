@@ -16,6 +16,7 @@ import {
   SET_TEAM_PASSWORD,
   SET_SOCIAL_LINK,
   ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
+  MODAL_INPUT_VALIDATION,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -180,17 +181,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
           dispatch({ type: SET_SOCIAL_LINK, payload: '' });
         }}
         okText="Create team"
-        validateRules={{
-          required: 'This is required.',
-          pattern: {
-            value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,
-            message: 'Use right format link - https://xxx/xxxx',
-          },
-          maxLength: {
-            value: 35,
-            message: 'This input exceed maxLength.',
-          },
-        }}
+        validateRules={MODAL_INPUT_VALIDATION}
       />
       <ModalJoin
         title="Join team"
@@ -220,16 +211,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         open={isActiveModalUpdateSocialLink}
         value={socialLink}
         onSubmit={onSubmitUpdateSocialLink}
-        validateRules={{
-          pattern: {
-            value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,
-            message: 'Use right format link - https://xxx/xxxx',
-          },
-          maxLength: {
-            value: 35,
-            message: 'This input exceed maxLength.',
-          },
-        }}
+        validateRules={MODAL_INPUT_VALIDATION}
         onClose={() => {
           dispatch({ type: ACTIVE_MODAL_UPDATE_SOCIAL_LINK, payload: false });
           dispatch({ type: SET_SOCIAL_LINK, payload: '' });
