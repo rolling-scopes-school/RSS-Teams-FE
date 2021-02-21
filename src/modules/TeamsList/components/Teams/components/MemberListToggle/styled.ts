@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { ReactComponent as ChevronArrow } from 'assets/svg/chevron-arrow.svg';
 import { WHITE_COLOR } from 'appConstants/colors';
 
 type ChevronProps = {

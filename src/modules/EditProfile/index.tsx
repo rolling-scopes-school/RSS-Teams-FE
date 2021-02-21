@@ -17,6 +17,7 @@ import {
   FormWrapper,
   UserCoursesListTitle,
   FormTitle,
+  CoursesWrapper,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR, SET_CURR_COURSE, SET_USER_DATA } from 'appConstants';
@@ -166,7 +167,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -189,7 +190,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 14,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -204,15 +205,15 @@ export const EditProfile: FC = () => {
             register={register({
               required: 'This is required.',
               pattern: {
-                value: /^[A-Za-z0-9@#_]+$/i,
-                message: 'This input is latin letters and digits only.',
+                value: /^[A-Za-z0-9@#_() \-]+$/i,
+                message: 'Only latin letters, digits and "@#_() ".',
               },
               minLength: {
                 value: 3,
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 50,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -235,7 +236,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 50,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -258,7 +259,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -281,7 +282,7 @@ export const EditProfile: FC = () => {
                 message: 'minimal length is 3',
               },
               maxLength: {
-                value: 12,
+                value: 70,
                 message: 'This input exceed maxLength.',
               },
             })}
@@ -309,7 +310,7 @@ export const EditProfile: FC = () => {
               },
             })}
           />
-          <div>
+          <CoursesWrapper>
             <UserCoursesListTitle>Course</UserCoursesListTitle>
             {userCourses.map((item: IOldCourses) => {
               return (
@@ -323,16 +324,18 @@ export const EditProfile: FC = () => {
                 </UserCourseListItem>
               );
             })}
-            <CourseField
-              name="courses"
-              placeholder="Select course"
-              register={register}
-              multi
-              onAdd={localCourseUpdate}
-              courses={currentCourses}
-              isValid={isValidCoursesList}
-            />
-          </div>
+            {currentCourses.length !== 0 && (
+              <CourseField
+                name="courses"
+                placeholder="Select course"
+                register={register}
+                multi
+                onAdd={localCourseUpdate}
+                courses={currentCourses}
+                isValid={isValidCoursesList}
+              />
+            )}
+          </CoursesWrapper>
         </InputsWrapper>
         <ButtonWrapper>
           {!isUserNew && (
