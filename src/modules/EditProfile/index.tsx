@@ -97,7 +97,8 @@ export const EditProfile: FC = () => {
       updateUser().then(({ data: { updateUser } }) => {
         if (userData.courses.length !== updateUser.courses.length) {
           const newCurrentCourse = updateUser.courses.find(
-            (course: Course) => course.id === updateUser.courseIds[0]
+            (course: Course) =>
+              course.id === userCourses[userCourses.length - 1].id
           );
           localStorage.setItem(
             CURRENT_COURSE,
