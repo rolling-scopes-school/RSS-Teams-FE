@@ -55,7 +55,7 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
           query: TEAMS_QUERY,
           data: {
             teams: {
-              count: data?.teams?.count,
+              count: updatedRemovedResults?.length,
               results: updatedRemovedResults,
             },
           },

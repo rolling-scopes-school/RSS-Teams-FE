@@ -28,16 +28,16 @@ export const useCreateTeamMutation = ({ team }: Props) => {
         query: WHOAMI_QUERY,
       });
 
-      const updatedResults = data?.teams
+      const updatedResults = data?.teams?.results.length
         ? [...data?.teams?.results, createTeam]
         : [createTeam];
 
       const updatedUser = {
         ...userData?.whoAmI,
-        teams: userData?.whoAmI?.teams
+        teams: userData?.whoAmI?.teams.length
           ? [...userData?.whoAmI?.teams, createTeam]
           : [createTeam],
-        teamIds: userData?.whoAmI?.teamIds
+        teamIds: userData?.whoAmI?.teamIds.length
           ? [...userData?.whoAmI?.teamIds, createTeam.id]
           : [createTeam.id],
       };
@@ -53,7 +53,7 @@ export const useCreateTeamMutation = ({ team }: Props) => {
         query: TEAMS_QUERY,
         data: {
           teams: {
-            count: data?.teams?.count,
+            count: updatedResults.length,
             results: updatedResults,
           },
         },
