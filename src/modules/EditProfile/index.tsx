@@ -20,7 +20,12 @@ import {
   CoursesWrapper,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
+import {
+  CURRENT_YEAR,
+  SET_CURR_COURSE,
+  SET_USER_DATA,
+  CURRENT_COURSE,
+} from 'appConstants';
 import {
   IOldCourses,
   UserCourseListItem,
@@ -89,8 +94,22 @@ export const EditProfile: FC = () => {
 
   const onSubmit = () => {
     if (userCourses.length) {
-      updateUser().then((data) => {
-        dispatch({ type: SET_USER_DATA, payload: data.data.updateUser });
+      updateUser().then(({ data: { updateUser } }) => {
+        if (userData.courses.length !== updateUser.courses.length) {
+          const newCurrentCourse = updateUser.courses.find(
+            (course: Course) =>
+              course.id === userCourses[userCourses.length - 1].id
+          );
+          localStorage.setItem(
+            CURRENT_COURSE,
+            JSON.stringify(newCurrentCourse)
+          );
+          dispatch({
+            type: SET_CURR_COURSE,
+            payload: newCurrentCourse,
+          });
+        }
+        dispatch({ type: SET_USER_DATA, payload: updateUser });
         history.push('/');
       });
     } else {

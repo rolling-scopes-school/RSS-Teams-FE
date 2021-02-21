@@ -14,7 +14,7 @@ export type User = {
   email: string | null;
   courseIds: string[];
   teamIds: string[];
-  teams: Team[] | [];
+  teams: Team[];
 };
 
 export interface Course {
