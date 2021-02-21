@@ -24,13 +24,10 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
           `${index + 1 + page * USERS_PER_PAGE}`,
           `${user.firstName} ${user.lastName || null}`,
           user.score,
-          (user.teams as Team[]).find(
-            (team: Team) => team.courseId === currCourse.id
-          )
+          user.teams.find((team: Team) => team.courseId === currCourse.id)
             ? `${
-                (user.teams as Team[]).find(
-                  (team: Team) => team.courseId === currCourse.id
-                )?.number
+                user.teams.find((team: Team) => team.courseId === currCourse.id)
+                  ?.number
               }`
             : 'No team yet.',
           user.telegram || 'No telegram.',
@@ -39,9 +36,7 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
           `${user.country},
           ${user.city}`,
           user.courses.length
-            ? (user.courses as Array<Course>)
-                .map((course: Course) => course.name)
-                .join(', ')
+            ? user.courses.map((course: Course) => course.name).join(', ')
             : 'No courses.',
         ];
       }),
