@@ -95,18 +95,20 @@ export const EditProfile: FC = () => {
   const onSubmit = () => {
     if (userCourses.length) {
       updateUser().then(({ data: { updateUser } }) => {
-        dispatch({ type: SET_USER_DATA, payload: updateUser });
         if (userData.courses.length !== updateUser.courses.length) {
-          const newCurrCourse = updateUser.courses.find(
+          const newCurrentCourse = updateUser.courses.find(
             (course: Course) => course.id === updateUser.courseIds[0]
           );
-          localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrCourse));
+          localStorage.setItem(
+            CURRENT_COURSE,
+            JSON.stringify(newCurrentCourse)
+          );
           dispatch({
             type: SET_CURR_COURSE,
-            payload: newCurrCourse,
+            payload: newCurrentCourse,
           });
         }
-
+        dispatch({ type: SET_USER_DATA, payload: updateUser });
         history.push('/');
       });
     } else {
