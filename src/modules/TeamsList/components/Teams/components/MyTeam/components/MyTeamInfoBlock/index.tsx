@@ -37,12 +37,12 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
           )}
         </InfoButton>
       ) : (
-        <InfoButton onClick={() => console.log('Info notification')}>
-          <EditIcon
-            onClick={() =>
-              dispatch({ type: ACTIVE_MODAL_UPDATE_SOCIAL_LINK, payload: true })
-            }
-          />
+        <InfoButton
+          onClick={() =>
+            dispatch({ type: ACTIVE_MODAL_UPDATE_SOCIAL_LINK, payload: true })
+          }
+        >
+          <EditIcon />
         </InfoButton>
       )}
     </StyledMyTeamInfoBlock>

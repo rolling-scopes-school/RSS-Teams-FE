@@ -1,4 +1,5 @@
 import React, { FC, useMemo, ReactText } from 'react';
+import { useSelector } from 'react-redux';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { StyledTableBody } from './styled';
@@ -6,6 +7,7 @@ import './styles.css';
 import { User, Course, Team } from 'types';
 import { USERS_PER_PAGE } from 'appConstants';
 import { TableRow } from './components/TableRow';
+import { selectCurrCourse } from 'modules/LoginPage/selectors';
 
 type TableBodyProps = {
   users: User[];
@@ -13,6 +15,8 @@ type TableBodyProps = {
 };
 
 export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
+  const currCourse = useSelector(selectCurrCourse);
+
   const usersData: Array<string[] | ReactText[]> = useMemo(
     () =>
       users.map((user: User, index: number) => {
@@ -20,10 +24,14 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
           `${index + 1 + page * USERS_PER_PAGE}`,
           `${user.firstName} ${user.lastName || null}`,
           user.score,
-          user.teams.length
-            ? (user.teams as Array<Team>)
-                .map((team: Team) => `${team.number}`)
-                .join(', ')
+          (user.teams as Team[]).find(
+            (team: Team) => team.courseId === currCourse.id
+          )
+            ? `${
+                (user.teams as Team[]).find(
+                  (team: Team) => team.courseId === currCourse.id
+                )?.number
+              }`
             : 'No team yet.',
           user.telegram || 'No telegram.',
           user.discord || 'No discord.',
@@ -37,7 +45,7 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
             : 'No courses.',
         ];
       }),
-    [users, page]
+    [users, page, currCourse.id]
   );
 
   return (

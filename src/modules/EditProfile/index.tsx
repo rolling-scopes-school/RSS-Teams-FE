@@ -19,7 +19,7 @@ import {
   FormTitle,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
+import { CURRENT_YEAR, SET_CURR_COURSE, SET_USER_DATA } from 'appConstants';
 import {
   IOldCourses,
   UserCourseListItem,
@@ -90,6 +90,17 @@ export const EditProfile: FC = () => {
     if (userCourses.length) {
       updateUser().then((data) => {
         dispatch({ type: SET_USER_DATA, payload: data.data.updateUser });
+        if (userData.courses.length !== data.data.updateUser.courses.length) {
+          const newCurrCourse = data.data.updateUser.courses.find(
+            (course: Course) => course.id === data.data.updateUser.courseIds[0]
+          );
+          localStorage.setItem('currCourse', JSON.stringify(newCurrCourse));
+          dispatch({
+            type: SET_CURR_COURSE,
+            payload: newCurrCourse,
+          });
+        }
+
         history.push('/');
       });
     } else {

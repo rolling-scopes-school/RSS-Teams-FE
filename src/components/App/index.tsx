@@ -37,8 +37,15 @@ export const App: FC = () => {
     if (!!whoAmI) {
       dispatch({ type: SET_USER_DATA, payload: whoAmI });
     }
-    if (whoAmI?.courses[0])
-      dispatch({ type: SET_CURR_COURSE, payload: whoAmI?.courses[0] });
+    if (whoAmI?.courses[0]) {
+      if (!localStorage.getItem('currCourse')) {
+        localStorage.setItem('currCourse', JSON.stringify(whoAmI?.courses[0]));
+      }
+      const currCourse = JSON.parse(
+        localStorage.getItem('currCourse') as string
+      );
+      dispatch({ type: SET_CURR_COURSE, payload: currCourse });
+    }
 
     if (!loadingW) setLoading(false);
   }, [dispatch, loginToken, loadingW, loading, whoAmI]);

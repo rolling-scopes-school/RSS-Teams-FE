@@ -31,6 +31,7 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
 
   const onCourseChange = (course: Course) => {
     setDisplayCoursesList(false);
+    localStorage.setItem('currCourse', JSON.stringify(course));
     dispatch({ type: SET_CURR_COURSE, payload: course });
   };
 
