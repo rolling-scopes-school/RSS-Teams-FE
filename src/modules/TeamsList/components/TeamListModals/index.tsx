@@ -173,6 +173,17 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         open={isActiveModalCreateTeam}
         onSubmit={onSubmitCreateTeam}
         value={socialLink}
+        validateRules={{
+          required: 'This is required.',
+          pattern: {
+            value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,
+            message: 'Use right format link - https://xxx/xxxx',
+          },
+          maxLength: {
+            value: 35,
+            message: 'This input exceed maxLength.',
+          },
+        }}
         onClose={() => {
           dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: false });
           dispatch({ type: SET_SOCIAL_LINK, payload: '' });
@@ -206,6 +217,16 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         open={isActiveModalUpdateSocialLink}
         onSubmit={onSubmitUpdateSocialLink}
         value={socialLink}
+        validateRules={{
+          pattern: {
+            value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,
+            message: 'Use right format link - https://xxx/xxxx',
+          },
+          maxLength: {
+            value: 35,
+            message: 'This input exceed maxLength.',
+          },
+        }}
         onClose={() => {
           dispatch({ type: ACTIVE_MODAL_UPDATE_SOCIAL_LINK, payload: false });
           dispatch({ type: SET_SOCIAL_LINK, payload: '' });

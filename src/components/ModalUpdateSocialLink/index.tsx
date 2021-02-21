@@ -12,6 +12,7 @@ type Props = {
   onClose: () => void;
   value: string;
   okText?: string;
+  validateRules?: any;
 } & typeof defaultProps;
 
 const defaultProps = {
