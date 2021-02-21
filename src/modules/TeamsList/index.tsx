@@ -24,6 +24,7 @@ export const TeamsList: FC = () => {
   if (error) return <Error />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
+
   return (
     <>
       <StyledTeams>
@@ -38,7 +39,9 @@ export const TeamsList: FC = () => {
           }
           userId={userData.id}
         />
-        <Pagination pageCount={pageCount} changePage={setPage} page={page} />
+        {teams.results.length ? (
+          <Pagination pageCount={pageCount} changePage={setPage} page={page} />
+        ) : null}
       </StyledTeams>
 
       <TeamListModals {...{ page }} />
