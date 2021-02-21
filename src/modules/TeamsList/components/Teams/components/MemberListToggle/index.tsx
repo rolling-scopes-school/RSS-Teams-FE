@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { MembersListToggleStyled, Chevron } from './styled';
+import { ReactComponent as ChevronArrow } from 'assets/svg/chevron-arrow.svg';
 
 type MembersListToggle = {
   countMembers: number;
@@ -24,7 +25,9 @@ export const MembersListToggle: FC<MembersListToggle> = ({
       <div>
         {countMembers || 0} {countMembers === 1 ? 'member' : 'members'}
       </div>
-      <Chevron open={isOpen} />
+      <Chevron open={isOpen}>
+        <ChevronArrow />
+      </Chevron>
     </MembersListToggleStyled>
   );
 };
