@@ -9,7 +9,7 @@ type Props = {
   title: string;
   text: string;
   open: boolean;
-  onSubmit?: () => void;
+  onSubmit?: (cb: () => void) => void;
   onClose: () => void;
   value: string;
   okText?: string;
@@ -21,7 +21,7 @@ const defaultProps = {
   okText: 'Create team',
 };
 
-export const ModalCreateTeam: FC<Props> = ({
+export const ModalCreateEditTeam: FC<Props> = ({
   title,
   text,
   open,
@@ -35,12 +35,10 @@ export const ModalCreateTeam: FC<Props> = ({
 
   const onSubmitModal = () => {
     if (onSubmit) {
-      onClose();
-      onSubmit();
+      onSubmit(onClose);
     }
   };
 
-  const [isTouched, setTouched] = useState(false);
   const [isInputValid, setInputValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -51,23 +49,18 @@ export const ModalCreateTeam: FC<Props> = ({
   ) => {
     if (!needValidate) return true;
 
-    let valid = needValidate && isTouched;
-
-    // if (validateRules.required && value.length === 0) {
-    //   valid = value.length !== 0 && valid;
-    //   setErrorMessage(validateRules.required);
-    // }
+    let valid = true;
 
     if (validateRules.minLength) {
-      valid = value.length >= validateRules.minLength.value && valid;
-      if (!(value.length >= validateRules.minLength.value)) {
+      valid = value.trim().length >= validateRules.minLength.value && valid;
+      if (!(value.trim().length >= validateRules.minLength.value)) {
         setErrorMessage(validateRules.minLength.message);
       }
     }
 
     if (validateRules.maxLength) {
-      valid = value.length < validateRules.maxLength.value + 1 && valid;
-      if (!(value.length < validateRules.maxLength.value + 1)) {
+      valid = value.trim().length < validateRules.maxLength.value + 1 && valid;
+      if (!(value.trim().length < validateRules.maxLength.value + 1)) {
         setErrorMessage(validateRules.maxLength.message);
       }
     }
@@ -85,10 +78,16 @@ export const ModalCreateTeam: FC<Props> = ({
 
   return (
     <Modal
-      {...{ title, text, open, onClose, okText }}
+      {...{ title, text, open, okText }}
+      onClose={() => {
+        setErrorMessage('');
+        onClose();
+      }}
       onSubmit={() => {
         if (isInputValid) {
           onSubmitModal();
+        } else {
+          setErrorMessage('Please enter link');
         }
       }}
       hideOnOutsideClick={true}
@@ -97,11 +96,12 @@ export const ModalCreateTeam: FC<Props> = ({
       <ModalInput
         name="inputValue"
         required
-        value={value}
+        value={value.trim()}
+        autoComplete={'off'}
         onChange={(e) => {
-          setTouched(true);
+          // setTouched(true);
           dispatch({ type: SET_SOCIAL_LINK, payload: e.target.value });
-          isValid(e.target.value, validateRules, !!validateRules);
+          isValid(e.target.value.trim(), validateRules, !!validateRules);
         }}
         placeholder="Enter group link"
       />

@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   ModalExpel,
   ModalJoin,
-  ModalCreateTeam,
+  ModalCreateEditTeam,
   ModalCreated,
-  ModalUpdateSocialLink,
 } from 'components';
 import {
   ACTIVE_MODAL_EXPEL,
@@ -136,8 +135,10 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     expelUserFromTeam();
   };
 
-  const onSubmitCreateTeam = () => {
+  const onSubmitCreateTeam = (closeCallBack: () => void) => {
     createTeam().then(({ data: { createTeam } }) => {
+      console.log('onSubmitCreateTeam');
+      closeCallBack();
       dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
       dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
     });
@@ -167,12 +168,18 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         okText="Yes!"
         cancelText="No"
       />
-      <ModalCreateTeam
+      {/*Create team*/}
+      <ModalCreateEditTeam
         title="Create Team"
         text="Please enter your team telegram / discord / viber / ets. group link."
         open={isActiveModalCreateTeam}
-        onSubmit={onSubmitCreateTeam}
         value={socialLink}
+        onSubmit={onSubmitCreateTeam}
+        onClose={() => {
+          dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: false });
+          dispatch({ type: SET_SOCIAL_LINK, payload: '' });
+        }}
+        okText="Create team"
         validateRules={{
           required: 'This is required.',
           pattern: {
@@ -184,11 +191,6 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
             message: 'This input exceed maxLength.',
           },
         }}
-        onClose={() => {
-          dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: false });
-          dispatch({ type: SET_SOCIAL_LINK, payload: '' });
-        }}
-        okText="Create team"
       />
       <ModalJoin
         title="Join team"
@@ -211,12 +213,13 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         cancelText="Got it!"
         password={teamPassword}
       />
-      <ModalUpdateSocialLink
+      {/*Edit Team*/}
+      <ModalCreateEditTeam
         title="Link to group"
         text="Please enter new group link."
         open={isActiveModalUpdateSocialLink}
-        onSubmit={onSubmitUpdateSocialLink}
         value={socialLink}
+        onSubmit={onSubmitUpdateSocialLink}
         validateRules={{
           pattern: {
             value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,
