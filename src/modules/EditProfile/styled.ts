@@ -12,9 +12,9 @@ export const EditProfileWrapper = styled.form`
   width: 680px;
   padding: 30px;
   border-radius: 20px;
+  margin-top: 20px;
   @media screen and (max-width: 768px) {
     width: 320px;
-    margin-top: 20px;
     padding: 15px 10px;
     flex-direction: column;
   }
@@ -24,13 +24,7 @@ export const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 80px);
-  @media screen and (max-width: 768px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-  }
+  height: auto;
 `;
 
 export const FormTitle = styled(PageTitle)`
