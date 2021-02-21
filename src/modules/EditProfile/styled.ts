@@ -54,6 +54,10 @@ export const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `;
 
+export const CoursesWrapper = styled.div`
+  max-width: 300px;
+  width: 100%;
+`;
 export const UserCoursesListTitle = styled.div`
   color: ${LIGHT_TEXT_COLOR};
   margin-bottom: 10px;
