@@ -18,6 +18,7 @@ import {
   FormWrapper,
   UserCoursesListTitle,
   FormTitle,
+  CoursesWrapper,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR, SET_USER_DATA } from 'appConstants';
@@ -315,7 +316,7 @@ export const EditProfile: FC = () => {
               },
             })}
           />
-          <div>
+          <CoursesWrapper>
             <UserCoursesListTitle>Course</UserCoursesListTitle>
             {userCourses.map((item: IOldCourses) => {
               return (
@@ -329,16 +330,18 @@ export const EditProfile: FC = () => {
                 </UserCourseListItem>
               );
             })}
-            <CourseField
-              name="courses"
-              placeholder="Select course"
-              register={register}
-              multi
-              onAdd={localCourseUpdate}
-              courses={currentCourses}
-              isValid={isValidCoursesList}
-            />
-          </div>
+            {currentCourses.length !== 0 && (
+              <CourseField
+                name="courses"
+                placeholder="Select course"
+                register={register}
+                multi
+                onAdd={localCourseUpdate}
+                courses={currentCourses}
+                isValid={isValidCoursesList}
+              />
+            )}
+          </CoursesWrapper>
         </InputsWrapper>
         <ButtonWrapper>
           {!isUserNew && (
