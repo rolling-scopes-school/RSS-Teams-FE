@@ -39,7 +39,6 @@ export const App: FC = () => {
       dispatch({ type: SET_USER_DATA, payload: whoAmI });
     }
     if (whoAmI?.courses[0]) {
-      console.log(whoAmI?.courses, whoAmI?.courseIds);
       if (!localStorage.getItem(CURRENT_COURSE)) {
         localStorage.setItem(
           CURRENT_COURSE,
