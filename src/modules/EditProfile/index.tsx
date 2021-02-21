@@ -9,6 +9,7 @@ import { Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput } from 'types';
+import { formFields } from './formFields';
 
 import {
   EditProfileWrapper,
@@ -136,6 +137,22 @@ export const EditProfile: FC = () => {
       <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <FormTitle>Enter your profile information</FormTitle>
         <InputsWrapper>
+          {formFields.map((item) => {
+            return (
+              <InputField
+                key={item.name}
+                name={item.name}
+                value={userData.firstName}
+                labelText={item.name}
+                placeholder={item.placeholder}
+                aria-invalid={errors.firstName ? 'true' : 'false'}
+                message={errors.firstName?.message}
+                onChange={changeInputValue}
+                register={register(item.register)}
+              />
+            );
+          })}
+
           <InputField
             name="firstName"
             value={userData.firstName}
