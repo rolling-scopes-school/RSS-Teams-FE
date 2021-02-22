@@ -57,7 +57,7 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
 
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
-    value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,
+    value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
     message: 'Use right format link - https://xxx/xxxx',
   },
   maxLength: {

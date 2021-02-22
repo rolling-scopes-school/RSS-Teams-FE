@@ -35,8 +35,9 @@ export const ModalCreateEditTeam: FC<Props> = ({
 
   const onSubmitModal = () => {
     if (onSubmit) {
-      onClose();
+      setErrorMessage('');
       onSubmit();
+      onClose();
     }
   };
 
@@ -51,13 +52,6 @@ export const ModalCreateEditTeam: FC<Props> = ({
     if (!needValidate) return true;
 
     let valid = true;
-
-    if (validateRules.minLength) {
-      valid = value.trim().length >= validateRules.minLength.value && valid;
-      if (!(value.trim().length >= validateRules.minLength.value)) {
-        setErrorMessage(validateRules.minLength.message);
-      }
-    }
 
     if (validateRules.maxLength) {
       valid = value.trim().length < validateRules.maxLength.value + 1 && valid;
@@ -79,11 +73,7 @@ export const ModalCreateEditTeam: FC<Props> = ({
 
   return (
     <Modal
-      {...{ title, text, open, okText }}
-      onClose={() => {
-        setErrorMessage('');
-        onClose();
-      }}
+      {...{ title, text, open, onClose, okText }}
       onSubmit={() => {
         if (isInputValid) {
           onSubmitModal();
@@ -100,8 +90,7 @@ export const ModalCreateEditTeam: FC<Props> = ({
         value={value.trim()}
         autoComplete={'off'}
         onChange={(e) => {
-          // setTouched(true);
-          dispatch({ type: SET_SOCIAL_LINK, payload: e.target.value });
+          dispatch({ type: SET_SOCIAL_LINK, payload: e.target.value.trim() });
           isValid(e.target.value.trim(), validateRules, !!validateRules);
         }}
         placeholder="Enter group link"
