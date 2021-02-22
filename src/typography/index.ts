@@ -26,6 +26,7 @@ type TRSLogoProps = {
 
 type ModalInputProps = {
   blink?: boolean;
+  autoComplete?: string;
 };
 
 export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`

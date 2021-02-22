@@ -54,3 +54,14 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
   'country',
   'score',
 ];
+
+export const MODAL_INPUT_VALIDATION = {
+  pattern: {
+    value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,
+    message: 'Use right format link - https://xxx/xxxx',
+  },
+  maxLength: {
+    value: 35,
+    message: 'This input exceed maxLength.',
+  },
+};
