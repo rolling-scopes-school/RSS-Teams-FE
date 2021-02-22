@@ -44,3 +44,13 @@ export const TABLE_TEAMS_HEADERS = [
   'Location',
   'Action',
 ];
+
+export const INPUT_VALUES_EDIT_PROFILE: string[] = [
+  'firstName',
+  'lastName',
+  'discord',
+  'telegram',
+  'city',
+  'country',
+  'score',
+];

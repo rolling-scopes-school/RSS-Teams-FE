@@ -1,14 +1,14 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { FieldError, useForm } from 'react-hook-form';
 
 import { Loader, InputField, CourseField } from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
 import { Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectToken } from 'modules/LoginPage/selectors';
-import { Course, UpdateUserInput } from 'types';
+import { Course, UpdateUserInput, User } from 'types';
 import { formFields } from './formFields';
 
 import {
@@ -26,6 +26,7 @@ import {
   SET_CURR_COURSE,
   SET_USER_DATA,
   CURRENT_COURSE,
+  INPUT_VALUES_EDIT_PROFILE,
 } from 'appConstants';
 import {
   IOldCourses,
@@ -157,184 +158,35 @@ export const EditProfile: FC = () => {
       <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <FormTitle>Enter your profile information</FormTitle>
         <InputsWrapper>
-          {formFields.map((item) => {
+          {formFields.map((item, index) => {
             return (
               <InputField
-                key={item.name}
+                key={`fieldKey-${item.name}${index}`}
                 name={item.name}
-                value={userData.firstName}
-                labelText={item.name}
+                value={
+                  userData[
+                    INPUT_VALUES_EDIT_PROFILE[index] as keyof User
+                  ] as string
+                }
+                labelText={item.labelText}
                 placeholder={item.placeholder}
-                aria-invalid={errors.firstName ? 'true' : 'false'}
-                message={errors.firstName?.message}
+                aria-invalid={
+                  (errors[
+                    INPUT_VALUES_EDIT_PROFILE[index] as keyof UpdateUserInput
+                  ] as FieldError)
+                    ? 'true'
+                    : 'false'
+                }
+                message={
+                  (errors[
+                    INPUT_VALUES_EDIT_PROFILE[index] as keyof UpdateUserInput
+                  ] as FieldError)?.message
+                }
                 onChange={changeInputValue}
                 register={register(item.register)}
               />
             );
           })}
-
-          <InputField
-            name="firstName"
-            value={userData.firstName}
-            labelText="First Name"
-            placeholder="Enter first name"
-            aria-invalid={errors.firstName ? 'true' : 'false'}
-            message={errors.firstName?.message}
-            onChange={changeInputValue}
-            register={register({
-              required: 'This is required.',
-              pattern: {
-                value: /^[A-Za-z]+$/i,
-                message: 'This input is latin letters only.',
-              },
-              minLength: {
-                value: 3,
-                message: 'minimal length is 3',
-              },
-              maxLength: {
-                value: 70,
-                message: 'This input exceed maxLength.',
-              },
-            })}
-          />
-          <InputField
-            name="lastName"
-            labelText="Last Name"
-            placeholder="Enter last name"
-            aria-invalid={errors.lastName ? 'true' : 'false'}
-            message={errors.lastName?.message}
-            onChange={changeInputValue}
-            register={register({
-              required: 'This is required.',
-              pattern: {
-                value: /^[A-Za-z]+$/i,
-                message: 'This input is latin letters only.',
-              },
-              minLength: {
-                value: 3,
-                message: 'minimal length is 3',
-              },
-              maxLength: {
-                value: 70,
-                message: 'This input exceed maxLength.',
-              },
-            })}
-          />
-          <InputField
-            name="discord"
-            labelText="Discord"
-            placeholder="Enter discord"
-            aria-invalid={errors.discord ? 'true' : 'false'}
-            message={errors.discord?.message}
-            onChange={changeInputValue}
-            register={register({
-              required: 'This is required.',
-              pattern: {
-                value: /^[A-Za-z0-9@#_() \-]+$/i,
-                message: 'Only latin letters, digits and "@#_() ".',
-              },
-              minLength: {
-                value: 3,
-                message: 'minimal length is 3',
-              },
-              maxLength: {
-                value: 70,
-                message: 'This input exceed maxLength.',
-              },
-            })}
-          />
-          <InputField
-            name="telegram"
-            labelText="Telegram"
-            placeholder="Enter telegram"
-            message={errors.telegram?.message}
-            aria-invalid={errors.telegram ? 'true' : 'false'}
-            onChange={changeInputValue}
-            register={register({
-              required: 'This is required.',
-              pattern: {
-                value: /^[A-Za-z0-9@_]+$/i,
-                message: 'This input is latin letters and digits only.',
-              },
-              minLength: {
-                value: 3,
-                message: 'minimal length is 3',
-              },
-              maxLength: {
-                value: 70,
-                message: 'This input exceed maxLength.',
-              },
-            })}
-          />
-          <InputField
-            name="city"
-            labelText="City"
-            placeholder="Enter city"
-            message={errors.city?.message}
-            aria-invalid={errors.city ? 'true' : 'false'}
-            onChange={changeInputValue}
-            register={register({
-              required: 'This is required.',
-              pattern: {
-                value: /^[A-Za-z\-]+$/i,
-                message: 'This input is latin letters only.',
-              },
-              minLength: {
-                value: 3,
-                message: 'minimal length is 3',
-              },
-              maxLength: {
-                value: 70,
-                message: 'This input exceed maxLength.',
-              },
-            })}
-          />
-          <InputField
-            name="country"
-            labelText="Country"
-            placeholder="Enter country"
-            message={errors.country?.message}
-            aria-invalid={errors.country ? 'true' : 'false'}
-            onChange={changeInputValue}
-            register={register({
-              required: 'This is required.',
-              pattern: {
-                value: /^[A-Za-z\-]+$/i,
-                message: 'This input is latin letters only.',
-              },
-              minLength: {
-                value: 3,
-                message: 'minimal length is 3',
-              },
-              maxLength: {
-                value: 70,
-                message: 'This input exceed maxLength.',
-              },
-            })}
-          />
-          <InputField
-            name="score"
-            labelText="Score"
-            placeholder="Enter score"
-            message={errors.score?.message}
-            aria-invalid={errors.score ? 'true' : 'false'}
-            onChange={changeInputValue}
-            register={register({
-              required: 'This is required.',
-              pattern: {
-                value: /^[0-9]+$/i,
-                message: 'This input is number only.',
-              },
-              minLength: {
-                value: 3,
-                message: 'minimal length is 3',
-              },
-              maxLength: {
-                value: 5,
-                message: 'This input exceed maxLength.',
-              },
-            })}
-          />
           <CoursesWrapper>
             <UserCoursesListTitle>Course</UserCoursesListTitle>
             {userCourses.map((item: IOldCourses) => {
