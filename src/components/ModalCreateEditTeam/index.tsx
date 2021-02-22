@@ -35,8 +35,8 @@ export const ModalCreateEditTeam: FC<Props> = ({
 
   const onSubmitModal = () => {
     if (onSubmit) {
-      onSubmit();
       onClose();
+      onSubmit();
     }
   };
 
