@@ -73,7 +73,7 @@ export const App: FC = () => {
           path="/studentsTable"
           isLoggedIn={!!loginToken}
           newUserCheck={newUserCheck}
-          component={StudentsTable}
+          component={whoAmI.isAdmin ? StudentsTable : Loader}
         />
         <Route exact path="/token/:id" component={TokenPage} />
         <Route exact path="/login" component={LoginPage} />
