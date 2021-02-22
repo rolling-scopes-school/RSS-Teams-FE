@@ -37,9 +37,6 @@ export const useCreateTeamMutation = ({ team }: Props) => {
         teams: userData?.whoAmI?.teams.length
           ? [...userData?.whoAmI?.teams, createTeam]
           : [createTeam],
-        teamIds: userData?.whoAmI?.teamIds.length
-          ? [...userData?.whoAmI?.teamIds, createTeam.id]
-          : [createTeam.id],
       };
 
       cache.writeQuery({
