@@ -9,7 +9,7 @@ type Props = {
   title: string;
   text: string;
   open: boolean;
-  onSubmit?: (cb: () => void) => void;
+  onSubmit?: () => void;
   onClose: () => void;
   value: string;
   okText?: string;
@@ -35,7 +35,8 @@ export const ModalCreateEditTeam: FC<Props> = ({
 
   const onSubmitModal = () => {
     if (onSubmit) {
-      onSubmit(onClose);
+      onClose();
+      onSubmit();
     }
   };
 
