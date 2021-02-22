@@ -8,12 +8,12 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: '/^[A-Za-z]+$/i',
+        value: /^[A-Za-z]+$/i,
         message: 'This input is letters only.',
       },
       minLength: {
         value: 3,
-        message: 'minimal length is 3',
+        message: 'Minimal length is 3',
       },
       maxLength: {
         value: 12,
@@ -33,7 +33,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 3,
-        message: 'minimal length is 3',
+        message: 'Minimal length is 3',
       },
       maxLength: {
         value: 14,
@@ -53,7 +53,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 3,
-        message: 'minimal length is 3',
+        message: 'Minimal length is 3',
       },
     },
   },
@@ -69,7 +69,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 3,
-        message: 'minimal length is 3',
+        message: 'Minimal length is 3',
       },
     },
   },
@@ -85,7 +85,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 3,
-        message: 'minimal length is 3',
+        message: 'Minimal length is 3',
       },
       maxLength: {
         value: 12,
@@ -105,7 +105,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 3,
-        message: 'minimal length is 3',
+        message: 'Minimal length is 3',
       },
       maxLength: {
         value: 12,
@@ -120,12 +120,12 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: '/^[0-9]+$/i',
+        value: /^[0-9]+$/i,
         message: 'This input is number only.',
       },
       minLength: {
-        value: 3,
-        message: 'minimal length is 3',
+        value: 1,
+        message: 'Minimal length is 1',
       },
       maxLength: {
         value: 5,

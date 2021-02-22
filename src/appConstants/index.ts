@@ -45,6 +45,16 @@ export const TABLE_TEAMS_HEADERS = [
   'Action',
 ];
 
+export const INPUT_VALUES_EDIT_PROFILE: string[] = [
+  'firstName',
+  'lastName',
+  'discord',
+  'telegram',
+  'city',
+  'country',
+  'score',
+];
+
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
     value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,

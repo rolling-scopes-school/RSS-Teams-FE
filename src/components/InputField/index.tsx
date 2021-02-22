@@ -6,7 +6,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   labelText?: string;
   placeholder?: string;
   register?: any;
-  name?: string;
+  name: string;
   message?: string | undefined;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
