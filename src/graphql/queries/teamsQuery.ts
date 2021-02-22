@@ -10,7 +10,6 @@ export const TEAMS_QUERY = gql`
         number
         courseId
         socialLink
-        memberIds
         members {
           id
           firstName

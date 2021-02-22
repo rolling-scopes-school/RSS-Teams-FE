@@ -12,22 +12,17 @@ export const WHOAMI_QUERY = gql`
       score
       country
       city
-      avatar
       isAdmin
       courses {
         id
         name
       }
-      email
-      courseIds
-      teamIds
       teams {
         id
         password
         number
         courseId
         socialLink
-        memberIds
         members {
           id
           firstName

@@ -18,15 +18,11 @@ export const USERS_QUERY = gql`
         score
         country
         city
-        avatar
-        email
         isAdmin
-        courseIds
         courses {
           id
           name
         }
-        teamIds
         teams {
           id
           number
