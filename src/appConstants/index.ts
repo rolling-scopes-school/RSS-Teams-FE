@@ -16,7 +16,7 @@ export const SET_TEAM_MEMBER_EXPEL_ID = 'SET_TEAM_MEMBER_EXPEL_ID';
 export const SET_TEAM_PASSWORD = 'SET_TEAM_PASSWORD';
 export const SET_SOCIAL_LINK = 'SET_SOCIAL_LINK';
 
-export const USERS_PER_PAGE = 40;
+export const USERS_PER_PAGE = 20;
 export const TEAMS_PER_PAGE = 10;
 export const CURRENT_YEAR = new Date(Date.now()).getFullYear();
 
@@ -57,11 +57,11 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
 
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
-    value: /^https:\/\/[A-Za-z.]+\/[A-Za-z]+$/i,
+    value: /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/,
     message: 'Use right format link - https://xxx/xxxx',
   },
   maxLength: {
-    value: 35,
+    value: 55,
     message: 'This input exceed maxLength.',
   },
 };
