@@ -136,17 +136,15 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     expelUserFromTeam();
   };
 
-  const onSubmitCreateTeam = (closeCallBack: () => void) => {
+  const onSubmitCreateTeam = () => {
     createTeam().then(({ data: { createTeam } }) => {
-      console.log('onSubmitCreateTeam');
-      closeCallBack();
       dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
       dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
     });
   };
 
-  const onSubmitUpdateSocialLink = (closeCallBack: () => void) => {
-    updateTeam().then(() => closeCallBack());
+  const onSubmitUpdateSocialLink = () => {
+    updateTeam();
   };
 
   return (
