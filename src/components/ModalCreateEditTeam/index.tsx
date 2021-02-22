@@ -35,7 +35,6 @@ export const ModalCreateEditTeam: FC<Props> = ({
 
   const onSubmitModal = () => {
     if (onSubmit) {
-      setErrorMessage('');
       onSubmit();
       onClose();
     }
@@ -73,7 +72,11 @@ export const ModalCreateEditTeam: FC<Props> = ({
 
   return (
     <Modal
-      {...{ title, text, open, onClose, okText }}
+      {...{ title, text, open, okText }}
+      onClose={() => {
+        onClose();
+        setErrorMessage('');
+      }}
       onSubmit={() => {
         if (isInputValid) {
           onSubmitModal();

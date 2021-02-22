@@ -57,11 +57,11 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
 
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
-    value: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$/,
+    value: /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/,
     message: 'Use right format link - https://xxx/xxxx',
   },
   maxLength: {
-    value: 35,
+    value: 55,
     message: 'This input exceed maxLength.',
   },
 };
