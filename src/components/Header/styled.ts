@@ -13,6 +13,7 @@ export const StyledHeader = styled.header<TStyledHeaderProps>`
   padding: ${({ login }) => (login ? '1.4% 4.2% 0' : '2.8% 4.2% 0 2.8%')};
   background-color: ${({ login }) => (login ? MAIN1_COLOR : 'transparent')};
   width: 100%;
+  z-index: 1;
 
   @media (max-width: 549px) and (min-width: 320px) {
     height: auto;
