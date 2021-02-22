@@ -5,9 +5,9 @@ export const StudentTableWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
   padding: 0 4%;
 `;
 

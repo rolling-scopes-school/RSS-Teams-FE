@@ -22,9 +22,10 @@ export const EditProfileWrapper = styled.form`
 
 export const FormWrapper = styled.div`
   display: flex;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
-  height: auto;
+  width: 100%;
 `;
 
 export const FormTitle = styled(PageTitle)`
