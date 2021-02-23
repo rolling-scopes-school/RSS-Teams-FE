@@ -90,7 +90,7 @@ export const EditProfile: FC = () => {
     const { name, value } = e.target;
     setInputValues({
       ...inputValues,
-      [name]: value,
+      [name]: value.trim(),
     });
   };
 
