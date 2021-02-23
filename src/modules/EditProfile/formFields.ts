@@ -48,7 +48,7 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: /^[A-Za-z0-9@#_() ]+$/i,
+        value: /^[A-Za-z0-9@#-_() ]+$/i,
         message: 'This input is letters and digits only.',
       },
       minLength: {
@@ -68,7 +68,7 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: /^[A-Za-z0-9_]+$/i,
+        value: /^[A-Za-z0-9-_ ]+$/i,
         message: 'This input is letters and digits only.',
       },
       minLength: {
