@@ -16,7 +16,7 @@ export const formFields: InputFieldProps[] = [
         message: 'Minimal length is 3',
       },
       maxLength: {
-        value: 12,
+        value: 15,
         message: 'This input exceed maxLength.',
       },
     },
@@ -36,7 +36,7 @@ export const formFields: InputFieldProps[] = [
         message: 'Minimal length is 3',
       },
       maxLength: {
-        value: 14,
+        value: 20,
         message: 'This input exceed maxLength.',
       },
     },
@@ -48,12 +48,16 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: /^[A-Za-z0-9@#_]+$/i,
+        value: /^[A-Za-z0-9@#_() ]+$/i,
         message: 'This input is letters and digits only.',
       },
       minLength: {
         value: 3,
         message: 'Minimal length is 3',
+      },
+      maxLength: {
+        value: 30,
+        message: 'This input exceed maxLength.',
       },
     },
   },
@@ -64,12 +68,16 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: /^[A-Za-z0-9]+$/i,
+        value: /^[A-Za-z0-9_]+$/i,
         message: 'This input is letters and digits only.',
       },
       minLength: {
         value: 3,
         message: 'Minimal length is 3',
+      },
+      maxLength: {
+        value: 30,
+        message: 'This input exceed maxLength.',
       },
     },
   },
@@ -80,7 +88,7 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: /^[A-Za-z]+$/i,
+        value: /^[A-Za-z\- ]+$/i,
         message: 'This input is letters only.',
       },
       minLength: {
@@ -88,7 +96,7 @@ export const formFields: InputFieldProps[] = [
         message: 'Minimal length is 3',
       },
       maxLength: {
-        value: 12,
+        value: 30,
         message: 'This input exceed maxLength.',
       },
     },
@@ -100,7 +108,7 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: /^[A-Za-z]+$/i,
+        value: /^[A-Za-z\- ]+$/i,
         message: 'This input is letters only.',
       },
       minLength: {
@@ -108,7 +116,7 @@ export const formFields: InputFieldProps[] = [
         message: 'Minimal length is 3',
       },
       maxLength: {
-        value: 12,
+        value: 30,
         message: 'This input exceed maxLength.',
       },
     },

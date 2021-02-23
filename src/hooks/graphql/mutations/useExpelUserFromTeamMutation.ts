@@ -38,9 +38,6 @@ export const useExpelUserFromTeamMutation = ({ data }: Props) => {
               members: team.members.filter(
                 (member: User) => member.id !== userId
               ),
-              memberIds: team.memberIds.filter(
-                (memberId: string) => memberId !== userId
-              ),
             };
           }
           return team;
@@ -53,9 +50,6 @@ export const useExpelUserFromTeamMutation = ({ data }: Props) => {
                 ...team,
                 members: team.members.filter(
                   (member: User) => member.id !== userId
-                ),
-                memberIds: team.memberIds.filter(
-                  (memberId: string) => memberId !== userId
                 ),
               };
             }
