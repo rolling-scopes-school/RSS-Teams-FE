@@ -3,13 +3,13 @@ import { MAIN1_COLOR } from 'appConstants/colors';
 
 export const LoaderStyled = styled.div`
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
+  transform: translate(-50%, -60%);
 
   .loader,
   .loader:before,
   .loader:after {
-    transform: translate(-50%m -50%);
     border-radius: 50%;
     width: 2.5em;
     height: 2.5em;

@@ -19,6 +19,7 @@ import {
   SET_USER_DATA,
 } from 'appConstants';
 import { useWhoAmIQuery } from 'hooks/graphql';
+import { AppStyled } from './styled';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ export const App: FC = () => {
   if (loading || loadingW) return <Loader />;
 
   return (
-    <>
+    <AppStyled>
       <Header />
 
       <Switch>
@@ -80,6 +81,6 @@ export const App: FC = () => {
         <Route exact path="/editProfile" component={EditProfile} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
-    </>
+    </AppStyled>
   );
 };

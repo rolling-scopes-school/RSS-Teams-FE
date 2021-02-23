@@ -8,7 +8,6 @@ export const StyledLoginPage = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,8 +36,7 @@ export const StyledLoginImage = styled(LoginImage)`
   height: 100%;
 
   @media (max-width: 991px) {
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
   }
 `;

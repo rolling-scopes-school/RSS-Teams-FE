@@ -4,7 +4,7 @@ import { Loader, Error, Pagination } from 'components';
 import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
-import { StyledTeams } from './styled';
+import { StyledTeams, TeamWrapper } from './styled';
 import { TEAMS_PER_PAGE } from 'appConstants';
 import { Team } from 'types';
 import { TeamListModals, Teams } from './components';
@@ -26,7 +26,7 @@ export const TeamsList: FC = () => {
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
 
   return (
-    <>
+    <TeamWrapper>
       <StyledTeams>
         <Teams
           teams={teams}
@@ -45,6 +45,6 @@ export const TeamsList: FC = () => {
       </StyledTeams>
 
       <TeamListModals {...{ page }} />
-    </>
+    </TeamWrapper>
   );
 };
