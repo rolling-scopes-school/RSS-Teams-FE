@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useTeamsQuery } from 'hooks/graphql';
+import { useTeamsQuery, useSortStudentsMutation } from 'hooks/graphql';
 import { Loader, Error, Pagination } from 'components';
 import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -17,6 +17,10 @@ export const TeamsList: FC = () => {
     reactCourseId: currCourse.id,
     page: page,
   });
+  const { sortStudents } = useSortStudentsMutation({
+    courseId: currCourse.id,
+    page,
+  });
   const loading = loadingT;
   const error = errorT;
 
@@ -24,6 +28,10 @@ export const TeamsList: FC = () => {
   if (error) return <Error />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
+
+  const onClickSortStudents = () => {
+    sortStudents();
+  };
 
   return (
     <TeamWrapper>
@@ -38,6 +46,8 @@ export const TeamsList: FC = () => {
               : undefined
           }
           userId={userData.id}
+          isAdmin={userData.isAdmin}
+          onClickSortStudents={onClickSortStudents}
         />
         {teams.results.length ? (
           <Pagination pageCount={pageCount} changePage={setPage} page={page} />
