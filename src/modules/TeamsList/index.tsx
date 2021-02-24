@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useTeamsQuery } from 'hooks/graphql';
+import { useTeamsQuery, useSortStudentsMutation } from 'hooks/graphql';
 import { Loader, Error, Pagination } from 'components';
 import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -8,7 +8,6 @@ import { StyledTeams, TeamWrapper } from './styled';
 import { TEAMS_PER_PAGE } from 'appConstants';
 import { Team } from 'types';
 import { TeamListModals, Teams } from './components';
-import { useSortStudentsMutation } from 'hooks/graphql/mutations/useSortStudentsMutation';
 
 export const TeamsList: FC = () => {
   const [page, setPage] = useState<number>(0);
