@@ -38,6 +38,7 @@ export const TeamsList: FC = () => {
               : undefined
           }
           userId={userData.id}
+          isAdmin={userData.isAdmin}
         />
         {teams.results.length ? (
           <Pagination pageCount={pageCount} changePage={setPage} page={page} />

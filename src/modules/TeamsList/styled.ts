@@ -10,5 +10,15 @@ export const TeamWrapper = styled.div`
 export const StyledTeams = styled.div`
   max-width: 1320px;
   width: 92%;
-  padding-top: 34px;
+`;
+
+export const TeamsTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  h1 {
+    width: auto;
+  }
 `;

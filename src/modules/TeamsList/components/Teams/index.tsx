@@ -1,16 +1,19 @@
 import React, { FC } from 'react';
-import { PageTitle } from 'typography';
 
 import { TeamsHeader } from './components';
 import { MyTeam } from './components';
 import { Team, TeamList } from 'types';
 import { TeamItem } from './components';
+import { TableTitle } from 'modules/StudentsTable/styled';
+import { Button } from 'typography';
+import { TeamsTitleWrapper } from 'modules/TeamsList/styled';
 
 type TeamsProps = {
   teams: TeamList;
   title?: string;
   myTeam?: Team;
   userId: string;
+  isAdmin: boolean;
 };
 
 export const Teams: FC<TeamsProps> = ({
@@ -18,9 +21,13 @@ export const Teams: FC<TeamsProps> = ({
   teams,
   myTeam,
   userId,
+  isAdmin,
 }) => (
   <>
-    <PageTitle>{title}</PageTitle>
+    <TeamsTitleWrapper>
+      <TableTitle>{title}</TableTitle>
+      {isAdmin ? <Button>SORT STUDENTS</Button> : null}
+    </TeamsTitleWrapper>
     {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
     {teams.count !== 0 &&
       teams.results.map((team) => (
