@@ -128,7 +128,7 @@ export const formFields: InputFieldProps[] = [
     register: {
       required: 'This is required.',
       pattern: {
-        value: /^[0-9]+$/i,
+        value: /^[1-9]+\d*$/i,
         message: 'This input is number only.',
       },
       minLength: {
