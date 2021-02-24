@@ -14,6 +14,7 @@ type TeamsProps = {
   myTeam?: Team;
   userId: string;
   isAdmin: boolean;
+  onClickSortStudents: () => void;
 };
 
 export const Teams: FC<TeamsProps> = ({
@@ -22,11 +23,14 @@ export const Teams: FC<TeamsProps> = ({
   myTeam,
   userId,
   isAdmin,
+  onClickSortStudents,
 }) => (
   <>
     <TeamsTitleWrapper>
       <TableTitle>{title}</TableTitle>
-      {isAdmin ? <Button>SORT STUDENTS</Button> : null}
+      {isAdmin ? (
+        <Button onClick={onClickSortStudents}>SORT STUDENTS</Button>
+      ) : null}
     </TeamsTitleWrapper>
     {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
     {teams.count !== 0 &&

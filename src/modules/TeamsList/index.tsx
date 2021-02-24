@@ -8,6 +8,7 @@ import { StyledTeams, TeamWrapper } from './styled';
 import { TEAMS_PER_PAGE } from 'appConstants';
 import { Team } from 'types';
 import { TeamListModals, Teams } from './components';
+import { useSortStudentsMutation } from 'hooks/graphql/mutations/useSortStudentsMutation';
 
 export const TeamsList: FC = () => {
   const [page, setPage] = useState<number>(0);
@@ -17,6 +18,10 @@ export const TeamsList: FC = () => {
     reactCourseId: currCourse.id,
     page: page,
   });
+  const { sortStudents } = useSortStudentsMutation({
+    courseId: currCourse.id,
+    page,
+  });
   const loading = loadingT;
   const error = errorT;
 
@@ -24,6 +29,10 @@ export const TeamsList: FC = () => {
   if (error) return <Error />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
+
+  const onClickSortStudents = () => {
+    sortStudents();
+  };
 
   return (
     <TeamWrapper>
@@ -39,6 +48,7 @@ export const TeamsList: FC = () => {
           }
           userId={userData.id}
           isAdmin={userData.isAdmin}
+          onClickSortStudents={onClickSortStudents}
         />
         {teams.results.length ? (
           <Pagination pageCount={pageCount} changePage={setPage} page={page} />
