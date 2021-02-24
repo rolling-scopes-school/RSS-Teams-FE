@@ -1,6 +1,4 @@
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
-import { selectUserData } from 'modules/StudentsTable/selectors';
 import { NavLink } from 'react-router-dom';
 import {
   StyledNav,
@@ -18,7 +16,6 @@ type NavProps = {
 };
 
 export const Nav: FC<NavProps> = ({ setDisplayCoursesList }) => {
-  const userData = useSelector(selectUserData);
   const appNavigation: TAppNavigation = {
     ['/studentsTable']: 'Dashboard',
     ['/']: 'Teams',
