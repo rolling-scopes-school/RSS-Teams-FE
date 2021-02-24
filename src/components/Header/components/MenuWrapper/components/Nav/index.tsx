@@ -29,9 +29,6 @@ export const Nav: FC<NavProps> = ({ setDisplayCoursesList }) => {
     <StyledNav>
       <StyledNavList>
         {Object.values(appNavigation).map((link: string, index: number) => {
-          if (!index && !userData.isAdmin) {
-            return;
-          }
           return (
             <StyledNavListItem key={`NavLinkKey-${index}`}>
               <NavLink
