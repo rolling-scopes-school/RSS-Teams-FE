@@ -8,3 +8,4 @@ export { useExpelUserFromTeamMutation } from './mutations/useExpelUserFromTeamMu
 export { useCreateTeamMutation } from './mutations/useCreateTeamMutation';
 export { useAddUserToTeamMutation } from './mutations/useAddUserToTeamMutation';
 export { useUpdateTeamMutation } from './mutations/useUpdateTeamMutation';
+export { useSortStudentsMutation } from './mutations/useSortStudentsMutation';
