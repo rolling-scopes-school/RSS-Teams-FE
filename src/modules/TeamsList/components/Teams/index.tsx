@@ -28,9 +28,7 @@ export const Teams: FC<TeamsProps> = ({
   <>
     <TeamsTitleWrapper>
       <TableTitle>{title}</TableTitle>
-      {isAdmin ? (
-        <Button onClick={onClickSortStudents}>SORT STUDENTS</Button>
-      ) : null}
+      {isAdmin && <Button onClick={onClickSortStudents}>SORT STUDENTS</Button>}
     </TeamsTitleWrapper>
     {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
     {teams.count !== 0 &&
