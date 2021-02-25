@@ -83,7 +83,7 @@ export const filterSelectFields: [
     'Sort by team',
     [
       ['All', false],
-      ['My team', true],
+      ['Without team', true],
     ],
     '100%',
     'teamFilter',
