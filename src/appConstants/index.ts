@@ -15,6 +15,7 @@ export const ACTIVE_MODAL_UPDATE_SOCIAL_LINK =
 export const SET_TEAM_MEMBER_EXPEL_ID = 'SET_TEAM_MEMBER_EXPEL_ID';
 export const SET_TEAM_PASSWORD = 'SET_TEAM_PASSWORD';
 export const SET_SOCIAL_LINK = 'SET_SOCIAL_LINK';
+export const SET_FILTER_DATA = 'SET_FILTER_DATA';
 
 export const USERS_PER_PAGE = 20;
 export const TEAMS_PER_PAGE = 10;
@@ -54,6 +55,8 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
   'country',
   'score',
 ];
+
+export const FILTER_FORM_INPUTS = ['discord', 'github', 'location', 'course'];
 
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
