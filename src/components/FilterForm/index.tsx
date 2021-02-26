@@ -111,13 +111,7 @@ export const FilterForm: FC<TFilter> = ({
               setInputValues(defaultFilterData);
             }}
           >
-            {
-              <img
-                src={crossIcon}
-                alt="clear filter icon"
-                className="CrossClearFilter"
-              />
-            }
+            {<img src={crossIcon} alt="clear filter icon" />}
             Clear filter
           </FilterButton>
         )}

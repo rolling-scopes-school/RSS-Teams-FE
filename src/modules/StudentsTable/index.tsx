@@ -83,13 +83,7 @@ export const StudentsTable: FC = () => {
             outerBtn={true}
             onClick={onClickClearBtnHandler}
           >
-            {
-              <img
-                src={crossIcon}
-                alt="clear filter icon"
-                className="CrossClearFilter"
-              />
-            }{' '}
+            {<img src={crossIcon} alt="clear filter icon" />}
             Clear filter
           </FilterButton>
         )}
