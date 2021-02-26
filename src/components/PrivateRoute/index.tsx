@@ -6,7 +6,7 @@ type Props = {
   path: string;
   component: FC<any>;
   exact?: boolean;
-  newUserCheck?: undefined | null | string;
+  newUserCheck?: boolean;
 };
 
 export const PrivateRoute: FC<Props> = ({
@@ -19,7 +19,7 @@ export const PrivateRoute: FC<Props> = ({
     <Route
       {...rest}
       render={(props) => {
-        if (isLoggedIn && !!newUserCheck) {
+        if (isLoggedIn && newUserCheck) {
           return <Component {...props} />;
         }
         if (isLoggedIn && !newUserCheck) {
