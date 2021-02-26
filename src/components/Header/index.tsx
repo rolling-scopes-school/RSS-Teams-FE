@@ -19,7 +19,9 @@ export const Header: FC = () => {
         <Link to="/">
           <RSLogo login={loginToken} />
         </Link>
-        {newUserCheck && loginToken && <MenuWrapper />}
+        {newUserCheck && loginToken && !!userData?.courses.length && (
+          <MenuWrapper />
+        )}
       </Container>
     </StyledHeader>
   );

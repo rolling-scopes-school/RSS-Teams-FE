@@ -42,13 +42,13 @@ export type TeamList = {
   results: Team[];
 };
 
-export type UserFilterInput = {
-  discord: string;
-  github: string;
-  location: string;
-  courseName: string;
+export type TFilterForm = {
+  discord: string | null;
+  github: string | null;
+  location: string | null;
+  courseName: string | null;
   sortingOrder: string;
-  teamFilter: boolean;
+  teamFilter: string;
 };
 
 export type UpdateUserInput = {
@@ -102,8 +102,18 @@ export type StateTeamsList = {
   socialLink: string;
 };
 
+export type UserFilterInput = {
+  discord: string | null;
+  github: string | null;
+  location: string | null;
+  courseName: string | null;
+  sortingOrder: string;
+  teamFilter: boolean;
+};
+
 export type StateStudentsTable = {
   userData: User;
+  filterData: TFilterForm;
 };
 
 export type StateLoginPage = {

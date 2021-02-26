@@ -10,7 +10,6 @@ import { TeamsTitleWrapper } from 'modules/TeamsList/styled';
 
 type TeamsProps = {
   teams: TeamList;
-  title?: string;
   myTeam?: Team;
   userId: string;
   isAdmin: boolean;
@@ -18,7 +17,6 @@ type TeamsProps = {
 };
 
 export const Teams: FC<TeamsProps> = ({
-  title = 'Teams',
   teams,
   myTeam,
   userId,
@@ -27,7 +25,7 @@ export const Teams: FC<TeamsProps> = ({
 }) => (
   <>
     <TeamsTitleWrapper>
-      <TableTitle>{title}</TableTitle>
+      <TableTitle>Teams</TableTitle>
       {isAdmin && <Button onClick={onClickSortStudents}>SORT STUDENTS</Button>}
     </TeamsTitleWrapper>
     {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}

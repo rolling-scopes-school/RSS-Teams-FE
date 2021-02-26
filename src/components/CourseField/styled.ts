@@ -16,7 +16,7 @@ export const FieldWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const SelectCource = styled.div`
+export const SelectCourse = styled.div`
   width: 300px;
   margin-bottom: 0;
   display: flex;

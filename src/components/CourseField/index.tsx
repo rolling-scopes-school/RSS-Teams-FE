@@ -1,6 +1,6 @@
 import React, { FC, SelectHTMLAttributes, useState } from 'react';
 import { Label, Select, SelectInner } from 'typography';
-import { FieldWrapper, SelectCource, PlusButton } from './styled';
+import { FieldWrapper, SelectCourse, PlusButton } from './styled';
 import { ValidationAlert } from '../InputField/styled';
 
 import { ReactComponent as CheckSvgIcon } from 'assets/svg/check.svg';
@@ -18,6 +18,7 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   courses: Course[];
   onAdd?: any;
   isValid?: boolean;
+  widthSelect?: string | undefined;
 }
 
 export const CourseField: FC<SelectFieldProps> = ({
@@ -44,7 +45,7 @@ export const CourseField: FC<SelectFieldProps> = ({
   return (
     <FieldWrapper>
       {labelText && <Label>{labelText}</Label>}
-      <SelectCource>
+      <SelectCourse>
         <Select>
           <SelectInner
             placeholder={placeholder}
@@ -77,7 +78,7 @@ export const CourseField: FC<SelectFieldProps> = ({
             <CheckSvgIcon />
           </PlusButton>
         )}
-      </SelectCource>
+      </SelectCourse>
       {!isValid && (
         <ValidationAlert>
           You need to choose at least one course

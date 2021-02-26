@@ -28,7 +28,7 @@ export const App: FC = () => {
   const { loadingW, whoAmI } = useWhoAmIQuery({
     skip: loginToken === null,
   });
-  const newUserCheck = whoAmI?.telegram;
+  const newUserCheck = !!whoAmI?.courses.length;
 
   useEffect(() => {
     if (!loginToken) {
