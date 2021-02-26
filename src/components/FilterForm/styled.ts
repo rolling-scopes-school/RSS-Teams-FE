@@ -37,9 +37,19 @@ export const FilterButton = styled(Button)<TFilerButtonProps>`
   padding: ${({ clearBtn = false }) =>
     clearBtn ? '13px 20px 13px 0' : '20px 30px'};
 
+  @media (max-width: 1199px) and (min-width: 992px) {
+    padding: ${({ clearBtn = false }) =>
+      clearBtn ? '12px 16px 12px 0' : '18px 28px'};
+    gap: ${({ clearBtn = false }) => (clearBtn ? '10px' : '18px')};
+  }
+  @media (max-width: 991px) and (min-width: 768px) {
+    padding: ${({ clearBtn = false }) =>
+      clearBtn ? '13px 12px 13px 0' : '14px 26px'};
+    gap: ${({ clearBtn = false }) => (clearBtn ? '10px' : '17px')};
+  }
   @media (max-width: 767px) and (min-width: 550px) {
     padding: ${({ clearBtn = false }) =>
-      clearBtn ? '13px 8px 13px 0' : '8px 30px'};
+      clearBtn ? '13px 8px 13px 0' : '8px 26px'};
     gap: ${({ clearBtn = false }) => (clearBtn ? '10px' : '16px')};
   }
   @media (max-width: 549px) and (min-width: 440px) {
@@ -56,6 +66,9 @@ export const FilterButton = styled(Button)<TFilerButtonProps>`
   img {
     filter: invert(100%) sepia() saturate(10000%) hue-rotate(-110deg);
 
+    @media (max-width: 991px) and (min-width: 768px) {
+      width: 15px;
+    }
     @media (max-width: 767px) and (min-width: 550px) {
       width: 14px;
     }

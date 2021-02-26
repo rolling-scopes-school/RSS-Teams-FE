@@ -17,6 +17,7 @@ import {
 } from 'components/FilterForm/filterFormFields';
 import { selectFilterData } from './selectors';
 import { TFilterForm } from 'types';
+import { useForm } from 'react-hook-form';
 
 export const StudentsTable: FC = () => {
   const [page, setPage] = useState<number>(0);
@@ -24,6 +25,10 @@ export const StudentsTable: FC = () => {
   const [inputValues, setInputValues] = useState<TFilterForm>(
     defaultFilterData
   );
+  const { register, handleSubmit, errors, reset } = useForm<TFilterForm>({
+    defaultValues: inputValues,
+    mode: 'onChange',
+  });
 
   const dispatch = useDispatch();
 
@@ -51,24 +56,32 @@ export const StudentsTable: FC = () => {
   if (error) return <Error />;
 
   const pageCount: number = Math.ceil(users.count / USERS_PER_PAGE);
+  const isValuesEqual =
+    Object.values(defaultFilterData).toString() !==
+    Object.values(filterData).toString();
+  const onClickClearBtnHandler = () => {
+    setInputValues(defaultFilterData);
+    dispatch({
+      type: SET_FILTER_DATA,
+      payload: defaultFilterData,
+    });
+    setIsFilterOpen(false);
+  };
+  const onClickOpenFilterBtnHandler = () => {
+    setIsFilterOpen(!isFilterOpen);
+    reset(filterData);
+    setInputValues(filterData);
+  };
 
   return (
     <StudentTableWrapper>
       <TeamsTitleWrapper>
         <TableTitle>Dashboard</TableTitle>
-        {Object.values(defaultFilterData).toString() !==
-          Object.values(filterData).toString() && (
+        {isValuesEqual && !isFilterOpen && (
           <FilterButton
             clearBtn={true}
             outerBtn={true}
-            onClick={() => {
-              setInputValues(defaultFilterData);
-              dispatch({
-                type: SET_FILTER_DATA,
-                payload: defaultFilterData,
-              });
-              setIsFilterOpen(false);
-            }}
+            onClick={onClickClearBtnHandler}
           >
             {
               <img
@@ -81,17 +94,29 @@ export const StudentsTable: FC = () => {
           </FilterButton>
         )}
         <FilterButton
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          onClick={onClickOpenFilterBtnHandler}
           bgColor={WHITE_COLOR}
         >
           {<img src={filterIcon} alt="Filter icon" />} Filter
         </FilterButton>
         {isFilterOpen && (
-          <FilterForm {...{ inputValues, setInputValues, setIsFilterOpen }} />
+          <FilterForm
+            {...{
+              inputValues,
+              setInputValues,
+              setIsFilterOpen,
+              register,
+              handleSubmit,
+              errors,
+              reset,
+            }}
+          />
         )}
       </TeamsTitleWrapper>
       <Dashboard users={users.results} page={page} />
-      <Pagination pageCount={pageCount} changePage={setPage} page={page} />
+      {!!users.results.length && (
+        <Pagination pageCount={pageCount} changePage={setPage} page={page} />
+      )}
     </StudentTableWrapper>
   );
 };

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
-import { FieldError, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { FieldError, FieldErrors } from 'react-hook-form';
 import { FilterSelect, InputField } from 'components';
 import { InputsWrapper } from 'modules/EditProfile/styled';
 import { TFilterForm } from 'types';
@@ -10,28 +10,33 @@ import {
   filterSelectFields,
   defaultFilterData,
 } from './filterFormFields';
-import { FILTER_FORM_INPUTS, SET_FILTER_DATA } from 'appConstants';
+import { SET_FILTER_DATA } from 'appConstants';
 import { DARK_TEXT_COLOR } from 'appConstants/colors';
 import { Button } from 'typography';
 import crossIcon from 'assets/svg/cross.svg';
+import { selectFilterData } from 'modules/StudentsTable/selectors';
 
 type TFilter = {
   inputValues: TFilterForm;
   setInputValues: (data: TFilterForm) => void;
   setIsFilterOpen: (data: boolean) => void;
+  register: any;
+  handleSubmit: any;
+  errors: FieldErrors;
+  reset: any;
 };
 
 export const FilterForm: FC<TFilter> = ({
   inputValues,
   setInputValues,
   setIsFilterOpen,
+  register,
+  handleSubmit,
+  errors,
+  reset,
 }) => {
+  const filterData = useSelector(selectFilterData);
   const dispatch = useDispatch();
-
-  const { register, handleSubmit, errors, reset } = useForm<TFilterForm>({
-    defaultValues: inputValues,
-    mode: 'onChange',
-  });
 
   const changeInputValue = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -47,17 +52,18 @@ export const FilterForm: FC<TFilter> = ({
     e.preventDefault();
   };
 
+  const isValuesInnerEqual =
+    Object.values(defaultFilterData).toString() !==
+    Object.values(inputValues).toString();
+
   return (
     <FilterFormBase onSubmit={handleSubmit(onFilterFormSubmit)}>
       <InputsWrapper>
         {filterSelectFields.map(
-          (
-            item: [string, [string, string | boolean][], string, string],
-            index: number
-          ) => {
+          (item: [string, [string, string | boolean][], string, string]) => {
             return (
               <FilterSelect
-                key={`filterSelectKey-${index}`}
+                key={JSON.stringify(item)}
                 name={item[3]}
                 labelText={item[0]}
                 placeholder={item[0]}
@@ -73,25 +79,21 @@ export const FilterForm: FC<TFilter> = ({
             );
           }
         )}
-        {filterFormFields.map((item, index) => {
+        {filterFormFields.map((item) => {
           return (
             <InputField
-              key={`filterFieldKey-${index}`}
+              key={JSON.stringify(item)}
               name={item.name}
-              value={inputValues[item.name as keyof TFilterForm] ?? ''}
+              value={filterData[item.name as keyof TFilterForm] ?? ''}
               labelText={item.labelText}
               placeholder={item.placeholder}
               aria-invalid={
-                (errors[
-                  FILTER_FORM_INPUTS[index] as keyof TFilterForm
-                ] as FieldError)
+                (errors[item.name as keyof TFilterForm] as FieldError)
                   ? 'true'
                   : 'false'
               }
               message={
-                (errors[
-                  FILTER_FORM_INPUTS[index] as keyof TFilterForm
-                ] as FieldError)?.message
+                (errors[item.name as keyof TFilterForm] as FieldError)?.message
               }
               onChange={changeInputValue}
               register={register(item.register)}
@@ -100,13 +102,13 @@ export const FilterForm: FC<TFilter> = ({
         })}
       </InputsWrapper>
       <FilterButtonsWrapper>
-        {Object.values(defaultFilterData).toString() !==
-          Object.values(inputValues).toString() && (
+        {isValuesInnerEqual && (
           <FilterButton
             clearBtn={true}
+            type="button"
             onClick={() => {
-              setInputValues(defaultFilterData);
               reset(defaultFilterData);
+              setInputValues(defaultFilterData);
             }}
           >
             {
@@ -115,7 +117,7 @@ export const FilterForm: FC<TFilter> = ({
                 alt="clear filter icon"
                 className="CrossClearFilter"
               />
-            }{' '}
+            }
             Clear filter
           </FilterButton>
         )}
@@ -123,14 +125,10 @@ export const FilterForm: FC<TFilter> = ({
           className="SecondButtonForm"
           type="button"
           onClick={() => {
-            {
-              Object.values(defaultFilterData).toString() !==
-                Object.values(inputValues).toString() &&
-                dispatch({
-                  type: SET_FILTER_DATA,
-                  payload: inputValues,
-                });
-            }
+            dispatch({
+              type: SET_FILTER_DATA,
+              payload: inputValues,
+            });
             setIsFilterOpen(false);
           }}
         >

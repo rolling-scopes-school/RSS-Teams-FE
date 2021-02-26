@@ -39,19 +39,17 @@ export const TeamsList: FC = () => {
         <Teams
           teams={teams}
           myTeam={
-            userData.teams.length
-              ? userData.teams.find(
-                  (team: Team) => team.courseId === currCourse.id
-                )
-              : undefined
+            userData.teams.find(
+              (team: Team) => team.courseId === currCourse.id
+            ) ?? undefined
           }
           userId={userData.id}
           isAdmin={userData.isAdmin}
           onClickSortStudents={onClickSortStudents}
         />
-        {teams.results.length ? (
+        {!!teams.results.length && (
           <Pagination pageCount={pageCount} changePage={setPage} page={page} />
-        ) : null}
+        )}
       </StyledTeams>
 
       <TeamListModals {...{ page }} />

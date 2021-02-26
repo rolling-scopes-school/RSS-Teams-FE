@@ -66,14 +66,14 @@ export const App: FC = () => {
           path="/"
           exact
           isLoggedIn={!!loginToken}
-          newUserCheck={newUserCheck}
+          newUserCheck={newUserCheck && !!whoAmI?.courses.length}
           component={TeamsList}
         />
         <PrivateRoute
           exact
           path="/studentsTable"
           isLoggedIn={!!loginToken}
-          newUserCheck={newUserCheck}
+          newUserCheck={newUserCheck && !!whoAmI?.courses.length}
           component={StudentsTable}
         />
         <Route exact path="/token/:id" component={TokenPage} />

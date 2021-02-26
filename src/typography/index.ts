@@ -118,6 +118,14 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   background-color: ${({ bgc }) => bgc || MAIN1_COLOR};
   color: ${({ color }) => color || WHITE_COLOR};
+  @media (max-width: 1199px) and (min-width: 992px) {
+    font-size: 0.95rem;
+    padding: 11px 45px;
+  }
+  @media (max-width: 991px) and (min-width: 768px) {
+    font-size: 0.9rem;
+    padding: 10px 40px;
+  }
   @media (max-width: 767px) and (min-width: 550px) {
     font-size: 0.825rem;
     padding: 8px 30px;

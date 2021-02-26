@@ -20,15 +20,14 @@ export const FilterSelect: FC<SelectFieldProps> = ({
   currentOption,
   ...rest
 }) => {
-  const filterFieldOptions = options
-    ? options.map((option: string, index: number) => {
-        return (
-          <option key={`OptionFilterKey-${index}`} value={option}>
-            {option}
-          </option>
-        );
-      })
-    : null;
+  const filterFieldOptions =
+    options.map((option: string, index: number) => {
+      return (
+        <option key={`OptionFilterKey-${index}`} value={option}>
+          {option}
+        </option>
+      );
+    }) ?? null;
   return (
     <FieldWrapper>
       {labelText && <Label>{labelText}</Label>}

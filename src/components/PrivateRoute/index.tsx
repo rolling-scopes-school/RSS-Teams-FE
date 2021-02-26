@@ -22,7 +22,7 @@ export const PrivateRoute: FC<Props> = ({
         if (isLoggedIn && !!newUserCheck) {
           return <Component {...props} />;
         }
-        if (isLoggedIn && newUserCheck === null) {
+        if (isLoggedIn && !newUserCheck) {
           return <Redirect to={'/editProfile'} />;
         }
         if (!isLoggedIn) {
