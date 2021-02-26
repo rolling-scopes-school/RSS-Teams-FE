@@ -13,6 +13,7 @@ export const StyledTeams = styled.div`
 `;
 
 export const TeamsTitleWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;

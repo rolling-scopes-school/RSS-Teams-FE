@@ -12,8 +12,8 @@ export const formFields: InputFieldProps[] = [
         message: 'This input is letters only.',
       },
       minLength: {
-        value: 3,
-        message: 'Minimal length is 3',
+        value: 2,
+        message: 'Minimal length is 2',
       },
       maxLength: {
         value: 15,
@@ -32,8 +32,8 @@ export const formFields: InputFieldProps[] = [
         message: 'This input is letters only.',
       },
       minLength: {
-        value: 3,
-        message: 'Minimal length is 3',
+        value: 2,
+        message: 'Minimal length is 2',
       },
       maxLength: {
         value: 20,
@@ -92,8 +92,8 @@ export const formFields: InputFieldProps[] = [
         message: 'This input is letters only.',
       },
       minLength: {
-        value: 3,
-        message: 'Minimal length is 3',
+        value: 2,
+        message: 'Minimal length is 2',
       },
       maxLength: {
         value: 30,
@@ -112,8 +112,8 @@ export const formFields: InputFieldProps[] = [
         message: 'This input is letters only.',
       },
       minLength: {
-        value: 3,
-        message: 'Minimal length is 3',
+        value: 2,
+        message: 'Minimal length is 2',
       },
       maxLength: {
         value: 30,
