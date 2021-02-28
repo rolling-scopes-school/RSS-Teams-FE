@@ -2,6 +2,15 @@ import { WHITE_COLOR } from 'appConstants/colors';
 import styled, { keyframes } from 'styled-components';
 import { ReactComponent as HeaderActiveElement } from 'assets/svg/headerActiveElement.svg';
 
+type TStyledNavListItemProps = {
+  newUserCheck: boolean;
+};
+
+const open = keyframes`
+  from: { height: 0 }
+  to: { height: 100%}
+`;
+
 export const StyledNav = styled.nav`
   display: flex;
   justify-content: center;
@@ -18,10 +27,7 @@ export const StyledNavList = styled.ul`
   padding-inline-start: 0;
   gap: 60px;
 
-  @media (max-width: 549px) and (min-width: 440px) {
-    gap: 15.8%;
-  }
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 549px) and (min-width: 320px) {
     gap: 8%;
   }
 `;
@@ -31,13 +37,14 @@ export const StyledHeaderActiveElement = styled(HeaderActiveElement)`
   height: 0;
 `;
 
-const open = keyframes`
-  from: { height: 0 }
-  to: { height: 100%}
-`;
-
-export const StyledNavListItem = styled.li`
+export const StyledNavListItem = styled.li<TStyledNavListItemProps>`
   list-style-type: none;
+
+  @media (max-width: 449px) and (min-width: 320px) {
+    &:last-child {
+      display: ${({ newUserCheck }) => newUserCheck && 'none'};
+    }
+  }
 
   a {
     display: flex;

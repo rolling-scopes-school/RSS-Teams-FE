@@ -15,7 +15,7 @@ export const StyledHeader = styled.header<TStyledHeaderProps>`
   width: 100%;
   z-index: 1;
 
-  @media (max-width: 549px) and (min-width: 320px) {
+  @media (max-width: 710px) and (min-width: 320px) {
     height: auto;
   }
 `;
@@ -26,7 +26,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1320px;
 
-  @media (max-width: 549px) and (min-width: 320px) {
+  @media (max-width: 710px) and (min-width: 320px) {
     flex-direction: column;
     gap: 0.1rem;
   }

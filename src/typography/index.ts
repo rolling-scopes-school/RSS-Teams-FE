@@ -46,11 +46,11 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
     width: 80px;
     height: 28px;
   }
-  @media (max-width: 767px) and (min-width: 550px) {
+  @media (max-width: 767px) and (min-width: 711px) {
     width: 76px;
     height: 24px;
   }
-  @media (max-width: 549px) and (min-width: 440px) {
+  @media (max-width: 710px) and (min-width: 440px) {
     width: 72px;
     height: 22px;
     margin-bottom: 0;

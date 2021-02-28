@@ -31,7 +31,7 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
     margin-top: ${({ isClicked }) => (isClicked ? '0px' : '-100%')};
   }
 
-  @media (max-width: 945px) and (min-width: 320px) {
+  @media (max-width: 1060px) and (min-width: 320px) {
     display: none;
   }
 `;

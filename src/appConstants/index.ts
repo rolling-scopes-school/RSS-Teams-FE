@@ -66,3 +66,22 @@ export const MODAL_INPUT_VALIDATION = {
     message: 'This input exceed maxLength.',
   },
 };
+
+export const APP_NAVIGATION_LINKS = {
+  ['/studentsTable']: {
+    name: 'Dashboard',
+    isAlwaysVisible: false,
+  },
+  ['/']: {
+    name: 'Teams',
+    isAlwaysVisible: false,
+  },
+  ['/editProfile']: {
+    name: 'Edit Profile',
+    isAlwaysVisible: true,
+  },
+  ['/tutorial']: {
+    name: 'Tutorial',
+    isAlwaysVisible: true,
+  },
+};

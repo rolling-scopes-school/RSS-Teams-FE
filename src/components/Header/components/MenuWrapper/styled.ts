@@ -7,7 +7,8 @@ export const StyledMenuWrapper = styled.div`
   @media (max-width: 767px) and (min-width: 550px) {
     height: 56px;
   }
-  @media (max-width: 549px) and (min-width: 440px) {
+
+  @media (max-width: 710px) and (min-width: 440px) {
     height: 52px;
     align-self: center;
     margin-top: 0.15rem;
