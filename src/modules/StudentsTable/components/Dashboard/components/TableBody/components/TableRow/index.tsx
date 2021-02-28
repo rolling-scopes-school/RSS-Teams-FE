@@ -11,7 +11,7 @@ type TableItemProps = {
 export const TableRow: FC<TableItemProps> = ({ index, style, data }) => {
   const optimalItemIndexCount = 2;
   return (
-    <StyledTableRow key={`TableRowKey-${index}`} style={style}>
+    <StyledTableRow style={style}>
       {data[index].map((item: string, ind: number) => (
         <TableItem
           item={item}

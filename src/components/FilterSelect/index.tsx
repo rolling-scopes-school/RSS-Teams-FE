@@ -21,9 +21,9 @@ export const FilterSelect: FC<SelectFieldProps> = ({
   ...rest
 }) => {
   const filterFieldOptions =
-    options.map((option: string, index: number) => {
+    options.map((option: string) => {
       return (
-        <option key={`OptionFilterKey-${index}`} value={option}>
+        <option key={option} value={option}>
           {option}
         </option>
       );

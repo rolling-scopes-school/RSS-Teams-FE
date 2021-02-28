@@ -49,10 +49,10 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
       </StyledCoursesSelectHeaderWrapper>{' '}
       {userCourses.length ? (
         <StyledCoursesList>
-          {userCourses.map((course: Course, index: number) => {
+          {userCourses.map((course: Course) => {
             return (
               <li
-                key={`CourseKey-${index}`}
+                key={JSON.stringify(course)}
                 onClick={() => onCourseChange(course)}
               >
                 {course.name}

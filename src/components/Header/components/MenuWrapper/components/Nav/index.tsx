@@ -27,7 +27,7 @@ export const Nav: FC<NavProps> = ({ setDisplayCoursesList }) => {
       <StyledNavList>
         {Object.values(appNavigation).map((link: string, index: number) => {
           return (
-            <StyledNavListItem key={`NavLinkKey-${index}`}>
+            <StyledNavListItem key={link}>
               <NavLink
                 to={Object.keys(appNavigation)[index]}
                 exact

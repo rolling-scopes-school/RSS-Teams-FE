@@ -10,10 +10,7 @@ export const TableHead: FC = () => (
   <StyledTableHead>
     <StyledTableHeadRow>
       {TABLE_HEADERS.map((tableHeader: string, index: number) => (
-        <StyledTableHeader
-          className={`TableItem--${index}`}
-          key={`TableHeaderKey-${index}`}
-        >
+        <StyledTableHeader className={`TableItem--${index}`} key={tableHeader}>
           {tableHeader}
         </StyledTableHeader>
       ))}

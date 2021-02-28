@@ -29,10 +29,10 @@ export const Teams: FC<TeamsProps> = ({
       {isAdmin && <Button onClick={onClickSortStudents}>SORT STUDENTS</Button>}
     </TeamsTitleWrapper>
     {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
-    {teams.count !== 0 &&
+    {!!teams.count &&
       teams.results.map((team) => (
         <TeamItem
-          key={`team-${team.number}}`}
+          key={team.id}
           name={`Team ${team.number}`}
           countMember={team.members.length}
           members={team.members}

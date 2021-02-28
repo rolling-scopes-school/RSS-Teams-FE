@@ -31,7 +31,6 @@ export const TableItem: FC<TableItemProps> = ({ item, index, dataLength }) => {
   return (
     <StyledTableItem
       className={`TableItem--${index}`}
-      key={`TableItemKey-${index}`}
       onMouseOver={mouseOverHandler}
       onMouseOut={mouseLeaveHandler}
       tableItemCursor={tableItemCursor}
