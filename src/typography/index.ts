@@ -161,16 +161,7 @@ export const Input = styled.input`
   background-color: ${BG_COLOR};
   color: ${(props) => props.color || DARK_TEXT_COLOR};
   outline: none;
-  &::-webkit-input-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  &::-moz-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  &:-moz-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  &:-ms-input-placeholder {
+  &::placeholder {
     color: ${LIGHT_TEXT_COLOR};
   }
 `;
@@ -223,12 +214,7 @@ export const SelectInner = styled.select`
   background-color: transparent;
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
   outline: none;
-  &::-ms-expand {
-    display: none;
-  }
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   z-index: 1;
   cursor: pointer;
   option {
