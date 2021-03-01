@@ -22,11 +22,11 @@ export const StyledTable = styled.div`
     font-size: 0.9rem;
   }
   @media (max-width: 767px) and (min-width: 550px) {
-    height: calc(100vh - 270px);
+    height: calc(100vh - 291px);
     font-size: 0.825rem;
   }
   @media (max-width: 549px) and (min-width: 440px) {
-    height: calc(100vh - 278px);
+    height: calc(100vh - 280px);
     font-size: 0.8rem;
   }
   @media (max-width: 439px) and (min-width: 320px) {
