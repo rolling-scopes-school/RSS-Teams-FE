@@ -46,7 +46,7 @@ export const StudentsTable: FC = () => {
       ) as [string, boolean])[1],
     },
     reactCourseId: currCourse.id,
-    page: page,
+    page,
   });
 
   const loading = loadingU;
