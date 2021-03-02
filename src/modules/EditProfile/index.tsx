@@ -80,7 +80,8 @@ export const EditProfile: FC = () => {
     .filter(
       (item: Course) =>
         !userCourses.filter((uItem: Course) => uItem.name === item.name).length
-    );
+    )
+    .filter((item: Course) => item.name !== 'RSS React 2021 Q1');
 
   const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
     defaultValues: inputValues,
