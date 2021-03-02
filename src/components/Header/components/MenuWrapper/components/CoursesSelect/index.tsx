@@ -25,9 +25,8 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
 
-  const userCourses = userData.courses.filter(
-    (item) => item.id !== currCourse.id
-  );
+  const userCourses =
+    userData.courses.filter((item) => item.id !== currCourse.id) ?? null;
 
   const onCourseChange = (course: Course) => {
     setDisplayCoursesList(false);
@@ -47,7 +46,7 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
           {userCourses.length ? <StyledCoursesSelectArrow /> : null}
         </StyledCoursesSelectInfo>
       </StyledCoursesSelectHeaderWrapper>{' '}
-      {userCourses.length ? (
+      {!!userCourses.length ? (
         <StyledCoursesList>
           {userCourses.map((course: Course, index: number) => {
             return (

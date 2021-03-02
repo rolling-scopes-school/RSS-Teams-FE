@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ACTIVE_MODAL_LEAVE } from 'appConstants';
+import { ACTIVE_MODAL_LEAVE, ACTIVE_MODAL_REMOVE_COURSE } from 'appConstants';
 
 import { StyledMyTeam, HeaderDecor, TableWrapper } from './styled';
 import { Button } from 'typography';
@@ -24,6 +24,9 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   const dispatch = useDispatch();
 
   const leaveTeam = () => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true });
+  const removeCourse = () =>
+    dispatch({ type: ACTIVE_MODAL_REMOVE_COURSE, payload: true });
+  // const buttonsInfo: [string, () => void] = [];
 
   const countMember = team?.members?.length;
   return (
@@ -50,6 +53,14 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
             onClick={leaveTeam}
           >
             Leave team
+          </Button>
+          <Button
+            bgc={WHITE_COLOR}
+            color={DARK_TEXT_COLOR}
+            type="button"
+            onClick={removeCourse}
+          >
+            Leave course
           </Button>
         </div>
         <div className="myTeam__toggle">

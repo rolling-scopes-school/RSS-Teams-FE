@@ -97,6 +97,7 @@ export type StateTeamsList = {
   isActiveModalCreateTeam: boolean;
   isActiveModalCreated: boolean;
   isActiveModalUpdateSocialLink: boolean;
+  isActiveModalRemoveCourse: boolean;
   teamMemberExpelId: string;
   teamPassword: string;
   socialLink: string;
@@ -109,6 +110,12 @@ export type UserFilterInput = {
   courseName: string | null;
   sortingOrder: string;
   teamFilter: boolean;
+};
+
+export type RemoveUserFromCourseInput = {
+  userId: string;
+  teamId?: string | null;
+  courseId: string;
 };
 
 export type StateStudentsTable = {

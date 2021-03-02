@@ -56,6 +56,7 @@ export const StyledMyTeam = styled.div<StyledMyTeamProps>`
       display: flex;
       justify-content: flex-end;
       align-items: flex-start;
+      gap: 20px;
     }
     .myTeam__toggle {
       grid-area: toggle;
