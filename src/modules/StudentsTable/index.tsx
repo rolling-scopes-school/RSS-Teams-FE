@@ -65,6 +65,7 @@ export const StudentsTable: FC = () => {
       type: SET_FILTER_DATA,
       payload: defaultFilterData,
     });
+    setPage(0);
     setIsFilterOpen(false);
   };
   const onClickOpenFilterBtnHandler = () => {
@@ -99,6 +100,7 @@ export const StudentsTable: FC = () => {
               inputValues,
               setInputValues,
               setIsFilterOpen,
+              setPage,
               register,
               handleSubmit,
               errors,
