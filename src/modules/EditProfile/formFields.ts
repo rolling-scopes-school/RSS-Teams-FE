@@ -13,7 +13,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 2,
-        message: 'Minimal length is 2',
+        message: 'Minimal length is 2.',
       },
       maxLength: {
         value: 15,

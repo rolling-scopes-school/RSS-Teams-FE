@@ -1,4 +1,9 @@
-import { SET_TOKEN, SET_CURR_COURSE } from 'appConstants';
+import {
+  SET_TOKEN,
+  SET_CURR_COURSE,
+  SET_CURR_LANG,
+  LANGUAGES,
+} from 'appConstants';
 import { Reducer } from 'redux';
 import { StateLoginPage } from 'types';
 
@@ -10,6 +15,7 @@ export const loginPageState = {
     id: '',
     name: '',
   },
+  currLanguage: LANGUAGES[0],
 };
 
 export const loginPageReducer: Reducer<StateLoginPage, Action> = (
@@ -26,6 +32,11 @@ export const loginPageReducer: Reducer<StateLoginPage, Action> = (
       return {
         ...state,
         currCourse: action.payload,
+      };
+    case SET_CURR_LANG:
+      return {
+        ...state,
+        currLanguage: action.payload,
       };
     default:
       return state;

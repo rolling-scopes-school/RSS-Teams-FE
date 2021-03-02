@@ -16,12 +16,14 @@ export const SET_TEAM_MEMBER_EXPEL_ID = 'SET_TEAM_MEMBER_EXPEL_ID';
 export const SET_TEAM_PASSWORD = 'SET_TEAM_PASSWORD';
 export const SET_SOCIAL_LINK = 'SET_SOCIAL_LINK';
 export const SET_FILTER_DATA = 'SET_FILTER_DATA';
+export const SET_CURR_LANG = 'SET_CURR_LANG';
 
 export const USERS_PER_PAGE = 20;
 export const TEAMS_PER_PAGE = 10;
 export const CURRENT_YEAR = new Date(Date.now()).getFullYear();
 
 export const CURRENT_COURSE = 'currentCourse';
+export const CURRENT_LANG = 'currentLanguage';
 
 export const TABLE_HEADERS = [
   '#',
@@ -66,3 +68,22 @@ export const MODAL_INPUT_VALIDATION = {
     message: 'This input exceed maxLength.',
   },
 };
+
+export const LANGUAGES = ['English', 'Russian'];
+
+export const FOOTER_INFO = [
+  {
+    title: 'Development:',
+    members: [
+      'besovadevka',
+      'MadaShindeInai',
+      'self067',
+      'manuminsk',
+      'Malagor',
+    ],
+  },
+  {
+    title: 'Design:',
+    members: ['Nastya Kapylova'],
+  },
+];

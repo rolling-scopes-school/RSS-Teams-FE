@@ -14,3 +14,4 @@ export { ModalCreated } from './ModalCreated';
 export { TablePopup } from './TablePopup';
 export { FilterForm } from './FilterForm';
 export { FilterSelect } from './FilterSelect';
+export { Footer } from './Footer';

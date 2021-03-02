@@ -81,7 +81,7 @@ export const ModalCreateEditTeam: FC<Props> = ({
         if (isInputValid) {
           onSubmitModal();
         } else {
-          setErrorMessage('Please enter link');
+          setErrorMessage('Please, enter link');
         }
       }}
       hideOnOutsideClick={true}

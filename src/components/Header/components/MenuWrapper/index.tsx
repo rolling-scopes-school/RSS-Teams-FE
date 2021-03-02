@@ -8,11 +8,8 @@ export const MenuWrapper: FC = () => {
 
   return (
     <StyledMenuWrapper>
-      <Nav setDisplayCoursesList={setDisplayCoursesList} />
-      <CoursesSelect
-        displayCoursesList={displayCoursesList}
-        setDisplayCoursesList={setDisplayCoursesList}
-      />
+      <Nav {...{ setDisplayCoursesList }} />
+      <CoursesSelect {...{ displayCoursesList, setDisplayCoursesList }} />
     </StyledMenuWrapper>
   );
 };
