@@ -26,27 +26,16 @@ import {
   selectIsActiveModalLeave,
   selectIsActiveModalUpdateSocialLink,
   selectSocialLink,
-  selectTeamMemberExpelId,
   selectTeamPassword,
 } from '../../selectors';
 import { Team } from 'types';
-import {
-  useAddUserToTeamMutation,
-  useRemoveUserFromTeamMutation,
-  useExpelUserFromTeamMutation,
-  useCreateTeamMutation,
-  useUpdateTeamMutation,
-} from 'hooks/graphql';
-import { selectCurrCourse } from 'modules/LoginPage/selectors';
-import { selectUserData } from 'modules/StudentsTable/selectors';
+import { useCommonMutations } from './useCommonMutations';
 
 export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const [textJoinModal, setTextJoinModal] = useState<string>(
     'Please enter your team password.'
   );
   const dispatch = useDispatch();
-  const currCourse = useSelector(selectCurrCourse);
-  const userData = useSelector(selectUserData);
   const isActiveModalExpel = useSelector(selectIsActiveModalExpel);
   const isActiveModalLeave = useSelector(selectIsActiveModalLeave);
   const isActiveModalJoin = useSelector(selectIsActiveModalJoin);
@@ -55,57 +44,16 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const isActiveModalUpdateSocialLink = useSelector(
     selectIsActiveModalUpdateSocialLink
   );
-  const teamMemberId = useSelector(selectTeamMemberExpelId);
   const teamPassword = useSelector(selectTeamPassword);
   const socialLink = useSelector(selectSocialLink);
 
-  const { addUserToTeam } = useAddUserToTeamMutation({
-    data: {
-      userId: userData.id,
-      courseId: currCourse.id,
-      teamPassword,
-    },
-  });
-
-  const { removeUserFromTeam } = useRemoveUserFromTeamMutation({
-    data: {
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
-      userId: userData.id,
-      courseId: currCourse.id,
-      page,
-    },
-  });
-
-  const { expelUserFromTeam } = useExpelUserFromTeamMutation({
-    data: {
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
-      userId: teamMemberId,
-      courseId: currCourse.id,
-      page,
-    },
-  });
-
-  const { createTeam } = useCreateTeamMutation({
-    team: {
-      socialLink,
-      courseId: currCourse.id,
-      ownerId: userData.id,
-      page,
-    },
-  });
-
-  const { updateTeam } = useUpdateTeamMutation({
-    team: {
-      socialLink,
-      id:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
-    },
-  });
+  const {
+    addUserToTeam,
+    removeUserFromTeam,
+    expelUserFromTeam,
+    createTeam,
+    updateTeam,
+  } = useCommonMutations(page);
 
   const onSubmitJoinModal = async (e: string) => {
     addUserToTeam().then(({ data: { addUserToTeam } }) => {
