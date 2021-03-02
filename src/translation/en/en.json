@@ -41,7 +41,24 @@
   "Sign in": "Sign in",
   "Sign in with Github": "Sign in with Github",
   "Don’t have github account?": "Don’t have github account?",
-  "Sign up": "Sign up"
-
-
+  "Sign up": "Sign up",
+  "Not found!": "Not found!",
+  "Dashboard": "Dashboard",
+  "Filter": "Filter",
+  "No team yet.": "No team yet.",
+  "No": "No",
+  "No courses.": "No courses.",
+  "Redirecting...": "Redirecting...",
+  "Teams": "Teams",
+  "SORT STUDENTS": "SORT STUDENTS",
+  "member": "member",
+  "members": "members",
+  "My team - Team": "My team - Team",
+  "Leave team": "Leave team",
+  "Join team": "Join team",
+  "The password is required to join the team.": "The password is required to join the team.",
+  "Become a member of the team!": "Become a member of the team!",
+  "To become a member": "To become a member of the team you can create your own team or join team. If not, you will be added to the team automatically.",
+  "Create team": "Create team",
+  "Expel": "Expel"
 }
