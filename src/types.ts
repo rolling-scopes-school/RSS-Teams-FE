@@ -116,6 +116,7 @@ export type RemoveUserFromCourseInput = {
   userId: string;
   teamId?: string | null;
   courseId: string;
+  page: number;
 };
 
 export type StateStudentsTable = {

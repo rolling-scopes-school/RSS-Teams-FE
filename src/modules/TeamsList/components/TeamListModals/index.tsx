@@ -121,6 +121,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
       teamId:
         userData.teams.find((team: Team) => team.courseId === currCourse.id)
           ?.id ?? null,
+      page,
     },
   });
 
