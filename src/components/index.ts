@@ -1,6 +1,5 @@
 export { App } from './App';
 export { Loader } from './Loader';
-export { Error } from './Error';
 export { PrivateRoute } from './PrivateRoute';
 export { Header } from './Header';
 export { InputField } from './InputField';
@@ -14,3 +13,4 @@ export { ModalCreated } from './ModalCreated';
 export { TablePopup } from './TablePopup';
 export { FilterForm } from './FilterForm';
 export { FilterSelect } from './FilterSelect';
+export { ErrorModal } from './ErrorModal';

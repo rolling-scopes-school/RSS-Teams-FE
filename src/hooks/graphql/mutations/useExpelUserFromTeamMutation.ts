@@ -11,7 +11,7 @@ type Props = {
 export const useExpelUserFromTeamMutation = ({ data }: Props) => {
   const { teamId, page, userId, courseId } = data;
   const dataForMutation = { userId, teamId };
-  const [expelUserFromTeam, { loading }] = useMutation(
+  const [expelUserFromTeam, { loading, error }] = useMutation(
     REMOVE_USER_FROM_TEAM_MUTATION,
     {
       variables: {
@@ -84,5 +84,6 @@ export const useExpelUserFromTeamMutation = ({ data }: Props) => {
   return {
     expelUserFromTeam,
     loadingM: loading,
+    errorM: error,
   };
 };

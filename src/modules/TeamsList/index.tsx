@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useTeamsQuery, useSortStudentsMutation } from 'hooks/graphql';
-import { Loader, Error, Pagination } from 'components';
+import { Loader, ErrorModal, Pagination } from 'components';
 import { useSelector } from 'react-redux';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
@@ -17,15 +17,15 @@ export const TeamsList: FC = () => {
     reactCourseId: currCourse.id,
     page: page,
   });
-  const { sortStudents } = useSortStudentsMutation({
+  const { sortStudents, errorM, loadingM } = useSortStudentsMutation({
     courseId: currCourse.id,
     page,
   });
   const loading = loadingT;
   const error = errorT;
 
-  if (loading) return <Loader />;
-  if (error) return <Error />;
+  if (loading || loadingM) return <Loader />;
+  if (error || errorM) return <Loader /> && <ErrorModal />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
 

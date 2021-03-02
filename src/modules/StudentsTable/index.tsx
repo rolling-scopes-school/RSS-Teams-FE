@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_FILTER_DATA, USERS_PER_PAGE } from 'appConstants';
-import { Loader, Error, Pagination, FilterForm } from 'components';
+import { Loader, Pagination, FilterForm, ErrorModal } from 'components';
 import { useUsersQuery } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Dashboard } from './components/Dashboard';
@@ -53,7 +53,7 @@ export const StudentsTable: FC = () => {
   const error = errorU;
 
   if (loading) return <Loader />;
-  if (error) return <Error />;
+  if (error) return <Loader /> && <ErrorModal />;
 
   const pageCount: number = Math.ceil(users.count / USERS_PER_PAGE);
   const isValuesEqual =

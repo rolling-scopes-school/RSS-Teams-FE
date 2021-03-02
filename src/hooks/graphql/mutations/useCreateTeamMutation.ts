@@ -11,7 +11,7 @@ type Props = {
 export const useCreateTeamMutation = ({ team }: Props) => {
   const { courseId, ownerId, socialLink, page } = team;
   const dataForMutation = { courseId, ownerId, socialLink };
-  const [createTeam, { loading }] = useMutation(CREATE_TEAM_MUTATION, {
+  const [createTeam, { loading, error }] = useMutation(CREATE_TEAM_MUTATION, {
     variables: {
       team: dataForMutation,
     },
@@ -64,5 +64,6 @@ export const useCreateTeamMutation = ({ team }: Props) => {
   return {
     createTeam,
     loadingM: loading,
+    errorM: error,
   };
 };
