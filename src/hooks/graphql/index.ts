@@ -9,3 +9,4 @@ export { useCreateTeamMutation } from './mutations/useCreateTeamMutation';
 export { useAddUserToTeamMutation } from './mutations/useAddUserToTeamMutation';
 export { useUpdateTeamMutation } from './mutations/useUpdateTeamMutation';
 export { useSortStudentsMutation } from './mutations/useSortStudentsMutation';
+export { useRemoveUserFromCourseMutation } from './mutations/useRemoveUserFromCourseMutation';
