@@ -41,6 +41,11 @@ const client = new ApolloClient({
               return incoming;
             },
           },
+          courses: {
+            merge(_, incoming) {
+              return incoming;
+            },
+          },
         },
       },
       Team: {
