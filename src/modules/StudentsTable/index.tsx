@@ -53,7 +53,7 @@ export const StudentsTable: FC = () => {
   const error = errorU;
 
   if (loading) return <Loader />;
-  if (error) return <Loader /> && <ErrorModal />;
+  if (error) return <ErrorModal />;
 
   const pageCount: number = Math.ceil(users.count / USERS_PER_PAGE);
   const isValuesEqual =

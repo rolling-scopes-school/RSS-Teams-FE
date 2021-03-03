@@ -25,7 +25,7 @@ export const TeamsList: FC = () => {
   const error = errorT;
 
   if (loading || loadingM) return <Loader />;
-  if (error || errorM) return <Loader /> && <ErrorModal />;
+  if (error || errorM) return <ErrorModal />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
 

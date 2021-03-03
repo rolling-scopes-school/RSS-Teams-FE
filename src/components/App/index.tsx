@@ -56,7 +56,7 @@ export const App: FC = () => {
   }, [dispatch, loginToken, loadingW, loading, whoAmI]);
 
   if (loading || loadingW) return <Loader />;
-  if (errorW) return <Loader /> && <ErrorModal />;
+  if (errorW) return <ErrorModal />;
 
   return (
     <AppStyled>
