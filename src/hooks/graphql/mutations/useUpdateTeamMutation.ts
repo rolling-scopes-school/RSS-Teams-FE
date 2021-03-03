@@ -9,7 +9,7 @@ type Props = {
 
 export const useUpdateTeamMutation = ({ team }: Props) => {
   const { id } = team;
-  const [updateTeam, { loading }] = useMutation(UPDATE_TEAM_MUTATION, {
+  const [updateTeam, { loading, error }] = useMutation(UPDATE_TEAM_MUTATION, {
     variables: {
       team,
     },
@@ -42,5 +42,6 @@ export const useUpdateTeamMutation = ({ team }: Props) => {
   return {
     updateTeam,
     loadingM: loading,
+    errorM: error,
   };
 };

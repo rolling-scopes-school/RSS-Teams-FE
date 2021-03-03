@@ -17,6 +17,8 @@ import {
   SET_SOCIAL_LINK,
   ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
   MODAL_INPUT_VALIDATION,
+  ACTIVE_MODAL_REMOVE_COURSE,
+  SET_CURR_COURSE,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -24,6 +26,7 @@ import {
   selectIsActiveModalExpel,
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
+  selectIsActiveModalRemoveCourse,
   selectIsActiveModalUpdateSocialLink,
   selectSocialLink,
   selectTeamPassword,
@@ -44,6 +47,9 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const isActiveModalUpdateSocialLink = useSelector(
     selectIsActiveModalUpdateSocialLink
   );
+  const isActiveModalRemoveCourse = useSelector(
+    selectIsActiveModalRemoveCourse
+  );
   const teamPassword = useSelector(selectTeamPassword);
   const socialLink = useSelector(selectSocialLink);
 
@@ -53,6 +59,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     expelUserFromTeam,
     createTeam,
     updateTeam,
+    removeUserFromCourse,
   } = useCommonMutations(page);
 
   const onSubmitJoinModal = async (e: string) => {
@@ -84,6 +91,21 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     expelUserFromTeam();
   };
 
+  const onSubmitRemoveCourseModal = () => {
+    removeUserFromCourse().then(({ data: { removeUserFromCourse } }) => {
+      dispatch({
+        type: SET_USER_DATA,
+        payload: removeUserFromCourse,
+      });
+      if (removeUserFromCourse.courses.length) {
+        dispatch({
+          type: SET_CURR_COURSE,
+          payload: removeUserFromCourse.courses[0],
+        });
+      }
+    });
+  };
+
   const onSubmitCreateTeam = () => {
     createTeam().then(({ data: { createTeam } }) => {
       dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
@@ -113,6 +135,17 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         onSubmit={onSubmitExpelModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
         okText="Yes!"
+        cancelText="No"
+      />
+      <ModalExpel
+        title="Leave course"
+        text="Are you sure to leave this course?"
+        open={isActiveModalRemoveCourse}
+        onSubmit={onSubmitRemoveCourseModal}
+        onClose={() =>
+          dispatch({ type: ACTIVE_MODAL_REMOVE_COURSE, payload: false })
+        }
+        okText="Yes"
         cancelText="No"
       />
       {/*Create team*/}

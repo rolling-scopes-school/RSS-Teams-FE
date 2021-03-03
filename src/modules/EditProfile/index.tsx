@@ -3,7 +3,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldError, useForm } from 'react-hook-form';
 
-import { Loader, InputField, CourseField } from 'components';
+import { Loader, InputField, CourseField, ErrorModal } from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
 import { Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -44,7 +44,7 @@ export const EditProfile: FC = () => {
   }));
 
   const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
-  const { loading, courses } = useCoursesQuery();
+  const { loading, courses, error } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
       id: userData.id,
@@ -61,7 +61,7 @@ export const EditProfile: FC = () => {
   );
   const [inputValues, setInputValues] = useState<UpdateUserInput>(defaultData);
 
-  const { updateUser, loadingM } = useUpdUserMutation({
+  const { updateUser, loadingM, errorM } = useUpdUserMutation({
     user: {
       ...inputValues,
       courseIds: userCourses.map((course: Course) => course.id),
@@ -80,7 +80,8 @@ export const EditProfile: FC = () => {
     .filter(
       (item: Course) =>
         !userCourses.filter((uItem: Course) => uItem.name === item.name).length
-    );
+    )
+    .filter((item: Course) => item.name !== 'RSS React 2021 Q1');
 
   const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
     defaultValues: inputValues,
@@ -153,6 +154,7 @@ export const EditProfile: FC = () => {
 
   if (!loginToken) return <Redirect to={'/login'} />;
   if (loading || loadingM) return <Loader />;
+  if (error || errorM) return <ErrorModal />;
 
   return (
     <FormWrapper>

@@ -11,6 +11,7 @@ import {
   useExpelUserFromTeamMutation,
   useCreateTeamMutation,
   useUpdateTeamMutation,
+  useRemoveUserFromCourseMutation,
 } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -70,11 +71,23 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
+  const { removeUserFromCourse } = useRemoveUserFromCourseMutation({
+    data: {
+      courseId: currCourse.id,
+      userId: userData.id,
+      teamId:
+        userData.teams.find((team: Team) => team.courseId === currCourse.id)
+          ?.id ?? null,
+      page,
+    },
+  });
+
   return {
     addUserToTeam,
     removeUserFromTeam,
     expelUserFromTeam,
     createTeam,
     updateTeam,
+    removeUserFromCourse,
   };
 };

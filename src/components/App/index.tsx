@@ -9,7 +9,7 @@ import {
   NotFoundPage,
   EditProfile,
 } from 'modules';
-import { Loader, PrivateRoute, Header } from 'components';
+import { Loader, PrivateRoute, Header, ErrorModal } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import {
   AUTH_TOKEN,
@@ -25,7 +25,7 @@ export const App: FC = () => {
   const dispatch = useDispatch();
   const loginToken = useSelector(selectToken);
   const [loading, setLoading] = useState(true);
-  const { loadingW, whoAmI } = useWhoAmIQuery({
+  const { loadingW, whoAmI, errorW } = useWhoAmIQuery({
     skip: loginToken === null,
   });
   const newUserCheck = !!whoAmI?.courses.length;
@@ -56,6 +56,7 @@ export const App: FC = () => {
   }, [dispatch, loginToken, loadingW, loading, whoAmI]);
 
   if (loading || loadingW) return <Loader />;
+  if (errorW) return <ErrorModal />;
 
   return (
     <AppStyled>

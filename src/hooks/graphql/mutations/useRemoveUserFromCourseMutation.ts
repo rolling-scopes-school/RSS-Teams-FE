@@ -1,28 +1,29 @@
 import { useMutation } from '@apollo/client';
-import { RemoveUserFromTeamInput, Team, TeamList, User } from 'types';
-import { TEAMS_QUERY, WHOAMI_QUERY } from 'graphql/queries';
-import { REMOVE_USER_FROM_TEAM_MUTATION } from 'graphql/mutations';
 import { TEAMS_PER_PAGE } from 'appConstants';
+import { REMOVE_USER_FROM_COURSE_MUTATION } from 'graphql/mutations';
+import { TEAMS_QUERY, WHOAMI_QUERY } from 'graphql/queries';
+import { RemoveUserFromCourseInput, Team, TeamList, User } from 'types';
 
 type Props = {
-  data: RemoveUserFromTeamInput;
+  data: RemoveUserFromCourseInput;
 };
 
-export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
-  const { teamId, page, userId, courseId } = data;
-  const dataForMutation = { userId, teamId };
-  const [removeUserFromTeam, { loading, error }] = useMutation(
-    REMOVE_USER_FROM_TEAM_MUTATION,
+export const useRemoveUserFromCourseMutation = ({
+  data: { page, courseId, userId, teamId },
+}: Props) => {
+  const dataForMutation = { courseId, userId, teamId };
+  const [removeUserFromCourse, { loading, error }] = useMutation(
+    REMOVE_USER_FROM_COURSE_MUTATION,
     {
       variables: {
         data: dataForMutation,
       },
 
-      update(cache, { data: { removeUserFromTeam } }) {
+      update(cache, { data: { removeUserFromCourse } }) {
         const data: { teams: TeamList } | null = cache.readQuery({
           query: TEAMS_QUERY,
           variables: {
-            courseId: courseId,
+            courseId,
             pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
           },
         });
@@ -30,6 +31,9 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
         const updatedRemovedResults = data?.teams.results
           .map((team: Team) => {
             if (team.id === teamId) {
+              if (team.members.length === 1) {
+                return null;
+              }
               return {
                 ...team,
                 members: team.members.filter(
@@ -39,12 +43,12 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
             }
             return team;
           })
-          .filter((team: Team | undefined) => !!team?.members.length);
+          .filter((team: Team | null) => !!team);
 
         cache.writeQuery({
           query: WHOAMI_QUERY,
           data: {
-            removeUserFromTeam,
+            removeUserFromCourse,
           },
         });
 
@@ -52,7 +56,7 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
           query: TEAMS_QUERY,
           data: {
             teams: {
-              count: updatedRemovedResults?.length,
+              count: data?.teams?.count,
               results: updatedRemovedResults,
             },
           },
@@ -65,7 +69,7 @@ export const useRemoveUserFromTeamMutation = ({ data }: Props) => {
     }
   );
   return {
-    removeUserFromTeam,
+    removeUserFromCourse,
     loadingM: loading,
     errorM: error,
   };

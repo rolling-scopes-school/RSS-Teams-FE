@@ -18,6 +18,7 @@ type ModalProps = {
   onSubmit?: (e: SyntheticEvent) => void;
   okText?: string;
   cancelText?: string;
+  isCrossIconVisible?: boolean;
 } & typeof defaultProps;
 
 const defaultProps = {
@@ -50,6 +51,7 @@ export const Modal: FC<ModalProps> = ({
   hideOnEsc,
   onClose,
   onSubmit,
+  isCrossIconVisible = true,
   okText,
   cancelText,
 }) => {
@@ -96,7 +98,9 @@ export const Modal: FC<ModalProps> = ({
   return ReactDOM.createPortal(
     <div className={styles.overlay} onClick={onOutClick}>
       <div className={styles.container} ref={insideRef}>
-        <IconClose className={styles.icon} onClick={close} />
+        {isCrossIconVisible && (
+          <IconClose className={styles.icon} onClick={close} />
+        )}
         <ModalWindow>
           <PageTitle>{title}</PageTitle>
           <Label>{text}</Label>

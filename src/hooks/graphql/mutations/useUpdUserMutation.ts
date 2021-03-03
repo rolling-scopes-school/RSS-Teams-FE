@@ -9,7 +9,7 @@ type Props = {
 
 export const useUpdUserMutation = ({ user }: Props) => {
   const formattedUser = { ...user, score: Number(user.score) };
-  const [updateUser, { loading }] = useMutation(UPD_USER_MUTATION, {
+  const [updateUser, { loading, error }] = useMutation(UPD_USER_MUTATION, {
     variables: {
       user: formattedUser,
     },
@@ -25,5 +25,6 @@ export const useUpdUserMutation = ({ user }: Props) => {
   return {
     updateUser,
     loadingM: loading,
+    errorM: error,
   };
 };
