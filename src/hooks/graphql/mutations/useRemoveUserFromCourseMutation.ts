@@ -3,7 +3,6 @@ import { TEAMS_PER_PAGE } from 'appConstants';
 import { REMOVE_USER_FROM_COURSE_MUTATION } from 'graphql/mutations';
 import { TEAMS_QUERY, WHOAMI_QUERY } from 'graphql/queries';
 import { RemoveUserFromCourseInput, Team, TeamList, User } from 'types';
-import { createNull } from 'typescript';
 
 type Props = {
   data: RemoveUserFromCourseInput;
