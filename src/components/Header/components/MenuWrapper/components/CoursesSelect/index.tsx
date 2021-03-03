@@ -46,7 +46,7 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
           {userCourses.length ? <StyledCoursesSelectArrow /> : null}
         </StyledCoursesSelectInfo>
       </StyledCoursesSelectHeaderWrapper>{' '}
-      {!!userCourses.length ? (
+      {!!userCourses.length && (
         <StyledCoursesList>
           {userCourses.map((course: Course, index: number) => {
             return (
@@ -59,7 +59,7 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
             );
           })}
         </StyledCoursesList>
-      ) : null}
+      )}
     </StyledCoursesSelectWrapper>
   );
 };

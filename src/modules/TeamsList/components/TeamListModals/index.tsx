@@ -160,7 +160,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         type: SET_USER_DATA,
         payload: removeUserFromCourse,
       });
-      if (!!removeUserFromCourse.courses.length) {
+      if (removeUserFromCourse.courses.length) {
         dispatch({
           type: SET_CURR_COURSE,
           payload: removeUserFromCourse.courses[0],

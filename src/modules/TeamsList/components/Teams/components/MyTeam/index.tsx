@@ -45,6 +45,16 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
             icon="edit"
           />
         </div>
+        <div className="myTeam__leave">
+          <Button
+            bgc={WHITE_COLOR}
+            color={DARK_TEXT_COLOR}
+            type="button"
+            onClick={removeCourse}
+          >
+            Leave course
+          </Button>
+        </div>
         <div className="myTeam__button">
           <Button
             bgc={WHITE_COLOR}
@@ -53,14 +63,6 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
             onClick={leaveTeam}
           >
             Leave team
-          </Button>
-          <Button
-            bgc={WHITE_COLOR}
-            color={DARK_TEXT_COLOR}
-            type="button"
-            onClick={removeCourse}
-          >
-            Leave course
           </Button>
         </div>
         <div className="myTeam__toggle">
