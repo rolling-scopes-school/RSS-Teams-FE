@@ -19,6 +19,7 @@ import {
   MODAL_INPUT_VALIDATION,
   ACTIVE_MODAL_REMOVE_COURSE,
   SET_CURR_COURSE,
+  ACTIVE_MODAL_SORT_STUDENTS,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -27,6 +28,7 @@ import {
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
   selectIsActiveModalRemoveCourse,
+  selectIsActiveModalSortStudents,
   selectIsActiveModalUpdateSocialLink,
   selectSocialLink,
   selectTeamMemberExpelId,
@@ -40,6 +42,7 @@ import {
   useCreateTeamMutation,
   useUpdateTeamMutation,
   useRemoveUserFromCourseMutation,
+  useSortStudentsMutation,
 } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -58,6 +61,9 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const isActiveModalCreated = useSelector(selectIsActiveModalCreated);
   const isActiveModalUpdateSocialLink = useSelector(
     selectIsActiveModalUpdateSocialLink
+  );
+  const isActiveModalSortStudents = useSelector(
+    selectIsActiveModalSortStudents
   );
   const teamMemberId = useSelector(selectTeamMemberExpelId);
   const teamPassword = useSelector(selectTeamPassword);
@@ -125,6 +131,11 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     },
   });
 
+  const { sortStudents } = useSortStudentsMutation({
+    courseId: currCourse.id,
+    page,
+  });
+
   const onSubmitJoinModal = async (e: string) => {
     addUserToTeam().then(({ data: { addUserToTeam } }) => {
       const isPasswordIncorrect =
@@ -180,6 +191,10 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     updateTeam();
   };
 
+  const onSubmitSortStudents = () => {
+    sortStudents();
+  };
+
   return (
     <>
       <ModalExpel
@@ -207,6 +222,18 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         onSubmit={onSubmitRemoveCourseModal}
         onClose={() =>
           dispatch({ type: ACTIVE_MODAL_REMOVE_COURSE, payload: false })
+        }
+        okText="Yes"
+        cancelText="No"
+      />
+      <ModalExpel
+        title="Sort students"
+        text="Sort students?"
+        open={isActiveModalSortStudents}
+        onSubmit={onSubmitSortStudents}
+        isCrossIconVisible={false}
+        onClose={() =>
+          dispatch({ type: ACTIVE_MODAL_SORT_STUDENTS, payload: false })
         }
         okText="Yes"
         cancelText="No"
