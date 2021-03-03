@@ -17,6 +17,8 @@ import {
   SET_SOCIAL_LINK,
   ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
   MODAL_INPUT_VALIDATION,
+  ACTIVE_MODAL_REMOVE_COURSE,
+  SET_CURR_COURSE,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -24,6 +26,7 @@ import {
   selectIsActiveModalExpel,
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
+  selectIsActiveModalRemoveCourse,
   selectIsActiveModalUpdateSocialLink,
   selectSocialLink,
   selectTeamMemberExpelId,
@@ -36,6 +39,7 @@ import {
   useExpelUserFromTeamMutation,
   useCreateTeamMutation,
   useUpdateTeamMutation,
+  useRemoveUserFromCourseMutation,
 } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -58,6 +62,9 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const teamMemberId = useSelector(selectTeamMemberExpelId);
   const teamPassword = useSelector(selectTeamPassword);
   const socialLink = useSelector(selectSocialLink);
+  const isActiveModalRemoveCourse = useSelector(
+    selectIsActiveModalRemoveCourse
+  );
 
   const { addUserToTeam } = useAddUserToTeamMutation({
     data: {
@@ -107,6 +114,17 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
     },
   });
 
+  const { removeUserFromCourse } = useRemoveUserFromCourseMutation({
+    data: {
+      courseId: currCourse.id,
+      userId: userData.id,
+      teamId:
+        userData.teams.find((team: Team) => team.courseId === currCourse.id)
+          ?.id ?? null,
+      page,
+    },
+  });
+
   const onSubmitJoinModal = async (e: string) => {
     addUserToTeam().then(({ data: { addUserToTeam } }) => {
       const isPasswordIncorrect =
@@ -134,6 +152,21 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
 
   const onSubmitExpelModal = () => {
     expelUserFromTeam();
+  };
+
+  const onSubmitRemoveCourseModal = () => {
+    removeUserFromCourse().then(({ data: { removeUserFromCourse } }) => {
+      dispatch({
+        type: SET_USER_DATA,
+        payload: removeUserFromCourse,
+      });
+      if (removeUserFromCourse.courses.length) {
+        dispatch({
+          type: SET_CURR_COURSE,
+          payload: removeUserFromCourse.courses[0],
+        });
+      }
+    });
   };
 
   const onSubmitCreateTeam = () => {
@@ -165,6 +198,17 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         onSubmit={onSubmitExpelModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
         okText="Yes!"
+        cancelText="No"
+      />
+      <ModalExpel
+        title="Leave course"
+        text="Are you sure to leave this course?"
+        open={isActiveModalRemoveCourse}
+        onSubmit={onSubmitRemoveCourseModal}
+        onClose={() =>
+          dispatch({ type: ACTIVE_MODAL_REMOVE_COURSE, payload: false })
+        }
+        okText="Yes"
         cancelText="No"
       />
       {/*Create team*/}

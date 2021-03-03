@@ -10,6 +10,7 @@ import {
   SET_TEAM_PASSWORD,
   SET_SOCIAL_LINK,
   ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
+  ACTIVE_MODAL_REMOVE_COURSE,
 } from 'appConstants';
 import { StateTeamsList } from 'types';
 
@@ -23,6 +24,7 @@ export const teamsListState = {
   isActiveModalCreateTeam: false,
   isActiveModalCreated: false,
   isActiveModalUpdateSocialLink: false,
+  isActiveModalRemoveCourse: false,
   teamMemberExpelId: '',
   teamPassword: '',
   socialLink: '',
@@ -83,7 +85,11 @@ export const teamsListReducer: Reducer<StateTeamsList, Action> = (
         ...state,
         socialLink: action.payload,
       };
-
+    case ACTIVE_MODAL_REMOVE_COURSE:
+      return {
+        ...state,
+        isActiveModalRemoveCourse: action.payload,
+      };
     default:
       return state;
   }
