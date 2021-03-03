@@ -22,7 +22,7 @@ export const StyledMyTeam = styled.div<StyledMyTeamProps>`
     z-index: 0;
     padding: 30px;
     display: grid;
-    grid-template-columns: 1fr 200px 200px;
+    grid-template-columns: 1fr 220px 220px;
     grid-template-rows: auto 1fr;
     grid-template-areas: 'title leave button' 'info info toggle';
 
