@@ -23,7 +23,11 @@ export const useCommonMutations = (page: number) => {
   const teamPassword = useSelector(selectTeamPassword);
   const socialLink = useSelector(selectSocialLink);
 
-  const { addUserToTeam } = useAddUserToTeamMutation({
+  const {
+    addUserToTeam,
+    errorM: errorAdd,
+    loadingM: loadingAdd,
+  } = useAddUserToTeamMutation({
     data: {
       userId: userData.id,
       courseId: currCourse.id,
@@ -31,7 +35,11 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
-  const { removeUserFromTeam } = useRemoveUserFromTeamMutation({
+  const {
+    removeUserFromTeam,
+    errorM: errorRemoveTeam,
+    loadingM: loadingRemoveTeam,
+  } = useRemoveUserFromTeamMutation({
     data: {
       teamId:
         userData.teams.find((team: Team) => team.courseId === currCourse.id)
@@ -42,7 +50,11 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
-  const { expelUserFromTeam } = useExpelUserFromTeamMutation({
+  const {
+    expelUserFromTeam,
+    errorM: errorExpel,
+    loadingM: loadingExpel,
+  } = useExpelUserFromTeamMutation({
     data: {
       teamId:
         userData.teams.find((team: Team) => team.courseId === currCourse.id)
@@ -53,7 +65,11 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
-  const { createTeam } = useCreateTeamMutation({
+  const {
+    createTeam,
+    errorM: errorCreateTeam,
+    loadingM: loadingCreateTeam,
+  } = useCreateTeamMutation({
     team: {
       socialLink,
       courseId: currCourse.id,
@@ -62,7 +78,11 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
-  const { updateTeam } = useUpdateTeamMutation({
+  const {
+    updateTeam,
+    errorM: errorUpdateTeam,
+    loadingM: loadingUpdateTeam,
+  } = useUpdateTeamMutation({
     team: {
       socialLink,
       id:
@@ -71,7 +91,11 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
-  const { removeUserFromCourse } = useRemoveUserFromCourseMutation({
+  const {
+    removeUserFromCourse,
+    errorM: errorRemoveCourse,
+    loadingM: loadingRemoveCourse,
+  } = useRemoveUserFromCourseMutation({
     data: {
       courseId: currCourse.id,
       userId: userData.id,
@@ -82,6 +106,24 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
+  const isError = [
+    errorAdd,
+    errorCreateTeam,
+    errorExpel,
+    errorRemoveCourse,
+    errorRemoveTeam,
+    errorUpdateTeam,
+  ].some((item) => !!item);
+
+  const isLoading = [
+    loadingAdd,
+    loadingCreateTeam,
+    loadingExpel,
+    loadingRemoveCourse,
+    loadingRemoveTeam,
+    loadingUpdateTeam,
+  ].some((item) => !!item);
+
   return {
     addUserToTeam,
     removeUserFromTeam,
@@ -89,5 +131,7 @@ export const useCommonMutations = (page: number) => {
     createTeam,
     updateTeam,
     removeUserFromCourse,
+    isError,
+    isLoading,
   };
 };

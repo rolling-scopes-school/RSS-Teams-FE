@@ -31,10 +31,25 @@ import {
   selectSocialLink,
   selectTeamPassword,
 } from '../../selectors';
-import { Team } from 'types';
-import { useCommonMutations } from './useCommonMutations';
+import { Team, User } from 'types';
 
-export const TeamListModals: FC<{ page: number }> = ({ page }) => {
+type TeamListModalsProps = {
+  addUserToTeam: any;
+  removeUserFromTeam: any;
+  expelUserFromTeam: any;
+  createTeam: any;
+  updateTeam: any;
+  removeUserFromCourse: any;
+};
+
+export const TeamListModals: FC<TeamListModalsProps> = ({
+  addUserToTeam,
+  removeUserFromTeam,
+  expelUserFromTeam,
+  createTeam,
+  updateTeam,
+  removeUserFromCourse,
+}) => {
   const [textJoinModal, setTextJoinModal] = useState<string>(
     'Please enter your team password.'
   );
@@ -53,38 +68,37 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const teamPassword = useSelector(selectTeamPassword);
   const socialLink = useSelector(selectSocialLink);
 
-  const {
-    addUserToTeam,
-    removeUserFromTeam,
-    expelUserFromTeam,
-    createTeam,
-    updateTeam,
-    removeUserFromCourse,
-  } = useCommonMutations(page);
-
   const onSubmitJoinModal = async (e: string) => {
-    addUserToTeam().then(({ data: { addUserToTeam } }) => {
-      const isPasswordIncorrect =
-        !addUserToTeam.teams ||
-        !addUserToTeam.teams.find((team: Team) => team.password === e);
-      if (isPasswordIncorrect) {
-        setTextJoinModal('Wrong password!');
-      } else {
-        setTextJoinModal('Please enter your team password.');
-        dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
-        dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
-        dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
+    addUserToTeam().then(
+      ({ data: { addUserToTeam } }: { data: { addUserToTeam: User } }) => {
+        const isPasswordIncorrect =
+          !addUserToTeam.teams ||
+          !addUserToTeam.teams.find((team: Team) => team.password === e);
+        if (isPasswordIncorrect) {
+          setTextJoinModal('Wrong password!');
+        } else {
+          setTextJoinModal('Please enter your team password.');
+          dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
+          dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
+          dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
+        }
       }
-    });
+    );
   };
 
   const onSubmitLeaveModal = () => {
-    removeUserFromTeam().then(({ data: { removeUserFromTeam } }) => {
-      dispatch({
-        type: SET_USER_DATA,
-        payload: removeUserFromTeam,
-      });
-    });
+    removeUserFromTeam().then(
+      ({
+        data: { removeUserFromTeam },
+      }: {
+        data: { removeUserFromTeam: User };
+      }) => {
+        dispatch({
+          type: SET_USER_DATA,
+          payload: removeUserFromTeam,
+        });
+      }
+    );
   };
 
   const onSubmitExpelModal = () => {
@@ -92,25 +106,33 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   };
 
   const onSubmitRemoveCourseModal = () => {
-    removeUserFromCourse().then(({ data: { removeUserFromCourse } }) => {
-      dispatch({
-        type: SET_USER_DATA,
-        payload: removeUserFromCourse,
-      });
-      if (removeUserFromCourse.courses.length) {
+    removeUserFromCourse().then(
+      ({
+        data: { removeUserFromCourse },
+      }: {
+        data: { removeUserFromCourse: User };
+      }) => {
         dispatch({
-          type: SET_CURR_COURSE,
-          payload: removeUserFromCourse.courses[0],
+          type: SET_USER_DATA,
+          payload: removeUserFromCourse,
         });
+        if (removeUserFromCourse.courses.length) {
+          dispatch({
+            type: SET_CURR_COURSE,
+            payload: removeUserFromCourse.courses[0],
+          });
+        }
       }
-    });
+    );
   };
 
   const onSubmitCreateTeam = () => {
-    createTeam().then(({ data: { createTeam } }) => {
-      dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
-      dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
-    });
+    createTeam().then(
+      ({ data: { createTeam } }: { data: { createTeam: Team } }) => {
+        dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
+        dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
+      }
+    );
   };
 
   const onSubmitUpdateSocialLink = () => {

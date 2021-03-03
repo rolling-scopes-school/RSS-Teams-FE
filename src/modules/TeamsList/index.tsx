@@ -8,6 +8,7 @@ import { StyledTeams, TeamWrapper } from './styled';
 import { TEAMS_PER_PAGE } from 'appConstants';
 import { Team } from 'types';
 import { TeamListModals, Teams } from './components';
+import { useCommonMutations } from './components/TeamListModals/useCommonMutations';
 
 export const TeamsList: FC = () => {
   const [page, setPage] = useState<number>(0);
@@ -23,9 +24,19 @@ export const TeamsList: FC = () => {
   });
   const loading = loadingT;
   const error = errorT;
+  const {
+    addUserToTeam,
+    removeUserFromTeam,
+    expelUserFromTeam,
+    createTeam,
+    updateTeam,
+    removeUserFromCourse,
+    isError,
+    isLoading,
+  } = useCommonMutations(page);
 
-  if (loading || loadingM) return <Loader />;
-  if (error || errorM) return <ErrorModal />;
+  if (loading || loadingM || isLoading) return <Loader />;
+  if (error || errorM || isError) return <ErrorModal />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
 
@@ -52,7 +63,16 @@ export const TeamsList: FC = () => {
         )}
       </StyledTeams>
 
-      <TeamListModals {...{ page }} />
+      <TeamListModals
+        {...{
+          addUserToTeam,
+          removeUserFromTeam,
+          expelUserFromTeam,
+          createTeam,
+          updateTeam,
+          removeUserFromCourse,
+        }}
+      />
     </TeamWrapper>
   );
 };
