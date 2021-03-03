@@ -26,7 +26,6 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   const leaveTeam = () => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true });
   const removeCourse = () =>
     dispatch({ type: ACTIVE_MODAL_REMOVE_COURSE, payload: true });
-  // const buttonsInfo: [string, () => void] = [];
 
   const countMember = team?.members?.length;
   return (
