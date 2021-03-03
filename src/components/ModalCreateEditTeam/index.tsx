@@ -4,6 +4,7 @@ import { Modal } from 'components';
 import { ModalInput } from 'typography';
 import { SET_SOCIAL_LINK } from 'appConstants';
 import { ValidationAlert } from '../InputField/styled';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   title: string;
@@ -32,6 +33,7 @@ export const ModalCreateEditTeam: FC<Props> = ({
   validateRules,
 }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const onSubmitModal = () => {
     if (onSubmit) {
@@ -96,7 +98,7 @@ export const ModalCreateEditTeam: FC<Props> = ({
           dispatch({ type: SET_SOCIAL_LINK, payload: e.target.value.trim() });
           isValid(e.target.value.trim(), validateRules, !!validateRules);
         }}
-        placeholder="Enter group link"
+        placeholder={t('Enter group link')}
       />
       {!isInputValid && <ValidationAlert>{errorMessage}</ValidationAlert>}
     </Modal>

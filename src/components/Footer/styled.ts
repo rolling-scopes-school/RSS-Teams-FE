@@ -15,12 +15,25 @@ export const StyledFooter = styled.footer`
   background-color: ${DARK_TEXT_COLOR};
   margin-top: 60px;
   padding: 40px 60px 0;
+  @media (max-width: 549px) and (min-width: 440px) {
+    padding: 30px 45px 0;
+  }
+  @media (max-width: 439px) and (min-width: 320px) {
+    padding: 20px 20px 0;
+  }
 `;
 
 export const FooterContentWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 5.6%;
+
+  @media (max-width: 1199px) and (min-width: 768px) {
+    gap: 0;
+  }
+  @media (max-width: 767px) and (min-width: 320px) {
+    display: none;
+  }
 `;
 
 export const FooterContentBlock = styled.div`
@@ -34,6 +47,11 @@ export const FooterContentBlock = styled.div`
     gap: 30px;
     width: 450px;
 
+    @media (max-width: 991px) and (min-width: 768px) {
+      width: 360px;
+      gap: 0;
+    }
+
     .contentItem {
       margin-bottom: -20px;
       font: 400 1rem/24px 'Poppins', sans-serif;
@@ -41,6 +59,30 @@ export const FooterContentBlock = styled.div`
       text-decoration: none;
       outline: none;
       width: 130px;
+
+      &:nth-child(3) {
+        width: 100px;
+      }
+
+      &:hover {
+        color: ${WHITE_COLOR};
+      }
+      @media (max-width: 1199px) and (min-width: 992px) {
+        font-size: 0.95rem;
+      }
+      @media (max-width: 991px) and (min-width: 768px) {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+      }
+      @media (max-width: 767px) and (min-width: 550px) {
+        font-size: 0.825rem;
+      }
+      @media (max-width: 549px) and (min-width: 440px) {
+        font-size: 0.8rem;
+      }
+      @media (max-width: 439px) and (min-width: 320px) {
+        font-size: 0.68rem;
+      }
     }
   }
 
@@ -51,9 +93,54 @@ export const FooterContentBlock = styled.div`
   .contentItem.designItem {
     width: 140px;
   }
+
+  & > .LanguageSelect {
+    position: absolute;
+    bottom: 20%;
+    left: 60px;
+    @media (max-width: 767px) and (min-width: 320px) {
+      position: unset;
+      width: 110px;
+    }
+    @media (max-width: 1199px) and (min-width: 992px) {
+      font-size: 0.95rem;
+    }
+    @media (max-width: 991px) and (min-width: 768px) {
+      font-size: 0.9rem;
+    }
+    @media (max-width: 767px) and (min-width: 550px) {
+      font-size: 0.825rem;
+    }
+    @media (max-width: 549px) and (min-width: 440px) {
+      width: 110px;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 439px) and (min-width: 320px) {
+      width: 90px;
+      font-size: 0.68rem;
+      & > div {
+        padding: 0px 5px;
+      }
+    }
+  }
 `;
 export const FooterTitle = styled.h1`
   font: 600 1rem/24px 'Poppins', sans-serif;
   color: ${WHITE_COLOR};
   margin: 0;
+  @media (max-width: 1199px) and (min-width: 992px) {
+    font-size: 0.95rem;
+  }
+  @media (max-width: 991px) and (min-width: 768px) {
+    font-size: 0.9rem;
+  }
+  @media (max-width: 767px) and (min-width: 550px) {
+    font-size: 0.825rem;
+  }
+  @media (max-width: 549px) and (min-width: 440px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 439px) and (min-width: 320px) {
+    font-size: 0.68rem;
+  }
 `;

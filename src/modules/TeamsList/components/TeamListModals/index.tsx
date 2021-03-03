@@ -46,7 +46,7 @@ import { selectUserData } from 'modules/StudentsTable/selectors';
 
 export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const [textJoinModal, setTextJoinModal] = useState<string>(
-    'Please enter your team password.'
+    'Please, enter your team password.'
   );
   const dispatch = useDispatch();
   const currCourse = useSelector(selectCurrCourse);
@@ -133,7 +133,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
       if (isPasswordIncorrect) {
         setTextJoinModal('Wrong password!');
       } else {
-        setTextJoinModal('Please enter your team password.');
+        setTextJoinModal('Please, enter your team password.');
         dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
         dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
         dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
@@ -183,12 +183,12 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   return (
     <>
       <ModalExpel
-        title="Leave Team"
+        title="Leave team"
         text="Are you sure want to leave team?"
         open={isActiveModalLeave}
         onSubmit={onSubmitLeaveModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: false })}
-        okText="Yes!"
+        okText="Yes"
         cancelText="No"
       />
       <ModalExpel
@@ -197,7 +197,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         open={isActiveModalExpel}
         onSubmit={onSubmitExpelModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
-        okText="Yes!"
+        okText="Yes"
         cancelText="No"
       />
       <ModalExpel
@@ -213,8 +213,8 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
       />
       {/*Create team*/}
       <ModalCreateEditTeam
-        title="Create Team"
-        text="Please enter your team telegram / discord / viber / ets. group link."
+        title="Create team"
+        text="Please, enter your team telegram / discord / viber / ets. group link."
         open={isActiveModalCreateTeam}
         value={socialLink}
         onSubmit={onSubmitCreateTeam}
@@ -232,7 +232,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         onSubmit={onSubmitJoinModal}
         value={teamPassword}
         onClose={() => {
-          setTextJoinModal('Please enter your team password.');
+          setTextJoinModal('Please, enter your team password.');
           dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
         }}
         okText="Join team"
@@ -249,7 +249,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
       {/*Edit Team*/}
       <ModalCreateEditTeam
         title="Link to group"
-        text="Please enter new group link."
+        text="Please, enter new group link."
         open={isActiveModalUpdateSocialLink}
         value={socialLink}
         onSubmit={onSubmitUpdateSocialLink}

@@ -3,6 +3,7 @@ import { StyledTeamUserTable } from './styled';
 import { User } from 'types';
 import { TableRow } from './components/TableRow';
 import { TABLE_TEAMS_HEADERS } from 'appConstants';
+import { useTranslation } from 'react-i18next';
 
 type TeamUserTableProps = {
   members?: User[];
@@ -15,13 +16,14 @@ export const TeamUserTable: FC<TeamUserTableProps> = ({
   isMyTeam,
   userId,
 }) => {
+  const { t } = useTranslation();
   return (
     <StyledTeamUserTable>
       <thead>
         <tr>
           {TABLE_TEAMS_HEADERS.map((columnName: string) => {
             return !isMyTeam && columnName === 'Action' ? null : (
-              <th key={columnName}>{columnName}</th>
+              <th key={columnName}>{t(columnName)}</th>
             );
           })}
         </tr>

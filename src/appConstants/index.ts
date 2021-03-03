@@ -62,7 +62,7 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
     value: /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/,
-    message: 'Use right format link - https://xxx/xxxx',
+    message: 'Use right format',
   },
   maxLength: {
     value: 55,
@@ -70,11 +70,11 @@ export const MODAL_INPUT_VALIDATION = {
   },
 };
 
-export const LANGUAGES = ['English', 'Russian'];
+export const LANGUAGES = ['English', 'Русский'];
 
 export const FOOTER_INFO = [
   {
-    title: 'Development:',
+    title: 'Development',
     members: [
       'besovadevka',
       'MadaShindeInai',
@@ -84,7 +84,7 @@ export const FOOTER_INFO = [
     ],
   },
   {
-    title: 'Design:',
+    title: 'Design',
     members: ['Nastya Kapylova'],
   },
 ];

@@ -27,27 +27,32 @@ export const StyledMyTeam = styled.div<StyledMyTeamProps>`
     grid-template-areas: 'title leave button' 'info info toggle';
 
     @media (max-width: 992px) {
-      grid-template-columns: 1fr 180px 180px;
+      grid-template-columns: 1fr 187px 187px;
       grid-template-rows: auto auto auto;
       grid-template-areas: 'title leave button' 'info info info' 'toggle toggle toggle';
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr 160px 160px;
+    @media (max-width: 650px) {
+      grid-template-columns: 1fr 187px 187px;
+      grid-template-rows: auto auto auto auto;
+      grid-template-areas: 'title title button' 'title title leave' 'info info info' 'toggle toggle toggle';
+      font-size: 0.825rem;
     }
 
     @media (max-width: 550px) {
-      grid-template-columns: 1fr 160px 160px;
-      grid-template-rows: auto auto auto auto;
-      grid-template-areas: 'title title button' 'title title leave' 'info info info' 'toggle toggle toggle';
+      grid-template-columns: 1fr 167px 167px;
+      font-size: 0.8rem;
     }
 
     @media (max-width: 440px) {
-      grid-template-columns: 1fr 130px 130px;
+      grid-template-columns: 1fr 110px 110px;
+      font-size: 0.68rem;
     }
 
     @media (max-width: 350px) {
       grid-template-columns: 1fr 115px 115px;
+      grid-template-rows: auto auto auto auto;
     }
 
     @media (max-width: 580px) {
@@ -58,6 +63,9 @@ export const StyledMyTeam = styled.div<StyledMyTeamProps>`
       grid-area: title;
       ${PageSubTitle};
       margin: 5px 0 37px;
+      @media (max-width: 550px) {
+        font-size: 0.9rem;
+      }
     }
 
     .myTeam__info-wrapper {
@@ -74,18 +82,25 @@ export const StyledMyTeam = styled.div<StyledMyTeamProps>`
       display: flex;
       justify-content: flex-end;
       align-items: flex-start;
-      @media (max-width: 550px) {
+      @media (max-width: 650px) {
         button {
           width: 100%;
-          margin-bottom: 10px;
+          margin: 0 0 10px;
+          line-height: 18px;
         }
       }
     }
     .myTeam__leave {
       grid-area: leave;
+      @media (max-width: 992px) and (min-width: 650px) {
+        margin: 0 5px 5px 0;
+      }
     }
     .myTeam__button {
       grid-area: button;
+      @media (max-width: 992px) and (min-width: 650px) {
+        margin: 0 0 5px 5px;
+      }
     }
     .myTeam__toggle {
       grid-area: toggle;

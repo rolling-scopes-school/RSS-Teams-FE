@@ -9,6 +9,7 @@ import {
   StyledCoursesSelectWrapper,
 } from 'components/Header/components/MenuWrapper/components/CoursesSelect/styled';
 import { selectCurrLanguage } from 'modules/LoginPage/selectors';
+import i18n from 'translation/resources';
 
 type LangSelectProps = {
   displayLangList: boolean;
@@ -26,6 +27,8 @@ export const LangSelect: FC<LangSelectProps> = ({
     setDisplayLangList(false);
     localStorage.setItem(CURRENT_LANG, JSON.stringify(lang));
     dispatch({ type: SET_CURR_LANG, payload: lang });
+    const currentLang = lang === 'English' ? 'en' : 'ru';
+    i18n.changeLanguage(currentLang);
   };
 
   const langs = LANGUAGES.filter((item) => item !== currLanguage);
@@ -34,6 +37,7 @@ export const LangSelect: FC<LangSelectProps> = ({
     <StyledCoursesSelectWrapper
       isClicked={displayLangList}
       footer={currLanguage}
+      className="LanguageSelect"
     >
       <StyledCoursesSelectHeaderWrapper
         isClicked={displayLangList}

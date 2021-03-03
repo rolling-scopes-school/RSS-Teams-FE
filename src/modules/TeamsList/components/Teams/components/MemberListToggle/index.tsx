@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { MembersListToggleStyled, Chevron } from './styled';
 import { ReactComponent as ChevronArrow } from 'assets/svg/chevron-arrow.svg';
+import { useTranslation } from 'react-i18next';
 
 type MembersListToggle = {
   countMembers: number;
@@ -15,6 +16,7 @@ export const MembersListToggle: FC<MembersListToggle> = ({
   onToggleList,
   color,
 }) => {
+  const { t } = useTranslation();
   return (
     <MembersListToggleStyled
       onClick={() => {
@@ -23,7 +25,7 @@ export const MembersListToggle: FC<MembersListToggle> = ({
       color={color}
     >
       <div>
-        {countMembers || 0} {countMembers === 1 ? 'member' : 'members'}
+        {countMembers || 0} {countMembers === 1 ? t('member') : t('members')}
       </div>
       <Chevron open={isOpen}>
         <ChevronArrow />

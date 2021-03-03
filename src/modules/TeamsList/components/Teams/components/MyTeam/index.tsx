@@ -9,6 +9,7 @@ import { Team } from 'types';
 import { MembersListToggle } from '../MemberListToggle';
 import { MyTeamInfoBlock } from './components/MyTeamInfoBlock';
 import { TeamUserTable } from '../TeamUserTable';
+import { useTranslation } from 'react-i18next';
 
 type MyTeamProps = {
   team: Team;
@@ -17,6 +18,7 @@ type MyTeamProps = {
 
 export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   const [isOpen, setOpenState] = useState(false);
+  const { t } = useTranslation();
 
   const toggleListHandler = () => {
     setOpenState(!isOpen);
@@ -31,7 +33,9 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   return (
     <StyledMyTeam open={isOpen}>
       <div className="myTeam__header">
-        <h2 className="myTeam__title">My team - Team {team.number}</h2>
+        <h2 className="myTeam__title">
+          {t('My team - Team')} {team.number}
+        </h2>
         <div className="myTeam__info-wrapper">
           <MyTeamInfoBlock
             title="Invitation password"
@@ -51,7 +55,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
             type="button"
             onClick={removeCourse}
           >
-            Leave course
+            {t('Leave course')}
           </Button>
         </div>
         <div className="myTeam__button">
@@ -61,7 +65,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
             type="button"
             onClick={leaveTeam}
           >
-            Leave team
+            {t('Leave team')}
           </Button>
         </div>
         <div className="myTeam__toggle">

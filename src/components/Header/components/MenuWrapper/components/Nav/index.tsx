@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import {
   StyledNav,
@@ -16,6 +17,8 @@ type NavProps = {
 };
 
 export const Nav: FC<NavProps> = ({ setDisplayCoursesList }) => {
+  const { t } = useTranslation();
+
   const appNavigation: TAppNavigation = {
     ['/studentsTable']: 'Dashboard',
     ['/']: 'Teams',
@@ -34,7 +37,7 @@ export const Nav: FC<NavProps> = ({ setDisplayCoursesList }) => {
                 activeClassName="activeNavLink"
                 onClick={() => setDisplayCoursesList(false)}
               >
-                {link}
+                {t(link)}
                 <StyledHeaderActiveElement />
               </NavLink>
             </StyledNavListItem>

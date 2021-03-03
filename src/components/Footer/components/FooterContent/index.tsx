@@ -5,14 +5,16 @@ import {
   FooterTitle,
 } from 'components/Footer/styled';
 import { FOOTER_INFO } from 'appConstants';
+import { useTranslation } from 'react-i18next';
 
 export const FooterContent: FC = () => {
+  const { t } = useTranslation();
   return (
     <FooterContentWrapper>
       {FOOTER_INFO.map((item, index) => {
         return (
           <FooterContentBlock key={JSON.stringify(item)}>
-            <FooterTitle>{item.title}</FooterTitle>
+            <FooterTitle>{t(item.title)}</FooterTitle>
             <div className={`contentBlock${!!index ? ' designBlock' : ''}`}>
               {item.members.map((item: string) => {
                 return (

@@ -6,6 +6,7 @@ import { ReactComponent as InfoIcon } from 'assets/svg/info.svg';
 import { ReactComponent as EditIcon } from 'assets/svg/edit.svg';
 import NotificationPopup from './components/NotificationPopup';
 import { ACTIVE_MODAL_UPDATE_SOCIAL_LINK } from 'appConstants';
+import { useTranslation } from 'react-i18next';
 
 type MyTeamInfoBlockProps = {
   title: string;
@@ -20,9 +21,10 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
 }) => {
   const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
+  const { t } = useTranslation();
   return (
     <StyledMyTeamInfoBlock>
-      <div className="infoBlock__title">{title}</div>
+      <div className="infoBlock__title">{t(title)}</div>
       <MyTeamInfoLine value={value} />
       {icon === 'info' ? (
         <InfoButton
@@ -32,7 +34,7 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
           <InfoIcon />
           {hover && (
             <NotificationPopup>
-              The password is required to join the team.
+              {t('The password is required to join the team.')}
             </NotificationPopup>
           )}
         </InfoButton>
