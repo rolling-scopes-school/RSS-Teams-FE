@@ -94,5 +94,6 @@
   "Enter discord name": "Введите имя discord",
   "Enter course name": "Введите название курса",
   "Cancel": "Закрыть",
-  "Invitation password": "Пароль команды"
+  "Invitation password": "Пароль команды",
+  "You need to choose at least one course": "Необходимо выбрать хотя бы один курс"
 }

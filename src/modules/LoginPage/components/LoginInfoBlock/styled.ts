@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { WHITE_COLOR, DARK_TEXT_COLOR, MAIN1_COLOR } from 'appConstants/colors';
+import { GeneralAdaptiveFont } from 'typography';
 
 export const StyledLoginInfoBlock = styled.div`
   display: flex;
@@ -13,30 +14,19 @@ export const StyledLoginInfoBlock = styled.div`
   background-color: ${WHITE_COLOR};
   border-radius: 20px;
   gap: 30px;
+  ${GeneralAdaptiveFont};
 
-  @media (max-width: 1199px) and (min-width: 992px) {
-    font-size: 0.95rem;
-  }
-  @media (max-width: 991px) and (min-width: 768px) {
+  @media (max-width: 991px) and (min-width: 320px) {
     margin: 0 auto;
-    font-size: 0.9rem;
   }
-  @media (max-width: 767px) and (min-width: 550px) {
-    margin: 0 auto;
+  @media (max-width: 767px) and (min-width: 320px) {
     padding: 20px 15px;
-    font-size: 0.825rem;
     gap: 25px;
   }
   @media (max-width: 549px) and (min-width: 440px) {
-    margin: 0 auto;
-    padding: 20px 15px;
-    font-size: 0.8rem;
     gap: 20px;
   }
   @media (max-width: 439px) and (min-width: 320px) {
-    margin: 0 auto;
-    padding: 20px 15px;
-    font-size: 0.68rem;
     gap: 15px;
   }
 `;

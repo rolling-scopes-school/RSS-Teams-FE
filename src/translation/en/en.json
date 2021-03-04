@@ -94,5 +94,6 @@
   "Enter discord name": "Enter discord name",
   "Enter course name": "Enter course name",
   "Cancel": "Cancel",
-  "Invitation password": "Invitation password"
+  "Invitation password": "Invitation password",
+  "You need to choose at least one course": "You need to choose at least one course"
 }

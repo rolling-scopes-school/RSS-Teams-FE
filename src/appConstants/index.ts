@@ -63,7 +63,7 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
     value: /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/,
-    message: 'Use right format',
+    message: 'Use the format',
   },
   maxLength: {
     value: 55,

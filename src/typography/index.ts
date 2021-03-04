@@ -88,6 +88,24 @@ export const TextBold = css`
   font-weight: 700;
 `;
 
+export const GeneralAdaptiveFont = css`
+  @media (max-width: 1199px) and (min-width: 992px) {
+    font-size: 0.95rem;
+  }
+  @media (max-width: 991px) and (min-width: 768px) {
+    font-size: 0.9rem;
+  }
+  @media (max-width: 767px) and (min-width: 550px) {
+    font-size: 0.825rem;
+  }
+  @media (max-width: 549px) and (min-width: 440px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 439px) and (min-width: 320px) {
+    font-size: 0.68rem;
+  }
+`;
+
 export const PageTitle = styled.h1`
   ${TextBold};
   font-size: ${(props) => props.fontSize || '30px'};
@@ -118,25 +136,28 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   background-color: ${({ bgc }) => bgc || MAIN1_COLOR};
   color: ${({ color }) => color || WHITE_COLOR};
+  ${GeneralAdaptiveFont};
   @media (max-width: 1199px) and (min-width: 992px) {
-    font-size: 0.95rem;
     padding: 11px 45px;
   }
   @media (max-width: 991px) and (min-width: 768px) {
-    font-size: 0.9rem;
     padding: 10px 40px;
   }
   @media (max-width: 767px) and (min-width: 550px) {
-    font-size: 0.825rem;
     padding: 8px 30px;
   }
   @media (max-width: 549px) and (min-width: 440px) {
-    font-size: 0.8rem;
     padding: 5px 25px;
   }
   @media (max-width: 439px) and (min-width: 320px) {
-    font-size: 0.68rem;
     padding: 5px 20px;
+  }
+`;
+
+export const TeamButton = styled(Button)`
+  padding: 11px 23px;
+  @media (max-width: 650px) {
+    padding: 8px 16px;
   }
 `;
 

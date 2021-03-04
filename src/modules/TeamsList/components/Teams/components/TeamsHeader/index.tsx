@@ -8,7 +8,7 @@ import {
   HeaderManPic,
   TeamHeaderTitle,
 } from './styled';
-import { Button } from 'typography';
+import { TeamButton } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import {
   ACTIVE_MODAL_CREATE_TEAM,
@@ -43,7 +43,7 @@ export const TeamsHeader: FC = () => {
         <TeamsHeaderButtonsBlockStyled>
           {buttonsInfo.map((item) => {
             return (
-              <Button
+              <TeamButton
                 bgc={WHITE_COLOR}
                 color={DARK_TEXT_COLOR}
                 type="button"
@@ -51,7 +51,7 @@ export const TeamsHeader: FC = () => {
                 key={JSON.stringify(item)}
               >
                 {t(item[0])}
-              </Button>
+              </TeamButton>
             );
           })}
         </TeamsHeaderButtonsBlockStyled>

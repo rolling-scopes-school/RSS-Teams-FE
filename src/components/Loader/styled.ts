@@ -5,7 +5,7 @@ export const LoaderStyled = styled.div`
   position: absolute;
   top: 55%;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -56%);
 
   .loader,
   .loader:before,
@@ -43,7 +43,7 @@ export const LoaderStyled = styled.div`
   .loader:after {
     content: '';
     position: absolute;
-    top: 0;
+    top: 0px;
   }
   .loader:before {
     left: -3.5em;

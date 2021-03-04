@@ -37,6 +37,10 @@ export const TeamsHeaderButtonsBlockStyled = styled.div`
   display: flex;
   gap: 20px;
 
+  @media (max-width: 680px) {
+    gap: 10px;
+  }
+
   @media (max-width: 580px) {
     flex-direction: column;
     align-content: center;

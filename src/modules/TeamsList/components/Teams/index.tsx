@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { TeamsHeader, MyTeam, TeamItem } from './components';
 import { Team, TeamList } from 'types';
-import { Button } from 'typography';
+import { TeamButton } from 'typography';
 import { TableTitle } from 'modules/StudentsTable/styled';
 import { TeamsTitleWrapper } from 'modules/TeamsList/styled';
 import { useTranslation } from 'react-i18next';
@@ -27,7 +27,9 @@ export const Teams: FC<TeamsProps> = ({ teams, myTeam, userId, isAdmin }) => {
       <TeamsTitleWrapper>
         <TableTitle>{t('Teams')}</TableTitle>
         {isAdmin && (
-          <Button onClick={onClickSortStudents}>{t('Sort students')}</Button>
+          <TeamButton onClick={onClickSortStudents}>
+            {t('Sort students')}
+          </TeamButton>
         )}
       </TeamsTitleWrapper>
       {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}

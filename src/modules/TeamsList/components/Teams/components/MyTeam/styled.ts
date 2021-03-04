@@ -22,31 +22,32 @@ export const StyledMyTeam = styled.div<StyledMyTeamProps>`
     z-index: 0;
     padding: 30px;
     display: grid;
-    grid-template-columns: 1fr 250px 250px;
+    grid-template-columns: 1fr 215px 215px;
     grid-template-rows: auto 1fr;
     grid-template-areas: 'title leave button' 'info info toggle';
 
     @media (max-width: 992px) {
-      grid-template-columns: 1fr 187px 187px;
+      grid-template-columns: 1fr 200px 200px;
       grid-template-rows: auto auto auto;
       grid-template-areas: 'title leave button' 'info info info' 'toggle toggle toggle';
       font-size: 0.9rem;
     }
 
     @media (max-width: 650px) {
-      grid-template-columns: 1fr 187px 187px;
+      grid-template-columns: 1fr 100px 187px;
       grid-template-rows: auto auto auto auto;
       grid-template-areas: 'title title button' 'title title leave' 'info info info' 'toggle toggle toggle';
       font-size: 0.825rem;
     }
 
     @media (max-width: 440px) {
-      grid-template-columns: 1fr 110px 110px;
+      grid-template-columns: 1fr 115px 160px;
       font-size: 0.68rem;
     }
 
     @media (max-width: 350px) {
-      grid-template-columns: 1fr 115px 115px;
+      padding: 20px;
+      grid-template-columns: 1fr 60px 145px;
       grid-template-rows: auto auto auto auto;
     }
 
@@ -77,13 +78,15 @@ export const StyledMyTeam = styled.div<StyledMyTeamProps>`
       display: flex;
       justify-content: flex-end;
       align-items: flex-start;
-      margin: 0 5px 10px 0;
+      margin: 0 0 10px 10px;
+      button {
+        width: 100%;
+      }
       @media (max-width: 650px) {
-        button {
-          width: 100%;
-          margin: 0 0 10px;
-          line-height: 18px;
-        }
+        margin: 0 0 10px;
+      }
+      @media (max-width: 440px) {
+        margin: 0 0 10px 10px;
       }
     }
     .myTeam__leave {

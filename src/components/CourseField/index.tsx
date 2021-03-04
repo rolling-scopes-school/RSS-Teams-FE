@@ -83,7 +83,7 @@ export const CourseField: FC<SelectFieldProps> = ({
       </SelectCourse>
       {!isValid && (
         <ValidationAlert>
-          You need to choose at least one course
+          {t('You need to choose at least one course')}
         </ValidationAlert>
       )}
     </FieldWrapper>

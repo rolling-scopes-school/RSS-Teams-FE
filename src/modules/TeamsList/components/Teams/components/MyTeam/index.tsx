@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ACTIVE_MODAL_LEAVE, ACTIVE_MODAL_REMOVE_COURSE } from 'appConstants';
 
 import { StyledMyTeam, HeaderDecor, TableWrapper } from './styled';
-import { Button } from 'typography';
+import { Button, TeamButton } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import { Team } from 'types';
 import { MembersListToggle } from '../MemberListToggle';
@@ -49,24 +49,24 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
           />
         </div>
         <div className="myTeam__leave">
-          <Button
+          <TeamButton
             bgc={WHITE_COLOR}
             color={DARK_TEXT_COLOR}
             type="button"
             onClick={removeCourse}
           >
             {t('Leave course')}
-          </Button>
+          </TeamButton>
         </div>
         <div className="myTeam__button">
-          <Button
+          <TeamButton
             bgc={WHITE_COLOR}
             color={DARK_TEXT_COLOR}
             type="button"
             onClick={leaveTeam}
           >
             {t('Leave team')}
-          </Button>
+          </TeamButton>
         </div>
         <div className="myTeam__toggle">
           <MembersListToggle

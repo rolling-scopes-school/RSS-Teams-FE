@@ -100,7 +100,7 @@ export const ModalCreateEditTeam: FC<Props> = ({
         }}
         placeholder={t('Enter group link')}
       />
-      {!isInputValid && <ValidationAlert>{errorMessage}</ValidationAlert>}
+      {!isInputValid && <ValidationAlert>{t(errorMessage)}</ValidationAlert>}
     </Modal>
   );
 };
