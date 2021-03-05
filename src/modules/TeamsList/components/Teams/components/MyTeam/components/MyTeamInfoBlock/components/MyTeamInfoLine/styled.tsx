@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { WHITE_COLOR } from 'appConstants/colors';
-import { TextBold } from 'typography';
+import { TextBold, GeneralAdaptiveFont, SVGParamsAdaptive } from 'typography';
 import { ReactComponent as CopyIcon } from 'assets/svg/copy.svg';
 
 type TInfoLineStyled = {
@@ -22,6 +22,7 @@ export const InfoLineStyled = styled.div<TInfoLineStyled>`
     border-radius: 3px;
     padding: 0 7px;
     margin-left: -7px;
+    ${GeneralAdaptiveFont};
   }
 
   @keyframes blink {
@@ -35,9 +36,7 @@ export const InfoLineStyled = styled.div<TInfoLineStyled>`
 `;
 
 export const CopyClipboardButton = styled(CopyIcon)`
-  width: 16px;
-  height: 16px;
-  min-width: 16px;
   cursor: pointer;
   margin-left: 3px;
+  ${SVGParamsAdaptive};
 `;

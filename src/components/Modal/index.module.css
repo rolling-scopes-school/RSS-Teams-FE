@@ -6,7 +6,8 @@
   bottom: 0;
   left: 0;
   z-index: 999;
-  /* overflow-y: scroll; */
+
+/* overflow-y: scroll; */
   text-align: center;
   background: var(--OVERLAY_COLOR);
 
@@ -35,4 +36,30 @@
   width: 25px;
   height: 25px;
   cursor: pointer;
+}
+
+@media (max-width: 550px) {
+  .container {
+    width: 350px;
+  }
+
+  .icon {
+    top: 15px;
+    right: 20px;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 440px) {
+  .container {
+    width: 300px;
+  }
+
+  .icon {
+    top: 15px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+  }
 }

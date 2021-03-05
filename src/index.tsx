@@ -15,6 +15,7 @@ import reportWebVitals from './reportWebVitals';
 import 'typography/normalize.css';
 import 'typography/fonts.css';
 import 'typography/common.css';
+import './translation/resources';
 
 const httpLink = createHttpLink({
   uri: BACKEND_LINK,

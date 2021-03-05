@@ -11,6 +11,7 @@ import {
   SET_SOCIAL_LINK,
   ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
   ACTIVE_MODAL_REMOVE_COURSE,
+  ACTIVE_MODAL_SORT_STUDENTS,
 } from 'appConstants';
 import { StateTeamsList } from 'types';
 
@@ -25,6 +26,7 @@ export const teamsListState = {
   isActiveModalCreated: false,
   isActiveModalUpdateSocialLink: false,
   isActiveModalRemoveCourse: false,
+  isActiveModalSortStudents: false,
   teamMemberExpelId: '',
   teamPassword: '',
   socialLink: '',
@@ -89,6 +91,11 @@ export const teamsListReducer: Reducer<StateTeamsList, Action> = (
       return {
         ...state,
         isActiveModalRemoveCourse: action.payload,
+      };
+    case ACTIVE_MODAL_SORT_STUDENTS:
+      return {
+        ...state,
+        isActiveModalSortStudents: action.payload,
       };
     default:
       return state;

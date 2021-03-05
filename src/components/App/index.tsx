@@ -9,12 +9,15 @@ import {
   NotFoundPage,
   EditProfile,
 } from 'modules';
-import { Loader, PrivateRoute, Header, ErrorModal } from 'components';
+import { Loader, PrivateRoute, Header, Footer, ErrorModal } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import {
   AUTH_TOKEN,
   CURRENT_COURSE,
+  CURRENT_LANG,
+  LANGUAGES,
   SET_CURR_COURSE,
+  SET_CURR_LANG,
   SET_TOKEN,
   SET_USER_DATA,
 } from 'appConstants';
@@ -46,10 +49,18 @@ export const App: FC = () => {
           JSON.stringify(whoAmI?.courses[0])
         );
       }
+      if (!localStorage.getItem(CURRENT_LANG)) {
+        localStorage.setItem(CURRENT_LANG, LANGUAGES[0]);
+      }
       const currentCourse = JSON.parse(
         localStorage.getItem(CURRENT_COURSE) as string
       );
+      const currentLanguage = JSON.parse(
+        localStorage.getItem(CURRENT_LANG) as string
+      );
+
       dispatch({ type: SET_CURR_COURSE, payload: currentCourse });
+      dispatch({ type: SET_CURR_LANG, payload: currentLanguage });
     }
 
     if (!loadingW) setLoading(false);
@@ -82,6 +93,8 @@ export const App: FC = () => {
         <Route exact path="/editProfile" component={EditProfile} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
+
+      {!!loginToken && <Footer />}
     </AppStyled>
   );
 };

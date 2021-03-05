@@ -11,6 +11,7 @@ import {
   StyledCoursesSelectInfo,
   StyledCoursesSelectArrow,
 } from './styled';
+import { useTranslation } from 'react-i18next';
 
 type CoursesSelectProps = {
   displayCoursesList: boolean;
@@ -22,6 +23,7 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
   setDisplayCoursesList,
 }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
 
@@ -37,7 +39,7 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
   return (
     <StyledCoursesSelectWrapper isClicked={displayCoursesList}>
       <StyledCoursesSelectHeaderWrapper isClicked={displayCoursesList}>
-        <p>Course</p>
+        <p>{t('Course')}</p>
         <StyledCoursesSelectInfo
           hover={!!userCourses.length}
           onClick={() => setDisplayCoursesList(!displayCoursesList)}

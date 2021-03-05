@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
-import { useTeamsQuery, useSortStudentsMutation } from 'hooks/graphql';
-import { Loader, ErrorModal, Pagination } from 'components';
 import { useSelector } from 'react-redux';
+import { useTeamsQuery } from 'hooks/graphql';
+import { Loader, ErrorModal, Pagination } from 'components';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { StyledTeams, TeamWrapper } from './styled';
@@ -13,25 +13,18 @@ export const TeamsList: FC = () => {
   const [page, setPage] = useState<number>(0);
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
+
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId: currCourse.id,
     page: page,
   });
-  const { sortStudents, errorM, loadingM } = useSortStudentsMutation({
-    courseId: currCourse.id,
-    page,
-  });
   const loading = loadingT;
   const error = errorT;
 
-  if (loading || loadingM) return <Loader />;
-  if (error || errorM) return <ErrorModal />;
+  if (loading) return <Loader />;
+  if (error) return <ErrorModal />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
-
-  const onClickSortStudents = () => {
-    sortStudents();
-  };
 
   return (
     <TeamWrapper>
@@ -45,7 +38,6 @@ export const TeamsList: FC = () => {
           }
           userId={userData.id}
           isAdmin={userData.isAdmin}
-          onClickSortStudents={onClickSortStudents}
         />
         {!!teams.results.length && (
           <Pagination pageCount={pageCount} changePage={setPage} page={page} />

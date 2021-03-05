@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const NotFoundPage: FC = () => {
+  const { t } = useTranslation();
   return (
     <div>
-      <p>Not found!</p>
+      <p>{t('Not found!')}</p>
     </div>
   );
 };

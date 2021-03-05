@@ -8,7 +8,7 @@ import {
   HeaderManPic,
   TeamHeaderTitle,
 } from './styled';
-import { Button } from 'typography';
+import { TeamButton } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import {
   ACTIVE_MODAL_CREATE_TEAM,
@@ -16,9 +16,11 @@ import {
   ACTIVE_MODAL_REMOVE_COURSE,
 } from 'appConstants';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export const TeamsHeader: FC = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const buttonsInfo: [string, () => void][] = [
     [
       'Create team',
@@ -34,23 +36,22 @@ export const TeamsHeader: FC = () => {
   return (
     <TeamsHeaderStyled>
       <TeamsHeaderRightStyled>
-        <TeamHeaderTitle>Become a member of the team!</TeamHeaderTitle>
+        <TeamHeaderTitle>{t('Become a member of the team!')}</TeamHeaderTitle>
         <TeamsHeaderSubtitleStyled>
-          To become a member of the team you can create your own team or join
-          team. If not, you will be added to the team automatically.
+          {t('To become a member')}
         </TeamsHeaderSubtitleStyled>
         <TeamsHeaderButtonsBlockStyled>
           {buttonsInfo.map((item) => {
             return (
-              <Button
+              <TeamButton
                 bgc={WHITE_COLOR}
                 color={DARK_TEXT_COLOR}
                 type="button"
                 onClick={item[1]}
                 key={JSON.stringify(item)}
               >
-                {item[0]}
-              </Button>
+                {t(item[0])}
+              </TeamButton>
             );
           })}
         </TeamsHeaderButtonsBlockStyled>

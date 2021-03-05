@@ -4,7 +4,11 @@ import {
   MAIN2_LIGHT_COLOR,
   MAIN2_COLOR,
 } from 'appConstants/colors';
-import { TextRegular } from 'typography';
+import {
+  TextRegular,
+  GeneralAdaptiveFont,
+  SVGParamsAdaptive,
+} from 'typography';
 
 export const StyledMyTeamInfoBlock = styled.div`
   position: relative;
@@ -19,6 +23,7 @@ export const StyledMyTeamInfoBlock = styled.div`
     ${TextRegular};
     color: ${WHITE_COLOR};
     margin-bottom: 10px;
+    ${GeneralAdaptiveFont};
   }
 
   @media (max-width: 992px) {
@@ -33,6 +38,9 @@ const InfoBlockButton = css`
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
   height: 32px;
   padding: 8px;
@@ -44,4 +52,8 @@ const InfoBlockButton = css`
 
 export const InfoButton = styled.div`
   ${InfoBlockButton};
+
+  svg {
+    ${SVGParamsAdaptive};
+  }
 `;

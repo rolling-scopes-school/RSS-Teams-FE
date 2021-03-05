@@ -5,7 +5,7 @@ import {
   LIGHT_TEXT_COLOR,
   WHITE_COLOR,
 } from 'appConstants/colors';
-import { PageTitle } from 'typography';
+import { PageTitle, H1AdaptiveFont, GeneralAdaptiveFont } from 'typography';
 
 export const EditProfileWrapper = styled.form`
   background-color: ${WHITE_COLOR};
@@ -18,6 +18,10 @@ export const EditProfileWrapper = styled.form`
     padding: 15px 10px;
     flex-direction: column;
     margin: 50px 0;
+  }
+
+  @media (max-width: 440px) {
+    width: 280px;
   }
 `;
 
@@ -32,6 +36,7 @@ export const FormWrapper = styled.div`
 export const FormTitle = styled(PageTitle)`
   margin-top: 0;
   margin-bottom: 32px;
+  ${H1AdaptiveFont};
 `;
 
 export const InputsWrapper = styled.div`
@@ -57,6 +62,7 @@ export const CoursesWrapper = styled.div`
 export const UserCoursesListTitle = styled.div`
   color: ${LIGHT_TEXT_COLOR};
   margin-bottom: 10px;
+  ${GeneralAdaptiveFont}
 `;
 
 export const UserCourseListItem = styled.div`

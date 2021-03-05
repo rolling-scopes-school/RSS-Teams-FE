@@ -10,5 +10,6 @@ export const DASHBOARD_HEADER_BG_COLOR = '#E1EEFA';
 export const TABLE_SCROLLBAR_BG_COLOR = '#F9F9FD';
 export const TABLE_SCROLLBAR_THUMB_COLOR = '#1E33570D';
 export const TABLE_POPUP_BORDER_COLOR = '#363D4833';
+export const FOOTER_NAMES_COLOR = '#9CA5B5';
 
 export const ALERT_COLOR = '#FA6678'; // red

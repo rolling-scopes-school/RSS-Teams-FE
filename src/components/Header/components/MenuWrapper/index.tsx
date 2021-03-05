@@ -4,15 +4,12 @@ import { Nav } from './components/Nav';
 import { StyledMenuWrapper } from './styled';
 
 export const MenuWrapper: FC = () => {
-  const [displayCoursesList, setDisplayCoursesList] = useState<boolean>(false);
+  const [displayCoursesList, setDisplayCoursesList] = useState(false);
 
   return (
     <StyledMenuWrapper>
-      <Nav setDisplayCoursesList={setDisplayCoursesList} />
-      <CoursesSelect
-        displayCoursesList={displayCoursesList}
-        setDisplayCoursesList={setDisplayCoursesList}
-      />
+      <Nav {...{ setDisplayCoursesList }} />
+      <CoursesSelect {...{ displayCoursesList, setDisplayCoursesList }} />
     </StyledMenuWrapper>
   );
 };

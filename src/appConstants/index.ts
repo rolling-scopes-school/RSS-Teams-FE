@@ -13,16 +13,19 @@ export const ACTIVE_MODAL_CREATED = 'ACTIVE_MODAL_CREATED';
 export const ACTIVE_MODAL_UPDATE_SOCIAL_LINK =
   'ACTIVE_MODAL_UPDATE_SOCIAL_LINK';
 export const ACTIVE_MODAL_REMOVE_COURSE = 'ACTIVE_MODAL_REMOVE_COURSE';
+export const ACTIVE_MODAL_SORT_STUDENTS = 'ACTIVE_MODAL_SORT_STUDENTS';
 export const SET_TEAM_MEMBER_EXPEL_ID = 'SET_TEAM_MEMBER_EXPEL_ID';
 export const SET_TEAM_PASSWORD = 'SET_TEAM_PASSWORD';
 export const SET_SOCIAL_LINK = 'SET_SOCIAL_LINK';
 export const SET_FILTER_DATA = 'SET_FILTER_DATA';
+export const SET_CURR_LANG = 'SET_CURR_LANG';
 
 export const USERS_PER_PAGE = 20;
 export const TEAMS_PER_PAGE = 10;
 export const CURRENT_YEAR = new Date(Date.now()).getFullYear();
 
 export const CURRENT_COURSE = 'currentCourse';
+export const CURRENT_LANG = 'currentLanguage';
 
 export const TABLE_HEADERS = [
   '#',
@@ -60,10 +63,29 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
     value: /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/,
-    message: 'Use right format link - https://xxx/xxxx',
+    message: 'Use the format',
   },
   maxLength: {
     value: 55,
     message: 'This input exceed maxLength.',
   },
 };
+
+export const LANGUAGES = ['English', 'Русский'];
+
+export const FOOTER_INFO = [
+  {
+    title: 'Development',
+    members: [
+      'besovadevka',
+      'MadaShindeInai',
+      'self067',
+      'manuminsk',
+      'Malagor',
+    ],
+  },
+  {
+    title: 'Design',
+    members: ['Nastya Kapylova'],
+  },
+];
