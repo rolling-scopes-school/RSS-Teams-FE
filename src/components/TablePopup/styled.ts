@@ -26,7 +26,7 @@ export const StyledPopup = styled.div<TStyledPopup>`
   border: 1px solid ${TABLE_POPUP_BORDER_COLOR};
   border-radius: 10px;
   ${GeneralAdaptiveFont};
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 440px) {
     left: -5px;
     padding: 5px;
   }

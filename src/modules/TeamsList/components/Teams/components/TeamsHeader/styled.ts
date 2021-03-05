@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { WHITE_COLOR, MAIN2_COLOR } from 'appConstants/colors';
 import { ReactComponent as HeaderMan } from 'assets/svg/teams-man.svg';
-import { PageSubTitle, TextRegular } from 'typography';
+import {
+  PageSubTitle,
+  TextRegular,
+  H2AdaptiveFont,
+  GeneralAdaptiveFont,
+} from 'typography';
 
 export const TeamsHeaderStyled = styled.div`
   padding: 30px;
@@ -19,6 +24,7 @@ export const TeamsHeaderStyled = styled.div`
 
 export const TeamHeaderTitle = styled.h2`
   ${PageSubTitle};
+  ${H2AdaptiveFont};
   margin: 5px 0 18px;
 `;
 
@@ -29,6 +35,7 @@ export const TeamsHeaderRightStyled = styled.div`
 
 export const TeamsHeaderSubtitleStyled = styled.div`
   ${TextRegular};
+  ${GeneralAdaptiveFont};
   color: ${WHITE_COLOR};
   margin-bottom: 30px;
 `;

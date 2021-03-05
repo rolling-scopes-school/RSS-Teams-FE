@@ -9,18 +9,20 @@ type TeamUserTableProps = {
   members?: User[];
   isMyTeam?: boolean;
   userId?: string;
+  secondTable?: boolean;
 };
 
 export const TeamUserTable: FC<TeamUserTableProps> = ({
   members,
   isMyTeam,
   userId,
+  secondTable = false,
 }) => {
   const { t } = useTranslation();
   return (
     <StyledTeamUserTable>
       <thead>
-        <tr>
+        <tr className={secondTable ? 'SecondTable' : 'FirstTable'}>
           {TABLE_TEAMS_HEADERS.map((columnName: string) => {
             return !isMyTeam && columnName === 'Action' ? null : (
               <th key={columnName}>{t(columnName)}</th>
@@ -35,9 +37,7 @@ export const TeamUserTable: FC<TeamUserTableProps> = ({
               <TableRow
                 key={member.id}
                 count={index + 1}
-                member={member}
-                isMyTeam={isMyTeam}
-                userId={userId}
+                {...{ secondTable, userId, isMyTeam, member }}
               />
             );
           })}

@@ -16,10 +16,15 @@ export const StyledFooter = styled.footer`
   background-color: ${DARK_TEXT_COLOR};
   margin-top: 60px;
   padding: 40px 60px 0;
-  @media (max-width: 549px) and (min-width: 440px) {
+  @media (max-width: 768px) {
+    height: 160px;
+  }
+  @media (max-width: 550px) {
+    height: 150px;
     padding: 30px 45px 0;
   }
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 440px) {
+    height: 130px;
     padding: 20px 20px 0;
   }
 `;
@@ -29,10 +34,10 @@ export const FooterContentWrapper = styled.div`
   justify-content: center;
   gap: 5.6%;
 
-  @media (max-width: 1199px) and (min-width: 768px) {
+  @media (max-width: 1200px) and (min-width: 768px) {
     gap: 0;
   }
-  @media (max-width: 767px) and (min-width: 320px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -48,7 +53,7 @@ export const FooterContentBlock = styled.div`
     gap: 30px;
     width: 450px;
 
-    @media (max-width: 991px) and (min-width: 768px) {
+    @media (max-width: 992px) {
       width: 360px;
       gap: 0;
     }
@@ -60,6 +65,7 @@ export const FooterContentBlock = styled.div`
       text-decoration: none;
       outline: none;
       width: 130px;
+      ${GeneralAdaptiveFont};
 
       &:nth-child(3) {
         width: 100px;
@@ -68,8 +74,8 @@ export const FooterContentBlock = styled.div`
       &:hover {
         color: ${WHITE_COLOR};
       }
-      ${GeneralAdaptiveFont};
-      @media (max-width: 991px) and (min-width: 768px) {
+
+      @media (max-width: 992px) {
         margin-bottom: 15px;
       }
     }
@@ -87,15 +93,15 @@ export const FooterContentBlock = styled.div`
     position: absolute;
     bottom: 20%;
     left: 60px;
-    @media (max-width: 767px) and (min-width: 320px) {
+    ${GeneralAdaptiveFont};
+    @media (max-width: 768px) {
       position: unset;
       width: 110px;
     }
-    ${GeneralAdaptiveFont};
-    @media (max-width: 549px) and (min-width: 440px) {
+    @media (max-width: 550px) {
       width: 110px;
     }
-    @media (max-width: 439px) and (min-width: 320px) {
+    @media (max-width: 440px) {
       width: 90px;
       & > div {
         padding: 0px 5px;

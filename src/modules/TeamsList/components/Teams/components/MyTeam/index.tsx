@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ACTIVE_MODAL_LEAVE, ACTIVE_MODAL_REMOVE_COURSE } from 'appConstants';
 
 import { StyledMyTeam, HeaderDecor, TableWrapper } from './styled';
-import { Button, TeamButton } from 'typography';
+import { TeamButton } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import { Team } from 'types';
 import { MembersListToggle } from '../MemberListToggle';

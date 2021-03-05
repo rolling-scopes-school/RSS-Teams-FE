@@ -14,10 +14,10 @@ export const StyledTableHead = styled.div`
   color: ${LIGHT_TEXT_COLOR};
   background-color: ${DASHBOARD_HEADER_BG_COLOR};
   border-radius: 10px;
-  @media (max-width: 767px) and (min-width: 440px) {
+  @media (max-width: 768px) {
     padding: 10px;
   }
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 440px) {
     padding: 5px;
   }
 `;

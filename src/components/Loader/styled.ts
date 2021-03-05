@@ -29,13 +29,13 @@ export const LoaderStyled = styled.div`
     transform: translateZ(0);
     -webkit-animation-delay: -0.16s;
     animation-delay: -0.16s;
-    @media (max-width: 767px) and (min-width: 550px) {
+    @media (max-width: 768px) {
       font-size: 8px;
     }
-    @media (max-width: 549px) and (min-width: 440px) {
+    @media (max-width: 550px) {
       font-size: 7px;
     }
-    @media (max-width: 439px) and (min-width: 320px) {
+    @media (max-width: 440px) {
       font-size: 6px;
     }
   }

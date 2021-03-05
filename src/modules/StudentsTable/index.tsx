@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next';
 
 export const StudentsTable: FC = () => {
   const [page, setPage] = useState<number>(0);
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [inputValues, setInputValues] = useState<TFilterForm>(
     defaultFilterData
   );

@@ -42,20 +42,20 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
     fill: ${({ login }) => (login ? WHITE_COLOR : DARK_TEXT_COLOR)};
   }
 
-  @media (max-width: 991px) and (min-width: 768px) {
+  @media (max-width: 992px) {
     width: 80px;
     height: 28px;
   }
-  @media (max-width: 767px) and (min-width: 550px) {
+  @media (max-width: 768px) {
     width: 76px;
     height: 24px;
   }
-  @media (max-width: 549px) and (min-width: 440px) {
+  @media (max-width: 550px) {
     width: 72px;
     height: 22px;
     margin-bottom: 0;
   }
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 440px) {
     width: 70px;
     height: 20px;
     margin-bottom: -1%;
@@ -89,20 +89,129 @@ export const TextBold = css`
 `;
 
 export const GeneralAdaptiveFont = css`
-  @media (max-width: 1199px) and (min-width: 992px) {
+  @media (max-width: 1200px) {
     font-size: 0.95rem;
+    line-height: 23px;
   }
-  @media (max-width: 991px) and (min-width: 768px) {
+  @media (max-width: 992px) {
     font-size: 0.9rem;
+    line-height: 22px;
   }
-  @media (max-width: 767px) and (min-width: 550px) {
+  @media (max-width: 768px) {
     font-size: 0.825rem;
+    line-height: 21px;
   }
-  @media (max-width: 549px) and (min-width: 440px) {
+  @media (max-width: 550px) {
     font-size: 0.8rem;
+    line-height: 20px;
   }
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 440px) {
     font-size: 0.68rem;
+    line-height: 18px;
+  }
+`;
+
+export const H1AdaptiveFont = css`
+  font-size: 30px;
+  line-height: 45px;
+
+  @media (max-width: 1200px) {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  @media (max-width: 992px) {
+    font-size: 26px;
+    line-height: 38px;
+  }
+  @media (max-width: 768px) {
+    font-size: 24px;
+    line-height: 36px;
+  }
+  @media (max-width: 550px) {
+    font-size: 22px;
+    line-height: 32px;
+  }
+  @media (max-width: 440px) {
+    font-size: 20px;
+    line-height: 28px;
+  }
+`;
+
+export const H2AdaptiveFont = css`
+  @media (max-width: 1200px) {
+    font-size: 26px;
+    line-height: 35px;
+  }
+  @media (max-width: 992px) {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  @media (max-width: 768px) {
+    font-size: 22px;
+    line-height: 25px;
+  }
+  @media (max-width: 550px) {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  @media (max-width: 440px) {
+    font-size: 17px;
+    line-height: 20px;
+  }
+`;
+
+export const GeneralButtonPadding = css`
+  padding: 13px 50px;
+  @media (max-width: 1200px) {
+    padding: 11px 45px;
+  }
+  @media (max-width: 992px) {
+    padding: 10px 40px;
+  }
+  @media (max-width: 768px) {
+    padding: 8px 30px;
+  }
+  @media (max-width: 550px) {
+    padding: 5px 25px;
+  }
+  @media (max-width: 440px) {
+    padding: 5px 20px;
+  }
+`;
+
+export const SVGArrowAdaptive = css`
+  @media (max-width: 992px) {
+    width: 13px;
+    height: 13px;
+  }
+  @media (max-width: 768px) {
+    width: 12px;
+    height: 12px;
+  }
+  @media (max-width: 550px) {
+    width: 11px;
+    height: 11px;
+  }
+  @media (max-width: 440px) {
+    width: 10px;
+    height: 10px;
+  }
+`;
+
+export const SVGParamsAdaptive = css`
+  width: 16px;
+  height: 16px;
+  @media (max-width: 768px) {
+    width: 15px;
+    height: 15px;
+  }
+  @media (max-width: 550px) {
+    width: 14px;
+    height: 14px;
+  }
+  @media (max-width: 440px) {
+    width: 13px;
+    height: 13px;
   }
 `;
 
@@ -111,9 +220,7 @@ export const PageTitle = styled.h1`
   font-size: ${(props) => props.fontSize || '30px'};
   line-height: ${(props) => props.lineHeight || '45px'};
   margin-top: 0;
-  @media screen and (max-width: 768px) {
-    font-size: 24px;
-  }
+  ${H1AdaptiveFont};
 `;
 
 export const PageSubTitle = styled.h2`
@@ -129,7 +236,6 @@ export const PageSubTitle = styled.h2`
 export const Button = styled.button<ButtonProps>`
   ${TextSemiBold};
   margin-right: ${({ mr }) => mr || 0};
-  padding: 13px 50px;
   border-radius: 20px;
   border: none;
   outline: none;
@@ -137,21 +243,7 @@ export const Button = styled.button<ButtonProps>`
   background-color: ${({ bgc }) => bgc || MAIN1_COLOR};
   color: ${({ color }) => color || WHITE_COLOR};
   ${GeneralAdaptiveFont};
-  @media (max-width: 1199px) and (min-width: 992px) {
-    padding: 11px 45px;
-  }
-  @media (max-width: 991px) and (min-width: 768px) {
-    padding: 10px 40px;
-  }
-  @media (max-width: 767px) and (min-width: 550px) {
-    padding: 8px 30px;
-  }
-  @media (max-width: 549px) and (min-width: 440px) {
-    padding: 5px 25px;
-  }
-  @media (max-width: 439px) and (min-width: 320px) {
-    padding: 5px 20px;
-  }
+  ${GeneralButtonPadding}
 `;
 
 export const TeamButton = styled(Button)`
@@ -168,6 +260,7 @@ export const InvertedButton = styled(Button)`
 
 export const Label = styled.label`
   ${TextRegular};
+  ${GeneralAdaptiveFont};
   max-width: 300px;
   margin-bottom: 10px;
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
@@ -182,6 +275,10 @@ export const Input = styled.input`
   background-color: ${BG_COLOR};
   color: ${(props) => props.color || DARK_TEXT_COLOR};
   outline: none;
+  ${GeneralAdaptiveFont}
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   &::-webkit-input-placeholder {
     color: ${LIGHT_TEXT_COLOR};
   }
@@ -244,6 +341,7 @@ export const SelectInner = styled.select`
   background-color: transparent;
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
   outline: none;
+  ${GeneralAdaptiveFont}
   &::-ms-expand {
     display: none;
   }

@@ -6,7 +6,7 @@ import {
 } from 'appConstants/colors';
 import styled from 'styled-components';
 import { ReactComponent as CoursesSelectArrow } from 'assets/svg/coursesSelectArrow.svg';
-import { GeneralAdaptiveFont } from 'typography';
+import { GeneralAdaptiveFont, SVGParamsAdaptive } from 'typography';
 
 type TStyledCoursesSelectInfo = {
   hover: boolean;
@@ -38,7 +38,7 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
     margin-top: ${({ isClicked }) => (isClicked ? '0px' : '-100%')};
   }
 
-  @media (max-width: 945px) and (min-width: 320px) {
+  @media (max-width: 945px) {
     display: ${({ footer }) => !footer && 'none'};
   }
 `;
@@ -107,11 +107,13 @@ export const StyledCoursesSelectInfo = styled.div<TStyledCoursesSelectInfo>`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
+  svg {
+    ${SVGParamsAdaptive};
+  }
 `;
 
 export const StyledCoursesSelectArrow = styled(CoursesSelectArrow)<TFooterProp>`
-  width: 10px;
-  height: 5px;
   transition: transform 0.3s ease-in-out;
 
   path {

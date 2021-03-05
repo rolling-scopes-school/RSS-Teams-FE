@@ -129,6 +129,10 @@ export const TableWrapper = styled.div<TableWrapperProps>`
   @media screen and (max-width: 768px) {
     overflow-x: ${({ open }) => (open ? 'scroll' : 'auto')};
   }
+
+  @media (max-width: 440px) {
+    ${({ open }) => (open ? 'padding: 40px 15px 30px' : null)};
+  }
 `;
 
 export const HeaderDecor = styled(HeaderDecoration)`

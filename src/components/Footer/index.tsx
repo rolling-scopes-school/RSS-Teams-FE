@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FooterContent, LangSelect } from './components';
 
 export const Footer: FC = () => {
-  const [displayLangList, setDisplayLangList] = useState<boolean>(false);
+  const [displayLangList, setDisplayLangList] = useState(false);
   return (
     <StyledFooter>
       <Link to="/">
