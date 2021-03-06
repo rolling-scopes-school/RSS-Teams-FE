@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextRegular, TextSemiBold } from 'typography';
+import { TextRegular, TextSemiBold, GeneralAdaptiveFont } from 'typography';
 import { WHITE_COLOR } from 'appConstants/colors';
 import { TableWrapper } from '../MyTeam/styled';
 
@@ -13,10 +13,12 @@ export const TeamItemStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    ${GeneralAdaptiveFont};
   }
 
   .teamItem__name {
     ${TextSemiBold};
+    ${GeneralAdaptiveFont};
   }
   .teamItem__description {
     ${TextRegular};
@@ -27,4 +29,8 @@ export const TeamItemStyled = styled.div`
 export const TeamItemTableWrapper = styled(TableWrapper)`
   margin-top: ${({ open }) => (open ? '-20px' : '0')};
   ${({ open }) => (open ? 'padding: 20px 30px 20px' : null)};
+
+  @media (max-width: 440px) {
+    ${({ open }) => (open ? 'padding: 20px 15px 20px' : null)};
+  }
 `;

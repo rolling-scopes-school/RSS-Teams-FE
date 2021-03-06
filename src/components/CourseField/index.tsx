@@ -2,6 +2,7 @@ import React, { FC, SelectHTMLAttributes, useState } from 'react';
 import { Label, Select, SelectInner } from 'typography';
 import { FieldWrapper, SelectCourse, PlusButton } from './styled';
 import { ValidationAlert } from '../InputField/styled';
+import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as CheckSvgIcon } from 'assets/svg/check.svg';
 
@@ -33,6 +34,7 @@ export const CourseField: FC<SelectFieldProps> = ({
 }) => {
   const [selectedCourse, setSelectedCourse] = useState<any>(0);
   const [isAddCourse, setAddCourse] = useState(false);
+  const { t } = useTranslation();
   const courseOptions = courses
     ? courses.map((course: Course) => {
         return (
@@ -48,7 +50,7 @@ export const CourseField: FC<SelectFieldProps> = ({
       <SelectCourse>
         <Select>
           <SelectInner
-            placeholder={placeholder}
+            placeholder={t(placeholder)}
             ref={register}
             value={selectedCourse.id || 0}
             onChange={(e: any) => {
@@ -60,7 +62,7 @@ export const CourseField: FC<SelectFieldProps> = ({
             {...rest}
           >
             <option disabled hidden value="0">
-              Select course
+              {t('Select course')}
             </option>
             {courseOptions}
           </SelectInner>
@@ -81,7 +83,7 @@ export const CourseField: FC<SelectFieldProps> = ({
       </SelectCourse>
       {!isValid && (
         <ValidationAlert>
-          You need to choose at least one course
+          {t('You need to choose at least one course')}
         </ValidationAlert>
       )}
     </FieldWrapper>

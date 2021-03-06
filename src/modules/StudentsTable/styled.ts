@@ -18,26 +18,26 @@ export const TableTitle = styled.h1`
   font: 700 30px/45px 'Poppins', sans-serif;
   color: ${DARK_TEXT_COLOR};
 
-  @media (max-width: 1199px) and (min-width: 992px) {
+  @media (max-width: 1200px) {
     font-size: 26px;
     line-height: 35px;
   }
-  @media (max-width: 991px) and (min-width: 768px) {
+  @media (max-width: 992px) {
     margin: 35px 0;
     font-size: 24px;
     line-height: 30px;
   }
-  @media (max-width: 767px) and (min-width: 550px) {
+  @media (max-width: 768px) {
     margin: 30px 0;
     font-size: 22px;
     line-height: 25px;
   }
-  @media (max-width: 549px) and (min-width: 440px) {
+  @media (max-width: 550px) {
     margin: 30px 0;
     font-size: 20px;
     line-height: 25px;
   }
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 440px) {
     margin: 20px 0;
     font-size: 17px;
     line-height: 20px;

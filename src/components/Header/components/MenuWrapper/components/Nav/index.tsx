@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { APP_NAVIGATION_LINKS } from 'appConstants';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import {
   StyledNav,
@@ -19,6 +20,7 @@ type NavProps = {
 };
 
 export const Nav: FC<NavProps> = ({ setDisplayCoursesList, newUserCheck }) => {
+  const { t } = useTranslation();
   return (
     <StyledNav>
       <StyledNavList>
@@ -39,7 +41,7 @@ export const Nav: FC<NavProps> = ({ setDisplayCoursesList, newUserCheck }) => {
                       activeClassName="activeNavLink"
                       onClick={() => setDisplayCoursesList(false)}
                     >
-                      {link.name}
+                      {t(link.name)}
                       <StyledHeaderActiveElement />
                     </NavLink>
                   </StyledNavListItem>

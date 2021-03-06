@@ -32,11 +32,13 @@ import {
   IOldCourses,
   UserCourseListItem,
 } from './components/UserCourseListItem';
+import { useTranslation } from 'react-i18next';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
+  const { t } = useTranslation();
 
   const oldCourses: IOldCourses[] = userData.courses.map((course: Course) => ({
     ...course,
@@ -159,7 +161,7 @@ export const EditProfile: FC = () => {
   return (
     <FormWrapper>
       <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-        <FormTitle>Enter your profile information</FormTitle>
+        <FormTitle>{t('Enter your profile information')}</FormTitle>
         <InputsWrapper>
           {formFields.map((item, index) => {
             return (
@@ -191,7 +193,7 @@ export const EditProfile: FC = () => {
             );
           })}
           <CoursesWrapper>
-            <UserCoursesListTitle>Course</UserCoursesListTitle>
+            <UserCoursesListTitle>{t('Course')}</UserCoursesListTitle>
             {userCourses.map((item: IOldCourses) => {
               return (
                 <UserCourseListItem
@@ -207,7 +209,7 @@ export const EditProfile: FC = () => {
             {currentCourses.length !== 0 && (
               <CourseField
                 name="courses"
-                placeholder="Select course"
+                placeholder={t('Select course')}
                 register={register}
                 multi
                 onAdd={localCourseUpdate}
@@ -226,10 +228,10 @@ export const EditProfile: FC = () => {
               mr="20px"
               onClick={history.goBack}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
           )}
-          <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
+          <Button>{isUserNew ? t('Submit') : t('Save')}</Button>
         </ButtonWrapper>
       </EditProfileWrapper>
     </FormWrapper>

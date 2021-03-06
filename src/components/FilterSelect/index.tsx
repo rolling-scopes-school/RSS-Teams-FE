@@ -1,7 +1,7 @@
 import React, { FC, SelectHTMLAttributes } from 'react';
 import { Label, Select, SelectInner } from 'typography';
 import { FieldWrapper, SelectCourse } from 'components/CourseField/styled';
-
+import { useTranslation } from 'react-i18next';
 interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   labelText?: string;
   placeholder: string;
@@ -20,11 +20,12 @@ export const FilterSelect: FC<SelectFieldProps> = ({
   currentOption,
   ...rest
 }) => {
+  const { t } = useTranslation();
   const filterFieldOptions =
     options.map((option: string) => {
       return (
         <option key={option} value={option}>
-          {option}
+          {t(option)}
         </option>
       );
     }) ?? null;
@@ -34,7 +35,7 @@ export const FilterSelect: FC<SelectFieldProps> = ({
       <SelectCourse>
         <Select {...{ widthSelect }}>
           <SelectInner
-            placeholder={placeholder}
+            placeholder={t(placeholder)}
             ref={register}
             value={currentOption}
             {...rest}

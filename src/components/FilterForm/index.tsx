@@ -15,6 +15,7 @@ import { DARK_TEXT_COLOR } from 'appConstants/colors';
 import { Button } from 'typography';
 import crossIcon from 'assets/svg/cross.svg';
 import { selectFilterData } from 'modules/StudentsTable/selectors';
+import { useTranslation } from 'react-i18next';
 
 type TFilter = {
   inputValues: TFilterForm;
@@ -39,6 +40,7 @@ export const FilterForm: FC<TFilter> = ({
 }) => {
   const filterData = useSelector(selectFilterData);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const changeInputValue = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -70,8 +72,8 @@ export const FilterForm: FC<TFilter> = ({
               <FilterSelect
                 key={JSON.stringify(item)}
                 name={item[3]}
-                labelText={item[0]}
-                placeholder={item[0]}
+                labelText={t(item[0])}
+                placeholder={t(item[0])}
                 register={register}
                 options={item[1].map((it) => it[0])}
                 widthSelect={item[2]}
@@ -117,7 +119,7 @@ export const FilterForm: FC<TFilter> = ({
             }}
           >
             {<img src={crossIcon} alt="clear filter icon" />}
-            Clear filter
+            {t('Clear filter')}
           </FilterButton>
         )}
         <Button
@@ -134,7 +136,7 @@ export const FilterForm: FC<TFilter> = ({
             setIsFilterOpen(false);
           }}
         >
-          Apply
+          {t('Apply')}
         </Button>
       </FilterButtonsWrapper>
     </FilterFormBase>

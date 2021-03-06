@@ -27,7 +27,10 @@ export const StyledNavList = styled.ul`
   padding-inline-start: 0;
   gap: 60px;
 
-  @media (max-width: 549px) and (min-width: 320px) {
+  @media (max-width: 550px) {
+    gap: 15.8%;
+  }
+  @media (max-width: 440px) {
     gap: 8%;
   }
 `;
@@ -66,13 +69,13 @@ export const StyledNavListItem = styled.li<TStyledNavListItemProps>`
       animation: ${open} 0.5s ease-in-out;
     }
 
-    @media (max-width: 767px) and (min-width: 550px) {
+    @media (max-width: 768px) {
       height: 46px;
     }
-    @media (max-width: 549px) and (min-width: 440px) {
+    @media (max-width: 550px) {
       height: 42px;
     }
-    @media (max-width: 439px) and (min-width: 320px) {
+    @media (max-width: 440px) {
       height: 38px;
     }
   }
@@ -84,28 +87,28 @@ export const StyledNavListItem = styled.li<TStyledNavListItemProps>`
       height: 22px;
       margin-bottom: 0;
 
-      @media (max-width: 767px) and (min-width: 550px) {
+      @media (max-width: 768px) {
         height: 18px;
       }
-      @media (max-width: 549px) and (min-width: 440px) {
+      @media (max-width: 550px) {
         height: 16px;
       }
-      @media (max-width: 439px) and (min-width: 320px) {
+      @media (max-width: 440px) {
         height: 14px;
       }
     }
   }
 
-  @media (max-width: 1199px) and (min-width: 992px) {
+  @media (max-width: 1200px) {
     font-size: 0.95rem;
   }
-  @media (max-width: 991px) and (min-width: 550px) {
+  @media (max-width: 992px) {
     font-size: 0.9rem;
   }
-  @media (max-width: 549px) and (min-width: 440px) {
+  @media (max-width: 550px) {
     font-size: 0.825rem;
   }
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 440px) {
     font-size: 0.72rem;
   }
 `;

@@ -19,6 +19,7 @@ import {
   MODAL_INPUT_VALIDATION,
   ACTIVE_MODAL_REMOVE_COURSE,
   SET_CURR_COURSE,
+  ACTIVE_MODAL_SORT_STUDENTS,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -27,6 +28,7 @@ import {
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
   selectIsActiveModalRemoveCourse,
+  selectIsActiveModalSortStudents,
   selectIsActiveModalUpdateSocialLink,
   selectSocialLink,
   selectTeamPassword,
@@ -40,6 +42,7 @@ type TeamListModalsProps = {
   createTeam: any;
   updateTeam: any;
   removeUserFromCourse: any;
+  sortStudents: any;
 };
 
 export const TeamListModals: FC<TeamListModalsProps> = ({
@@ -49,9 +52,10 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
   createTeam,
   updateTeam,
   removeUserFromCourse,
+  sortStudents,
 }) => {
   const [textJoinModal, setTextJoinModal] = useState<string>(
-    'Please enter your team password.'
+    'Please, enter your team password.'
   );
   const dispatch = useDispatch();
   const isActiveModalExpel = useSelector(selectIsActiveModalExpel);
@@ -61,6 +65,9 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
   const isActiveModalCreated = useSelector(selectIsActiveModalCreated);
   const isActiveModalUpdateSocialLink = useSelector(
     selectIsActiveModalUpdateSocialLink
+  );
+  const isActiveModalSortStudents = useSelector(
+    selectIsActiveModalSortStudents
   );
   const isActiveModalRemoveCourse = useSelector(
     selectIsActiveModalRemoveCourse
@@ -77,7 +84,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         if (isPasswordIncorrect) {
           setTextJoinModal('Wrong password!');
         } else {
-          setTextJoinModal('Please enter your team password.');
+          setTextJoinModal('Please, enter your team password.');
           dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
           dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
           dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
@@ -139,15 +146,19 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
     updateTeam();
   };
 
+  const onSubmitSortStudents = () => {
+    sortStudents();
+  };
+
   return (
     <>
       <ModalExpel
-        title="Leave Team"
+        title="Leave team"
         text="Are you sure want to leave team?"
         open={isActiveModalLeave}
         onSubmit={onSubmitLeaveModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: false })}
-        okText="Yes!"
+        okText="Yes"
         cancelText="No"
       />
       <ModalExpel
@@ -156,7 +167,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         open={isActiveModalExpel}
         onSubmit={onSubmitExpelModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
-        okText="Yes!"
+        okText="Yes"
         cancelText="No"
       />
       <ModalExpel
@@ -170,10 +181,22 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         okText="Yes"
         cancelText="No"
       />
+      <ModalExpel
+        title="Sort students"
+        text="Sort students?"
+        open={isActiveModalSortStudents}
+        onSubmit={onSubmitSortStudents}
+        isCrossIconVisible={false}
+        onClose={() =>
+          dispatch({ type: ACTIVE_MODAL_SORT_STUDENTS, payload: false })
+        }
+        okText="Yes"
+        cancelText="No"
+      />
       {/*Create team*/}
       <ModalCreateEditTeam
-        title="Create Team"
-        text="Please enter your team telegram / discord / viber / ets. group link."
+        title="Create team"
+        text="Please, enter your team telegram / discord / viber / ets. group link."
         open={isActiveModalCreateTeam}
         value={socialLink}
         onSubmit={onSubmitCreateTeam}
@@ -191,7 +214,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         onSubmit={onSubmitJoinModal}
         value={teamPassword}
         onClose={() => {
-          setTextJoinModal('Please enter your team password.');
+          setTextJoinModal('Please, enter your team password.');
           dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
         }}
         okText="Join team"
@@ -208,7 +231,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
       {/*Edit Team*/}
       <ModalCreateEditTeam
         title="Link to group"
-        text="Please enter new group link."
+        text="Please, enter new group link."
         open={isActiveModalUpdateSocialLink}
         value={socialLink}
         onSubmit={onSubmitUpdateSocialLink}

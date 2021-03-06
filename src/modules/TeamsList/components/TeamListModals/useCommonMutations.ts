@@ -12,6 +12,7 @@ import {
   useCreateTeamMutation,
   useUpdateTeamMutation,
   useRemoveUserFromCourseMutation,
+  useSortStudentsMutation,
 } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -106,6 +107,15 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
+  const {
+    sortStudents,
+    errorM: errorSortStudents,
+    loadingM: loadingSortStudents,
+  } = useSortStudentsMutation({
+    courseId: currCourse.id,
+    page,
+  });
+
   const isError = [
     errorAdd,
     errorCreateTeam,
@@ -113,6 +123,7 @@ export const useCommonMutations = (page: number) => {
     errorRemoveCourse,
     errorRemoveTeam,
     errorUpdateTeam,
+    errorSortStudents,
   ].some((item) => !!item);
 
   const isLoading = [
@@ -122,6 +133,7 @@ export const useCommonMutations = (page: number) => {
     loadingRemoveCourse,
     loadingRemoveTeam,
     loadingUpdateTeam,
+    loadingSortStudents,
   ].some((item) => !!item);
 
   return {
@@ -131,6 +143,7 @@ export const useCommonMutations = (page: number) => {
     createTeam,
     updateTeam,
     removeUserFromCourse,
+    sortStudents,
     isError,
     isLoading,
   };

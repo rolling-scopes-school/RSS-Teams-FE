@@ -6,7 +6,7 @@ import { Nav } from './components/Nav';
 import { StyledMenuWrapper } from './styled';
 
 export const MenuWrapper: FC = () => {
-  const [displayCoursesList, setDisplayCoursesList] = useState<boolean>(false);
+  const [displayCoursesList, setDisplayCoursesList] = useState(false);
   const userData = useSelector(selectUserData);
 
   const newUserCheck = !!userData?.courses.length;

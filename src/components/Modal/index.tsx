@@ -5,6 +5,7 @@ import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
 import styled from 'styled-components';
 import styles from './index.module.css';
 import { PageTitle, Label, Button, InvertedButton } from 'typography/index';
+import { useTranslation } from 'react-i18next';
 
 type ModalProps = {
   title: string;
@@ -56,6 +57,7 @@ export const Modal: FC<ModalProps> = ({
   cancelText,
 }) => {
   const insideRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const close = (e: React.MouseEvent | MouseEvent) => {
     e.stopPropagation();
@@ -102,10 +104,10 @@ export const Modal: FC<ModalProps> = ({
           <IconClose className={styles.icon} onClick={close} />
         )}
         <ModalWindow>
-          <PageTitle>{title}</PageTitle>
-          <Label>{text}</Label>
+          <PageTitle>{t(title)}</PageTitle>
+          <Label>{t(text)}</Label>
           <p>
-            <Label>{text2}</Label>
+            <Label>{text2 ? t(text2) : ''}</Label>
           </p>
           {children}
           <ButtonsBlock>
@@ -113,14 +115,14 @@ export const Modal: FC<ModalProps> = ({
               cancelText ? (
                 <>
                   <InvertedButton onClick={onClose}>
-                    {cancelText}
+                    {t(cancelText)}
                   </InvertedButton>
                   <Button
                     onClick={(e) => {
                       onSubmit(e);
                     }}
                   >
-                    {okText}
+                    {okText ? t(okText) : ''}
                   </Button>
                 </>
               ) : (
@@ -129,11 +131,13 @@ export const Modal: FC<ModalProps> = ({
                     onSubmit(e);
                   }}
                 >
-                  {okText}
+                  {okText ? t(okText) : ''}
                 </Button>
               )
             ) : (
-              <Button onClick={onClose}>{cancelText}</Button>
+              <Button onClick={onClose}>
+                {cancelText ? t(cancelText) : ''}
+              </Button>
             )}
           </ButtonsBlock>
         </ModalWindow>

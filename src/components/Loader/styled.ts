@@ -5,7 +5,7 @@ export const LoaderStyled = styled.div`
   position: absolute;
   top: 55%;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -56%);
 
   .loader,
   .loader:before,
@@ -24,13 +24,13 @@ export const LoaderStyled = styled.div`
     text-indent: -9999em;
     transform: translateZ(0);
     animation-delay: -0.16s;
-    @media (max-width: 767px) and (min-width: 550px) {
+    @media (max-width: 768px) {
       font-size: 8px;
     }
-    @media (max-width: 549px) and (min-width: 440px) {
+    @media (max-width: 550px) {
       font-size: 7px;
     }
-    @media (max-width: 439px) and (min-width: 320px) {
+    @media (max-width: 440px) {
       font-size: 6px;
     }
   }
@@ -38,7 +38,7 @@ export const LoaderStyled = styled.div`
   .loader:after {
     content: '';
     position: absolute;
-    top: 0;
+    top: 0px;
   }
   .loader:before {
     left: -3.5em;
