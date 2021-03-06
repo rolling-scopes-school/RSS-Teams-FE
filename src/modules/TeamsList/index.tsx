@@ -17,8 +17,9 @@ export const TeamsList: FC = () => {
 
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId: currCourse.id,
-    page: page,
+    page,
   });
+
   const loading = loadingT;
   const error = errorT;
   const {

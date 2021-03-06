@@ -24,11 +24,7 @@ export const useCommonMutations = (page: number) => {
   const teamPassword = useSelector(selectTeamPassword);
   const socialLink = useSelector(selectSocialLink);
 
-  const {
-    addUserToTeam,
-    errorM: errorAdd,
-    loadingM: loadingAdd,
-  } = useAddUserToTeamMutation({
+  const { addUserToTeam, errorM: errorAdd } = useAddUserToTeamMutation({
     data: {
       userId: userData.id,
       courseId: currCourse.id,
@@ -127,7 +123,6 @@ export const useCommonMutations = (page: number) => {
   ].some((item) => !!item);
 
   const isLoading = [
-    loadingAdd,
     loadingCreateTeam,
     loadingExpel,
     loadingRemoveCourse,

@@ -20,7 +20,7 @@ export const MembersListToggle: FC<MembersListToggle> = ({
   return (
     <MembersListToggleStyled
       onClick={() => {
-        !!countMembers ? onToggleList() : null;
+        !!countMembers && onToggleList();
       }}
       color={color}
     >

@@ -50,10 +50,12 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
     width: 76px;
     height: 24px;
   }
+  @media (max-width: 700px) {
+    margin-bottom: 0;
+  }
   @media (max-width: 550px) {
     width: 72px;
     height: 22px;
-    margin-bottom: 0;
   }
   @media (max-width: 440px) {
     width: 70px;

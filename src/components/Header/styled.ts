@@ -16,7 +16,7 @@ export const StyledHeader = styled.header<TStyledHeaderProps>`
   width: 100%;
   z-index: 1;
 
-  @media (max-width: 550px) {
+  @media (max-width: 700px) {
     height: auto;
   }
 `;
@@ -28,7 +28,7 @@ export const Container = styled.div`
   max-width: 1320px;
   ${GeneralAdaptiveFont};
 
-  @media (max-width: 550px) {
+  @media (max-width: 700px) {
     flex-direction: column;
     gap: 0.1rem;
   }

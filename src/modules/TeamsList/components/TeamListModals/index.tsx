@@ -18,7 +18,6 @@ import {
   ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
   MODAL_INPUT_VALIDATION,
   ACTIVE_MODAL_REMOVE_COURSE,
-  SET_CURR_COURSE,
   ACTIVE_MODAL_SORT_STUDENTS,
 } from 'appConstants';
 import {
@@ -113,24 +112,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
   };
 
   const onSubmitRemoveCourseModal = () => {
-    removeUserFromCourse().then(
-      ({
-        data: { removeUserFromCourse },
-      }: {
-        data: { removeUserFromCourse: User };
-      }) => {
-        dispatch({
-          type: SET_USER_DATA,
-          payload: removeUserFromCourse,
-        });
-        if (removeUserFromCourse.courses.length) {
-          dispatch({
-            type: SET_CURR_COURSE,
-            payload: removeUserFromCourse.courses[0],
-          });
-        }
-      }
-    );
+    removeUserFromCourse();
   };
 
   const onSubmitCreateTeam = () => {
@@ -216,6 +198,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         onClose={() => {
           setTextJoinModal('Please, enter your team password.');
           dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
+          dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
         }}
         okText="Join team"
       />

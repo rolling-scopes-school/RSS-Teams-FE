@@ -28,7 +28,7 @@ export const StyledNavList = styled.ul`
   gap: 60px;
 
   @media (max-width: 550px) {
-    gap: 15.8%;
+    gap: 10%;
   }
   @media (max-width: 440px) {
     gap: 8%;
@@ -43,7 +43,7 @@ export const StyledHeaderActiveElement = styled(HeaderActiveElement)`
 export const StyledNavListItem = styled.li<TStyledNavListItemProps>`
   list-style-type: none;
 
-  @media (max-width: 449px) and (min-width: 320px) {
+  @media (max-width: 470px) {
     &:last-child {
       display: ${({ newUserCheck }) => newUserCheck && 'none'};
     }
