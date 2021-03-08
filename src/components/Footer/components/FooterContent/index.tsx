@@ -19,7 +19,11 @@ export const FooterContent: FC = () => {
               {item.members.map((item: string) => {
                 return (
                   <a
-                    href={!!index ? '#' : `https://github.com/${item}`}
+                    href={
+                      !!index
+                        ? 'https://www.linkedin.com/in/nastya-kapylova-54126215a'
+                        : `https://github.com/${item}`
+                    }
                     className={`contentItem${!!index ? ' designItem' : ''}`}
                     key={item}
                   >

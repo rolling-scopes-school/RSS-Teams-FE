@@ -42,7 +42,7 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
             : (t('No courses.') as string),
         ];
       }),
-    [users, page, currCourse.id]
+    [users, page, currCourse.id, t]
   );
 
   return (
