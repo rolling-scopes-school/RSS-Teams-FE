@@ -14,9 +14,7 @@ const resources = {
   },
 };
 
-const language = localStorage.getItem(CURRENT_LANG)
-  ? JSON.parse(localStorage.getItem(CURRENT_LANG) as string)
-  : LANGUAGES[0];
+const language = localStorage.getItem(CURRENT_LANG) ?? LANGUAGES[0];
 const currentLang = language === 'English' ? 'en' : 'ru';
 
 i18n.use(initReactI18next).init({
