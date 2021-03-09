@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px auto 60px auto;
+  margin: 40px auto 0;
 
   gap: 10px;
   padding-inline-start: 0;
@@ -65,9 +65,9 @@
   color: #ffffff;
 }
 
-@media (max-width: 1199px) and (min-width: 992px) {
+@media (max-width: 1200px) and (min-width: 992px) {
   .pagination {
-    margin: 35px auto 50px auto;
+    margin: 35px auto 0;
   }
 
   .pageLink,
@@ -75,9 +75,9 @@
     font-size: 0.95rem;
   }
 }
-@media (max-width: 991px) and (min-width: 768px) {
+@media (max-width: 992px) {
   .pagination {
-    margin: 30px auto 50px auto;
+    margin: 30px auto 0;
   }
 
   .pageLink,
@@ -90,9 +90,9 @@
     height: 35px;
   }
 }
-@media (max-width: 767px) and (min-width: 550px) {
+@media (max-width: 768px) {
   .pagination {
-    margin: 30px auto 45px auto;
+    margin: 30px auto 0;
   }
 
   .pageLink,
@@ -111,9 +111,9 @@
     height: 10px;
   }
 }
-@media (max-width: 549px) and (min-width: 440px) {
+@media (max-width: 550px) {
   .pagination {
-    margin: 25px auto 40px auto;
+    margin: 25px auto 0;
   }
 
   .pageLink,
@@ -132,9 +132,9 @@
     height: 10px;
   }
 }
-@media (max-width: 439px) and (min-width: 320px) {
+@media (max-width: 440px) {
   .pagination {
-    margin: 20px auto 35px auto;
+    margin: 20px auto 0;
   }
 
   .pageLink,

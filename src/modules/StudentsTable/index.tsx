@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_FILTER_DATA, USERS_PER_PAGE } from 'appConstants';
-import { Loader, Error, Pagination, FilterForm } from 'components';
+import { Loader, Pagination, FilterForm, ErrorModal } from 'components';
 import { useUsersQuery } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Dashboard } from './components/Dashboard';
@@ -18,13 +18,15 @@ import {
 import { selectFilterData } from './selectors';
 import { TFilterForm } from 'types';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 export const StudentsTable: FC = () => {
   const [page, setPage] = useState<number>(0);
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [inputValues, setInputValues] = useState<TFilterForm>(
     defaultFilterData
   );
+  const { t } = useTranslation();
   const { register, handleSubmit, errors, reset } = useForm<TFilterForm>({
     defaultValues: inputValues,
     mode: 'onChange',
@@ -46,14 +48,14 @@ export const StudentsTable: FC = () => {
       ) as [string, boolean])[1],
     },
     reactCourseId: currCourse.id,
-    page: page,
+    page,
   });
 
   const loading = loadingU;
   const error = errorU;
 
   if (loading) return <Loader />;
-  if (error) return <Error />;
+  if (error) return <ErrorModal />;
 
   const pageCount: number = Math.ceil(users.count / USERS_PER_PAGE);
   const isValuesEqual =
@@ -65,6 +67,7 @@ export const StudentsTable: FC = () => {
       type: SET_FILTER_DATA,
       payload: defaultFilterData,
     });
+    setPage(0);
     setIsFilterOpen(false);
   };
   const onClickOpenFilterBtnHandler = () => {
@@ -76,7 +79,7 @@ export const StudentsTable: FC = () => {
   return (
     <StudentTableWrapper>
       <TeamsTitleWrapper>
-        <TableTitle>Dashboard</TableTitle>
+        <TableTitle>{t('Dashboard')}</TableTitle>
         {isValuesEqual && !isFilterOpen && (
           <FilterButton
             clearBtn={true}
@@ -84,14 +87,14 @@ export const StudentsTable: FC = () => {
             onClick={onClickClearBtnHandler}
           >
             {<img src={crossIcon} alt="clear filter icon" />}
-            Clear filter
+            {t('Clear filter')}
           </FilterButton>
         )}
         <FilterButton
           onClick={onClickOpenFilterBtnHandler}
           bgColor={WHITE_COLOR}
         >
-          {<img src={filterIcon} alt="Filter icon" />} Filter
+          {<img src={filterIcon} alt="Filter icon" />} {t('Filter')}
         </FilterButton>
         {isFilterOpen && (
           <FilterForm
@@ -99,6 +102,7 @@ export const StudentsTable: FC = () => {
               inputValues,
               setInputValues,
               setIsFilterOpen,
+              setPage,
               register,
               handleSubmit,
               errors,

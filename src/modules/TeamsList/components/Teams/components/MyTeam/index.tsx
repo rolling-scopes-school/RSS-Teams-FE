@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux';
 import { ACTIVE_MODAL_LEAVE, ACTIVE_MODAL_REMOVE_COURSE } from 'appConstants';
 
 import { StyledMyTeam, HeaderDecor, TableWrapper } from './styled';
-import { Button } from 'typography';
+import { TeamButton } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import { Team } from 'types';
 import { MembersListToggle } from '../MemberListToggle';
 import { MyTeamInfoBlock } from './components/MyTeamInfoBlock';
 import { TeamUserTable } from '../TeamUserTable';
+import { useTranslation } from 'react-i18next';
 
 type MyTeamProps = {
   team: Team;
@@ -17,6 +18,7 @@ type MyTeamProps = {
 
 export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   const [isOpen, setOpenState] = useState(false);
+  const { t } = useTranslation();
 
   const toggleListHandler = () => {
     setOpenState(!isOpen);
@@ -31,7 +33,9 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   return (
     <StyledMyTeam open={isOpen}>
       <div className="myTeam__header">
-        <h2 className="myTeam__title">My team - Team {team.number}</h2>
+        <h2 className="myTeam__title">
+          {t('My team - Team')} {team.number}
+        </h2>
         <div className="myTeam__info-wrapper">
           <MyTeamInfoBlock
             title="Invitation password"
@@ -45,24 +49,24 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
           />
         </div>
         <div className="myTeam__leave">
-          <Button
+          <TeamButton
             bgc={WHITE_COLOR}
             color={DARK_TEXT_COLOR}
             type="button"
             onClick={removeCourse}
           >
-            Leave course
-          </Button>
+            {t('Leave course')}
+          </TeamButton>
         </div>
         <div className="myTeam__button">
-          <Button
+          <TeamButton
             bgc={WHITE_COLOR}
             color={DARK_TEXT_COLOR}
             type="button"
             onClick={leaveTeam}
           >
-            Leave team
-          </Button>
+            {t('Leave team')}
+          </TeamButton>
         </div>
         <div className="myTeam__toggle">
           <MembersListToggle

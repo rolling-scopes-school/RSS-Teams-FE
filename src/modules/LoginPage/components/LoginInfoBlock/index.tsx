@@ -6,17 +6,19 @@ import {
   StyledLoginTextWrapper,
 } from './styled';
 import { AUTH_BACKEND_LINK } from 'appConstants';
+import { useTranslation } from 'react-i18next';
 
 export const LoginInfoBlock: FC = () => {
+  const { t } = useTranslation();
   return (
     <StyledLoginInfoBlock>
-      <StyledLoginTitle>Sign in</StyledLoginTitle>
+      <StyledLoginTitle>{t('Sign in')}</StyledLoginTitle>
       <StyledLoginRegistrationLink href={AUTH_BACKEND_LINK}>
-        Sign in with Github
+        {t('Sign in with Github')}
       </StyledLoginRegistrationLink>
       <StyledLoginTextWrapper>
-        <p>Don’t have github account?</p>
-        <a href={AUTH_BACKEND_LINK}>Sign up</a>
+        <p>{t('Don’t have github account?')}</p>
+        <a href={AUTH_BACKEND_LINK}>{t('Sign up')}</a>
       </StyledLoginTextWrapper>
     </StyledLoginInfoBlock>
   );

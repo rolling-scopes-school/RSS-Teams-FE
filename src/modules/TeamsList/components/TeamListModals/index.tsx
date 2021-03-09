@@ -18,7 +18,7 @@ import {
   ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
   MODAL_INPUT_VALIDATION,
   ACTIVE_MODAL_REMOVE_COURSE,
-  SET_CURR_COURSE,
+  ACTIVE_MODAL_SORT_STUDENTS,
 } from 'appConstants';
 import {
   selectIsActiveModalCreated,
@@ -27,30 +27,36 @@ import {
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
   selectIsActiveModalRemoveCourse,
+  selectIsActiveModalSortStudents,
   selectIsActiveModalUpdateSocialLink,
   selectSocialLink,
-  selectTeamMemberExpelId,
   selectTeamPassword,
 } from '../../selectors';
-import { Team } from 'types';
-import {
-  useAddUserToTeamMutation,
-  useRemoveUserFromTeamMutation,
-  useExpelUserFromTeamMutation,
-  useCreateTeamMutation,
-  useUpdateTeamMutation,
-  useRemoveUserFromCourseMutation,
-} from 'hooks/graphql';
-import { selectCurrCourse } from 'modules/LoginPage/selectors';
-import { selectUserData } from 'modules/StudentsTable/selectors';
+import { Team, User } from 'types';
 
-export const TeamListModals: FC<{ page: number }> = ({ page }) => {
+type TeamListModalsProps = {
+  addUserToTeam: any;
+  removeUserFromTeam: any;
+  expelUserFromTeam: any;
+  createTeam: any;
+  updateTeam: any;
+  removeUserFromCourse: any;
+  sortStudents: any;
+};
+
+export const TeamListModals: FC<TeamListModalsProps> = ({
+  addUserToTeam,
+  removeUserFromTeam,
+  expelUserFromTeam,
+  createTeam,
+  updateTeam,
+  removeUserFromCourse,
+  sortStudents,
+}) => {
   const [textJoinModal, setTextJoinModal] = useState<string>(
-    'Please enter your team password.'
+    'Please, enter your team password.'
   );
   const dispatch = useDispatch();
-  const currCourse = useSelector(selectCurrCourse);
-  const userData = useSelector(selectUserData);
   const isActiveModalExpel = useSelector(selectIsActiveModalExpel);
   const isActiveModalLeave = useSelector(selectIsActiveModalLeave);
   const isActiveModalJoin = useSelector(selectIsActiveModalJoin);
@@ -59,95 +65,46 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   const isActiveModalUpdateSocialLink = useSelector(
     selectIsActiveModalUpdateSocialLink
   );
-  const teamMemberId = useSelector(selectTeamMemberExpelId);
-  const teamPassword = useSelector(selectTeamPassword);
-  const socialLink = useSelector(selectSocialLink);
+  const isActiveModalSortStudents = useSelector(
+    selectIsActiveModalSortStudents
+  );
   const isActiveModalRemoveCourse = useSelector(
     selectIsActiveModalRemoveCourse
   );
-
-  const { addUserToTeam } = useAddUserToTeamMutation({
-    data: {
-      userId: userData.id,
-      courseId: currCourse.id,
-      teamPassword,
-    },
-  });
-
-  const { removeUserFromTeam } = useRemoveUserFromTeamMutation({
-    data: {
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
-      userId: userData.id,
-      courseId: currCourse.id,
-      page,
-    },
-  });
-
-  const { expelUserFromTeam } = useExpelUserFromTeamMutation({
-    data: {
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
-      userId: teamMemberId,
-      courseId: currCourse.id,
-      page,
-    },
-  });
-
-  const { createTeam } = useCreateTeamMutation({
-    team: {
-      socialLink,
-      courseId: currCourse.id,
-      ownerId: userData.id,
-      page,
-    },
-  });
-
-  const { updateTeam } = useUpdateTeamMutation({
-    team: {
-      socialLink,
-      id:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
-    },
-  });
-
-  const { removeUserFromCourse } = useRemoveUserFromCourseMutation({
-    data: {
-      courseId: currCourse.id,
-      userId: userData.id,
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? null,
-      page,
-    },
-  });
+  const teamPassword = useSelector(selectTeamPassword);
+  const socialLink = useSelector(selectSocialLink);
 
   const onSubmitJoinModal = async (e: string) => {
-    addUserToTeam().then(({ data: { addUserToTeam } }) => {
-      const isPasswordIncorrect =
-        !addUserToTeam.teams ||
-        !addUserToTeam.teams.find((team: Team) => team.password === e);
-      if (isPasswordIncorrect) {
-        setTextJoinModal('Wrong password!');
-      } else {
-        setTextJoinModal('Please enter your team password.');
-        dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
-        dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
-        dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
+    addUserToTeam().then(
+      ({ data: { addUserToTeam } }: { data: { addUserToTeam: User } }) => {
+        const isPasswordIncorrect =
+          !addUserToTeam.teams ||
+          !addUserToTeam.teams.find((team: Team) => team.password === e);
+        if (isPasswordIncorrect) {
+          setTextJoinModal('Wrong password!');
+        } else {
+          setTextJoinModal('Please, enter your team password.');
+          dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
+          dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
+          dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
+        }
       }
-    });
+    );
   };
 
   const onSubmitLeaveModal = () => {
-    removeUserFromTeam().then(({ data: { removeUserFromTeam } }) => {
-      dispatch({
-        type: SET_USER_DATA,
-        payload: removeUserFromTeam,
-      });
-    });
+    removeUserFromTeam().then(
+      ({
+        data: { removeUserFromTeam },
+      }: {
+        data: { removeUserFromTeam: User };
+      }) => {
+        dispatch({
+          type: SET_USER_DATA,
+          payload: removeUserFromTeam,
+        });
+      }
+    );
   };
 
   const onSubmitExpelModal = () => {
@@ -155,40 +112,35 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
   };
 
   const onSubmitRemoveCourseModal = () => {
-    removeUserFromCourse().then(({ data: { removeUserFromCourse } }) => {
-      dispatch({
-        type: SET_USER_DATA,
-        payload: removeUserFromCourse,
-      });
-      if (removeUserFromCourse.courses.length) {
-        dispatch({
-          type: SET_CURR_COURSE,
-          payload: removeUserFromCourse.courses[0],
-        });
-      }
-    });
+    removeUserFromCourse();
   };
 
   const onSubmitCreateTeam = () => {
-    createTeam().then(({ data: { createTeam } }) => {
-      dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
-      dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
-    });
+    createTeam().then(
+      ({ data: { createTeam } }: { data: { createTeam: Team } }) => {
+        dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
+        dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
+      }
+    );
   };
 
   const onSubmitUpdateSocialLink = () => {
     updateTeam();
   };
 
+  const onSubmitSortStudents = () => {
+    sortStudents();
+  };
+
   return (
     <>
       <ModalExpel
-        title="Leave Team"
+        title="Leave team"
         text="Are you sure want to leave team?"
         open={isActiveModalLeave}
         onSubmit={onSubmitLeaveModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: false })}
-        okText="Yes!"
+        okText="Yes"
         cancelText="No"
       />
       <ModalExpel
@@ -197,7 +149,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         open={isActiveModalExpel}
         onSubmit={onSubmitExpelModal}
         onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
-        okText="Yes!"
+        okText="Yes"
         cancelText="No"
       />
       <ModalExpel
@@ -211,10 +163,22 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         okText="Yes"
         cancelText="No"
       />
+      <ModalExpel
+        title="Sort students"
+        text="Sort students?"
+        open={isActiveModalSortStudents}
+        onSubmit={onSubmitSortStudents}
+        isCrossIconVisible={false}
+        onClose={() =>
+          dispatch({ type: ACTIVE_MODAL_SORT_STUDENTS, payload: false })
+        }
+        okText="Yes"
+        cancelText="No"
+      />
       {/*Create team*/}
       <ModalCreateEditTeam
-        title="Create Team"
-        text="Please enter your team telegram / discord / viber / ets. group link."
+        title="Create team"
+        text="Please, enter your team telegram / discord / viber / ets. group link."
         open={isActiveModalCreateTeam}
         value={socialLink}
         onSubmit={onSubmitCreateTeam}
@@ -232,8 +196,9 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
         onSubmit={onSubmitJoinModal}
         value={teamPassword}
         onClose={() => {
-          setTextJoinModal('Please enter your team password.');
+          setTextJoinModal('Please, enter your team password.');
           dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
+          dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
         }}
         okText="Join team"
       />
@@ -249,7 +214,7 @@ export const TeamListModals: FC<{ page: number }> = ({ page }) => {
       {/*Edit Team*/}
       <ModalCreateEditTeam
         title="Link to group"
-        text="Please enter new group link."
+        text="Please, enter new group link."
         open={isActiveModalUpdateSocialLink}
         value={socialLink}
         onSubmit={onSubmitUpdateSocialLink}

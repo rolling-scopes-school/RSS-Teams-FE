@@ -13,7 +13,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 2,
-        message: 'Minimal length is 2',
+        message: 'Minimal length is 2.',
       },
       maxLength: {
         value: 15,
@@ -33,7 +33,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 2,
-        message: 'Minimal length is 2',
+        message: 'Minimal length is 2.',
       },
       maxLength: {
         value: 20,
@@ -53,7 +53,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 3,
-        message: 'Minimal length is 3',
+        message: 'Minimal length is 3.',
       },
       maxLength: {
         value: 30,
@@ -73,7 +73,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 3,
-        message: 'Minimal length is 3',
+        message: 'Minimal length is 3.',
       },
       maxLength: {
         value: 30,
@@ -93,7 +93,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 2,
-        message: 'Minimal length is 2',
+        message: 'Minimal length is 2.',
       },
       maxLength: {
         value: 30,
@@ -113,7 +113,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 2,
-        message: 'Minimal length is 2',
+        message: 'Minimal length is 2.',
       },
       maxLength: {
         value: 30,
@@ -133,7 +133,7 @@ export const formFields: InputFieldProps[] = [
       },
       minLength: {
         value: 1,
-        message: 'Minimal length is 1',
+        message: 'Minimal length is 1.',
       },
       maxLength: {
         value: 5,

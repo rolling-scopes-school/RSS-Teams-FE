@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Modal } from 'components';
 import { ModalInput } from 'typography';
 import { SET_TEAM_PASSWORD } from 'appConstants';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   title: string;
@@ -26,6 +27,7 @@ export const ModalJoin: FC<Props> = ({
   onSubmit,
 }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const onSubmitModal = () => {
     if (onSubmit && value) {
@@ -41,7 +43,7 @@ export const ModalJoin: FC<Props> = ({
       hideOnEsc={true}
     >
       <ModalInput
-        placeholder="Enter team password"
+        placeholder={t('Enter team password')}
         name="InputValue"
         required
         value={value}

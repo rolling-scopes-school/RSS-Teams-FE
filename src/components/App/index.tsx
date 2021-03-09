@@ -9,12 +9,15 @@ import {
   NotFoundPage,
   EditProfile,
 } from 'modules';
-import { Loader, PrivateRoute, Header } from 'components';
+import { Loader, PrivateRoute, Header, Footer, ErrorModal } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import {
   AUTH_TOKEN,
   CURRENT_COURSE,
+  CURRENT_LANG,
+  LANGUAGES,
   SET_CURR_COURSE,
+  SET_CURR_LANG,
   SET_TOKEN,
   SET_USER_DATA,
 } from 'appConstants';
@@ -25,7 +28,7 @@ export const App: FC = () => {
   const dispatch = useDispatch();
   const loginToken = useSelector(selectToken);
   const [loading, setLoading] = useState(true);
-  const { loadingW, whoAmI } = useWhoAmIQuery({
+  const { loadingW, whoAmI, errorW } = useWhoAmIQuery({
     skip: loginToken === null,
   });
   const newUserCheck = !!whoAmI?.courses.length;
@@ -46,16 +49,25 @@ export const App: FC = () => {
           JSON.stringify(whoAmI?.courses[0])
         );
       }
+      if (!localStorage.getItem(CURRENT_LANG)) {
+        localStorage.setItem(CURRENT_LANG, LANGUAGES[0]);
+      }
       const currentCourse = JSON.parse(
         localStorage.getItem(CURRENT_COURSE) as string
       );
+      const currentLanguage = JSON.parse(
+        localStorage.getItem(CURRENT_LANG) as string
+      );
+
       dispatch({ type: SET_CURR_COURSE, payload: currentCourse });
+      dispatch({ type: SET_CURR_LANG, payload: currentLanguage });
     }
 
     if (!loadingW) setLoading(false);
   }, [dispatch, loginToken, loadingW, loading, whoAmI]);
 
   if (loading || loadingW) return <Loader />;
+  if (errorW) return <ErrorModal />;
 
   return (
     <AppStyled>
@@ -79,8 +91,11 @@ export const App: FC = () => {
         <Route exact path="/token/:id" component={TokenPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/editProfile" component={EditProfile} />
+        <Route exact path="/tutorial" component={Loader} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
+
+      {!!loginToken && <Footer />}
     </AppStyled>
   );
 };

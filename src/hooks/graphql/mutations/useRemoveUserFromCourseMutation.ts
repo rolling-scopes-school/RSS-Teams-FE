@@ -1,7 +1,8 @@
 import { useMutation } from '@apollo/client';
-import { TEAMS_PER_PAGE } from 'appConstants';
+import { SET_CURR_COURSE, SET_USER_DATA, TEAMS_PER_PAGE } from 'appConstants';
 import { REMOVE_USER_FROM_COURSE_MUTATION } from 'graphql/mutations';
 import { TEAMS_QUERY, WHOAMI_QUERY } from 'graphql/queries';
+import { useDispatch } from 'react-redux';
 import { RemoveUserFromCourseInput, Team, TeamList, User } from 'types';
 
 type Props = {
@@ -12,6 +13,7 @@ export const useRemoveUserFromCourseMutation = ({
   data: { page, courseId, userId, teamId },
 }: Props) => {
   const dataForMutation = { courseId, userId, teamId };
+  const dispatch = useDispatch();
   const [removeUserFromCourse, { loading, error }] = useMutation(
     REMOVE_USER_FROM_COURSE_MUTATION,
     {
@@ -64,6 +66,24 @@ export const useRemoveUserFromCourseMutation = ({
             courseId: courseId,
             pagination: { skip: page * TEAMS_PER_PAGE, take: TEAMS_PER_PAGE },
           },
+        });
+      },
+
+      onCompleted({ removeUserFromCourse }) {
+        if (removeUserFromCourse.courses.length) {
+          dispatch({
+            type: SET_CURR_COURSE,
+            payload: removeUserFromCourse.courses[0],
+          });
+        } else {
+          dispatch({
+            type: SET_CURR_COURSE,
+            payload: { name: '', id: '' },
+          });
+        }
+        dispatch({
+          type: SET_USER_DATA,
+          payload: removeUserFromCourse,
         });
       },
     }

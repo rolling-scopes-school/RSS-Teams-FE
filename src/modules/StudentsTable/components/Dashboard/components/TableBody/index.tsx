@@ -8,6 +8,7 @@ import { User, Course, Team } from 'types';
 import { USERS_PER_PAGE } from 'appConstants';
 import { TableRow } from './components/TableRow';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
+import { useTranslation } from 'react-i18next';
 
 type TableBodyProps = {
   users: User[];
@@ -16,6 +17,7 @@ type TableBodyProps = {
 
 export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
   const currCourse = useSelector(selectCurrCourse);
+  const { t } = useTranslation();
 
   const usersData: Array<string[] | ReactText[]> = useMemo(
     () =>
@@ -29,18 +31,18 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
                 user.teams.find((team: Team) => team.courseId === currCourse.id)
                   ?.number
               }`
-            : 'No team yet.',
-          user.telegram || 'No telegram.',
-          user.discord || 'No discord.',
-          user.github || 'No github.',
+            : (t('No team yet.') as string),
+          user.telegram || `${t('No')} telegram.`,
+          user.discord || `${t('No')} discord.`,
+          user.github || `${t('No')} GitHub.`,
           `${user.country},
           ${user.city}`,
           user.courses.length
             ? user.courses.map((course: Course) => course.name).join(', ')
-            : 'No courses.',
+            : (t('No courses.') as string),
         ];
       }),
-    [users, page, currCourse.id]
+    [users, page, currCourse.id, t]
   );
 
   return (

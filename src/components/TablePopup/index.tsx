@@ -12,8 +12,8 @@ export const TablePopup: FC<TablePopupProps> = ({
 }) => {
   return (
     <StyledPopup dataLength={dataLength}>
-      {popupElements?.map((element: string, index: number) => (
-        <StyledPopupItem key={`PopupKey-${index}`}>{element}</StyledPopupItem>
+      {popupElements?.map((element: string) => (
+        <StyledPopupItem key={element}>{element}</StyledPopupItem>
       ))}
     </StyledPopup>
   );

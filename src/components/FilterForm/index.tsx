@@ -15,11 +15,13 @@ import { DARK_TEXT_COLOR } from 'appConstants/colors';
 import { Button } from 'typography';
 import crossIcon from 'assets/svg/cross.svg';
 import { selectFilterData } from 'modules/StudentsTable/selectors';
+import { useTranslation } from 'react-i18next';
 
 type TFilter = {
   inputValues: TFilterForm;
   setInputValues: (data: TFilterForm) => void;
   setIsFilterOpen: (data: boolean) => void;
+  setPage: (page: number) => void;
   register: any;
   handleSubmit: any;
   errors: FieldErrors;
@@ -30,6 +32,7 @@ export const FilterForm: FC<TFilter> = ({
   inputValues,
   setInputValues,
   setIsFilterOpen,
+  setPage,
   register,
   handleSubmit,
   errors,
@@ -37,6 +40,7 @@ export const FilterForm: FC<TFilter> = ({
 }) => {
   const filterData = useSelector(selectFilterData);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const changeInputValue = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -55,6 +59,9 @@ export const FilterForm: FC<TFilter> = ({
   const isValuesInnerEqual =
     Object.values(defaultFilterData).toString() !==
     Object.values(inputValues).toString();
+  const isValuesOuterEqual =
+    Object.values(filterData).toString() !==
+    Object.values(inputValues).toString();
 
   return (
     <FilterFormBase onSubmit={handleSubmit(onFilterFormSubmit)}>
@@ -65,8 +72,8 @@ export const FilterForm: FC<TFilter> = ({
               <FilterSelect
                 key={JSON.stringify(item)}
                 name={item[3]}
-                labelText={item[0]}
-                placeholder={item[0]}
+                labelText={t(item[0])}
+                placeholder={t(item[0])}
                 register={register}
                 options={item[1].map((it) => it[0])}
                 widthSelect={item[2]}
@@ -112,21 +119,24 @@ export const FilterForm: FC<TFilter> = ({
             }}
           >
             {<img src={crossIcon} alt="clear filter icon" />}
-            Clear filter
+            {t('Clear filter')}
           </FilterButton>
         )}
         <Button
           className="SecondButtonForm"
           type="button"
           onClick={() => {
-            dispatch({
-              type: SET_FILTER_DATA,
-              payload: inputValues,
-            });
+            if (isValuesOuterEqual) {
+              dispatch({
+                type: SET_FILTER_DATA,
+                payload: inputValues,
+              });
+              setPage(0);
+            }
             setIsFilterOpen(false);
           }}
         >
-          Apply
+          {t('Apply')}
         </Button>
       </FilterButtonsWrapper>
     </FilterFormBase>

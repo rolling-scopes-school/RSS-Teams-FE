@@ -4,17 +4,17 @@ export const StyledMenuWrapper = styled.div`
   display: flex;
   height: 60px;
   gap: 4.2%;
-  @media (max-width: 767px) and (min-width: 550px) {
+  @media (max-width: 768px) {
     height: 56px;
   }
-  @media (max-width: 549px) and (min-width: 440px) {
-    height: 52px;
+  @media (max-width: 700px) {
     align-self: center;
+  }
+  @media (max-width: 550px) {
+    height: 52px;
     margin-top: 0.15rem;
   }
-  @media (max-width: 439px) and (min-width: 320px) {
+  @media (max-width: 440px) {
     height: 48px;
-    align-self: center;
-    margin-top: 0.15rem;
   }
 `;

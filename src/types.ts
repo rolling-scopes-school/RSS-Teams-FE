@@ -98,6 +98,7 @@ export type StateTeamsList = {
   isActiveModalCreated: boolean;
   isActiveModalUpdateSocialLink: boolean;
   isActiveModalRemoveCourse: boolean;
+  isActiveModalSortStudents: boolean;
   teamMemberExpelId: string;
   teamPassword: string;
   socialLink: string;
@@ -127,6 +128,7 @@ export type StateStudentsTable = {
 export type StateLoginPage = {
   loginToken: string | null;
   currCourse: Course;
+  currLanguage: string;
 };
 
 export type State = {

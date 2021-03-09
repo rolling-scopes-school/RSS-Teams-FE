@@ -5,6 +5,7 @@ import {
   MAIN1_COLOR,
   WHITE_COLOR,
 } from 'appConstants/colors';
+import { SVGParamsAdaptive } from 'typography';
 
 type TPlusButton = {
   active?: boolean;
@@ -22,6 +23,9 @@ export const SelectCourse = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media (max-width: 440px) {
+    width: 100%;
+  }
 `;
 
 export const CourseButton = styled.button`
@@ -33,6 +37,10 @@ export const CourseButton = styled.button`
   border-radius: 10px;
   border: none;
   cursor: pointer;
+
+  svg {
+    ${SVGParamsAdaptive};
+  }
 `;
 
 export const PlusButton = styled(CourseButton)<TPlusButton>`

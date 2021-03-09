@@ -10,6 +10,7 @@ type TableRowProps = {
   count: number;
   isMyTeam?: boolean;
   userId?: string;
+  secondTable?: boolean;
 };
 
 export const TableRow: FC<TableRowProps> = ({
@@ -17,6 +18,7 @@ export const TableRow: FC<TableRowProps> = ({
   count,
   isMyTeam,
   userId,
+  secondTable = false,
 }) => {
   const {
     firstName,
@@ -31,7 +33,7 @@ export const TableRow: FC<TableRowProps> = ({
   } = member;
   const dispatch = useDispatch();
   return (
-    <tr>
+    <tr className={secondTable ? 'SecondTable' : 'FirstTable'}>
       <TableCell value={count.toString(10)} />
       <TableCell value={`${firstName} ${lastName}`} />
       <TableCell value={score} />

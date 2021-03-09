@@ -8,6 +8,7 @@ type Props = {
   onSubmit?: () => void;
   onClose: () => void;
   okText?: string;
+  isCrossIconVisible?: boolean;
   cancelText?: string;
 };
 
@@ -17,6 +18,7 @@ export const ModalExpel: FC<Props> = ({
   open,
   okText,
   cancelText,
+  isCrossIconVisible = true,
   onClose,
   onSubmit,
 }) => {
@@ -29,7 +31,15 @@ export const ModalExpel: FC<Props> = ({
 
   return (
     <Modal
-      {...{ title, text, open, onClose, okText, cancelText }}
+      {...{
+        title,
+        text,
+        open,
+        onClose,
+        okText,
+        isCrossIconVisible,
+        cancelText,
+      }}
       onSubmit={onSubmitModal}
       hideOnOutsideClick={true}
       hideOnEsc={true}

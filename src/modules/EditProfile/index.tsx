@@ -3,7 +3,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldError, useForm } from 'react-hook-form';
 
-import { Loader, InputField, CourseField } from 'components';
+import { Loader, InputField, CourseField, ErrorModal } from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
 import { Button } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -32,11 +32,13 @@ import {
   IOldCourses,
   UserCourseListItem,
 } from './components/UserCourseListItem';
+import { useTranslation } from 'react-i18next';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
+  const { t } = useTranslation();
 
   const oldCourses: IOldCourses[] = userData.courses.map((course: Course) => ({
     ...course,
@@ -44,7 +46,7 @@ export const EditProfile: FC = () => {
   }));
 
   const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
-  const { loading, courses } = useCoursesQuery();
+  const { loading, courses, error } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
       id: userData.id,
@@ -61,7 +63,7 @@ export const EditProfile: FC = () => {
   );
   const [inputValues, setInputValues] = useState<UpdateUserInput>(defaultData);
 
-  const { updateUser, loadingM } = useUpdUserMutation({
+  const { updateUser, loadingM, errorM } = useUpdUserMutation({
     user: {
       ...inputValues,
       courseIds: userCourses.map((course: Course) => course.id),
@@ -154,16 +156,17 @@ export const EditProfile: FC = () => {
 
   if (!loginToken) return <Redirect to={'/login'} />;
   if (loading || loadingM) return <Loader />;
+  if (error || errorM) return <ErrorModal />;
 
   return (
     <FormWrapper>
       <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-        <FormTitle>Enter your profile information</FormTitle>
+        <FormTitle>{t('Enter your profile information')}</FormTitle>
         <InputsWrapper>
           {formFields.map((item, index) => {
             return (
               <InputField
-                key={`fieldKey-${item.name}${index}`}
+                key={JSON.stringify(item)}
                 name={item.name}
                 value={
                   userData[
@@ -190,7 +193,7 @@ export const EditProfile: FC = () => {
             );
           })}
           <CoursesWrapper>
-            <UserCoursesListTitle>Course</UserCoursesListTitle>
+            <UserCoursesListTitle>{t('Course')}</UserCoursesListTitle>
             {userCourses.map((item: IOldCourses) => {
               return (
                 <UserCourseListItem
@@ -206,7 +209,7 @@ export const EditProfile: FC = () => {
             {currentCourses.length !== 0 && (
               <CourseField
                 name="courses"
-                placeholder="Select course"
+                placeholder={t('Select course')}
                 register={register}
                 multi
                 onAdd={localCourseUpdate}
@@ -225,10 +228,10 @@ export const EditProfile: FC = () => {
               mr="20px"
               onClick={history.goBack}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
           )}
-          <Button>{isUserNew ? 'Submit' : 'Save'}</Button>
+          <Button>{isUserNew ? t('Submit') : t('Save')}</Button>
         </ButtonWrapper>
       </EditProfileWrapper>
     </FormWrapper>
