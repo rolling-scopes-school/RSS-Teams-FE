@@ -50,7 +50,7 @@ export const App: FC = () => {
         );
       }
       if (!localStorage.getItem(CURRENT_LANG)) {
-        localStorage.setItem(CURRENT_LANG, LANGUAGES[0]);
+        localStorage.setItem(CURRENT_LANG, JSON.stringify(LANGUAGES[0]));
       }
       const currentCourse = JSON.parse(
         localStorage.getItem(CURRENT_COURSE) as string
