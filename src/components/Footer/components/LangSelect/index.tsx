@@ -23,40 +23,40 @@ export const LangSelect: FC<LangSelectProps> = ({
   const dispatch = useDispatch();
   const currLanguage = useSelector(selectCurrLanguage);
 
-  const onCourseChange = (lang: string) => {
+  const onLangChange = (item: { lang: string }) => {
     setDisplayLangList(false);
-    localStorage.setItem(CURRENT_LANG, JSON.stringify(lang));
-    dispatch({ type: SET_CURR_LANG, payload: lang });
-    const currentLang = lang === 'English' ? 'en' : 'ru';
+    localStorage.setItem(CURRENT_LANG, JSON.stringify(item));
+    dispatch({ type: SET_CURR_LANG, payload: item });
+    const currentLang = item.lang === 'English' ? 'en' : 'ru';
     i18n.changeLanguage(currentLang);
   };
 
-  const langs = LANGUAGES.filter((item) => item !== currLanguage);
+  const langs = LANGUAGES.filter((item) => item.lang !== currLanguage.lang);
 
   return (
     <StyledCoursesSelectWrapper
       isClicked={displayLangList}
-      footer={currLanguage}
+      footer={currLanguage.lang}
       className="LanguageSelect"
     >
       <StyledCoursesSelectHeaderWrapper
         isClicked={displayLangList}
-        footer={currLanguage}
+        footer={currLanguage.lang}
       >
         <StyledCoursesSelectInfo
           hover={!!LANGUAGES.length}
-          footer={currLanguage}
+          footer={currLanguage.lang}
           onClick={() => setDisplayLangList(!displayLangList)}
         >
-          <p>{currLanguage}</p>
-          <StyledCoursesSelectArrow footer={currLanguage} />
+          <p>{currLanguage.lang}</p>
+          <StyledCoursesSelectArrow footer={currLanguage.lang} />
         </StyledCoursesSelectInfo>
       </StyledCoursesSelectHeaderWrapper>
-      <StyledCoursesList footer={currLanguage}>
-        {langs.map((lang: string) => {
+      <StyledCoursesList footer={currLanguage.lang}>
+        {langs.map((item: { lang: string }) => {
           return (
-            <li key={lang} onClick={() => onCourseChange(lang)}>
-              {lang}
+            <li key={item.lang} onClick={() => onLangChange(item)}>
+              {item.lang}
             </li>
           );
         })}

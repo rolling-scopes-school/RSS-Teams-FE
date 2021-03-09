@@ -89,7 +89,7 @@ export const APP_NAVIGATION_LINKS = {
     isAlwaysVisible: true,
   },
 };
-export const LANGUAGES = ['English', 'Русский'];
+export const LANGUAGES = [{ lang: 'English' }, { lang: 'Русский' }];
 
 export const FOOTER_INFO = [
   {

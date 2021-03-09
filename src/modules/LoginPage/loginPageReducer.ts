@@ -10,7 +10,7 @@ export const loginPageState = {
     id: '',
     name: '',
   },
-  currLanguage: '',
+  currLanguage: { lang: '' },
 };
 
 export const loginPageReducer: Reducer<StateLoginPage, Action> = (
