@@ -22,9 +22,9 @@ export const FilterSelect: FC<SelectFieldProps> = ({
 }) => {
   const { t } = useTranslation();
   const filterFieldOptions =
-    options.map((option: string, index: number) => {
+    options.map((option: string) => {
       return (
-        <option key={`OptionFilterKey-${index}`} value={option}>
+        <option key={option} value={option}>
           {t(option)}
         </option>
       );

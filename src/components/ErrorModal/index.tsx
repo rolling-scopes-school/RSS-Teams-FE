@@ -12,7 +12,7 @@ type Props = {
 
 export const ErrorModal: FC<Props> = ({
   title = 'Something went wrong!',
-  text = 'Please, try again later. If problem is not solved - contact us in telegram:',
+  text = 'Please, try again later.',
   text2 = '@yliaka71',
   open = true,
   isCrossIconVisible = false,

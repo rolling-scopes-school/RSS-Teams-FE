@@ -21,6 +21,7 @@ type TFilter = {
   inputValues: TFilterForm;
   setInputValues: (data: TFilterForm) => void;
   setIsFilterOpen: (data: boolean) => void;
+  setPage: (page: number) => void;
   register: any;
   handleSubmit: any;
   errors: FieldErrors;
@@ -31,6 +32,7 @@ export const FilterForm: FC<TFilter> = ({
   inputValues,
   setInputValues,
   setIsFilterOpen,
+  setPage,
   register,
   handleSubmit,
   errors,
@@ -56,6 +58,9 @@ export const FilterForm: FC<TFilter> = ({
 
   const isValuesInnerEqual =
     Object.values(defaultFilterData).toString() !==
+    Object.values(inputValues).toString();
+  const isValuesOuterEqual =
+    Object.values(filterData).toString() !==
     Object.values(inputValues).toString();
 
   return (
@@ -121,10 +126,13 @@ export const FilterForm: FC<TFilter> = ({
           className="SecondButtonForm"
           type="button"
           onClick={() => {
-            dispatch({
-              type: SET_FILTER_DATA,
-              payload: inputValues,
-            });
+            if (isValuesOuterEqual) {
+              dispatch({
+                type: SET_FILTER_DATA,
+                payload: inputValues,
+              });
+              setPage(0);
+            }
             setIsFilterOpen(false);
           }}
         >

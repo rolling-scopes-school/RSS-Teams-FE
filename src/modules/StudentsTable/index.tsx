@@ -48,7 +48,7 @@ export const StudentsTable: FC = () => {
       ) as [string, boolean])[1],
     },
     reactCourseId: currCourse.id,
-    page: page,
+    page,
   });
 
   const loading = loadingU;
@@ -67,6 +67,7 @@ export const StudentsTable: FC = () => {
       type: SET_FILTER_DATA,
       payload: defaultFilterData,
     });
+    setPage(0);
     setIsFilterOpen(false);
   };
   const onClickOpenFilterBtnHandler = () => {
@@ -101,6 +102,7 @@ export const StudentsTable: FC = () => {
               inputValues,
               setInputValues,
               setIsFilterOpen,
+              setPage,
               register,
               handleSubmit,
               errors,

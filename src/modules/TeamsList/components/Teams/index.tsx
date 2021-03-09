@@ -22,6 +22,7 @@ export const Teams: FC<TeamsProps> = ({ teams, myTeam, userId, isAdmin }) => {
 
   const onClickSortStudents = () =>
     dispatch({ type: ACTIVE_MODAL_SORT_STUDENTS, payload: true });
+
   return (
     <>
       <TeamsTitleWrapper>
@@ -33,10 +34,10 @@ export const Teams: FC<TeamsProps> = ({ teams, myTeam, userId, isAdmin }) => {
         )}
       </TeamsTitleWrapper>
       {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
-      {teams.count !== 0 &&
+      {!!teams.count &&
         teams.results.map((team) => (
           <TeamItem
-            key={`team-${team.number}}`}
+            key={team.id}
             name={`${t('Team')} ${team.number}`}
             countMember={team.members.length}
             members={team.members}

@@ -7,14 +7,14 @@ export const StyledMenuWrapper = styled.div`
   @media (max-width: 768px) {
     height: 56px;
   }
+  @media (max-width: 700px) {
+    align-self: center;
+  }
   @media (max-width: 550px) {
     height: 52px;
-    align-self: center;
     margin-top: 0.15rem;
   }
   @media (max-width: 440px) {
     height: 48px;
-    align-self: center;
-    margin-top: 0.15rem;
   }
 `;

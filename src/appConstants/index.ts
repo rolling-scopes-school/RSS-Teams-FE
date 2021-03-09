@@ -62,7 +62,7 @@ export const INPUT_VALUES_EDIT_PROFILE: string[] = [
 
 export const MODAL_INPUT_VALIDATION = {
   pattern: {
-    value: /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/,
+    value: /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?|^((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/,
     message: 'Use the format',
   },
   maxLength: {
@@ -71,6 +71,24 @@ export const MODAL_INPUT_VALIDATION = {
   },
 };
 
+export const APP_NAVIGATION_LINKS = {
+  ['/studentsTable']: {
+    name: 'Dashboard',
+    isAlwaysVisible: false,
+  },
+  ['/']: {
+    name: 'Teams',
+    isAlwaysVisible: false,
+  },
+  ['/editProfile']: {
+    name: 'Edit Profile',
+    isAlwaysVisible: true,
+  },
+  ['/tutorial']: {
+    name: 'Tutorial',
+    isAlwaysVisible: true,
+  },
+};
 export const LANGUAGES = ['English', 'Русский'];
 
 export const FOOTER_INFO = [

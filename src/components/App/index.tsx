@@ -91,6 +91,7 @@ export const App: FC = () => {
         <Route exact path="/token/:id" component={TokenPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/editProfile" component={EditProfile} />
+        <Route exact path="/tutorial" component={Loader} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
 

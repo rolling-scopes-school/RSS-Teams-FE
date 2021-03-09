@@ -45,15 +45,15 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
           onClick={() => setDisplayCoursesList(!displayCoursesList)}
         >
           <p>{currCourse.name}</p>
-          {userCourses.length ? <StyledCoursesSelectArrow /> : null}
+          {!!userCourses.length && <StyledCoursesSelectArrow />}
         </StyledCoursesSelectInfo>
       </StyledCoursesSelectHeaderWrapper>{' '}
       {!!userCourses.length && (
         <StyledCoursesList>
-          {userCourses.map((course: Course, index: number) => {
+          {userCourses.map((course: Course) => {
             return (
               <li
-                key={`CourseKey-${index}`}
+                key={JSON.stringify(course)}
                 onClick={() => onCourseChange(course)}
               >
                 {course.name}

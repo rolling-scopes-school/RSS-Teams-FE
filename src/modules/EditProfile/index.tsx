@@ -166,7 +166,7 @@ export const EditProfile: FC = () => {
           {formFields.map((item, index) => {
             return (
               <InputField
-                key={`fieldKey-${item.name}${index}`}
+                key={JSON.stringify(item)}
                 name={item.name}
                 value={
                   userData[

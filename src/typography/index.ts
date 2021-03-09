@@ -50,10 +50,12 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
     width: 76px;
     height: 24px;
   }
+  @media (max-width: 700px) {
+    margin-bottom: 0;
+  }
   @media (max-width: 550px) {
     width: 72px;
     height: 22px;
-    margin-bottom: 0;
   }
   @media (max-width: 440px) {
     width: 70px;
@@ -275,20 +277,11 @@ export const Input = styled.input`
   background-color: ${BG_COLOR};
   color: ${(props) => props.color || DARK_TEXT_COLOR};
   outline: none;
-  ${GeneralAdaptiveFont}
+  ${GeneralAdaptiveFont};
   @media (max-width: 440px) {
     width: 100%;
   }
-  &::-webkit-input-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  &::-moz-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  &:-moz-placeholder {
-    color: ${LIGHT_TEXT_COLOR};
-  }
-  &:-ms-input-placeholder {
+  &::placeholder {
     color: ${LIGHT_TEXT_COLOR};
   }
 `;
@@ -342,12 +335,7 @@ export const SelectInner = styled.select`
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
   outline: none;
   ${GeneralAdaptiveFont}
-  &::-ms-expand {
-    display: none;
-  }
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   z-index: 1;
   cursor: pointer;
   option {
