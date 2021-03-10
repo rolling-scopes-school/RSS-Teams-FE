@@ -90,10 +90,13 @@ export const APP_NAVIGATION_LINKS = {
   },
 };
 
-export enum Langs {
-  English = 'en',
-  Русский = 'ru',
-}
+export const DEFAULT_LANGUAGE = 'en';
+export const LANGUAGES: string[] = [DEFAULT_LANGUAGE, 'ru'];
+
+export const Language: { [key: string]: string } = {
+  en: 'English',
+  ru: 'Русский',
+};
 
 export const FOOTER_INFO = [
   {

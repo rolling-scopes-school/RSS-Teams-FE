@@ -15,7 +15,7 @@ import {
   AUTH_TOKEN,
   CURRENT_COURSE,
   CURRENT_LANG,
-  Langs,
+  DEFAULT_LANGUAGE,
   SET_CURR_COURSE,
   SET_CURR_LANG,
   SET_TOKEN,
@@ -50,7 +50,7 @@ export const App: FC = () => {
         );
       }
       if (!localStorage.getItem(CURRENT_LANG)) {
-        localStorage.setItem(CURRENT_LANG, Langs.English);
+        localStorage.setItem(CURRENT_LANG, DEFAULT_LANGUAGE);
       }
       const currentCourse = JSON.parse(
         localStorage.getItem(CURRENT_COURSE) as string

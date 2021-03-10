@@ -1,4 +1,4 @@
-import { CURRENT_LANG, Langs } from 'appConstants';
+import { CURRENT_LANG, DEFAULT_LANGUAGE } from 'appConstants';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -14,7 +14,7 @@ const resources = {
   },
 };
 
-const language = localStorage.getItem(CURRENT_LANG) ?? Langs.English;
+const language = localStorage.getItem(CURRENT_LANG) ?? DEFAULT_LANGUAGE;
 
 i18n.use(initReactI18next).init({
   resources,
