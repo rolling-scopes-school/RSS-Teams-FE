@@ -128,7 +128,7 @@ export type StateStudentsTable = {
 export type StateLoginPage = {
   loginToken: string | null;
   currCourse: Course;
-  currLanguage: { lang: string };
+  currLanguage: string;
 };
 
 export type State = {
