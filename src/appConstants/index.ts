@@ -85,7 +85,7 @@ export const APP_NAVIGATION_LINKS = {
     isAlwaysVisible: true,
   },
   ['/tutorial']: {
-    name: 'Tutorial',
+    name: 'FAQ',
     isAlwaysVisible: true,
   },
 };

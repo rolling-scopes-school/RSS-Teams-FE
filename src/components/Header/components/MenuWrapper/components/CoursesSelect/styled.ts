@@ -6,7 +6,7 @@ import {
 } from 'appConstants/colors';
 import styled from 'styled-components';
 import { ReactComponent as CoursesSelectArrow } from 'assets/svg/coursesSelectArrow.svg';
-import { GeneralAdaptiveFont, SVGParamsAdaptive } from 'typography';
+import { GeneralAdaptiveFont, SVGArrowAdaptive } from 'typography';
 
 type TStyledCoursesSelectInfo = {
   hover: boolean;
@@ -109,7 +109,7 @@ export const StyledCoursesSelectInfo = styled.div<TStyledCoursesSelectInfo>`
   }
 
   svg {
-    ${SVGParamsAdaptive};
+    ${SVGArrowAdaptive};
   }
 `;
 

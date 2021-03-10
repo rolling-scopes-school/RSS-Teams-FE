@@ -7,37 +7,43 @@ import {
 import { GeneralAdaptiveFont } from 'typography';
 
 export const StyledFooter = styled.footer`
-  position: absolute;
-  top: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 182px;
   background-color: ${DARK_TEXT_COLOR};
   margin-top: 60px;
-  padding: 40px 60px 0;
+  padding: 2.8% 4.2% 0;
   @media (max-width: 768px) {
     height: 160px;
   }
   @media (max-width: 550px) {
     height: 150px;
-    padding: 30px 45px 0;
   }
   @media (max-width: 440px) {
     height: 130px;
-    padding: 20px 20px 0;
   }
+`;
+
+export const FooterWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1320px;
+  height: 100%;
 `;
 
 export const FooterContentWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
   gap: 5.6%;
 
-  @media (max-width: 1200px) and (min-width: 768px) {
+  @media (max-width: 1200px) and (min-width: 800px) {
     gap: 0;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     display: none;
   }
 `;
@@ -88,17 +94,24 @@ export const FooterContentBlock = styled.div`
   .contentItem.designItem {
     width: 140px;
   }
+`;
+
+export const FooterContentBlockLogo = styled.div`
+  display: flex;
+  flex-direction: column;
 
   & > .LanguageSelect {
-    position: absolute;
-    bottom: 20%;
-    left: 60px;
     ${GeneralAdaptiveFont};
-    @media (max-width: 768px) {
-      position: unset;
-      width: 110px;
+    min-height: 35px;
+    margin-top: -15px;
+    & > div {
+      height: 35px;
     }
-    @media (max-width: 550px) {
+
+    @media (max-width: 800px) {
+      margin-top: 0;
+    }
+    @media (max-width: 768px) {
       width: 110px;
     }
     @media (max-width: 440px) {
@@ -108,7 +121,14 @@ export const FooterContentBlock = styled.div`
       }
     }
   }
+
+  @media (max-width: 800px) {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
 `;
+
 export const FooterTitle = styled.h1`
   font: 600 1rem/24px 'Poppins', sans-serif;
   color: ${WHITE_COLOR};
