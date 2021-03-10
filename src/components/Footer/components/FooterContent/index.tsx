@@ -4,7 +4,7 @@ import {
   FooterContentWrapper,
   FooterTitle,
 } from 'components/Footer/styled';
-import { FOOTER_INFO } from 'appConstants';
+import { FOOTER_INFO, LINK_TO_DESIGN_BLOCK } from 'appConstants';
 import { useTranslation } from 'react-i18next';
 
 export const FooterContent: FC = () => {
@@ -21,11 +21,13 @@ export const FooterContent: FC = () => {
                   <a
                     href={
                       !!index
-                        ? 'https://www.linkedin.com/in/nastya-kapylova-54126215a'
+                        ? LINK_TO_DESIGN_BLOCK
                         : `https://github.com/${item}`
                     }
                     className={`contentItem${!!index ? ' designItem' : ''}`}
                     key={item}
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     {item}
                   </a>

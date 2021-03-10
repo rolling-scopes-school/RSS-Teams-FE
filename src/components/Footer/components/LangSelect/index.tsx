@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CURRENT_LANG, LANGUAGES, SET_CURR_LANG } from 'appConstants';
+import { CURRENT_LANG, Langs, SET_CURR_LANG } from 'appConstants';
 import {
   StyledCoursesList,
   StyledCoursesSelectArrow,
@@ -23,40 +23,44 @@ export const LangSelect: FC<LangSelectProps> = ({
   const dispatch = useDispatch();
   const currLanguage = useSelector(selectCurrLanguage);
 
-  const onLangChange = (item: { lang: string }) => {
+  const onLangChange = (item: string) => {
     setDisplayLangList(false);
-    localStorage.setItem(CURRENT_LANG, JSON.stringify(item));
+    localStorage.setItem(CURRENT_LANG, item);
     dispatch({ type: SET_CURR_LANG, payload: item });
-    const currentLang = item.lang === 'English' ? 'en' : 'ru';
-    i18n.changeLanguage(currentLang);
+    i18n.changeLanguage(item);
   };
 
-  const langs = LANGUAGES.filter((item) => item.lang !== currLanguage.lang);
+  const currentLangOption = (Object.entries(Langs).find(
+    (item) => item[1] === currLanguage
+  ) as string[])[0];
+  const langs = Object.entries(Langs).filter(
+    (item) => item[0] !== currentLangOption
+  );
 
   return (
     <StyledCoursesSelectWrapper
       isClicked={displayLangList}
-      footer={currLanguage.lang}
+      footer={currLanguage}
       className="LanguageSelect"
     >
       <StyledCoursesSelectHeaderWrapper
         isClicked={displayLangList}
-        footer={currLanguage.lang}
+        footer={currLanguage}
       >
         <StyledCoursesSelectInfo
-          hover={!!LANGUAGES.length}
-          footer={currLanguage.lang}
+          hover={!!langs.length}
+          footer={currLanguage}
           onClick={() => setDisplayLangList(!displayLangList)}
         >
-          <p>{currLanguage.lang}</p>
-          <StyledCoursesSelectArrow footer={currLanguage.lang} />
+          <p>{currentLangOption}</p>
+          <StyledCoursesSelectArrow footer={currLanguage} />
         </StyledCoursesSelectInfo>
       </StyledCoursesSelectHeaderWrapper>
-      <StyledCoursesList footer={currLanguage.lang}>
-        {langs.map((item: { lang: string }) => {
+      <StyledCoursesList footer={currLanguage}>
+        {langs.map((item: string[]) => {
           return (
-            <li key={item.lang} onClick={() => onLangChange(item)}>
-              {item.lang}
+            <li key={item[0]} onClick={() => onLangChange(item[1])}>
+              {item[0]}
             </li>
           );
         })}

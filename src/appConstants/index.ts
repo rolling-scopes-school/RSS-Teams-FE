@@ -89,7 +89,11 @@ export const APP_NAVIGATION_LINKS = {
     isAlwaysVisible: true,
   },
 };
-export const LANGUAGES = [{ lang: 'English' }, { lang: 'Русский' }];
+
+export enum Langs {
+  English = 'en',
+  Русский = 'ru',
+}
 
 export const FOOTER_INFO = [
   {
@@ -107,3 +111,6 @@ export const FOOTER_INFO = [
     members: ['Nastya Kapylova'],
   },
 ];
+
+export const LINK_TO_DESIGN_BLOCK =
+  'https://www.linkedin.com/in/nastya-kapylova-54126215a';

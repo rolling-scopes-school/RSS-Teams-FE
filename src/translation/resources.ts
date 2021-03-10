@@ -1,4 +1,4 @@
-import { CURRENT_LANG, LANGUAGES } from 'appConstants';
+import { CURRENT_LANG, Langs } from 'appConstants';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -14,14 +14,11 @@ const resources = {
   },
 };
 
-const language = (localStorage.getItem(CURRENT_LANG) as string)
-  ? JSON.parse(localStorage.getItem(CURRENT_LANG) as string)
-  : LANGUAGES[0];
-const currentLang = language.lang === 'English' ? 'en' : 'ru';
+const language = localStorage.getItem(CURRENT_LANG) ?? Langs.English;
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: currentLang,
+  lng: language,
   keySeparator: false,
   interpolation: {
     escapeValue: false,
