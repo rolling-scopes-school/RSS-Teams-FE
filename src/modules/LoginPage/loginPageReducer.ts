@@ -3,6 +3,7 @@ import {
   SET_CURR_COURSE,
   SET_CURR_LANG,
   DEFAULT_LANGUAGE,
+  SET_COMMON_ERROR,
 } from 'appConstants';
 import { Reducer } from 'redux';
 import { StateLoginPage } from 'types';
@@ -16,6 +17,7 @@ export const loginPageState = {
     name: '',
   },
   currLanguage: DEFAULT_LANGUAGE,
+  isCommonError: false,
 };
 
 export const loginPageReducer: Reducer<StateLoginPage, Action> = (
@@ -37,6 +39,11 @@ export const loginPageReducer: Reducer<StateLoginPage, Action> = (
       return {
         ...state,
         currLanguage: action.payload,
+      };
+    case SET_COMMON_ERROR:
+      return {
+        ...state,
+        isCommonError: action.payload,
       };
     default:
       return state;

@@ -9,68 +9,59 @@ export const LoaderWrapper = styled.div`
 
 export const LoaderStyled = styled.div`
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -56%);
-
-  .loader,
-  .loader:before,
-  .loader:after {
-    border-radius: 50%;
-    width: 2.5em;
-    height: 2.5em;
-    animation-fill-mode: both;
-    animation: load7 1.8s infinite ease-in-out;
-  }
+  transform: translate(-50%, -50%);
   .loader {
-    color: ${MAIN1_COLOR};
-    font-size: 10px;
-    margin: 80px auto;
-    position: relative;
-    text-indent: -9999em;
-    transform: translateZ(0);
-    animation-delay: -0.16s;
-    @media (max-width: 768px) {
-      font-size: 8px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 2.5em;
+    gap: 12px;
+    animation-duration: 1.4s;
+    animation-delay: 0.32s;
+    margin: auto;
+    text-align: center;
+
+    .loader-child {
+      width: 2em;
+      height: 2em;
+      background-color: ${MAIN1_COLOR};
+
+      border-radius: 100%;
+      display: inline-block;
+      animation: loader-in 1.4s ease-in-out 0s infinite both;
+
+      @media (max-width: 768px) {
+        width: 1.7em;
+        height: 1.7em;
+      }
+      @media (max-width: 550px) {
+        width: 1.4em;
+        height: 1.4em;
+      }
+      @media (max-width: 440px) {
+        width: 1em;
+        height: 1em;
+      }
     }
-    @media (max-width: 550px) {
-      font-size: 7px;
+
+    .loader-child-1 {
+      animation-delay: -0.32s;
     }
-    @media (max-width: 440px) {
-      font-size: 6px;
+    .loader-child-2 {
+      animation-delay: -0.16s;
     }
   }
-  .loader:before,
-  .loader:after {
-    content: '';
-    position: absolute;
-    top: 0px;
-  }
-  .loader:before {
-    left: -3.5em;
-    animation-delay: -0.32s;
-  }
-  .loader:after {
-    left: 3.5em;
-  }
-  @-webkit-keyframes load7 {
+
+  @keyframes loader-in {
     0%,
     80%,
     100% {
-      box-shadow: 0 2.5em 0 -1.3em;
+      transform: scale(0);
     }
     40% {
-      box-shadow: 0 2.5em 0 0;
-    }
-  }
-  @keyframes load7 {
-    0%,
-    80%,
-    100% {
-      box-shadow: 0 2.5em 0 -1.3em;
-    }
-    40% {
-      box-shadow: 0 2.5em 0 0;
+      transform: scale(1);
     }
   }
 `;

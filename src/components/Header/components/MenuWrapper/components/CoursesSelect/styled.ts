@@ -38,7 +38,7 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
     margin-top: ${({ isClicked }) => (isClicked ? '0px' : '-100%')};
   }
 
-  @media (max-width: 945px) {
+  @media (max-width: 1075px) {
     display: ${({ footer }) => !footer && 'none'};
   }
 `;
@@ -102,7 +102,7 @@ export const StyledCoursesSelectInfo = styled.div<TStyledCoursesSelectInfo>`
     overflow: hidden;
     max-width: 155px;
     margin-left: 5px;
-    margin-right: ${({ hover }) => (hover ? '16px' : '31px')};
+    margin-right: ${({ hover }) => (hover ? '10px' : '31px')};
     font-weight: ${({ footer }) => (footer ? 600 : 500)};
     white-space: nowrap;
     text-overflow: ellipsis;

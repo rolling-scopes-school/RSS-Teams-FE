@@ -5,7 +5,12 @@ import {
   LIGHT_TEXT_COLOR,
   WHITE_COLOR,
 } from 'appConstants/colors';
-import { PageTitle, H1AdaptiveFont, GeneralAdaptiveFont } from 'typography';
+import {
+  PageTitle,
+  H1AdaptiveFont,
+  GeneralAdaptiveFont,
+  ScrollBar,
+} from 'typography';
 
 export const EditProfileWrapper = styled.form`
   background-color: ${WHITE_COLOR};
@@ -17,7 +22,7 @@ export const EditProfileWrapper = styled.form`
     width: 320px;
     padding: 15px 10px;
     flex-direction: column;
-    margin: 50px 0 -10px;
+    margin: 50px 0 30px;
   }
 
   @media (max-width: 440px) {
@@ -26,11 +31,14 @@ export const EditProfileWrapper = styled.form`
 `;
 
 export const FormWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-grow: 1;
   justify-content: center;
   align-items: center;
   width: 100%;
+  overflow-y: scroll;
+  ${ScrollBar};
 `;
 
 export const FormTitle = styled(PageTitle)`
@@ -71,4 +79,14 @@ export const UserCourseListItem = styled.div`
   border-radius: 10px;
   background-color: ${BG_COLOR};
   color: ${DARK_TEXT_COLOR};
+`;
+
+export const CommonWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;

@@ -6,6 +6,7 @@ import {
   MAIN1_COLOR,
   DARK_TEXT_COLOR,
   LIGHT_TEXT_COLOR,
+  TABLE_POPUP_BORDER_COLOR,
 } from 'appConstants/colors';
 
 interface StyledTextProps {
@@ -214,6 +215,28 @@ export const SVGParamsAdaptive = css`
   @media (max-width: 440px) {
     width: 13px;
     height: 13px;
+  }
+`;
+
+export const AdditionalWrapper = styled.div`
+  width: 100%;
+  height: 60px;
+  @media screen and (max-width: 768px) {
+    height: 20px;
+  }
+`;
+
+export const ScrollBar = css`
+  scrollbar-color: transparent ${TABLE_POPUP_BORDER_COLOR};
+  scrollbar-width: 10px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${TABLE_POPUP_BORDER_COLOR};
   }
 `;
 
