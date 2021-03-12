@@ -23,16 +23,20 @@ export const LoaderStyled = styled.div`
     margin: auto;
     text-align: center;
 
+    @media (max-width: 440px) {
+      gap: 9px;
+    }
+
     .loader-child {
-      width: 2em;
-      height: 2em;
+      width: 1.8em;
+      height: 1.8em;
       background-color: ${MAIN1_COLOR};
 
       border-radius: 100%;
       display: inline-block;
       animation: loader-in 1.4s ease-in-out 0s infinite both;
 
-      @media (max-width: 768px) {
+      @media (max-width: 1200px) {
         width: 1.7em;
         height: 1.7em;
       }
