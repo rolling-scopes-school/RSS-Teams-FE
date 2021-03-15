@@ -7,7 +7,7 @@ import { selectUserData } from 'modules/StudentsTable/selectors';
 import { useRemoveUserFromCourseMutation } from 'hooks/graphql';
 
 type TUserCourseListItem = {
-  deleteButton: boolean;
+  isUserRegisteredCourse: boolean;
   onSub: (c: IOldCourses) => void;
   course: Course;
 };
@@ -18,7 +18,7 @@ export interface IOldCourses extends Course {
 
 export const UserCourseListItem: FC<TUserCourseListItem> = ({
   children,
-  deleteButton,
+  isUserRegisteredCourse,
   onSub,
   course,
 }) => {
@@ -34,13 +34,13 @@ export const UserCourseListItem: FC<TUserCourseListItem> = ({
       page: 0,
     },
   });
-  const onClickHandler = !deleteButton
+  const onClickHandler = isUserRegisteredCourse
     ? () => {
-        onSub({ ...course, isNew: true });
-      }
-    : () => {
         onSub({ ...course, isNew: false });
         removeUserFromCourse();
+      }
+    : () => {
+        onSub({ ...course, isNew: true });
       };
 
   return (

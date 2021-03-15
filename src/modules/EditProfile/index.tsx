@@ -198,7 +198,7 @@ export const EditProfile: FC = () => {
                 return (
                   <UserCourseListItem
                     key={item.id}
-                    deleteButton={item.isNew}
+                    isUserRegisteredCourse={item.isNew}
                     course={item}
                     onSub={localCourseSub}
                   >

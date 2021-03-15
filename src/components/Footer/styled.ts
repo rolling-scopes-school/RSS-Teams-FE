@@ -51,10 +51,8 @@ export const FooterContentBlock = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    /* width: 450px; */
 
     @media (max-width: 992px) {
-      /* width: 360px; */
       gap: 0;
     }
 
