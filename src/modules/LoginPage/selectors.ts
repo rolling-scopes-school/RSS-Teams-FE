@@ -7,3 +7,6 @@ export const selectCurrCourse = (state: State) =>
 
 export const selectCurrLanguage = (state: State) =>
   state.loginPageReducer.currLanguage;
+
+export const selectIsCommonError = (state: State) =>
+  state.loginPageReducer.isCommonError;

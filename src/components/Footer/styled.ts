@@ -7,37 +7,37 @@ import {
 import { GeneralAdaptiveFont } from 'typography';
 
 export const StyledFooter = styled.footer`
-  position: absolute;
-  top: 100%;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 110px;
+  background-color: ${DARK_TEXT_COLOR};
+  padding: 1.8% 4.2% 0;
+  @media (max-width: 440px) {
+    height: 105px;
+    padding: 4.8% 4.2% 0;
+  }
+`;
+
+export const FooterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 182px;
-  background-color: ${DARK_TEXT_COLOR};
-  margin-top: 60px;
-  padding: 40px 60px 0;
-  @media (max-width: 768px) {
-    height: 160px;
-  }
-  @media (max-width: 550px) {
-    height: 150px;
-    padding: 30px 45px 0;
-  }
-  @media (max-width: 440px) {
-    height: 130px;
-    padding: 20px 20px 0;
-  }
+  max-width: 1320px;
+  height: 100%;
 `;
 
 export const FooterContentWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
   gap: 5.6%;
 
-  @media (max-width: 1200px) and (min-width: 768px) {
-    gap: 0;
-  }
-  @media (max-width: 768px) {
+  @media (max-width: 1150px) {
     display: none;
   }
 `;
@@ -45,16 +45,14 @@ export const FooterContentWrapper = styled.div`
 export const FooterContentBlock = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 13px;
 
   .contentBlock {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    width: 450px;
 
     @media (max-width: 992px) {
-      width: 360px;
       gap: 0;
     }
 
@@ -64,12 +62,7 @@ export const FooterContentBlock = styled.div`
       color: ${FOOTER_NAMES_COLOR};
       text-decoration: none;
       outline: none;
-      width: 130px;
       ${GeneralAdaptiveFont};
-
-      &:nth-child(3) {
-        width: 100px;
-      }
 
       &:hover {
         color: ${WHITE_COLOR};
@@ -88,17 +81,21 @@ export const FooterContentBlock = styled.div`
   .contentItem.designItem {
     width: 140px;
   }
+`;
+
+export const FooterContentBlockLogo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 33%;
 
   & > .LanguageSelect {
-    position: absolute;
-    bottom: 20%;
-    left: 60px;
     ${GeneralAdaptiveFont};
-    @media (max-width: 768px) {
-      position: unset;
-      width: 110px;
+    min-height: 35px;
+    & > div {
+      height: 35px;
     }
-    @media (max-width: 550px) {
+
+    @media (max-width: 768px) {
       width: 110px;
     }
     @media (max-width: 440px) {
@@ -108,7 +105,12 @@ export const FooterContentBlock = styled.div`
       }
     }
   }
+
+  @media (max-width: 1150px) {
+    width: 100%;
+  }
 `;
+
 export const FooterTitle = styled.h1`
   font: 600 1rem/24px 'Poppins', sans-serif;
   color: ${WHITE_COLOR};

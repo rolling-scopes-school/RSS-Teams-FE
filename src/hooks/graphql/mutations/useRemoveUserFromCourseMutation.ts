@@ -1,5 +1,11 @@
 import { useMutation } from '@apollo/client';
-import { SET_CURR_COURSE, SET_USER_DATA, TEAMS_PER_PAGE } from 'appConstants';
+import {
+  CURRENT_COURSE,
+  SET_COMMON_ERROR,
+  SET_CURR_COURSE,
+  SET_USER_DATA,
+  TEAMS_PER_PAGE,
+} from 'appConstants';
 import { REMOVE_USER_FROM_COURSE_MUTATION } from 'graphql/mutations';
 import { TEAMS_QUERY, WHOAMI_QUERY } from 'graphql/queries';
 import { useDispatch } from 'react-redux';
@@ -70,7 +76,11 @@ export const useRemoveUserFromCourseMutation = ({
       },
 
       onCompleted({ removeUserFromCourse }) {
-        if (removeUserFromCourse.courses.length) {
+        if (!!removeUserFromCourse.courses[0]) {
+          localStorage.setItem(
+            CURRENT_COURSE,
+            JSON.stringify(removeUserFromCourse.courses[0])
+          );
           dispatch({
             type: SET_CURR_COURSE,
             payload: removeUserFromCourse.courses[0],
@@ -80,10 +90,17 @@ export const useRemoveUserFromCourseMutation = ({
             type: SET_CURR_COURSE,
             payload: { name: '', id: '' },
           });
+          localStorage.removeItem(CURRENT_COURSE);
         }
         dispatch({
           type: SET_USER_DATA,
           payload: removeUserFromCourse,
+        });
+      },
+      onError() {
+        dispatch({
+          type: SET_COMMON_ERROR,
+          payload: true,
         });
       },
     }

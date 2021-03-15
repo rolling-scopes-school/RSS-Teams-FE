@@ -7,6 +7,7 @@ type TStyledHeaderProps = {
 };
 
 export const StyledHeader = styled.header<TStyledHeaderProps>`
+  position: sticky;
   display: flex;
   justify-content: center;
   align-items: flex-end;

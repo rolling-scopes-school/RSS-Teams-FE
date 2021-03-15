@@ -129,6 +129,7 @@ export type StateLoginPage = {
   loginToken: string | null;
   currCourse: Course;
   currLanguage: string;
+  isCommonError: boolean;
 };
 
 export type State = {

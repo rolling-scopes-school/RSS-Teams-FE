@@ -5,9 +5,9 @@ import { FieldError, useForm } from 'react-hook-form';
 
 import { Loader, InputField, CourseField, ErrorModal } from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
-import { Button } from 'typography';
+import { Button, AdditionalWrapper } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
-import { selectToken } from 'modules/LoginPage/selectors';
+import { selectIsCommonError, selectToken } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput, User } from 'types';
 import { formFields } from './formFields';
 
@@ -19,6 +19,7 @@ import {
   UserCoursesListTitle,
   FormTitle,
   CoursesWrapper,
+  CommonWrapper,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import {
@@ -38,6 +39,7 @@ export const EditProfile: FC = () => {
   const history = useHistory();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
+  const isCommonError = useSelector(selectIsCommonError);
   const { t } = useTranslation();
 
   const oldCourses: IOldCourses[] = userData.courses.map((course: Course) => ({
@@ -82,8 +84,7 @@ export const EditProfile: FC = () => {
     .filter(
       (item: Course) =>
         !userCourses.filter((uItem: Course) => uItem.name === item.name).length
-    )
-    .filter((item: Course) => item.name !== 'RSS React 2021 Q1');
+    );
 
   const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
     defaultValues: inputValues,
@@ -101,20 +102,15 @@ export const EditProfile: FC = () => {
   const onSubmit = () => {
     if (userCourses.length) {
       updateUser().then(({ data: { updateUser } }) => {
-        if (userData.courses.length !== updateUser.courses.length) {
-          const newCurrentCourse = updateUser.courses.find(
-            (course: Course) =>
-              course.id === userCourses[userCourses.length - 1].id
-          );
-          localStorage.setItem(
-            CURRENT_COURSE,
-            JSON.stringify(newCurrentCourse)
-          );
-          dispatch({
-            type: SET_CURR_COURSE,
-            payload: newCurrentCourse,
-          });
-        }
+        const newCurrentCourse = updateUser.courses.find(
+          (course: Course) =>
+            course.id === userCourses[userCourses.length - 1].id
+        );
+        localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
+        dispatch({
+          type: SET_CURR_COURSE,
+          payload: newCurrentCourse,
+        });
         dispatch({ type: SET_USER_DATA, payload: updateUser });
         history.push('/');
       });
@@ -156,84 +152,90 @@ export const EditProfile: FC = () => {
 
   if (!loginToken) return <Redirect to={'/login'} />;
   if (loading || loadingM) return <Loader />;
-  if (error || errorM) return <ErrorModal />;
+  if (error || errorM || isCommonError) return <ErrorModal />;
 
   return (
     <FormWrapper>
-      <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-        <FormTitle>{t('Enter your profile information')}</FormTitle>
-        <InputsWrapper>
-          {formFields.map((item, index) => {
-            return (
-              <InputField
-                key={JSON.stringify(item)}
-                name={item.name}
-                value={
-                  userData[
-                    INPUT_VALUES_EDIT_PROFILE[index] as keyof User
-                  ] as string
-                }
-                labelText={item.labelText}
-                placeholder={item.placeholder}
-                aria-invalid={
-                  (errors[
-                    INPUT_VALUES_EDIT_PROFILE[index] as keyof UpdateUserInput
-                  ] as FieldError)
-                    ? 'true'
-                    : 'false'
-                }
-                message={
-                  (errors[
-                    INPUT_VALUES_EDIT_PROFILE[index] as keyof UpdateUserInput
-                  ] as FieldError)?.message
-                }
-                onChange={changeInputValue}
-                register={register(item.register)}
-              />
-            );
-          })}
-          <CoursesWrapper>
-            <UserCoursesListTitle>{t('Course')}</UserCoursesListTitle>
-            {userCourses.map((item: IOldCourses) => {
+      <CommonWrapper>
+        <EditProfileWrapper
+          autoComplete="off"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <FormTitle>{t('Enter your profile information')}</FormTitle>
+          <InputsWrapper>
+            {formFields.map((item, index) => {
               return (
-                <UserCourseListItem
-                  key={item.id}
-                  deleteButton={item.isNew}
-                  course={item}
-                  onSub={localCourseSub}
-                >
-                  {item.name}
-                </UserCourseListItem>
+                <InputField
+                  key={JSON.stringify(item)}
+                  name={item.name}
+                  value={
+                    userData[
+                      INPUT_VALUES_EDIT_PROFILE[index] as keyof User
+                    ] as string
+                  }
+                  labelText={item.labelText}
+                  placeholder={item.placeholder}
+                  aria-invalid={
+                    (errors[
+                      INPUT_VALUES_EDIT_PROFILE[index] as keyof UpdateUserInput
+                    ] as FieldError)
+                      ? 'true'
+                      : 'false'
+                  }
+                  message={
+                    (errors[
+                      INPUT_VALUES_EDIT_PROFILE[index] as keyof UpdateUserInput
+                    ] as FieldError)?.message
+                  }
+                  onChange={changeInputValue}
+                  register={register(item.register)}
+                />
               );
             })}
-            {currentCourses.length !== 0 && (
-              <CourseField
-                name="courses"
-                placeholder={t('Select course')}
-                register={register}
-                multi
-                onAdd={localCourseUpdate}
-                courses={currentCourses}
-                isValid={isValidCoursesList}
-              />
+            <CoursesWrapper>
+              <UserCoursesListTitle>{t('Course')}</UserCoursesListTitle>
+              {userCourses.map((item: IOldCourses) => {
+                return (
+                  <UserCourseListItem
+                    key={item.id}
+                    isUserRegisteredCourse={item.isNew}
+                    course={item}
+                    onSub={localCourseSub}
+                  >
+                    {item.name}
+                  </UserCourseListItem>
+                );
+              })}
+              {currentCourses.length !== 0 && (
+                <CourseField
+                  name="courses"
+                  placeholder={t('Select course')}
+                  register={register}
+                  multi
+                  onAdd={localCourseUpdate}
+                  courses={currentCourses}
+                  isValid={isValidCoursesList}
+                />
+              )}
+            </CoursesWrapper>
+          </InputsWrapper>
+          <ButtonWrapper>
+            {!isUserNew && isUserWithoutCourse && (
+              <Button
+                type="button"
+                bgc={BG_COLOR}
+                color={MAIN1_COLOR}
+                mr="20px"
+                onClick={history.goBack}
+              >
+                {t('Cancel')}
+              </Button>
             )}
-          </CoursesWrapper>
-        </InputsWrapper>
-        <ButtonWrapper>
-          {!isUserNew && isUserWithoutCourse && (
-            <Button
-              type="button"
-              bgc={BG_COLOR}
-              color={MAIN1_COLOR}
-              mr="20px"
-              onClick={history.goBack}
-            >
-              {t('Cancel')}
-            </Button>
-          )}
-          <Button>{isUserNew ? t('Submit') : t('Save')}</Button>
-        </ButtonWrapper>
-      </EditProfileWrapper>
+            <Button>{isUserNew ? t('Submit') : t('Save')}</Button>
+          </ButtonWrapper>
+        </EditProfileWrapper>
+        <AdditionalWrapper />
+      </CommonWrapper>
     </FormWrapper>
   );
 };

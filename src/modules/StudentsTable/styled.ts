@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { DARK_TEXT_COLOR } from 'appConstants/colors';
+import { ScrollBar } from 'typography';
 
 export const StudentTableWrapper = styled.div`
   display: flex;
@@ -8,7 +9,12 @@ export const StudentTableWrapper = styled.div`
   flex-grow: 1;
   width: 100%;
   max-width: 1440px;
-  padding: 0 4%;
+  padding: 0 4% 60px;
+  overflow-y: scroll;
+  ${ScrollBar};
+  @media screen and (max-width: 768px) {
+    padding-bottom: 50px;
+  }
 `;
 
 export const TableTitle = styled.h1`

@@ -9,6 +9,7 @@ import { TEAMS_PER_PAGE } from 'appConstants';
 import { Team } from 'types';
 import { TeamListModals, Teams } from './components';
 import { useCommonMutations } from './components/TeamListModals/useCommonMutations';
+import { AdditionalWrapper } from 'typography';
 
 export const TeamsList: FC = () => {
   const [page, setPage] = useState<number>(0);
@@ -55,6 +56,7 @@ export const TeamsList: FC = () => {
         {!!teams.results.length && (
           <Pagination pageCount={pageCount} changePage={setPage} page={page} />
         )}
+        <AdditionalWrapper />
       </StyledTeams>
 
       <TeamListModals
