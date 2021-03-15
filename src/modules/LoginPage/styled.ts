@@ -14,7 +14,7 @@ export const StyledLoginPage = styled.div`
   width: 100%;
   height: 100vh;
   margin: 0 auto;
-  background: linear-gradient(90deg, ${WHITE_COLOR} 85%, ${MAIN1_COLOR} 85%);
+  background: linear-gradient(90deg, ${WHITE_COLOR} 75%, ${MAIN1_COLOR} 75%);
 `;
 
 export const StyledLoginPageItemsWrapper = styled.div`
