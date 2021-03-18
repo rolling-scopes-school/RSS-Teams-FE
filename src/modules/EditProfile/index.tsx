@@ -102,10 +102,11 @@ export const EditProfile: FC = () => {
   const onSubmit = () => {
     if (userCourses.length) {
       updateUser().then(({ data: { updateUser } }) => {
-        const newCurrentCourse = updateUser.courses.find(
-          (course: Course) =>
-            course.id === userCourses[userCourses.length - 1].id
-        );
+        const newCurrentCourse =
+          updateUser.courses.find(
+            (course: Course) =>
+              course.id === userCourses[userCourses.length - 1].id
+          ) ?? updateUser.courses[0];
         localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
         dispatch({
           type: SET_CURR_COURSE,
