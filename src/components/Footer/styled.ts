@@ -8,7 +8,7 @@ import { GeneralAdaptiveFont } from 'typography';
 
 export const StyledFooter = styled.footer`
   position: sticky;
-  bottom: 0;
+  top: 100%;
   z-index: 2;
   display: flex;
   justify-content: center;

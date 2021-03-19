@@ -24,7 +24,6 @@ import {
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import {
   CURRENT_YEAR,
-  SET_USER_DATA,
   CURRENT_COURSE,
   INPUT_VALUES_EDIT_PROFILE,
 } from 'appConstants';
@@ -34,6 +33,7 @@ import {
 } from './components/UserCourseListItem';
 import { useTranslation } from 'react-i18next';
 import { setCurrCourse } from 'modules/LoginPage/loginPageReducer';
+import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
@@ -110,7 +110,7 @@ export const EditProfile: FC = () => {
         const newCurrentCourse = { id, name };
         localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
         dispatch(setCurrCourse(newCurrentCourse));
-        dispatch({ type: SET_USER_DATA, payload: updateUser });
+        dispatch(setUserData(updateUser));
         history.push('/');
       });
     } else {

@@ -12,7 +12,6 @@ import {
   ACTIVE_MODAL_JOIN,
   ACTIVE_MODAL_CREATE_TEAM,
   ACTIVE_MODAL_CREATED,
-  SET_USER_DATA,
   SET_TEAM_PASSWORD,
   SET_SOCIAL_LINK,
   ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
@@ -33,6 +32,7 @@ import {
   selectTeamPassword,
 } from '../../selectors';
 import { Team, User } from 'types';
+import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
 
 type TeamListModalsProps = {
   addUserToTeam: any;
@@ -84,7 +84,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
           setTextJoinModal('Wrong password!');
         } else {
           setTextJoinModal('Please, enter your team password.');
-          dispatch({ type: SET_USER_DATA, payload: addUserToTeam });
+          dispatch(setUserData(addUserToTeam));
           dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
           dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
         }
@@ -99,10 +99,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
       }: {
         data: { removeUserFromTeam: User };
       }) => {
-        dispatch({
-          type: SET_USER_DATA,
-          payload: removeUserFromTeam,
-        });
+        dispatch(setUserData(removeUserFromTeam));
       }
     );
   };

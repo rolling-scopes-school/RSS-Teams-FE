@@ -10,12 +10,12 @@ import {
   filterSelectFields,
   defaultFilterData,
 } from './filterFormFields';
-import { SET_FILTER_DATA } from 'appConstants';
 import { DARK_TEXT_COLOR } from 'appConstants/colors';
 import { Button } from 'typography';
 import crossIcon from 'assets/svg/cross.svg';
 import { selectFilterData } from 'modules/StudentsTable/selectors';
 import { useTranslation } from 'react-i18next';
+import { setFilterData } from 'modules/StudentsTable/studentsTableReducer';
 
 type TFilter = {
   inputValues: TFilterForm;
@@ -127,10 +127,7 @@ export const FilterForm: FC<TFilter> = ({
           type="button"
           onClick={() => {
             if (isValuesOuterEqual) {
-              dispatch({
-                type: SET_FILTER_DATA,
-                payload: inputValues,
-              });
+              dispatch(setFilterData(inputValues));
               setPage(0);
             }
             setIsFilterOpen(false);

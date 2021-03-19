@@ -16,7 +16,6 @@ import {
   CURRENT_COURSE,
   CURRENT_LANG,
   DEFAULT_LANGUAGE,
-  SET_USER_DATA,
 } from 'appConstants';
 import { useWhoAmIQuery } from 'hooks/graphql';
 import { AppStyled } from './styled';
@@ -25,6 +24,7 @@ import {
   setCurrLang,
   setToken,
 } from 'modules/LoginPage/loginPageReducer';
+import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export const App: FC = () => {
     }
 
     if (!!whoAmI) {
-      dispatch({ type: SET_USER_DATA, payload: whoAmI });
+      dispatch(setUserData(whoAmI));
     }
     if (whoAmI?.courses[0]) {
       if (!localStorage.getItem(CURRENT_COURSE)) {

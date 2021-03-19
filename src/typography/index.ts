@@ -228,10 +228,10 @@ export const AdditionalWrapper = styled.div`
 
 export const ScrollBar = css`
   scrollbar-color: transparent ${TABLE_POPUP_BORDER_COLOR};
-  scrollbar-width: 10px;
+  scrollbar-width: 8px;
 
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     background-color: transparent;
   }
 
