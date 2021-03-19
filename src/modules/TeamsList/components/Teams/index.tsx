@@ -7,7 +7,7 @@ import { TeamButton } from 'typography';
 import { TableTitle } from 'modules/StudentsTable/styled';
 import { TeamsTitleWrapper } from 'modules/TeamsList/styled';
 import { useTranslation } from 'react-i18next';
-import { ACTIVE_MODAL_SORT_STUDENTS } from 'appConstants';
+import { activeModalSortStudents } from 'modules/TeamsList/teamsListReducer';
 
 type TeamsProps = {
   teams: TeamList;
@@ -19,9 +19,7 @@ type TeamsProps = {
 export const Teams: FC<TeamsProps> = ({ teams, myTeam, userId, isAdmin }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
-  const onClickSortStudents = () =>
-    dispatch({ type: ACTIVE_MODAL_SORT_STUDENTS, payload: true });
+  const onClickSortStudents = () => dispatch(activeModalSortStudents(true));
 
   return (
     <>

@@ -46,11 +46,10 @@ export const App: FC = () => {
     }
     if (whoAmI?.courses[0]) {
       if (!localStorage.getItem(CURRENT_COURSE)) {
-        const userCourse = {
-          id: whoAmI?.courses[0].id,
-          name: whoAmI?.courses[0].name,
-        };
-        localStorage.setItem(CURRENT_COURSE, JSON.stringify(userCourse));
+        localStorage.setItem(
+          CURRENT_COURSE,
+          JSON.stringify(whoAmI?.courses[0])
+        );
       }
       if (!localStorage.getItem(CURRENT_LANG)) {
         localStorage.setItem(CURRENT_LANG, DEFAULT_LANGUAGE);

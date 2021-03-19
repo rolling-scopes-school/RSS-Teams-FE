@@ -102,12 +102,11 @@ export const EditProfile: FC = () => {
   const onSubmit = () => {
     if (userCourses.length) {
       updateUser().then(({ data: { updateUser } }) => {
-        const { id, name } =
+        const newCurrentCourse =
           updateUser.courses.find(
             (course: Course) =>
               course.id === userCourses[userCourses.length - 1].id
           ) ?? updateUser.courses[0];
-        const newCurrentCourse = { id, name };
         localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
         dispatch(setCurrCourse(newCurrentCourse));
         dispatch(setUserData(updateUser));

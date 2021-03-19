@@ -30,7 +30,6 @@ const defaultProps = {
 const ModalWindow = styled.div`
   left: 500px;
   top: 315px;
-
   background: #ffffff;
   border-radius: 20px;
 `;
@@ -73,7 +72,7 @@ export const Modal: FC<ModalProps> = ({
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape' || (!onSubmit && e.key === 'Enter')) {
         onClose();
       }
     };
@@ -83,7 +82,7 @@ export const Modal: FC<ModalProps> = ({
     }
 
     return () => document.removeEventListener('keydown', listener);
-  }, [open, onClose, hideOnEsc]);
+  }, [open, onClose, hideOnEsc, onSubmit]);
 
   useEffect(() => {
     if (open) {

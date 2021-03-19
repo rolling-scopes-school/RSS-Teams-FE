@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useCallback } from 'react';
 import { Modal } from 'components';
 
 type Props = {
@@ -22,12 +22,24 @@ export const ModalExpel: FC<Props> = ({
   onClose,
   onSubmit,
 }) => {
-  const onSubmitModal = () => {
+  const onSubmitModal = useCallback(() => {
     onClose();
     if (onSubmit) {
       onSubmit();
     }
-  };
+  }, [onClose, onSubmit]);
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        onSubmitModal();
+      }
+    };
+    if (open) {
+      document.addEventListener('keydown', listener);
+    }
+    return () => document.removeEventListener('keydown', listener);
+  }, [onSubmitModal, open]);
 
   return (
     <Modal

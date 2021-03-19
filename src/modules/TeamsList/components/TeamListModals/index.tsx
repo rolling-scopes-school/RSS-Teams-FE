@@ -6,19 +6,7 @@ import {
   ModalCreateEditTeam,
   ModalCreated,
 } from 'components';
-import {
-  ACTIVE_MODAL_EXPEL,
-  ACTIVE_MODAL_LEAVE,
-  ACTIVE_MODAL_JOIN,
-  ACTIVE_MODAL_CREATE_TEAM,
-  ACTIVE_MODAL_CREATED,
-  SET_TEAM_PASSWORD,
-  SET_SOCIAL_LINK,
-  ACTIVE_MODAL_UPDATE_SOCIAL_LINK,
-  MODAL_INPUT_VALIDATION,
-  ACTIVE_MODAL_REMOVE_COURSE,
-  ACTIVE_MODAL_SORT_STUDENTS,
-} from 'appConstants';
+import { MODAL_INPUT_VALIDATION } from 'appConstants';
 import {
   selectIsActiveModalCreated,
   selectIsActiveModalCreateTeam,
@@ -33,6 +21,18 @@ import {
 } from '../../selectors';
 import { Team, User } from 'types';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
+import {
+  setSocialLink,
+  setTeamPassword,
+  activeModalExpel,
+  activeModalLeave,
+  activeModalJoin,
+  activeModalCreateTeam,
+  activeModalCreated,
+  activeModalUpdateSocialLink,
+  activeModalRemoveCourse,
+  activeModalSortStudents,
+} from 'modules/TeamsList/teamsListReducer';
 
 type TeamListModalsProps = {
   addUserToTeam: any;
@@ -85,8 +85,8 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         } else {
           setTextJoinModal('Please, enter your team password.');
           dispatch(setUserData(addUserToTeam));
-          dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
-          dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
+          dispatch(activeModalJoin(false));
+          dispatch(setTeamPassword(''));
         }
       }
     );
@@ -115,8 +115,8 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
   const onSubmitCreateTeam = () => {
     createTeam().then(
       ({ data: { createTeam } }: { data: { createTeam: Team } }) => {
-        dispatch({ type: SET_TEAM_PASSWORD, payload: createTeam.password });
-        dispatch({ type: ACTIVE_MODAL_CREATED, payload: true });
+        dispatch(setTeamPassword(createTeam.password));
+        dispatch(activeModalCreated(true));
       }
     );
   };
@@ -136,7 +136,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         text="Are you sure want to leave team?"
         open={isActiveModalLeave}
         onSubmit={onSubmitLeaveModal}
-        onClose={() => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: false })}
+        onClose={() => dispatch(activeModalLeave(false))}
         okText="Yes"
         cancelText="No"
       />
@@ -145,7 +145,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         text="Are you sure want to expel user?"
         open={isActiveModalExpel}
         onSubmit={onSubmitExpelModal}
-        onClose={() => dispatch({ type: ACTIVE_MODAL_EXPEL, payload: false })}
+        onClose={() => dispatch(activeModalExpel(false))}
         okText="Yes"
         cancelText="No"
       />
@@ -154,9 +154,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         text="Are you sure to leave this course?"
         open={isActiveModalRemoveCourse}
         onSubmit={onSubmitRemoveCourseModal}
-        onClose={() =>
-          dispatch({ type: ACTIVE_MODAL_REMOVE_COURSE, payload: false })
-        }
+        onClose={() => dispatch(activeModalRemoveCourse(false))}
         okText="Yes"
         cancelText="No"
       />
@@ -166,9 +164,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         open={isActiveModalSortStudents}
         onSubmit={onSubmitSortStudents}
         isCrossIconVisible={false}
-        onClose={() =>
-          dispatch({ type: ACTIVE_MODAL_SORT_STUDENTS, payload: false })
-        }
+        onClose={() => dispatch(activeModalSortStudents(false))}
         okText="Yes"
         cancelText="No"
       />
@@ -180,8 +176,8 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         value={socialLink}
         onSubmit={onSubmitCreateTeam}
         onClose={() => {
-          dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: false });
-          dispatch({ type: SET_SOCIAL_LINK, payload: '' });
+          dispatch(activeModalCreateTeam(false));
+          dispatch(setSocialLink(''));
         }}
         okText="Create team"
         validateRules={MODAL_INPUT_VALIDATION}
@@ -192,10 +188,11 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         open={isActiveModalJoin}
         onSubmit={onSubmitJoinModal}
         value={teamPassword}
+        onChange={() => setTextJoinModal('Please, enter your team password.')}
         onClose={() => {
           setTextJoinModal('Please, enter your team password.');
-          dispatch({ type: ACTIVE_MODAL_JOIN, payload: false });
-          dispatch({ type: SET_TEAM_PASSWORD, payload: '' });
+          dispatch(activeModalJoin(false));
+          dispatch(setTeamPassword(''));
         }}
         okText="Join team"
       />
@@ -204,7 +201,7 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         text="You are automatically added there."
         text2="If you want to invite friends - tell them your team password:"
         open={isActiveModalCreated}
-        onClose={() => dispatch({ type: ACTIVE_MODAL_CREATED, payload: false })}
+        onClose={() => dispatch(activeModalCreated(false))}
         cancelText="Got it!"
         password={teamPassword}
       />
@@ -217,8 +214,8 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         onSubmit={onSubmitUpdateSocialLink}
         validateRules={MODAL_INPUT_VALIDATION}
         onClose={() => {
-          dispatch({ type: ACTIVE_MODAL_UPDATE_SOCIAL_LINK, payload: false });
-          dispatch({ type: SET_SOCIAL_LINK, payload: '' });
+          dispatch(activeModalUpdateSocialLink(false));
+          dispatch(setSocialLink(''));
         }}
         okText="Update link"
       />

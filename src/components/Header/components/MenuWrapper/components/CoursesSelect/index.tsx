@@ -31,11 +31,10 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
   const userCourses =
     userData.courses.filter((item) => item.id !== currCourse.id) ?? null;
 
-  const onCourseChange = ({ id, name }: Course) => {
-    const newCurrentCourse = { id, name };
+  const onCourseChange = (course: Course) => {
     setDisplayCoursesList(false);
-    localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
-    dispatch(setCurrCourse(newCurrentCourse));
+    localStorage.setItem(CURRENT_COURSE, JSON.stringify(course));
+    dispatch(setCurrCourse(course));
   };
 
   return (

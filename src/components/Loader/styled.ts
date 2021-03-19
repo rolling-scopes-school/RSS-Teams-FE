@@ -11,11 +11,13 @@ export const LoaderStyled = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 25%;
   transform: translate(-50%, -50%);
   .loader {
     display: flex;
     align-items: center;
-    width: fit-content;
+    justify-content: center;
+    width: 100%;
     height: 2.5em;
     gap: 12px;
     animation-duration: 1.4s;
@@ -34,7 +36,7 @@ export const LoaderStyled = styled.div`
 
       border-radius: 100%;
       display: inline-block;
-      animation: loader-in 1.4s ease-in-out 0s infinite both;
+      animation: loader-in 1.6s ease-in-out 0s infinite both;
 
       @media (max-width: 1200px) {
         width: 1.7em;
@@ -51,10 +53,13 @@ export const LoaderStyled = styled.div`
     }
 
     .loader-child-1 {
-      animation-delay: -0.32s;
+      animation-delay: -0.6s;
     }
     .loader-child-2 {
-      animation-delay: -0.16s;
+      animation-delay: -0.4s;
+    }
+    .loader-child-3 {
+      animation-delay: -0.2s;
     }
   }
 

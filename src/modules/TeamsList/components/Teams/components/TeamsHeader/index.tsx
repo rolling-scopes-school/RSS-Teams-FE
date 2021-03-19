@@ -10,27 +10,30 @@ import {
 } from './styled';
 import { TeamButton } from 'typography';
 import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
-import {
-  ACTIVE_MODAL_CREATE_TEAM,
-  ACTIVE_MODAL_JOIN,
-  ACTIVE_MODAL_REMOVE_COURSE,
-} from 'appConstants';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import {
+  activeModalJoin,
+  activeModalCreateTeam,
+  activeModalRemoveCourse,
+} from 'modules/TeamsList/teamsListReducer';
 
 export const TeamsHeader: FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const buttonsInfo: [string, () => void][] = [
-    [
-      'Create team',
-      () => dispatch({ type: ACTIVE_MODAL_CREATE_TEAM, payload: true }),
-    ],
-    ['Join team', () => dispatch({ type: ACTIVE_MODAL_JOIN, payload: true })],
-    [
-      'Leave course',
-      () => dispatch({ type: ACTIVE_MODAL_REMOVE_COURSE, payload: true }),
-    ],
+  const buttonsInfo: { name: string; callback: () => void }[] = [
+    {
+      name: 'Create team',
+      callback: () => dispatch(activeModalCreateTeam(true)),
+    },
+    {
+      name: 'Join team',
+      callback: () => dispatch(activeModalJoin(true)),
+    },
+    {
+      name: 'Leave course',
+      callback: () => dispatch(activeModalRemoveCourse(true)),
+    },
   ];
 
   return (
@@ -47,10 +50,10 @@ export const TeamsHeader: FC = () => {
                 bgc={WHITE_COLOR}
                 color={DARK_TEXT_COLOR}
                 type="button"
-                onClick={item[1]}
+                onClick={item.callback}
                 key={JSON.stringify(item)}
               >
-                {t(item[0])}
+                {t(item.name)}
               </TeamButton>
             );
           })}

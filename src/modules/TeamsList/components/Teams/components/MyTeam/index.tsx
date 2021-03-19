@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ACTIVE_MODAL_LEAVE, ACTIVE_MODAL_REMOVE_COURSE } from 'appConstants';
 
 import { StyledMyTeam, HeaderDecor, TableWrapper } from './styled';
 import { TeamButton } from 'typography';
@@ -10,6 +9,10 @@ import { MembersListToggle } from '../MemberListToggle';
 import { MyTeamInfoBlock } from './components/MyTeamInfoBlock';
 import { TeamUserTable } from '../TeamUserTable';
 import { useTranslation } from 'react-i18next';
+import {
+  activeModalLeave,
+  activeModalRemoveCourse,
+} from 'modules/TeamsList/teamsListReducer';
 
 type MyTeamProps = {
   team: Team;
@@ -20,14 +23,10 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
   const [isOpen, setOpenState] = useState(false);
   const { t } = useTranslation();
 
-  const toggleListHandler = () => {
-    setOpenState(!isOpen);
-  };
   const dispatch = useDispatch();
-
-  const leaveTeam = () => dispatch({ type: ACTIVE_MODAL_LEAVE, payload: true });
-  const removeCourse = () =>
-    dispatch({ type: ACTIVE_MODAL_REMOVE_COURSE, payload: true });
+  const toggleListHandler = () => setOpenState(!isOpen);
+  const leaveTeam = () => dispatch(activeModalLeave(true));
+  const removeCourse = () => dispatch(activeModalRemoveCourse(true));
 
   const countMember = team?.members?.length;
   return (

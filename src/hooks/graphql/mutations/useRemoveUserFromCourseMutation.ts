@@ -76,15 +76,11 @@ export const useRemoveUserFromCourseMutation = ({
 
       onCompleted({ removeUserFromCourse }) {
         if (!!removeUserFromCourse.courses[0]) {
-          const newCurrentCourse = {
-            id: removeUserFromCourse.courses[0].id,
-            name: removeUserFromCourse.courses[0].name,
-          };
           localStorage.setItem(
             CURRENT_COURSE,
-            JSON.stringify(newCurrentCourse)
+            JSON.stringify(removeUserFromCourse.courses[0])
           );
-          dispatch(setCurrCourse(newCurrentCourse));
+          dispatch(setCurrCourse(removeUserFromCourse.courses[0]));
         } else {
           dispatch(setCurrCourse({ name: '', id: '' }));
           localStorage.removeItem(CURRENT_COURSE);

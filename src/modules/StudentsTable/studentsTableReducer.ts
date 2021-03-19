@@ -1,4 +1,3 @@
-import { Reducer } from 'redux';
 import { SET_USER_DATA, SET_FILTER_DATA } from 'appConstants';
 import { StateStudentsTable } from 'types';
 import { defaultFilterData } from 'components/FilterForm/filterFormFields';
