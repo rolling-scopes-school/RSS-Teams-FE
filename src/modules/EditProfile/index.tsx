@@ -24,7 +24,6 @@ import {
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import {
   CURRENT_YEAR,
-  SET_CURR_COURSE,
   SET_USER_DATA,
   CURRENT_COURSE,
   INPUT_VALUES_EDIT_PROFILE,
@@ -34,6 +33,7 @@ import {
   UserCourseListItem,
 } from './components/UserCourseListItem';
 import { useTranslation } from 'react-i18next';
+import { setCurrCourse } from 'modules/LoginPage/loginPageReducer';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
@@ -102,16 +102,14 @@ export const EditProfile: FC = () => {
   const onSubmit = () => {
     if (userCourses.length) {
       updateUser().then(({ data: { updateUser } }) => {
-        const newCurrentCourse =
+        const { id, name } =
           updateUser.courses.find(
             (course: Course) =>
               course.id === userCourses[userCourses.length - 1].id
           ) ?? updateUser.courses[0];
+        const newCurrentCourse = { id, name };
         localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
-        dispatch({
-          type: SET_CURR_COURSE,
-          payload: newCurrentCourse,
-        });
+        dispatch(setCurrCourse(newCurrentCourse));
         dispatch({ type: SET_USER_DATA, payload: updateUser });
         history.push('/');
       });

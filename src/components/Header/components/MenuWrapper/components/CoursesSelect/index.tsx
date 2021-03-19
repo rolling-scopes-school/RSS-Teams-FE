@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CURRENT_COURSE, SET_CURR_COURSE } from 'appConstants';
+import { CURRENT_COURSE } from 'appConstants';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { Course } from 'types';
@@ -12,6 +12,7 @@ import {
   StyledCoursesSelectArrow,
 } from './styled';
 import { useTranslation } from 'react-i18next';
+import { setCurrCourse } from 'modules/LoginPage/loginPageReducer';
 
 type CoursesSelectProps = {
   displayCoursesList: boolean;
@@ -30,10 +31,11 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
   const userCourses =
     userData.courses.filter((item) => item.id !== currCourse.id) ?? null;
 
-  const onCourseChange = (course: Course) => {
+  const onCourseChange = ({ id, name }: Course) => {
+    const newCurrentCourse = { id, name };
     setDisplayCoursesList(false);
-    localStorage.setItem(CURRENT_COURSE, JSON.stringify(course));
-    dispatch({ type: SET_CURR_COURSE, payload: course });
+    localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
+    dispatch(setCurrCourse(newCurrentCourse));
   };
 
   return (

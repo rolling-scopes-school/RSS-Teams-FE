@@ -14,6 +14,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.2",
+    "@types/redux-actions": "^2.6.1",
     "@types/styled-components": "^5.1.7",
     "graphql": "^15.5.0",
     "i18next": "^19.9.1",

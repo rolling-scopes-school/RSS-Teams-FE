@@ -1,14 +1,12 @@
 import {
-  SET_TOKEN,
-  SET_CURR_COURSE,
-  SET_CURR_LANG,
   DEFAULT_LANGUAGE,
   SET_COMMON_ERROR,
+  SET_CURR_COURSE,
+  SET_CURR_LANG,
+  SET_TOKEN,
 } from 'appConstants';
-import { Reducer } from 'redux';
+import { createActions, handleActions } from 'redux-actions';
 import { StateLoginPage } from 'types';
-
-type Action = { type: string; payload: any };
 
 export const loginPageState = {
   loginToken: null,
@@ -20,32 +18,36 @@ export const loginPageState = {
   isCommonError: false,
 };
 
-export const loginPageReducer: Reducer<StateLoginPage, Action> = (
-  state = loginPageState,
-  action
-) => {
-  switch (action.type) {
-    case SET_TOKEN:
-      return {
-        ...state,
-        loginToken: action.payload,
-      };
-    case SET_CURR_COURSE:
-      return {
-        ...state,
-        currCourse: action.payload,
-      };
-    case SET_CURR_LANG:
-      return {
-        ...state,
-        currLanguage: action.payload,
-      };
-    case SET_COMMON_ERROR:
-      return {
-        ...state,
-        isCommonError: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+export const {
+  setToken,
+  setCurrCourse,
+  setCurrLang,
+  setCommonError,
+} = createActions({
+  SET_TOKEN: (loginToken) => ({ loginToken }),
+  SET_CURR_COURSE: (currCourse) => ({ currCourse }),
+  SET_CURR_LANG: (currLanguage) => ({ currLanguage }),
+  SET_COMMON_ERROR: (isCommonError) => ({ isCommonError }),
+});
+
+export const loginPageReducer = handleActions<StateLoginPage, any>(
+  {
+    [SET_TOKEN]: (state, { payload: { loginToken } }) => ({
+      ...state,
+      loginToken,
+    }),
+    [SET_CURR_COURSE]: (state, { payload: { currCourse } }) => ({
+      ...state,
+      currCourse,
+    }),
+    [SET_CURR_LANG]: (state, { payload: { currLanguage } }) => ({
+      ...state,
+      currLanguage,
+    }),
+    [SET_COMMON_ERROR]: (state, { payload: { isCommonError } }) => ({
+      ...state,
+      isCommonError,
+    }),
+  },
+  loginPageState
+);
