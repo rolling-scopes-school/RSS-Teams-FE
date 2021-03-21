@@ -55,6 +55,7 @@ export const ModalCreated: FC<Props> = ({
         console.log('Something went wrong', err);
       });
   };
+  const onClickCopyButton = () => CopyToClipboard(password);
 
   return (
     <Modal
@@ -69,7 +70,7 @@ export const ModalCreated: FC<Props> = ({
           readOnly
           blink={isCopy}
         />
-        <CopyButton onClick={() => CopyToClipboard(password)} />
+        <CopyButton onClick={onClickCopyButton} />
       </InputWithCopy>
     </Modal>
   );

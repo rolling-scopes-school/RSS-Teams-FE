@@ -1,8 +1,9 @@
-import { AUTH_TOKEN, SET_TOKEN } from 'appConstants';
 import React, { FC, useEffect } from 'react';
+import { AUTH_TOKEN } from 'appConstants';
 import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { setToken } from 'modules/LoginPage/loginPageReducer';
 
 type ParamsType = {
   id: string;
@@ -18,7 +19,7 @@ export const TokenPage: FC = () => {
     const loginToken = sessionStorage.getItem(AUTH_TOKEN);
     if (!loginToken) {
       sessionStorage.setItem(AUTH_TOKEN, id);
-      dispatch({ type: SET_TOKEN, payload: id });
+      dispatch(setToken(id));
     }
     history.push('/');
   }, [id, history, dispatch]);

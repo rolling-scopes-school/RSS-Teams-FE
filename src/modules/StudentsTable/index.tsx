@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_FILTER_DATA, USERS_PER_PAGE } from 'appConstants';
+import { USERS_PER_PAGE } from 'appConstants';
 import { Loader, Pagination, FilterForm, ErrorModal } from 'components';
 import { useUsersQuery } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
@@ -19,6 +19,7 @@ import { selectFilterData } from './selectors';
 import { TFilterForm } from 'types';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { setFilterData } from './studentsTableReducer';
 
 export const StudentsTable: FC = () => {
   const [page, setPage] = useState<number>(0);
@@ -63,10 +64,7 @@ export const StudentsTable: FC = () => {
     Object.values(filterData).toString();
   const onClickClearBtnHandler = () => {
     setInputValues(defaultFilterData);
-    dispatch({
-      type: SET_FILTER_DATA,
-      payload: defaultFilterData,
-    });
+    dispatch(setFilterData(defaultFilterData));
     setPage(0);
     setIsFilterOpen(false);
   };

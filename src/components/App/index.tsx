@@ -16,13 +16,15 @@ import {
   CURRENT_COURSE,
   CURRENT_LANG,
   DEFAULT_LANGUAGE,
-  SET_CURR_COURSE,
-  SET_CURR_LANG,
-  SET_TOKEN,
-  SET_USER_DATA,
 } from 'appConstants';
 import { useWhoAmIQuery } from 'hooks/graphql';
 import { AppStyled } from './styled';
+import {
+  setCurrCourse,
+  setCurrLang,
+  setToken,
+} from 'modules/LoginPage/loginPageReducer';
+import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -36,11 +38,11 @@ export const App: FC = () => {
   useEffect(() => {
     if (!loginToken) {
       const token = sessionStorage.getItem(AUTH_TOKEN);
-      if (token) dispatch({ type: SET_TOKEN, payload: token });
+      if (token) dispatch(setToken(token));
     }
 
     if (!!whoAmI) {
-      dispatch({ type: SET_USER_DATA, payload: whoAmI });
+      dispatch(setUserData(whoAmI));
     }
     if (whoAmI?.courses[0]) {
       if (!localStorage.getItem(CURRENT_COURSE)) {
@@ -57,8 +59,8 @@ export const App: FC = () => {
       );
       const currentLanguage = localStorage.getItem(CURRENT_LANG);
 
-      dispatch({ type: SET_CURR_COURSE, payload: currentCourse });
-      dispatch({ type: SET_CURR_LANG, payload: currentLanguage });
+      dispatch(setCurrCourse(currentCourse));
+      dispatch(setCurrLang(currentLanguage));
     }
 
     if (!loadingW) setLoading(false);

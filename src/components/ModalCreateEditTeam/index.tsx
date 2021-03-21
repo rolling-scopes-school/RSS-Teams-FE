@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from 'components';
 import { ModalInput } from 'typography';
-import { SET_SOCIAL_LINK } from 'appConstants';
 import { ValidationAlert } from '../InputField/styled';
 import { useTranslation } from 'react-i18next';
+import { setSocialLink } from 'modules/TeamsList/teamsListReducer';
 
 type Props = {
   title: string;
@@ -34,16 +34,39 @@ export const ModalCreateEditTeam: FC<Props> = ({
 }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
-  const onSubmitModal = () => {
-    if (onSubmit) {
-      onClose();
-      onSubmit();
-    }
-  };
-
   const [isInputValid, setInputValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const onSubmitModal = useCallback(() => {
+    if (isInputValid && onSubmit) {
+      onSubmit();
+      onClose();
+    } else {
+      setErrorMessage('Please, enter link');
+    }
+  }, [onClose, onSubmit, isInputValid]);
+
+  const onChangeModal = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSocialLink(e.target.value.trim()));
+    isValid(e.target.value.trim(), validateRules, !!validateRules);
+  };
+
+  const onCloseModal = () => {
+    onClose();
+    setErrorMessage('');
+  };
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        onSubmitModal();
+      }
+    };
+    if (open) {
+      document.addEventListener('keydown', listener);
+    }
+    return () => document.removeEventListener('keydown', listener);
+  }, [onSubmitModal, open]);
 
   const isValid = (
     value: string,
@@ -75,17 +98,8 @@ export const ModalCreateEditTeam: FC<Props> = ({
   return (
     <Modal
       {...{ title, text, open, okText }}
-      onClose={() => {
-        onClose();
-        setErrorMessage('');
-      }}
-      onSubmit={() => {
-        if (isInputValid) {
-          onSubmitModal();
-        } else {
-          setErrorMessage('Please, enter link');
-        }
-      }}
+      onClose={onCloseModal}
+      onSubmit={onSubmitModal}
       hideOnOutsideClick={true}
       hideOnEsc={true}
     >
@@ -94,10 +108,7 @@ export const ModalCreateEditTeam: FC<Props> = ({
         required
         value={value.trim()}
         autoComplete={'off'}
-        onChange={(e) => {
-          dispatch({ type: SET_SOCIAL_LINK, payload: e.target.value.trim() });
-          isValid(e.target.value.trim(), validateRules, !!validateRules);
-        }}
+        onChange={onChangeModal}
         placeholder={t('Enter group link')}
       />
       {!isInputValid && <ValidationAlert>{t(errorMessage)}</ValidationAlert>}
