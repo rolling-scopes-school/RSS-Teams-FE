@@ -39,9 +39,7 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
           )}
         </InfoButton>
       ) : (
-        <InfoButton
-          onClick={() => dispatch(activeModalUpdateSocialLink(true))}
-        >
+        <InfoButton onClick={() => dispatch(activeModalUpdateSocialLink(true))}>
           <EditIcon />
         </InfoButton>
       )}
