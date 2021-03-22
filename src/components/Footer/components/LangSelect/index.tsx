@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CURRENT_LANG, Language, LANGUAGES, SET_CURR_LANG } from 'appConstants';
+import { CURRENT_LANG, Language, LANGUAGES } from 'appConstants';
 import {
   StyledCoursesList,
   StyledCoursesSelectArrow,
