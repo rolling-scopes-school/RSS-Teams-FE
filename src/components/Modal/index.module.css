@@ -6,8 +6,6 @@
   bottom: 0;
   left: 0;
   z-index: 999;
-
-/* overflow-y: scroll; */
   text-align: center;
   background: var(--OVERLAY_COLOR);
 

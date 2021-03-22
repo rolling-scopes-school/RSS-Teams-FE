@@ -10,6 +10,7 @@ import {
 } from 'components/Header/components/MenuWrapper/components/CoursesSelect/styled';
 import { selectCurrLanguage } from 'modules/LoginPage/selectors';
 import i18n from 'translation/resources';
+import { setCurrLang } from 'modules/LoginPage/loginPageReducer';
 
 type LangSelectProps = {
   displayLangList: boolean;
@@ -26,7 +27,7 @@ export const LangSelect: FC<LangSelectProps> = ({
   const onLangChange = (item: string) => {
     setDisplayLangList(false);
     localStorage.setItem(CURRENT_LANG, item);
-    dispatch({ type: SET_CURR_LANG, payload: item });
+    dispatch(setCurrLang(item));
     i18n.changeLanguage(item);
   };
 

@@ -1,9 +1,7 @@
-import { Reducer } from 'redux';
 import { SET_USER_DATA, SET_FILTER_DATA } from 'appConstants';
 import { StateStudentsTable } from 'types';
 import { defaultFilterData } from 'components/FilterForm/filterFormFields';
-
-type Action = { type: string; payload: any };
+import { createActions, handleActions } from 'redux-actions';
 
 export const studentsTableState = {
   userData: {
@@ -27,22 +25,21 @@ export const studentsTableState = {
   filterData: defaultFilterData,
 };
 
-export const studentsTableReducer: Reducer<StateStudentsTable, Action> = (
-  state = studentsTableState,
-  action
-) => {
-  switch (action.type) {
-    case SET_USER_DATA:
-      return {
-        ...state,
-        userData: action.payload,
-      };
-    case SET_FILTER_DATA:
-      return {
-        ...state,
-        filterData: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+export const { setUserData, setFilterData } = createActions({
+  SET_USER_DATA: (userData) => ({ userData }),
+  SET_FILTER_DATA: (filterData) => ({ filterData }),
+});
+
+export const studentsTableReducer = handleActions<StateStudentsTable, any>(
+  {
+    [SET_USER_DATA]: (state, { payload: { userData } }) => ({
+      ...state,
+      userData,
+    }),
+    [SET_FILTER_DATA]: (state, { payload: { filterData } }) => ({
+      ...state,
+      filterData,
+    }),
+  },
+  studentsTableState
+);

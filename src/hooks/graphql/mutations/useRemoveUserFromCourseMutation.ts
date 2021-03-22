@@ -1,13 +1,12 @@
 import { useMutation } from '@apollo/client';
-import {
-  CURRENT_COURSE,
-  SET_COMMON_ERROR,
-  SET_CURR_COURSE,
-  SET_USER_DATA,
-  TEAMS_PER_PAGE,
-} from 'appConstants';
+import { CURRENT_COURSE, TEAMS_PER_PAGE } from 'appConstants';
 import { REMOVE_USER_FROM_COURSE_MUTATION } from 'graphql/mutations';
 import { TEAMS_QUERY, WHOAMI_QUERY } from 'graphql/queries';
+import {
+  setCommonError,
+  setCurrCourse,
+} from 'modules/LoginPage/loginPageReducer';
+import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
 import { useDispatch } from 'react-redux';
 import { RemoveUserFromCourseInput, Team, TeamList, User } from 'types';
 
@@ -81,27 +80,15 @@ export const useRemoveUserFromCourseMutation = ({
             CURRENT_COURSE,
             JSON.stringify(removeUserFromCourse.courses[0])
           );
-          dispatch({
-            type: SET_CURR_COURSE,
-            payload: removeUserFromCourse.courses[0],
-          });
+          dispatch(setCurrCourse(removeUserFromCourse.courses[0]));
         } else {
-          dispatch({
-            type: SET_CURR_COURSE,
-            payload: { name: '', id: '' },
-          });
+          dispatch(setCurrCourse({ name: '', id: '' }));
           localStorage.removeItem(CURRENT_COURSE);
         }
-        dispatch({
-          type: SET_USER_DATA,
-          payload: removeUserFromCourse,
-        });
+        dispatch(setUserData(removeUserFromCourse));
       },
       onError() {
-        dispatch({
-          type: SET_COMMON_ERROR,
-          payload: true,
-        });
+        dispatch(setCommonError(true));
       },
     }
   );

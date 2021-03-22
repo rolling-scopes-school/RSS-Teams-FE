@@ -5,8 +5,8 @@ import { MyTeamInfoLine } from './components/MyTeamInfoLine';
 import { ReactComponent as InfoIcon } from 'assets/svg/info.svg';
 import { ReactComponent as EditIcon } from 'assets/svg/edit.svg';
 import NotificationPopup from './components/NotificationPopup';
-import { ACTIVE_MODAL_UPDATE_SOCIAL_LINK } from 'appConstants';
 import { useTranslation } from 'react-i18next';
+import { activeModalUpdateSocialLink } from 'modules/TeamsList/teamsListReducer';
 
 type MyTeamInfoBlockProps = {
   title: string;
@@ -40,9 +40,7 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
         </InfoButton>
       ) : (
         <InfoButton
-          onClick={() =>
-            dispatch({ type: ACTIVE_MODAL_UPDATE_SOCIAL_LINK, payload: true })
-          }
+          onClick={() => dispatch(activeModalUpdateSocialLink(true))}
         >
           <EditIcon />
         </InfoButton>

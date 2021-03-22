@@ -1,9 +1,12 @@
 import React, { FC } from 'react';
-import { ACTIVE_MODAL_EXPEL, SET_TEAM_MEMBER_EXPEL_ID } from 'appConstants';
 import { User } from 'types';
 import { TableCell } from './components';
 import { ExpelButton } from './components';
 import { useDispatch } from 'react-redux';
+import {
+  activeModalExpel,
+  setTeamMemberExpelId,
+} from 'modules/TeamsList/teamsListReducer';
 
 type TableRowProps = {
   member: User;
@@ -47,8 +50,8 @@ export const TableRow: FC<TableRowProps> = ({
             id !== userId && (
               <ExpelButton
                 onClickHandler={() => {
-                  dispatch({ type: ACTIVE_MODAL_EXPEL, payload: true });
-                  dispatch({ type: SET_TEAM_MEMBER_EXPEL_ID, payload: id });
+                  dispatch(activeModalExpel(true));
+                  dispatch(setTeamMemberExpelId(id));
                 }}
               />
             )

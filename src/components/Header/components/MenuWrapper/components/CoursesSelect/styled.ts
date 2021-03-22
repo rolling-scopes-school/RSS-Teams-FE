@@ -93,6 +93,7 @@ export const StyledCoursesSelectInfo = styled.div<TStyledCoursesSelectInfo>`
   display: flex;
   align-items: center;
   justify-content: ${({ footer }) => footer && 'space-between'};
+  ${({ footer }) => footer && 'width: 100%'};
 
   &:hover {
     cursor: ${({ hover }) => (hover ? 'pointer' : 'unset')};
