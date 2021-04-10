@@ -9,9 +9,6 @@ import {
   StyledHeaderActiveElement,
 } from './styled';
 
-import { selectUserData } from 'modules/StudentsTable/selectors';
-import { useSelector } from 'react-redux';
-
 type TNavLink = {
   name: string;
   isAlwaysVisible: boolean;
@@ -24,16 +21,12 @@ type NavProps = {
 
 export const Nav: FC<NavProps> = ({ setDisplayCoursesList, newUserCheck }) => {
   const { t } = useTranslation();
-  const { isAdmin } = useSelector(selectUserData);
   return (
     <StyledNav>
       <StyledNavList>
         {Object.values(APP_NAVIGATION_LINKS).map(
           (link: TNavLink, index: number) => {
             {
-              if (!isAdmin && index === 3) {
-                return null;
-              }
               if (+newUserCheck + +link.isAlwaysVisible) {
                 return (
                   <StyledNavListItem

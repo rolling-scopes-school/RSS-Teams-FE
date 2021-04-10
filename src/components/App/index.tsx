@@ -8,6 +8,7 @@ import {
   TokenPage,
   NotFoundPage,
   EditProfile,
+  TutorialPage,
 } from 'modules';
 import { Loader, PrivateRoute, Header, Footer, ErrorModal } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
@@ -91,7 +92,7 @@ export const App: FC = () => {
         <Route exact path="/token/:id" component={TokenPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/editProfile" component={EditProfile} />
-        <Route exact path="/tutorial" component={Loader} />
+        <Route exact path="/tutorial" component={TutorialPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
 
