@@ -4,7 +4,7 @@ import { useTeamsQuery } from 'hooks/graphql';
 import { Loader, ErrorModal, Pagination } from 'components';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
-import { StyledTeams, TeamWrapper } from './styled';
+import { StyledTeams, ContentPageWrapper } from './styled';
 import { TEAMS_PER_PAGE } from 'appConstants';
 import { Team } from 'types';
 import { TeamListModals, Teams } from './components';
@@ -41,7 +41,7 @@ export const TeamsList: FC = () => {
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
 
   return (
-    <TeamWrapper>
+    <ContentPageWrapper>
       <StyledTeams>
         <Teams
           teams={teams}
@@ -70,6 +70,6 @@ export const TeamsList: FC = () => {
           sortStudents,
         }}
       />
-    </TeamWrapper>
+    </ContentPageWrapper>
   );
 };

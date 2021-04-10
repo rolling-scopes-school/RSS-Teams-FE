@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ScrollBar } from 'typography';
 
-export const TeamWrapper = styled.div`
+export const ContentPageWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-grow: 1;

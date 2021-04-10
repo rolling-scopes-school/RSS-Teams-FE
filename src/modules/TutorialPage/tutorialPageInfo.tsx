@@ -9,9 +9,9 @@ export const tutorialNoteInfo = (currentLang: string) => {
       title: 'Create team',
       subtitle: 'The team creation process is taken place in three steps',
       listItems: [
-        `Press the “Create team” button`,
-        `Provide a link to a team chat`,
-        `Specify password`,
+        'Press the “Create team” button',
+        'Provide a link to a team chat',
+        'Specify password',
       ],
       children: <p>{t('The only person who creates the team is Team Lead')}</p>,
     },
