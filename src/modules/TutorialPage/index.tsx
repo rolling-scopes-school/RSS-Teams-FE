@@ -17,7 +17,7 @@ export const TutorialPage: FC = () => {
   const { t } = useTranslation();
   const TUTORIAL_PAGE_NOTES_INFO = useCallback(
     () => tutorialNoteInfo(currentLang, t),
-    [currentLang]
+    [currentLang, t]
   );
 
   return (
