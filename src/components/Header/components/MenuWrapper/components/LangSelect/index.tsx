@@ -4,22 +4,24 @@ import { CURRENT_LANG, LANGUAGES } from 'appConstants';
 import { selectCurrLanguage } from 'modules/LoginPage/selectors';
 import { setCurrLang } from 'modules/LoginPage/loginPageReducer';
 import i18n from 'translation/resources';
-import { CommonSelect } from '../CoursesSelect/components/CommonSelect';
+import { CommonSelectList } from 'components';
 
 type LangSelectProps = {
   displayLangList: boolean;
   setDisplayLangList: (display: boolean) => void;
+  menuToggle?: string;
 };
 
 export const LangSelect: FC<LangSelectProps> = ({
   displayLangList,
   setDisplayLangList,
+  menuToggle,
 }) => {
   const dispatch = useDispatch();
   const currentLanguage = useSelector(selectCurrLanguage);
 
   const onLangChange = (item: string) => {
-    setDisplayLangList(false);
+    dispatch(setDisplayLangList(false));
     localStorage.setItem(CURRENT_LANG, item);
     dispatch(setCurrLang(item));
     i18n.changeLanguage(item);
@@ -30,13 +32,14 @@ export const LangSelect: FC<LangSelectProps> = ({
   );
 
   return (
-    <CommonSelect
+    <CommonSelectList
       listItems={languages}
       onClickHandler={onLangChange}
       currItem={currentLanguage.toUpperCase()}
       setDisplayList={setDisplayLangList}
       displayList={displayLangList}
       isLang="Lang"
+      {...{ menuToggle }}
     />
   );
 };

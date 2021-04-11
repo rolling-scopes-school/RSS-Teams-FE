@@ -16,6 +16,10 @@ export const StyledHeader = styled.header<TStyledHeaderProps>`
   background-color: ${({ login }) => (login ? MAIN1_COLOR : 'transparent')};
   width: 100%;
   z-index: 1;
+
+  @media (max-width: 1260px) {
+    align-items: center;
+  }
 `;
 
 export const Container = styled.div`

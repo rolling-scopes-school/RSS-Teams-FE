@@ -21,8 +21,11 @@ import {
 import { useWhoAmIQuery } from 'hooks/graphql';
 import { AppStyled } from './styled';
 import {
+  setBurgerMenuSelectOpen,
+  setCourseSelectOpen,
   setCurrCourse,
   setCurrLang,
+  setHeaderLangSelectOpen,
   setToken,
 } from 'modules/LoginPage/loginPageReducer';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
@@ -70,8 +73,16 @@ export const App: FC = () => {
   if (loading || loadingW) return <Loader />;
   if (errorW) return <ErrorModal />;
 
+  const onClickAppHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!(e.target as HTMLElement).closest('.CommonSelectList')) {
+      dispatch(setBurgerMenuSelectOpen(false));
+      dispatch(setHeaderLangSelectOpen(false));
+      dispatch(setCourseSelectOpen(false));
+    }
+  };
+
   return (
-    <AppStyled>
+    <AppStyled onClick={onClickAppHandler}>
       <Header />
 
       <Switch>

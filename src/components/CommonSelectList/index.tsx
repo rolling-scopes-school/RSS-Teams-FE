@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { Course } from 'types';
 import {
   StyledCoursesSelectWrapper,
@@ -18,9 +19,10 @@ type CommonSelectProps = {
   title?: string;
   currItem: string;
   isLang?: string;
+  menuToggle?: string;
 };
 
-export const CommonSelect: FC<CommonSelectProps> = ({
+export const CommonSelectList: FC<CommonSelectProps> = ({
   displayList,
   setDisplayList,
   listItems,
@@ -28,22 +30,35 @@ export const CommonSelect: FC<CommonSelectProps> = ({
   title,
   currItem,
   isLang,
+  menuToggle,
 }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const onClickSelectHandler = () => {
+    dispatch(setDisplayList(!displayList));
+  };
   return (
-    <StyledCoursesSelectWrapper isClicked={displayList} isLang={isLang}>
-      <StyledCoursesSelectHeaderWrapper isClicked={displayList}>
+    <StyledCoursesSelectWrapper
+      isClicked={displayList}
+      {...{ isLang, menuToggle }}
+      className="CommonSelectList"
+    >
+      <StyledCoursesSelectHeaderWrapper
+        isClicked={displayList}
+        {...{ isLang, menuToggle }}
+      >
         {title && <p>{t(title)}</p>}
         <StyledCoursesSelectInfo
           hover={!!listItems.length}
-          onClick={() => setDisplayList(!displayList)}
+          onClick={onClickSelectHandler}
+          {...{ isLang, menuToggle }}
         >
           <p>{currItem}</p>
           {!!listItems.length && <StyledCoursesSelectArrow />}
         </StyledCoursesSelectInfo>
       </StyledCoursesSelectHeaderWrapper>{' '}
       {!!listItems.length && (
-        <StyledCoursesList>
+        <StyledCoursesList {...{ isLang, menuToggle }}>
           {listItems.map((item: Course | string) => {
             return (
               <li

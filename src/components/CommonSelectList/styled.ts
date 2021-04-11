@@ -2,6 +2,9 @@ import {
   MAIN1_DARK_COLOR,
   WHITE_COLOR,
   MAIN1_COLOR,
+  DARK_TEXT_COLOR,
+  BG_COLOR,
+  LIGHT_TEXT_COLOR,
 } from 'appConstants/colors';
 import styled from 'styled-components';
 import { ReactComponent as CoursesSelectArrow } from 'assets/svg/coursesSelectArrow.svg';
@@ -17,11 +20,12 @@ type TStyledCoursesSelectList = {
 
 type TFooterProp = {
   isLang?: string;
+  menuToggle?: string;
 };
 
 export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
   z-index: 1;
-  display: flex;
+  display: ${({ menuToggle }) => (menuToggle ? 'none' : 'flex')};
   flex-direction: column;
   width: ${({ isLang }) => (isLang ? '82px' : '300px')};
   height: fit-content;
@@ -29,36 +33,26 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
   margin: ${({ isLang }) => !isLang && '0 20px 0 60px'};
   overflow: hidden;
   font: 400 1rem/24px 'Poppins', sans-serif;
-  color: ${WHITE_COLOR};
-  background-color: ${MAIN1_DARK_COLOR};
+  color: ${({ menuToggle }) => (menuToggle ? DARK_TEXT_COLOR : WHITE_COLOR)};
+  background-color: ${({ menuToggle }) =>
+    menuToggle ? BG_COLOR : MAIN1_DARK_COLOR};
   border-radius: 10px;
   ${HeaderAdaptiveFont}
 
   ul {
-    margin-top: ${({ isClicked }) => (isClicked ? '0px' : '-150%')};
-  }
-
-  & > div {
-    width: ${({ isLang }) => isLang && '100%'};
-    @media (max-width: 440px) {
-      & > p {
-        display: ${({ isLang }) => !isLang && 'none'};
-      }
-    }
+    margin-top: ${({ isClicked }) => (isClicked ? '-5px' : '-150%')};
   }
 
   @media (max-width: 700px) {
-    width: ${({ isLang }) => (isLang ? '75px' : '260px')};
+    width: ${({ isLang }) => !isLang && '260px'};
   }
   @media (max-width: 600px) {
     display: ${({ isLang }) => isLang && 'none'};
+    display: ${({ menuToggle }) => menuToggle && 'flex'};
     margin: ${({ isLang }) => !isLang && '0 20px 0 0'};
   }
   @media (max-width: 440px) {
     width: ${({ isLang }) => !isLang && '200px'};
-    & > div > div {
-      width: ${({ isLang }) => !isLang && '100%'};
-    }
   }
   @media (max-width: 375px) {
     width: ${({ isLang }) => !isLang && '180px'};
@@ -72,7 +66,8 @@ export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectL
   align-items: center;
   height: 40px;
   padding: 8px 15px;
-  background-color: ${MAIN1_DARK_COLOR};
+  background-color: ${({ menuToggle }) =>
+    menuToggle ? BG_COLOR : MAIN1_DARK_COLOR};
   border-radius: 10px;
   ${HeaderAdaptiveFont};
 
@@ -84,10 +79,13 @@ export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectL
   svg {
     transform: ${({ isClicked }) =>
       isClicked ? 'rotate(180deg)' : 'rotate(0deg)'};
+    path {
+      stroke: ${({ menuToggle }) => menuToggle && LIGHT_TEXT_COLOR};
+    }
   }
 `;
 
-export const StyledCoursesList = styled.ul`
+export const StyledCoursesList = styled.ul<TFooterProp>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -101,7 +99,8 @@ export const StyledCoursesList = styled.ul`
   li {
     padding: 5px;
     list-style: none;
-    background-color: ${MAIN1_COLOR};
+    background-color: ${({ menuToggle }) =>
+      menuToggle ? WHITE_COLOR : MAIN1_COLOR};
     border-radius: 10px;
     cursor: pointer;
 
@@ -115,6 +114,7 @@ export const StyledCoursesSelectInfo = styled.div<TStyledCoursesSelectInfo>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: ${({ isLang }) => isLang && '100%'};
 
   &:hover {
     cursor: ${({ hover }) => (hover ? 'pointer' : 'unset')};
@@ -128,10 +128,17 @@ export const StyledCoursesSelectInfo = styled.div<TStyledCoursesSelectInfo>`
     font-weight: 500;
     white-space: nowrap;
     text-overflow: ellipsis;
+    @media (max-width: 440px) {
+      display: ${({ isLang }) => !isLang && 'none'};
+    }
   }
 
   svg {
     ${SVGArrowAdaptive};
+  }
+
+  @media (max-width: 440px) {
+    width: ${({ isLang }) => !isLang && '100%'};
   }
 `;
 

@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { APP_NAVIGATION_LINKS } from 'appConstants';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { APP_NAVIGATION_LINKS } from 'appConstants';
 import { NavLink } from 'react-router-dom';
 import {
   StyledNav,
@@ -8,19 +9,20 @@ import {
   StyledNavListItem,
   StyledHeaderActiveElement,
 } from './styled';
-
-type TNavLink = {
-  name: string;
-  isAlwaysVisible: boolean;
-};
+import { TNavLink } from 'types';
+import { setCourseSelectOpen } from 'modules/LoginPage/loginPageReducer';
 
 type NavProps = {
-  setDisplayCoursesList: (display: boolean) => void;
   newUserCheck: boolean;
 };
 
-export const Nav: FC<NavProps> = ({ setDisplayCoursesList, newUserCheck }) => {
+export const Nav: FC<NavProps> = ({ newUserCheck }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const onClickHandler = () => {
+    dispatch(setCourseSelectOpen(false));
+  };
   return (
     <StyledNav>
       <StyledNavList>
@@ -39,7 +41,7 @@ export const Nav: FC<NavProps> = ({ setDisplayCoursesList, newUserCheck }) => {
                       to={Object.keys(APP_NAVIGATION_LINKS)[index]}
                       exact
                       activeClassName="activeNavLink"
-                      onClick={() => setDisplayCoursesList(false)}
+                      onClick={onClickHandler}
                     >
                       {t(link.name)}
                       <StyledHeaderActiveElement />

@@ -4,17 +4,16 @@ import { ReactComponent as MenuToggle } from 'assets/svg/menuToggle.svg';
 export const StyledMenuWrapper = styled.div`
   display: flex;
   height: 60px;
-  @media (max-width: 992px) {
-    height: 56px;
-  }
-  @media (max-width: 700px) {
-    height: 50px;
+
+  @media (max-width: 1260px) {
+    height: 40px;
   }
 `;
 
 export const MenuButton = styled(MenuToggle)`
   width: 0;
   height: 0;
+  cursor: pointer;
 
   @media (max-width: 1260px) {
     width: 24px;

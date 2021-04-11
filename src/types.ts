@@ -129,10 +129,19 @@ export type StateLoginPage = {
   currCourse: Course;
   currLanguage: string;
   isCommonError: boolean;
+  isBurgerMenuOpen: boolean;
+  isCourseSelectOpen: boolean;
+  isHeaderLangSelectOpen: boolean;
+  isBurgerMenuSelectOpen: boolean;
 };
 
 export type State = {
   studentsTableReducer: StateStudentsTable;
   teamsListReducer: StateTeamsList;
   loginPageReducer: StateLoginPage;
+};
+
+export type TNavLink = {
+  name: string;
+  isAlwaysVisible: boolean;
 };

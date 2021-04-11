@@ -111,9 +111,9 @@ export const GeneralAdaptiveFont = css`
 `;
 
 export const HeaderAdaptiveFont = css`
-    font-size: 1rem;
-    line-height: 24px;
-  
+  font-size: 1rem;
+  line-height: 24px;
+
   @media (max-width: 768px) {
     font-size: 0.925rem;
     line-height: 22px;
