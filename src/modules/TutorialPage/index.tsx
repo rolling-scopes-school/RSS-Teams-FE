@@ -10,11 +10,13 @@ import { tutorialNoteInfo } from './tutorialPageInfo';
 import { useSelector } from 'react-redux';
 import { selectCurrLanguage } from 'modules/LoginPage/selectors';
 import { ContentPageWrapper } from 'modules/TeamsList/styled';
+import { useTranslation } from 'react-i18next';
 
 export const TutorialPage: FC = () => {
   const currentLang = useSelector(selectCurrLanguage);
+  const { t } = useTranslation();
   const TUTORIAL_PAGE_NOTES_INFO = useCallback(
-    () => tutorialNoteInfo(currentLang),
+    () => tutorialNoteInfo(currentLang, t),
     [currentLang]
   );
 

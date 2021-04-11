@@ -17,9 +17,20 @@ export const StyledFooter = styled.footer`
   height: 110px;
   background-color: ${DARK_TEXT_COLOR};
   padding: 1.8% 4.2% 0;
+  @media (max-width: 992px) {
+    height: 100px;
+  }
+  @media (max-width: 880px) {
+    height: 80px;
+  }
+  @media (max-width: 768px) {
+    height: 65px;
+  }
+  @media (max-width: 550px) {
+    height: 60px;
+  }
   @media (max-width: 440px) {
-    height: 105px;
-    padding: 4.8% 4.2% 0;
+    height: 50px;
   }
 `;
 
@@ -37,7 +48,7 @@ export const FooterContentWrapper = styled.div`
   width: 100%;
   gap: 5.6%;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 880px) {
     display: none;
   }
 `;
@@ -53,7 +64,7 @@ export const FooterContentBlock = styled.div`
     gap: 30px;
 
     @media (max-width: 992px) {
-      gap: 0;
+      gap: 20px;
     }
 
     .contentItem {
@@ -86,7 +97,6 @@ export const FooterContentBlock = styled.div`
 export const FooterContentBlockLogo = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 33%;
 
   & > .LanguageSelect {
     ${GeneralAdaptiveFont};
@@ -104,10 +114,6 @@ export const FooterContentBlockLogo = styled.div`
         padding: 0px 5px;
       }
     }
-  }
-
-  @media (max-width: 1150px) {
-    width: 100%;
   }
 `;
 

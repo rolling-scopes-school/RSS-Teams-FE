@@ -1,11 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { RSLogo } from 'typography';
 import { StyledFooter, FooterWrapper, FooterContentBlockLogo } from './styled';
 import { Link } from 'react-router-dom';
-import { FooterContent, LangSelect } from './components';
+import { FooterContent } from './components';
 
 export const Footer: FC = () => {
-  const [displayLangList, setDisplayLangList] = useState(false);
   return (
     <StyledFooter>
       <FooterWrapper>
@@ -13,7 +12,6 @@ export const Footer: FC = () => {
           <Link to="/">
             <RSLogo login=" " />
           </Link>
-          <LangSelect {...{ displayLangList, setDisplayLangList }} />
         </FooterContentBlockLogo>
         <FooterContent />
       </FooterWrapper>

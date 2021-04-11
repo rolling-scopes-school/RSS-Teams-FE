@@ -1,9 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import myTeamExampleEN from 'assets/images/myTeamExampleEN.png';
 import myTeamExampleRU from 'assets/images/myTeamExampleRU.png';
 
-export const tutorialNoteInfo = (currentLang: string) => {
-  const { t } = useTranslation();
+export const tutorialNoteInfo = (currentLang: string, t: any) => {
   const TUTORIAL_PAGE_NOTES_INFO = [
     {
       title: 'Create team',

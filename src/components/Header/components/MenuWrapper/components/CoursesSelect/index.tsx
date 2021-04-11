@@ -4,15 +4,8 @@ import { CURRENT_COURSE } from 'appConstants';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { Course } from 'types';
-import {
-  StyledCoursesSelectWrapper,
-  StyledCoursesSelectHeaderWrapper,
-  StyledCoursesList,
-  StyledCoursesSelectInfo,
-  StyledCoursesSelectArrow,
-} from './styled';
-import { useTranslation } from 'react-i18next';
 import { setCurrCourse } from 'modules/LoginPage/loginPageReducer';
+import { CommonSelect } from './components/CommonSelect';
 
 type CoursesSelectProps = {
   displayCoursesList: boolean;
@@ -24,7 +17,6 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
   setDisplayCoursesList,
 }) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
 
@@ -38,31 +30,13 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
   };
 
   return (
-    <StyledCoursesSelectWrapper isClicked={displayCoursesList}>
-      <StyledCoursesSelectHeaderWrapper isClicked={displayCoursesList}>
-        <p>{t('Course')}</p>
-        <StyledCoursesSelectInfo
-          hover={!!userCourses.length}
-          onClick={() => setDisplayCoursesList(!displayCoursesList)}
-        >
-          <p>{currCourse.name}</p>
-          {!!userCourses.length && <StyledCoursesSelectArrow />}
-        </StyledCoursesSelectInfo>
-      </StyledCoursesSelectHeaderWrapper>{' '}
-      {!!userCourses.length && (
-        <StyledCoursesList>
-          {userCourses.map((course: Course) => {
-            return (
-              <li
-                key={JSON.stringify(course)}
-                onClick={() => onCourseChange(course)}
-              >
-                {course.name}
-              </li>
-            );
-          })}
-        </StyledCoursesList>
-      )}
-    </StyledCoursesSelectWrapper>
+    <CommonSelect
+      title="Course"
+      listItems={userCourses}
+      onClickHandler={onCourseChange}
+      currItem={currCourse.name}
+      displayList={displayCoursesList}
+      setDisplayList={setDisplayCoursesList}
+    />
   );
 };

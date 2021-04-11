@@ -51,9 +51,6 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
     width: 76px;
     height: 24px;
   }
-  @media (max-width: 700px) {
-    margin-bottom: 0;
-  }
   @media (max-width: 550px) {
     width: 72px;
     height: 22px;
@@ -61,7 +58,6 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   @media (max-width: 440px) {
     width: 70px;
     height: 20px;
-    margin-bottom: -1%;
   }
 `;
 
@@ -111,6 +107,20 @@ export const GeneralAdaptiveFont = css`
   @media (max-width: 440px) {
     font-size: 0.68rem;
     line-height: 18px;
+  }
+`;
+
+export const HeaderAdaptiveFont = css`
+    font-size: 1rem;
+    line-height: 24px;
+  
+  @media (max-width: 768px) {
+    font-size: 0.925rem;
+    line-height: 22px;
+  }
+  @media (max-width: 440px) {
+    font-size: 0.85rem;
+    line-height: 20px;
   }
 `;
 

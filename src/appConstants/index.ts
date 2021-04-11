@@ -28,7 +28,7 @@ export const CURRENT_COURSE = 'currentCourse';
 export const CURRENT_LANG = 'currentLanguage';
 
 export const TABLE_HEADERS = [
-  '#',
+  '№',
   'First / Last Name',
   'Score',
   'Team Number',
@@ -40,7 +40,7 @@ export const TABLE_HEADERS = [
 ];
 
 export const TABLE_TEAMS_HEADERS = [
-  '#',
+  '№',
   'First / Last Name',
   'Score',
   'Telegram',
@@ -85,7 +85,7 @@ export const APP_NAVIGATION_LINKS = {
     isAlwaysVisible: true,
   },
   ['/tutorial']: {
-    name: 'FAQ',
+    name: 'Tutorial',
     isAlwaysVisible: true,
   },
 };
@@ -94,8 +94,8 @@ export const DEFAULT_LANGUAGE = 'en';
 export const LANGUAGES: string[] = [DEFAULT_LANGUAGE, 'ru'];
 
 export const Language: { [key: string]: string } = {
-  en: 'English',
-  ru: 'Русский',
+  en: 'EN',
+  ru: 'RU',
 };
 
 export const FOOTER_INFO = [
