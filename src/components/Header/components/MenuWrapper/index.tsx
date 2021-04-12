@@ -31,13 +31,13 @@ export const MenuWrapper: FC = () => {
       {newUserCheck && (
         <>
           <CoursesSelect />
-          <LangSelect
-            displayLangList={isHeaderLangSelectOpen}
-            setDisplayLangList={setHeaderLangSelectOpen}
-          />
-          <MenuButton onClick={onClickMenuToggle} />
         </>
       )}
+      <LangSelect
+        displayLangList={isHeaderLangSelectOpen}
+        setDisplayLangList={setHeaderLangSelectOpen}
+      />
+      <MenuButton onClick={onClickMenuToggle} />
     </StyledMenuWrapper>
   );
 };
