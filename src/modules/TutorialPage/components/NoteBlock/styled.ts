@@ -1,7 +1,7 @@
 import {
   DARK_TEXT_COLOR,
   MAIN1_COLOR,
-  NOTE_BLOCK_COLOR,
+  DASHBOARD_HEADER_BG_COLOR,
   WHITE_COLOR,
 } from 'appConstants/colors';
 import styled from 'styled-components';
