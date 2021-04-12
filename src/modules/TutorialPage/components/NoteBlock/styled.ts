@@ -16,7 +16,7 @@ export const NoteWrapper = styled.div<NoteProps>`
   width: 100%;
   margin-bottom: ${({ isNote }) => isNote && '20px'};
   padding: ${({ isNote }) => isNote && '30px'};
-  background-color: ${({ isNote }) => isNote && NOTE_BLOCK_COLOR};
+  background-color: ${({ isNote }) => isNote && DASHBOARD_HEADER_BG_COLOR};
   border-radius: 20px;
 
   p {
