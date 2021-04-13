@@ -130,9 +130,6 @@ export type StateLoginPage = {
   currLanguage: string;
   isCommonError: boolean;
   isBurgerMenuOpen: boolean;
-  isCourseSelectOpen: boolean;
-  isHeaderLangSelectOpen: boolean;
-  isBurgerMenuSelectOpen: boolean;
 };
 
 export type State = {

@@ -15,14 +15,23 @@ export const BurgerMenuWrapper = styled.div<BurgerMenuProps>`
   z-index: 3;
   top: 0;
   display: flex;
-  justify-content: flex-end;
   width: 100vw;
   height: 100vh;
-  background: ${({ isBurgerMenuOpen }) =>
-    isBurgerMenuOpen ? OVERLAY_COLOR : 'none'};
-  transition: all 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out;
   transform: ${({ isBurgerMenuOpen }) =>
     isBurgerMenuOpen ? 'translateX(0)' : 'translateX(100%)'};
+`;
+
+export const BurgerMenuOverlay = styled.div<BurgerMenuProps>`
+  width: calc(100% - 250px);
+  height: 100%;
+  background-color: ${({ isBurgerMenuOpen }) =>
+    isBurgerMenuOpen ? OVERLAY_COLOR : 'none'};
+  transition: background-color 0.6s ease-in-out;
+
+  @media (max-width: 440px) {
+    width: calc(100% - 180px);
+  }
 `;
 
 export const BurgerMenuLayout = styled.nav`

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { APP_NAVIGATION_LINKS } from 'appConstants';
 import { NavLink } from 'react-router-dom';
@@ -10,7 +9,6 @@ import {
   StyledHeaderActiveElement,
 } from './styled';
 import { TNavLink } from 'types';
-import { setCourseSelectOpen } from 'modules/LoginPage/loginPageReducer';
 
 type NavProps = {
   newUserCheck: boolean;
@@ -18,11 +16,7 @@ type NavProps = {
 
 export const Nav: FC<NavProps> = ({ newUserCheck }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
 
-  const onClickHandler = () => {
-    dispatch(setCourseSelectOpen(false));
-  };
   return (
     <StyledNav>
       <StyledNavList>
@@ -41,7 +35,6 @@ export const Nav: FC<NavProps> = ({ newUserCheck }) => {
                       to={Object.keys(APP_NAVIGATION_LINKS)[index]}
                       exact
                       activeClassName="activeNavLink"
-                      onClick={onClickHandler}
                     >
                       {t(link.name)}
                       <StyledHeaderActiveElement />

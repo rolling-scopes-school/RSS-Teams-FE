@@ -5,20 +5,13 @@ import { CoursesSelect } from './components/CoursesSelect';
 import { Nav } from './components/Nav';
 import { MenuButton, StyledMenuWrapper } from './styled';
 import { LangSelect } from './components/LangSelect';
-import {
-  setBurgerMenuOpen,
-  setHeaderLangSelectOpen,
-} from 'modules/LoginPage/loginPageReducer';
-import {
-  selectIsBurgerMenuOpen,
-  selectIsHeaderLangSelectOpen,
-} from 'modules/LoginPage/selectors';
+import { setBurgerMenuOpen } from 'modules/LoginPage/loginPageReducer';
+import { selectIsBurgerMenuOpen } from 'modules/LoginPage/selectors';
 
 export const MenuWrapper: FC = () => {
   const dispatch = useDispatch();
   const userData = useSelector(selectUserData);
   const isBurgerMenuOpen = useSelector(selectIsBurgerMenuOpen);
-  const isHeaderLangSelectOpen = useSelector(selectIsHeaderLangSelectOpen);
 
   const newUserCheck = !!userData?.courses.length;
   const onClickMenuToggle = () => {
@@ -33,10 +26,7 @@ export const MenuWrapper: FC = () => {
           <CoursesSelect />
         </>
       )}
-      <LangSelect
-        displayLangList={isHeaderLangSelectOpen}
-        setDisplayLangList={setHeaderLangSelectOpen}
-      />
+      <LangSelect />
       <MenuButton onClick={onClickMenuToggle} />
     </StyledMenuWrapper>
   );

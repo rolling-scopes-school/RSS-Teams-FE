@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { FC, useEffect, useRef } from 'react';
 import { Course } from 'types';
 import {
   StyledCoursesSelectWrapper,
@@ -32,11 +31,29 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
   isLang,
   menuToggle,
 }) => {
+  const selectRef = useRef(null);
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const onClickSelectHandler = () => {
-    dispatch(setDisplayList(!displayList));
-  };
+
+  useEffect(() => {
+    const closeEventHandler = (ev: MouseEvent) => {
+      if (
+        ((selectRef.current as unknown) as HTMLDivElement).contains(
+          ev.target as HTMLDivElement
+        )
+      ) {
+        setDisplayList(!displayList);
+        return;
+      }
+      setDisplayList(false);
+    };
+
+    document && document.addEventListener('click', closeEventHandler);
+
+    return (): void => {
+      document && document.removeEventListener('click', closeEventHandler);
+    };
+  }, [displayList, setDisplayList]);
+
   return (
     <StyledCoursesSelectWrapper
       isClicked={displayList}
@@ -50,7 +67,7 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
         {title && <p>{t(title)}</p>}
         <StyledCoursesSelectInfo
           hover={!!listItems.length}
-          onClick={onClickSelectHandler}
+          ref={selectRef}
           {...{ isLang, menuToggle }}
         >
           <p>{currItem}</p>

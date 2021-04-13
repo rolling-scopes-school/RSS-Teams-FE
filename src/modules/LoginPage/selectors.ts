@@ -13,12 +13,3 @@ export const selectIsCommonError = (state: State) =>
 
 export const selectIsBurgerMenuOpen = (state: State) =>
   state.loginPageReducer.isBurgerMenuOpen;
-
-export const selectIsCourseSelectOpen = (state: State) =>
-  state.loginPageReducer.isCourseSelectOpen;
-
-export const selectIsHeaderLangSelectOpen = (state: State) =>
-  state.loginPageReducer.isHeaderLangSelectOpen;
-
-export const selectIsBurgerMenuSelectOpen = (state: State) =>
-  state.loginPageReducer.isBurgerMenuSelectOpen;

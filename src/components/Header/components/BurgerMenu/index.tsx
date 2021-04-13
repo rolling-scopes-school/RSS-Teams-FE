@@ -1,21 +1,16 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import {
-  selectIsBurgerMenuOpen,
-  selectIsBurgerMenuSelectOpen,
-} from 'modules/LoginPage/selectors';
+import { selectIsBurgerMenuOpen } from 'modules/LoginPage/selectors';
 import {
   BurgerMenuWrapper,
   BurgerMenuLayout,
   CrossButton,
   BurgerMenuNavList,
   BurgerMenuNavListItem,
+  BurgerMenuOverlay,
 } from './styled';
-import {
-  setBurgerMenuOpen,
-  setBurgerMenuSelectOpen,
-} from 'modules/LoginPage/loginPageReducer';
+import { setBurgerMenuOpen } from 'modules/LoginPage/loginPageReducer';
 import { APP_NAVIGATION_LINKS } from 'appConstants';
 import { useTranslation } from 'react-i18next';
 import { TNavLink } from 'types';
@@ -27,21 +22,20 @@ type BurgerMenuProps = {
 
 export const BurgerMenu: FC<BurgerMenuProps> = ({ newUserCheck }) => {
   const dispatch = useDispatch();
-  const isBurgerMenuOpen = useSelector(selectIsBurgerMenuOpen);
-  const isBurgerMenuSelectOpen = useSelector(selectIsBurgerMenuSelectOpen);
   const { t } = useTranslation();
+  const isBurgerMenuOpen = useSelector(selectIsBurgerMenuOpen);
 
   const onClickMenuToggle = () => {
     dispatch(setBurgerMenuOpen(!isBurgerMenuOpen));
-    dispatch(setBurgerMenuSelectOpen(false));
-  };
-  const onClickMenuLayout = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
   };
 
   return (
-    <BurgerMenuWrapper {...{ isBurgerMenuOpen }} onClick={onClickMenuToggle}>
-      <BurgerMenuLayout onClick={onClickMenuLayout}>
+    <BurgerMenuWrapper {...{ isBurgerMenuOpen }}>
+      <BurgerMenuOverlay
+        {...{ isBurgerMenuOpen }}
+        onClick={onClickMenuToggle}
+      />
+      <BurgerMenuLayout>
         <CrossButton onClick={onClickMenuToggle} />
         <BurgerMenuNavList>
           {Object.values(APP_NAVIGATION_LINKS).map(
@@ -66,11 +60,7 @@ export const BurgerMenu: FC<BurgerMenuProps> = ({ newUserCheck }) => {
             }
           )}
         </BurgerMenuNavList>
-        <LangSelect
-          menuToggle="menuToggle"
-          displayLangList={isBurgerMenuSelectOpen}
-          setDisplayLangList={setBurgerMenuSelectOpen}
-        />
+        <LangSelect menuToggle="menuToggle" />
       </BurgerMenuLayout>
     </BurgerMenuWrapper>
   );
