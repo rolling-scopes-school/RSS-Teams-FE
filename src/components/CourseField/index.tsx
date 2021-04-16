@@ -1,4 +1,4 @@
-import React, { FC, SelectHTMLAttributes, useState } from 'react';
+import React, { FC, SelectHTMLAttributes } from 'react';
 import { Label, Select, SelectInner } from 'typography';
 import { FieldWrapper, SelectCourse, PlusButton } from './styled';
 import { ValidationAlert } from '../InputField/styled';
@@ -32,8 +32,6 @@ export const CourseField: FC<SelectFieldProps> = ({
   isValid,
   ...rest
 }) => {
-  const [selectedCourse, setSelectedCourse] = useState<any>(0);
-  const [isAddCourse, setAddCourse] = useState(false);
   const { t } = useTranslation();
   const courseOptions = courses
     ? courses.map((course: Course) => {
@@ -52,12 +50,11 @@ export const CourseField: FC<SelectFieldProps> = ({
           <SelectInner
             placeholder={t(placeholder)}
             ref={register}
-            value={selectedCourse.id || 0}
+            value={0}
             onChange={(e: any) => {
-              setSelectedCourse(
+              onAdd(
                 courses.find((course: Course) => course.id === e.target.value)
               );
-              setAddCourse(true);
             }}
             {...rest}
           >
@@ -68,15 +65,7 @@ export const CourseField: FC<SelectFieldProps> = ({
           </SelectInner>
         </Select>
         {multi && (
-          <PlusButton
-            onClick={() => {
-              onAdd(selectedCourse);
-              setSelectedCourse(0);
-              setAddCourse(false);
-            }}
-            type="button"
-            active={isAddCourse}
-          >
+          <PlusButton type="button" active={false}>
             <CheckSvgIcon />
           </PlusButton>
         )}
