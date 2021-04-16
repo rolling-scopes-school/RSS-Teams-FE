@@ -24,6 +24,9 @@ export const selectIsActiveModalUpdateSocialLink = (state: State) =>
 export const selectIsActiveModalSortStudents = (state: State) =>
   state.teamsListReducer.isActiveModalSortStudents;
 
+export const selectIsActiveModalLeavePage = (state: State) =>
+  state.teamsListReducer.isActiveModalLeavePage;
+
 export const selectTeamMemberExpelId = (state: State) =>
   state.teamsListReducer.teamMemberExpelId;
 

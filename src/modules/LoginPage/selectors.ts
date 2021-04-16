@@ -13,3 +13,9 @@ export const selectIsCommonError = (state: State) =>
 
 export const selectIsBurgerMenuOpen = (state: State) =>
   state.loginPageReducer.isBurgerMenuOpen;
+
+export const selectIsEditProfileDataChange = (state: State) =>
+  state.loginPageReducer.isEditProfileDataChange;
+
+export const selectPathToThePage = (state: State) =>
+  state.loginPageReducer.pathToThePage;

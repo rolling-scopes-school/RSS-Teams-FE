@@ -8,19 +8,24 @@ import { LangSelect } from './components/LangSelect';
 import { setBurgerMenuOpen } from 'modules/LoginPage/loginPageReducer';
 import { selectIsBurgerMenuOpen } from 'modules/LoginPage/selectors';
 
-export const MenuWrapper: FC = () => {
+type MenuWrapperProps = {
+  navOnClickHandler: (e: React.MouseEvent<HTMLElement>, path: string) => void;
+};
+
+export const MenuWrapper: FC<MenuWrapperProps> = ({ navOnClickHandler }) => {
   const dispatch = useDispatch();
   const userData = useSelector(selectUserData);
   const isBurgerMenuOpen = useSelector(selectIsBurgerMenuOpen);
 
   const newUserCheck = !!userData?.courses.length;
+
   const onClickMenuToggle = () => {
     dispatch(setBurgerMenuOpen(!isBurgerMenuOpen));
   };
 
   return (
     <StyledMenuWrapper>
-      <Nav {...{ newUserCheck }} />
+      <Nav {...{ newUserCheck, navOnClickHandler }} />
       {newUserCheck && (
         <>
           <CoursesSelect />

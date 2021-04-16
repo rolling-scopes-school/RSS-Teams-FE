@@ -18,9 +18,13 @@ import { LangSelect } from '../MenuWrapper/components/LangSelect';
 
 type BurgerMenuProps = {
   newUserCheck: boolean;
+  navOnClickHandler: (e: React.MouseEvent<HTMLElement>, path: string) => void;
 };
 
-export const BurgerMenu: FC<BurgerMenuProps> = ({ newUserCheck }) => {
+export const BurgerMenu: FC<BurgerMenuProps> = ({
+  newUserCheck,
+  navOnClickHandler,
+}) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const isBurgerMenuOpen = useSelector(selectIsBurgerMenuOpen);
@@ -48,7 +52,13 @@ export const BurgerMenu: FC<BurgerMenuProps> = ({ newUserCheck }) => {
                         to={Object.keys(APP_NAVIGATION_LINKS)[index]}
                         exact
                         activeClassName="activeNavLink"
-                        onClick={onClickMenuToggle}
+                        onClick={(e) => {
+                          onClickMenuToggle();
+                          navOnClickHandler(
+                            e,
+                            Object.keys(APP_NAVIGATION_LINKS)[index]
+                          );
+                        }}
                       >
                         {t(link.name)}
                       </NavLink>

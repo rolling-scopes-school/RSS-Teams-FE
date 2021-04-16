@@ -2,11 +2,21 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldError, useForm } from 'react-hook-form';
-import { Loader, InputField, CourseField, ErrorModal } from 'components';
+import {
+  Loader,
+  InputField,
+  CourseField,
+  ErrorModal,
+  ModalExpel,
+} from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
 import { Button, AdditionalWrapper } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
-import { selectIsCommonError, selectToken } from 'modules/LoginPage/selectors';
+import {
+  selectIsCommonError,
+  selectPathToThePage,
+  selectToken,
+} from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput, User } from 'types';
 import { formFields } from './formFields';
 import {
@@ -28,6 +38,9 @@ import {
 import { useTranslation } from 'react-i18next';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
 import { setCourse } from 'modules/LoginPage/loginPageMiddleware';
+import { setEditProfileDataChange } from 'modules/LoginPage/loginPageReducer';
+import { activeModalLeavePage } from 'modules/TeamsList/teamsListReducer';
+import { selectIsActiveModalLeavePage } from 'modules/TeamsList/selectors';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
@@ -35,6 +48,8 @@ export const EditProfile: FC = () => {
   const userData = useSelector(selectUserData);
   const isCommonError = useSelector(selectIsCommonError);
   const { t } = useTranslation();
+  const isActiveModalLeavePage = useSelector(selectIsActiveModalLeavePage);
+  const pathToThePage = useSelector(selectPathToThePage);
 
   const oldCourses: IOldCourses[] = userData.courses.map((course: Course) => ({
     ...course,
@@ -91,6 +106,7 @@ export const EditProfile: FC = () => {
       ...inputValues,
       [name]: value.trim(),
     });
+    dispatch(setEditProfileDataChange(true));
   };
 
   const onSubmit = () => {
@@ -108,6 +124,7 @@ export const EditProfile: FC = () => {
     } else {
       setValidCoursesList(false);
     }
+    dispatch(setEditProfileDataChange(false));
   };
 
   const localCourseUpdate = (course: IOldCourses) => {
@@ -133,13 +150,20 @@ export const EditProfile: FC = () => {
       setValidCoursesList(true);
     }
   };
+
+  const onSubmitLeavePage = () => {
+    history.push(pathToThePage);
+    dispatch(setEditProfileDataChange(false));
+  };
+
   useEffect(() => {
     if (userData.id !== '' && !inputValues.id) {
       setInputValues(defaultData);
       setUserCourses(oldCourses);
       reset(defaultData);
+      dispatch(setEditProfileDataChange(false));
     }
-  }, [reset, inputValues, defaultData, userData, oldCourses]);
+  }, [reset, inputValues, defaultData, userData, oldCourses, dispatch]);
 
   if (!loginToken) return <Redirect to={'/login'} />;
   if (loading || loadingM) return <Loader />;
@@ -227,6 +251,16 @@ export const EditProfile: FC = () => {
         </EditProfileWrapper>
         <AdditionalWrapper />
       </CommonWrapper>
+      <ModalExpel
+        title="Data is unsaved"
+        text="Are sure want to leave page without saving data?"
+        open={isActiveModalLeavePage}
+        onSubmit={onSubmitLeavePage}
+        isCrossIconVisible={false}
+        onClose={() => dispatch(activeModalLeavePage(false))}
+        okText="Yes"
+        cancelText="No"
+      />
     </FormWrapper>
   );
 };

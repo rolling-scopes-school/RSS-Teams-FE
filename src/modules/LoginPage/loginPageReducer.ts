@@ -5,6 +5,8 @@ import {
   SET_CURR_LANG,
   SET_TOKEN,
   SET_BURGER_MENU_OPEN,
+  SET_EDIT_PROFILE_DATA_CHANGE,
+  SET_PATH_TO_THE_PAGE,
 } from 'appConstants';
 import { createActions, handleActions } from 'redux-actions';
 import { StateLoginPage } from 'types';
@@ -18,6 +20,8 @@ export const loginPageState = {
   currLanguage: DEFAULT_LANGUAGE,
   isCommonError: false,
   isBurgerMenuOpen: false,
+  isEditProfileDataChange: false,
+  pathToThePage: '',
 };
 
 export const {
@@ -26,12 +30,20 @@ export const {
   setCurrLang,
   setCommonError,
   setBurgerMenuOpen,
+  setEditProfileDataChange,
+  setPathToThePage,
 } = createActions({
   SET_TOKEN: (loginToken) => ({ loginToken }),
   SET_CURR_COURSE: (currCourse) => ({ currCourse }),
   SET_CURR_LANG: (currLanguage) => ({ currLanguage }),
   SET_COMMON_ERROR: (isCommonError) => ({ isCommonError }),
   SET_BURGER_MENU_OPEN: (isBurgerMenuOpen) => ({ isBurgerMenuOpen }),
+  SET_EDIT_PROFILE_DATA_CHANGE: (isEditProfileDataChange) => ({
+    isEditProfileDataChange,
+  }),
+  SET_PATH_TO_THE_PAGE: (pathToThePage) => ({
+    pathToThePage,
+  }),
 });
 
 export const loginPageReducer = handleActions<StateLoginPage, any>(
@@ -55,6 +67,17 @@ export const loginPageReducer = handleActions<StateLoginPage, any>(
     [SET_BURGER_MENU_OPEN]: (state, { payload: { isBurgerMenuOpen } }) => ({
       ...state,
       isBurgerMenuOpen,
+    }),
+    [SET_EDIT_PROFILE_DATA_CHANGE]: (
+      state,
+      { payload: { isEditProfileDataChange } }
+    ) => ({
+      ...state,
+      isEditProfileDataChange,
+    }),
+    [SET_PATH_TO_THE_PAGE]: (state, { payload: { pathToThePage } }) => ({
+      ...state,
+      pathToThePage,
     }),
   },
   loginPageState

@@ -114,5 +114,7 @@
   "If you have not found a team": "If you have not found a team, you should just register in the app and we will find a team for you when registration closes.",
   "If the team has fewer members than is required for the task": "If the team has fewer members than is required for the task, then it will be automatically staffed to the required number when registration closes.",
   "You will see the following after joining the team": "You will see the following after joining the team:",
-  "To leave the team": "To leave the team, click the “Leave Team” button or ask someone from your teammates to exclude you from the team."  
+  "To leave the team": "To leave the team, click the “Leave Team” button or ask someone from your teammates to exclude you from the team.",
+  "Data is unsaved": "Data is unsaved",
+  "Are sure want to leave page without saving data?": "Are sure want to leave page without saving data?"
 }

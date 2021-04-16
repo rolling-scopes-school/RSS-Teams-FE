@@ -12,9 +12,10 @@ import { TNavLink } from 'types';
 
 type NavProps = {
   newUserCheck: boolean;
+  navOnClickHandler: (e: React.MouseEvent<HTMLElement>, path: string) => void;
 };
 
-export const Nav: FC<NavProps> = ({ newUserCheck }) => {
+export const Nav: FC<NavProps> = ({ newUserCheck, navOnClickHandler }) => {
   const { t } = useTranslation();
 
   return (
@@ -35,6 +36,12 @@ export const Nav: FC<NavProps> = ({ newUserCheck }) => {
                       to={Object.keys(APP_NAVIGATION_LINKS)[index]}
                       exact
                       activeClassName="activeNavLink"
+                      onClick={(e) =>
+                        navOnClickHandler(
+                          e,
+                          Object.keys(APP_NAVIGATION_LINKS)[index]
+                        )
+                      }
                     >
                       {t(link.name)}
                       <StyledHeaderActiveElement />

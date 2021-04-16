@@ -98,6 +98,7 @@ export type StateTeamsList = {
   isActiveModalUpdateSocialLink: boolean;
   isActiveModalRemoveCourse: boolean;
   isActiveModalSortStudents: boolean;
+  isActiveModalLeavePage: boolean;
   teamMemberExpelId: string;
   teamPassword: string;
   socialLink: string;
@@ -130,6 +131,8 @@ export type StateLoginPage = {
   currLanguage: string;
   isCommonError: boolean;
   isBurgerMenuOpen: boolean;
+  isEditProfileDataChange: boolean;
+  pathToThePage: string;
 };
 
 export type State = {
