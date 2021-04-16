@@ -2,7 +2,6 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldError, useForm } from 'react-hook-form';
-
 import { Loader, InputField, CourseField, ErrorModal } from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
 import { Button, AdditionalWrapper } from 'typography';
@@ -10,7 +9,6 @@ import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectIsCommonError, selectToken } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput, User } from 'types';
 import { formFields } from './formFields';
-
 import {
   EditProfileWrapper,
   InputsWrapper,
@@ -22,18 +20,14 @@ import {
   CommonWrapper,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import {
-  CURRENT_YEAR,
-  CURRENT_COURSE,
-  INPUT_VALUES_EDIT_PROFILE,
-} from 'appConstants';
+import { CURRENT_YEAR, INPUT_VALUES_EDIT_PROFILE } from 'appConstants';
 import {
   IOldCourses,
   UserCourseListItem,
 } from './components/UserCourseListItem';
 import { useTranslation } from 'react-i18next';
-import { setCurrCourse } from 'modules/LoginPage/loginPageReducer';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
+import { setCourse } from 'modules/LoginPage/loginPageMiddleware';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
@@ -107,8 +101,7 @@ export const EditProfile: FC = () => {
             (course: Course) =>
               course.id === userCourses[userCourses.length - 1].id
           ) ?? updateUser.courses[0];
-        localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
-        dispatch(setCurrCourse(newCurrentCourse));
+        dispatch(setCourse(newCurrentCourse));
         dispatch(setUserData(updateUser));
         history.push('/');
       });

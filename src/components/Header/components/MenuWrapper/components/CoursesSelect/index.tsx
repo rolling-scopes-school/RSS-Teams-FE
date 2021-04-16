@@ -1,11 +1,10 @@
 import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CURRENT_COURSE } from 'appConstants';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { Course } from 'types';
-import { setCurrCourse } from 'modules/LoginPage/loginPageReducer';
 import { CommonSelectList } from 'components';
+import { setCourse } from 'modules/LoginPage/loginPageMiddleware';
 
 export const CoursesSelect: FC = () => {
   const [isCourseSelectOpen, setCourseSelectOpen] = useState(false);
@@ -18,8 +17,7 @@ export const CoursesSelect: FC = () => {
 
   const onCourseChange = (course: Course) => {
     setCourseSelectOpen(false);
-    localStorage.setItem(CURRENT_COURSE, JSON.stringify(course));
-    dispatch(setCurrCourse(course));
+    dispatch(setCourse(course));
   };
 
   return (
