@@ -79,7 +79,7 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
           {listItems.map((item: Course | string) => {
             return (
               <li
-                key={typeof item === 'string' ? item : JSON.stringify(item)}
+                key={typeof item === 'string' ? item : item.id}
                 onClick={() => onClickHandler(item)}
               >
                 {typeof item === 'string' ? Language[item] : item.name}
