@@ -18,7 +18,11 @@ import {
   selectToken,
 } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput, User } from 'types';
-import { checkIsCoursesEqual, formFields } from './formFields';
+import {
+  checkIsCoursesEqual,
+  formFields,
+  checkIsFormFieldsEqual,
+} from './formFields';
 import {
   EditProfileWrapper,
   InputsWrapper,
@@ -106,7 +110,17 @@ export const EditProfile: FC = () => {
       ...inputValues,
       [name]: value.trim(),
     });
-    dispatch(setEditProfileDataChange(true));
+    dispatch(
+      setEditProfileDataChange(
+        !checkIsFormFieldsEqual(
+          {
+            ...inputValues,
+            [name]: value.trim(),
+          },
+          userData
+        )
+      )
+    );
   };
 
   const onSubmit = () => {
@@ -147,10 +161,7 @@ export const EditProfile: FC = () => {
         copyCourses.splice(index, 1);
       }
 
-      if (
-        checkIsCoursesEqual(copyCourses) ===
-        checkIsCoursesEqual(userData.courses)
-      ) {
+      if (checkIsCoursesEqual(copyCourses, userData.courses)) {
         dispatch(setEditProfileDataChange(false));
       }
 
