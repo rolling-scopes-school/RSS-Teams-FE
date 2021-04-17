@@ -1,3 +1,4 @@
+import { Course } from 'types';
 import { InputFieldProps } from '../../components/InputField';
 
 export const formFields: InputFieldProps[] = [
@@ -142,3 +143,7 @@ export const formFields: InputFieldProps[] = [
     },
   },
 ];
+
+export const checkIsCoursesEqual = (courses: Course[]) => {
+  return JSON.stringify(courses.map((course) => course.name).sort());
+};

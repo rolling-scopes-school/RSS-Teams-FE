@@ -18,7 +18,7 @@ import {
   selectToken,
 } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput, User } from 'types';
-import { formFields } from './formFields';
+import { checkIsCoursesEqual, formFields } from './formFields';
 import {
   EditProfileWrapper,
   InputsWrapper,
@@ -131,6 +131,7 @@ export const EditProfile: FC = () => {
     if (course) {
       setUserCourses([...userCourses, course]);
       setValidCoursesList(true);
+      dispatch(setEditProfileDataChange(true));
     }
   };
 
@@ -144,6 +145,13 @@ export const EditProfile: FC = () => {
 
       if (index >= 0) {
         copyCourses.splice(index, 1);
+      }
+
+      if (
+        checkIsCoursesEqual(copyCourses) ===
+        checkIsCoursesEqual(userData.courses)
+      ) {
+        dispatch(setEditProfileDataChange(false));
       }
 
       setUserCourses([...copyCourses]);
