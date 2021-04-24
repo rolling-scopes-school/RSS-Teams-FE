@@ -30,7 +30,7 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
   width: ${({ isLang }) => (isLang ? '82px' : '300px')};
   height: fit-content;
   min-height: 40px;
-  margin: ${({ isLang }) => !isLang && '0 20px 0 60px'};
+  margin: ${({ isLang }) => !isLang && '0 20px 0 0'};
   overflow: hidden;
   font: 400 1rem/24px 'Poppins', sans-serif;
   color: ${({ menuToggle }) => (menuToggle ? DARK_TEXT_COLOR : WHITE_COLOR)};

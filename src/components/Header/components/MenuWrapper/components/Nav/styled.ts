@@ -16,6 +16,7 @@ export const StyledNav = styled.nav`
   justify-content: center;
   align-items: center;
   align-self: flex-end;
+  margin-right: 60px;
   font: 400 1rem/24px 'Poppins', sans-serif;
 `;
 

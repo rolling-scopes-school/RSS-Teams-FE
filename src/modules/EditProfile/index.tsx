@@ -89,8 +89,7 @@ export const EditProfile: FC = () => {
 
   const dispatch = useDispatch();
 
-  const isUserNew = userData.telegram === null;
-  const isUserWithoutCourse = !!userData.courses.length;
+  const isUserNew = !!userData.courses.length;
 
   const currentCourses = courses
     ?.filter(({ name }: Course) => name.includes(`${CURRENT_YEAR}`))
@@ -254,7 +253,7 @@ export const EditProfile: FC = () => {
             </CoursesWrapper>
           </InputsWrapper>
           <ButtonWrapper>
-            {!isUserNew && isUserWithoutCourse && (
+            {isUserNew && (
               <Button
                 type="button"
                 bgc={BG_COLOR}
