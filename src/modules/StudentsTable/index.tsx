@@ -20,6 +20,7 @@ import { TFilterForm } from 'types';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { setFilterData } from './studentsTableReducer';
+import { ContentPageWrapper } from 'typography';
 
 export const StudentsTable: FC = () => {
   const [page, setPage] = useState<number>(0);
@@ -75,44 +76,42 @@ export const StudentsTable: FC = () => {
   };
 
   return (
-    <StudentTableWrapper>
-      <TeamsTitleWrapper>
-        <TableTitle>{t('Dashboard')}</TableTitle>
-        {isValuesEqual && !isFilterOpen && (
+    <ContentPageWrapper>
+      <StudentTableWrapper>
+        <TeamsTitleWrapper>
+          <TableTitle>{t('Dashboard')}</TableTitle>
+          {isValuesEqual && !isFilterOpen && (
+            <FilterButton clearBtn outerBtn onClick={onClickClearBtnHandler}>
+              {<img src={crossIcon} alt="clear filter icon" />}
+              {t('Clear filter')}
+            </FilterButton>
+          )}
           <FilterButton
-            clearBtn={true}
-            outerBtn={true}
-            onClick={onClickClearBtnHandler}
+            onClick={onClickOpenFilterBtnHandler}
+            bgColor={WHITE_COLOR}
           >
-            {<img src={crossIcon} alt="clear filter icon" />}
-            {t('Clear filter')}
+            {<img src={filterIcon} alt="Filter icon" />} {t('Filter')}
           </FilterButton>
+          {isFilterOpen && (
+            <FilterForm
+              {...{
+                inputValues,
+                setInputValues,
+                setIsFilterOpen,
+                setPage,
+                register,
+                handleSubmit,
+                errors,
+                reset,
+              }}
+            />
+          )}
+        </TeamsTitleWrapper>
+        <Dashboard users={users.results} page={page} />
+        {!!users.results.length && (
+          <Pagination pageCount={pageCount} changePage={setPage} page={page} />
         )}
-        <FilterButton
-          onClick={onClickOpenFilterBtnHandler}
-          bgColor={WHITE_COLOR}
-        >
-          {<img src={filterIcon} alt="Filter icon" />} {t('Filter')}
-        </FilterButton>
-        {isFilterOpen && (
-          <FilterForm
-            {...{
-              inputValues,
-              setInputValues,
-              setIsFilterOpen,
-              setPage,
-              register,
-              handleSubmit,
-              errors,
-              reset,
-            }}
-          />
-        )}
-      </TeamsTitleWrapper>
-      <Dashboard users={users.results} page={page} />
-      {!!users.results.length && (
-        <Pagination pageCount={pageCount} changePage={setPage} page={page} />
-      )}
-    </StudentTableWrapper>
+      </StudentTableWrapper>
+    </ContentPageWrapper>
   );
 };

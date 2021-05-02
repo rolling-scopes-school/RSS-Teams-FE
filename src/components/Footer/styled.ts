@@ -15,11 +15,23 @@ export const StyledFooter = styled.footer`
   align-items: center;
   width: 100%;
   height: 110px;
+  padding: 0 4.2%;
   background-color: ${DARK_TEXT_COLOR};
-  padding: 1.8% 4.2% 0;
+
+  @media (max-width: 992px) {
+    height: 100px;
+  }
+  @media (max-width: 880px) {
+    height: 80px;
+  }
+  @media (max-width: 768px) {
+    height: 65px;
+  }
+  @media (max-width: 550px) {
+    height: 60px;
+  }
   @media (max-width: 440px) {
-    height: 105px;
-    padding: 4.8% 4.2% 0;
+    height: 50px;
   }
 `;
 
@@ -37,7 +49,7 @@ export const FooterContentWrapper = styled.div`
   width: 100%;
   gap: 5.6%;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 880px) {
     display: none;
   }
 `;
@@ -45,18 +57,21 @@ export const FooterContentWrapper = styled.div`
 export const FooterContentBlock = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 13px;
 
   .contentBlock {
     display: flex;
     flex-wrap: wrap;
+    min-height: 24px;
     gap: 30px;
 
     @media (max-width: 992px) {
-      gap: 0;
+      gap: 20px;
     }
 
     .contentItem {
+      height: 100%;
       margin-bottom: -20px;
       font: 400 1rem/24px 'Poppins', sans-serif;
       color: ${FOOTER_NAMES_COLOR};
@@ -86,28 +101,12 @@ export const FooterContentBlock = styled.div`
 export const FooterContentBlockLogo = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 33%;
+  align-items: center;
 
-  & > .LanguageSelect {
-    ${GeneralAdaptiveFont};
-    min-height: 35px;
-    & > div {
-      height: 35px;
-    }
-
-    @media (max-width: 768px) {
-      width: 110px;
-    }
-    @media (max-width: 440px) {
-      width: 90px;
-      & > div {
-        padding: 0px 5px;
-      }
-    }
-  }
-
-  @media (max-width: 1150px) {
-    width: 100%;
+  a {
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 `;
 

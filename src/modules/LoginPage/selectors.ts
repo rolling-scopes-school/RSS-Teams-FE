@@ -10,3 +10,12 @@ export const selectCurrLanguage = (state: State) =>
 
 export const selectIsCommonError = (state: State) =>
   state.loginPageReducer.isCommonError;
+
+export const selectIsBurgerMenuOpen = (state: State) =>
+  state.loginPageReducer.isBurgerMenuOpen;
+
+export const selectIsEditProfileDataChange = (state: State) =>
+  state.loginPageReducer.isEditProfileDataChange;
+
+export const selectPathToThePage = (state: State) =>
+  state.loginPageReducer.pathToThePage;

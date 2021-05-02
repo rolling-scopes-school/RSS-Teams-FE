@@ -2,15 +2,27 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldError, useForm } from 'react-hook-form';
-
-import { Loader, InputField, CourseField, ErrorModal } from 'components';
+import {
+  Loader,
+  InputField,
+  CourseField,
+  ErrorModal,
+  ModalExpel,
+} from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
 import { Button, AdditionalWrapper } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
-import { selectIsCommonError, selectToken } from 'modules/LoginPage/selectors';
+import {
+  selectIsCommonError,
+  selectPathToThePage,
+  selectToken,
+} from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput, User } from 'types';
-import { formFields } from './formFields';
-
+import {
+  checkIsCoursesEqual,
+  formFields,
+  checkIsFormFieldsEqual,
+} from './formFields';
 import {
   EditProfileWrapper,
   InputsWrapper,
@@ -22,18 +34,17 @@ import {
   CommonWrapper,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import {
-  CURRENT_YEAR,
-  CURRENT_COURSE,
-  INPUT_VALUES_EDIT_PROFILE,
-} from 'appConstants';
+import { CURRENT_YEAR, INPUT_VALUES_EDIT_PROFILE } from 'appConstants';
 import {
   IOldCourses,
   UserCourseListItem,
 } from './components/UserCourseListItem';
 import { useTranslation } from 'react-i18next';
-import { setCurrCourse } from 'modules/LoginPage/loginPageReducer';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
+import { setCourse } from 'modules/LoginPage/loginPageMiddleware';
+import { setEditProfileDataChange } from 'modules/LoginPage/loginPageReducer';
+import { activeModalLeavePage } from 'modules/TeamsList/teamsListReducer';
+import { selectIsActiveModalLeavePage } from 'modules/TeamsList/selectors';
 
 export const EditProfile: FC = () => {
   const history = useHistory();
@@ -41,6 +52,8 @@ export const EditProfile: FC = () => {
   const userData = useSelector(selectUserData);
   const isCommonError = useSelector(selectIsCommonError);
   const { t } = useTranslation();
+  const isActiveModalLeavePage = useSelector(selectIsActiveModalLeavePage);
+  const pathToThePage = useSelector(selectPathToThePage);
 
   const oldCourses: IOldCourses[] = userData.courses.map((course: Course) => ({
     ...course,
@@ -76,8 +89,7 @@ export const EditProfile: FC = () => {
 
   const dispatch = useDispatch();
 
-  const isUserNew = userData.telegram === null;
-  const isUserWithoutCourse = !!userData.courses.length;
+  const isUserNew = !!userData.courses.length;
 
   const currentCourses = courses
     ?.filter(({ name }: Course) => name.includes(`${CURRENT_YEAR}`))
@@ -97,6 +109,17 @@ export const EditProfile: FC = () => {
       ...inputValues,
       [name]: value.trim(),
     });
+    dispatch(
+      setEditProfileDataChange(
+        !checkIsFormFieldsEqual(
+          {
+            ...inputValues,
+            [name]: value.trim(),
+          },
+          userData
+        )
+      )
+    );
   };
 
   const onSubmit = () => {
@@ -107,20 +130,21 @@ export const EditProfile: FC = () => {
             (course: Course) =>
               course.id === userCourses[userCourses.length - 1].id
           ) ?? updateUser.courses[0];
-        localStorage.setItem(CURRENT_COURSE, JSON.stringify(newCurrentCourse));
-        dispatch(setCurrCourse(newCurrentCourse));
+        dispatch(setCourse(newCurrentCourse));
         dispatch(setUserData(updateUser));
         history.push('/');
       });
     } else {
       setValidCoursesList(false);
     }
+    dispatch(setEditProfileDataChange(false));
   };
 
   const localCourseUpdate = (course: IOldCourses) => {
     if (course) {
       setUserCourses([...userCourses, course]);
       setValidCoursesList(true);
+      dispatch(setEditProfileDataChange(true));
     }
   };
 
@@ -136,17 +160,28 @@ export const EditProfile: FC = () => {
         copyCourses.splice(index, 1);
       }
 
+      if (checkIsCoursesEqual(copyCourses, userData.courses)) {
+        dispatch(setEditProfileDataChange(false));
+      }
+
       setUserCourses([...copyCourses]);
       setValidCoursesList(true);
     }
   };
+
+  const onSubmitLeavePage = () => {
+    history.push(pathToThePage);
+    dispatch(setEditProfileDataChange(false));
+  };
+
   useEffect(() => {
     if (userData.id !== '' && !inputValues.id) {
       setInputValues(defaultData);
       setUserCourses(oldCourses);
       reset(defaultData);
+      dispatch(setEditProfileDataChange(false));
     }
-  }, [reset, inputValues, defaultData, userData, oldCourses]);
+  }, [reset, inputValues, defaultData, userData, oldCourses, dispatch]);
 
   if (!loginToken) return <Redirect to={'/login'} />;
   if (loading || loadingM) return <Loader />;
@@ -218,7 +253,7 @@ export const EditProfile: FC = () => {
             </CoursesWrapper>
           </InputsWrapper>
           <ButtonWrapper>
-            {!isUserNew && isUserWithoutCourse && (
+            {isUserNew && (
               <Button
                 type="button"
                 bgc={BG_COLOR}
@@ -234,6 +269,16 @@ export const EditProfile: FC = () => {
         </EditProfileWrapper>
         <AdditionalWrapper />
       </CommonWrapper>
+      <ModalExpel
+        title="Data is unsaved"
+        text="Are sure want to leave page without saving data?"
+        open={isActiveModalLeavePage}
+        onSubmit={onSubmitLeavePage}
+        isCrossIconVisible={false}
+        onClose={() => dispatch(activeModalLeavePage(false))}
+        okText="Yes"
+        cancelText="No"
+      />
     </FormWrapper>
   );
 };

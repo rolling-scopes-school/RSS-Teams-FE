@@ -10,6 +10,7 @@ import {
   H1AdaptiveFont,
   GeneralAdaptiveFont,
   ScrollBar,
+  MainComponentHeight,
 } from 'typography';
 
 export const EditProfileWrapper = styled.form`
@@ -33,12 +34,12 @@ export const EditProfileWrapper = styled.form`
 export const FormWrapper = styled.div`
   position: relative;
   display: flex;
-  flex-grow: 1;
   justify-content: center;
   align-items: center;
   width: 100%;
   overflow-y: scroll;
   ${ScrollBar};
+  ${MainComponentHeight};
 `;
 
 export const FormTitle = styled(PageTitle)`

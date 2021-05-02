@@ -98,6 +98,7 @@ export type StateTeamsList = {
   isActiveModalUpdateSocialLink: boolean;
   isActiveModalRemoveCourse: boolean;
   isActiveModalSortStudents: boolean;
+  isActiveModalLeavePage: boolean;
   teamMemberExpelId: string;
   teamPassword: string;
   socialLink: string;
@@ -129,10 +130,18 @@ export type StateLoginPage = {
   currCourse: Course;
   currLanguage: string;
   isCommonError: boolean;
+  isBurgerMenuOpen: boolean;
+  isEditProfileDataChange: boolean;
+  pathToThePage: string;
 };
 
 export type State = {
   studentsTableReducer: StateStudentsTable;
   teamsListReducer: StateTeamsList;
   loginPageReducer: StateLoginPage;
+};
+
+export type TNavLink = {
+  name: string;
+  isAlwaysVisible: boolean;
 };
