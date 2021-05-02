@@ -30,10 +30,6 @@ type ModalInputProps = {
   autoComplete?: string;
 };
 
-type SelectProps = {
-  widthSelect?: string | undefined;
-};
-
 export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   width: 84px;
   height: 30px;
@@ -353,13 +349,12 @@ export const ModalInput = styled(Input)<ModalInputProps>`
   margin-top: 20px;
 `;
 
-export const Select = styled.div<SelectProps>`
+export const Select = styled.div`
   display: grid;
   position: relative;
   grid-template-areas: 'select';
   align-items: center;
   width: 100%;
-  max-width: ${({ widthSelect }) => widthSelect ?? '250px'};
   background-color: ${BG_COLOR};
   border-radius: 10px;
   cursor: pointer;
@@ -372,7 +367,7 @@ export const Select = styled.div<SelectProps>`
     background-color: ${LIGHT_TEXT_COLOR};
     clip-path: polygon(100% 0%, 50% 70%, 0% 0%, 0% 40%, 50% 100%, 100% 40%);
     justify-self: end;
-    right: 10px;
+    right: 15px;
   }
 `;
 

@@ -76,7 +76,6 @@ export const FilterForm: FC<TFilter> = ({
                 placeholder={t(item[0])}
                 register={register}
                 options={item[1].map((it) => it[0])}
-                widthSelect={item[2]}
                 onChange={changeInputValue}
                 currentOption={
                   inputValues[item[3] as keyof TFilterForm] as string
