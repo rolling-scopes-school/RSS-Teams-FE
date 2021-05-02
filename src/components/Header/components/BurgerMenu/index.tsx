@@ -44,28 +44,25 @@ export const BurgerMenu: FC<BurgerMenuProps> = ({
         <BurgerMenuNavList>
           {Object.values(APP_NAVIGATION_LINKS).map(
             (link: TNavLink, index: number) => {
-              {
-                if (+newUserCheck + +link.isAlwaysVisible) {
-                  return (
-                    <BurgerMenuNavListItem key={JSON.stringify(link)}>
-                      <NavLink
-                        to={Object.keys(APP_NAVIGATION_LINKS)[index]}
-                        exact
-                        activeClassName="activeNavLink"
-                        onClick={(e) => {
-                          onClickMenuToggle();
-                          navOnClickHandler(
-                            e,
-                            Object.keys(APP_NAVIGATION_LINKS)[index]
-                          );
-                        }}
-                      >
-                        {t(link.name)}
-                      </NavLink>
-                    </BurgerMenuNavListItem>
-                  );
-                }
-                return;
+              if (+newUserCheck + +link.isAlwaysVisible) {
+                return (
+                  <BurgerMenuNavListItem key={JSON.stringify(link)}>
+                    <NavLink
+                      to={Object.keys(APP_NAVIGATION_LINKS)[index]}
+                      exact
+                      activeClassName="activeNavLink"
+                      onClick={(e) => {
+                        onClickMenuToggle();
+                        navOnClickHandler(
+                          e,
+                          Object.keys(APP_NAVIGATION_LINKS)[index]
+                        );
+                      }}
+                    >
+                      {t(link.name)}
+                    </NavLink>
+                  </BurgerMenuNavListItem>
+                );
               }
             }
           )}

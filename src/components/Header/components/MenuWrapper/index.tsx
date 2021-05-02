@@ -26,11 +26,7 @@ export const MenuWrapper: FC<MenuWrapperProps> = ({ navOnClickHandler }) => {
   return (
     <StyledMenuWrapper>
       <Nav {...{ newUserCheck, navOnClickHandler }} />
-      {newUserCheck && (
-        <>
-          <CoursesSelect />
-        </>
-      )}
+      {newUserCheck && <CoursesSelect />}
       <LangSelect />
       <MenuButton onClick={onClickMenuToggle} />
     </StyledMenuWrapper>
