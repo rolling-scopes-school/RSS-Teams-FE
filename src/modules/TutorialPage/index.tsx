@@ -4,7 +4,6 @@ import editProfileExampleEN from 'assets/images/editProfileExampleEN.png';
 import editProfileExampleRU from 'assets/images/editProfileExampleRU.png';
 import teamActionsExampleEN from 'assets/images/teamActionsExampleEN.png';
 import teamActionsExampleRU from 'assets/images/teamActionsExampleRU.png';
-import selectCourseExample from 'assets/images/selectCourseExample.png';
 import { NoteBlock, StepBlock } from './components';
 import { tutorialNoteInfo } from './tutorialPageInfo';
 import { useSelector } from 'react-redux';
