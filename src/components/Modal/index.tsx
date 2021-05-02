@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
 import styled from 'styled-components';
 import styles from './index.module.css';
-import { PageTitle, Label, Button, InvertedButton } from 'typography/index';
+import { PageTitle, Label, Button, InvertedButton } from 'typography';
 import { useTranslation } from 'react-i18next';
 
 type ModalProps = {
