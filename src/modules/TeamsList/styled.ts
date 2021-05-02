@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { ScrollBar } from 'typography';
+import { ScrollBar, MainComponentHeight } from 'typography';
 
 export const ContentPageWrapper = styled.div`
   display: flex;
   width: 100%;
-  flex-grow: 1;
   justify-content: center;
   overflow-y: scroll;
   ${ScrollBar};
+  ${MainComponentHeight};
 `;
 
 export const StyledTeams = styled.div`

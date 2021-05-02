@@ -250,6 +250,26 @@ export const ScrollBar = css`
   }
 `;
 
+export const MainComponentHeight = css`
+  height: calc(100vh - 191px);
+
+  @media (max-width: 992px) {
+    height: calc(100vh - 181px);
+  }
+  @media (max-width: 880px) {
+    height: calc(100vh - 161px);
+  }
+  @media (max-width: 768px) {
+    height: calc(100vh - 146px);
+  }
+  @media (max-width: 550px) {
+    height: calc(100vh - 141px);
+  }
+  @media (max-width: 440px) {
+    height: calc(100vh - 131px);
+  }
+`;
+
 export const PageTitle = styled.h1`
   ${TextBold};
   font-size: ${(props) => props.fontSize || '30px'};

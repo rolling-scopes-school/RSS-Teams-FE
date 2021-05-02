@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 import { MAIN1_COLOR } from 'appConstants/colors';
+import { MainComponentHeight } from 'typography';
 
 export const LoaderWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-`;
-
-export const LoaderStyled = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transform: translate(-50%, -50%);
+  ${MainComponentHeight};
+`;
+
+export const LoaderStyled = styled.div`
+  width: 25%;
   .loader {
     display: flex;
     align-items: center;

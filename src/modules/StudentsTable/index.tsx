@@ -6,7 +6,10 @@ import { useUsersQuery } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Dashboard } from './components/Dashboard';
 import { StudentTableWrapper, TableTitle } from './styled';
-import { TeamsTitleWrapper } from 'modules/TeamsList/styled';
+import {
+  ContentPageWrapper,
+  TeamsTitleWrapper,
+} from 'modules/TeamsList/styled';
 import { FilterButton } from 'components/FilterForm/styled';
 import filterIcon from 'assets/svg/filterIcon.svg';
 import crossIcon from 'assets/svg/cross.svg';
@@ -75,44 +78,46 @@ export const StudentsTable: FC = () => {
   };
 
   return (
-    <StudentTableWrapper>
-      <TeamsTitleWrapper>
-        <TableTitle>{t('Dashboard')}</TableTitle>
-        {isValuesEqual && !isFilterOpen && (
+    <ContentPageWrapper>
+      <StudentTableWrapper>
+        <TeamsTitleWrapper>
+          <TableTitle>{t('Dashboard')}</TableTitle>
+          {isValuesEqual && !isFilterOpen && (
+            <FilterButton
+              clearBtn={true}
+              outerBtn={true}
+              onClick={onClickClearBtnHandler}
+            >
+              {<img src={crossIcon} alt="clear filter icon" />}
+              {t('Clear filter')}
+            </FilterButton>
+          )}
           <FilterButton
-            clearBtn={true}
-            outerBtn={true}
-            onClick={onClickClearBtnHandler}
+            onClick={onClickOpenFilterBtnHandler}
+            bgColor={WHITE_COLOR}
           >
-            {<img src={crossIcon} alt="clear filter icon" />}
-            {t('Clear filter')}
+            {<img src={filterIcon} alt="Filter icon" />} {t('Filter')}
           </FilterButton>
+          {isFilterOpen && (
+            <FilterForm
+              {...{
+                inputValues,
+                setInputValues,
+                setIsFilterOpen,
+                setPage,
+                register,
+                handleSubmit,
+                errors,
+                reset,
+              }}
+            />
+          )}
+        </TeamsTitleWrapper>
+        <Dashboard users={users.results} page={page} />
+        {!!users.results.length && (
+          <Pagination pageCount={pageCount} changePage={setPage} page={page} />
         )}
-        <FilterButton
-          onClick={onClickOpenFilterBtnHandler}
-          bgColor={WHITE_COLOR}
-        >
-          {<img src={filterIcon} alt="Filter icon" />} {t('Filter')}
-        </FilterButton>
-        {isFilterOpen && (
-          <FilterForm
-            {...{
-              inputValues,
-              setInputValues,
-              setIsFilterOpen,
-              setPage,
-              register,
-              handleSubmit,
-              errors,
-              reset,
-            }}
-          />
-        )}
-      </TeamsTitleWrapper>
-      <Dashboard users={users.results} page={page} />
-      {!!users.results.length && (
-        <Pagination pageCount={pageCount} changePage={setPage} page={page} />
-      )}
-    </StudentTableWrapper>
+      </StudentTableWrapper>
+    </ContentPageWrapper>
   );
 };

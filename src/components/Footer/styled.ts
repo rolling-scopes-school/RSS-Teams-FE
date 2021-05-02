@@ -15,8 +15,9 @@ export const StyledFooter = styled.footer`
   align-items: center;
   width: 100%;
   height: 110px;
+  padding: 0 4.2%;
   background-color: ${DARK_TEXT_COLOR};
-  padding: 1.8% 4.2% 0;
+
   @media (max-width: 992px) {
     height: 100px;
   }
@@ -56,11 +57,13 @@ export const FooterContentWrapper = styled.div`
 export const FooterContentBlock = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 13px;
 
   .contentBlock {
     display: flex;
     flex-wrap: wrap;
+    min-height: 24px;
     gap: 30px;
 
     @media (max-width: 992px) {
@@ -68,6 +71,7 @@ export const FooterContentBlock = styled.div`
     }
 
     .contentItem {
+      height: 100%;
       margin-bottom: -20px;
       font: 400 1rem/24px 'Poppins', sans-serif;
       color: ${FOOTER_NAMES_COLOR};
@@ -97,23 +101,12 @@ export const FooterContentBlock = styled.div`
 export const FooterContentBlockLogo = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  & > .LanguageSelect {
-    ${GeneralAdaptiveFont};
-    min-height: 35px;
-    & > div {
-      height: 35px;
-    }
-
-    @media (max-width: 768px) {
-      width: 110px;
-    }
-    @media (max-width: 440px) {
-      width: 90px;
-      & > div {
-        padding: 0px 5px;
-      }
-    }
+  a {
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 `;
 
