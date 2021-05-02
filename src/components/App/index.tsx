@@ -8,6 +8,7 @@ import {
   TokenPage,
   NotFoundPage,
   EditProfile,
+  TutorialPage,
 } from 'modules';
 import { Loader, PrivateRoute, Header, Footer, ErrorModal } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
@@ -19,12 +20,9 @@ import {
 } from 'appConstants';
 import { useWhoAmIQuery } from 'hooks/graphql';
 import { AppStyled } from './styled';
-import {
-  setCurrCourse,
-  setCurrLang,
-  setToken,
-} from 'modules/LoginPage/loginPageReducer';
+import { setToken } from 'modules/LoginPage/loginPageReducer';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
+import { setCourse, setLanguage } from 'modules/LoginPage/loginPageMiddleware';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -45,22 +43,15 @@ export const App: FC = () => {
       dispatch(setUserData(whoAmI));
     }
     if (whoAmI?.courses[0]) {
-      if (!localStorage.getItem(CURRENT_COURSE)) {
-        localStorage.setItem(
-          CURRENT_COURSE,
-          JSON.stringify(whoAmI?.courses[0])
-        );
-      }
-      if (!localStorage.getItem(CURRENT_LANG)) {
-        localStorage.setItem(CURRENT_LANG, DEFAULT_LANGUAGE);
-      }
-      const currentCourse = JSON.parse(
-        localStorage.getItem(CURRENT_COURSE) as string
+      dispatch(
+        setLanguage(localStorage.getItem(CURRENT_LANG) ?? DEFAULT_LANGUAGE)
       );
-      const currentLanguage = localStorage.getItem(CURRENT_LANG);
-
-      dispatch(setCurrCourse(currentCourse));
-      dispatch(setCurrLang(currentLanguage));
+      dispatch(
+        setCourse(
+          JSON.parse(localStorage.getItem(CURRENT_COURSE) as string) ??
+            whoAmI?.courses[0]
+        )
+      );
     }
 
     if (!loadingW) setLoading(false);
@@ -91,7 +82,7 @@ export const App: FC = () => {
         <Route exact path="/token/:id" component={TokenPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/editProfile" component={EditProfile} />
-        <Route exact path="/tutorial" component={Loader} />
+        <Route exact path="/tutorial" component={TutorialPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
 

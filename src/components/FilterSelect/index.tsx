@@ -7,7 +7,6 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   placeholder: string;
   register: any;
   options: string[];
-  widthSelect?: string | undefined;
   currentOption: string;
 }
 
@@ -16,7 +15,6 @@ export const FilterSelect: FC<SelectFieldProps> = ({
   placeholder,
   register,
   options,
-  widthSelect,
   currentOption,
   ...rest
 }) => {
@@ -33,7 +31,7 @@ export const FilterSelect: FC<SelectFieldProps> = ({
     <FieldWrapper>
       {labelText && <Label>{labelText}</Label>}
       <SelectCourse>
-        <Select {...{ widthSelect }}>
+        <Select>
           <SelectInner
             placeholder={t(placeholder)}
             ref={register}

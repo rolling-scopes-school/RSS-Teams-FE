@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/client';
 import { CURRENT_COURSE, TEAMS_PER_PAGE } from 'appConstants';
 import { REMOVE_USER_FROM_COURSE_MUTATION } from 'graphql/mutations';
 import { TEAMS_QUERY, WHOAMI_QUERY } from 'graphql/queries';
+import { setCourse } from 'modules/LoginPage/loginPageMiddleware';
 import {
   setCommonError,
   setCurrCourse,
@@ -76,11 +77,7 @@ export const useRemoveUserFromCourseMutation = ({
 
       onCompleted({ removeUserFromCourse }) {
         if (!!removeUserFromCourse.courses[0]) {
-          localStorage.setItem(
-            CURRENT_COURSE,
-            JSON.stringify(removeUserFromCourse.courses[0])
-          );
-          dispatch(setCurrCourse(removeUserFromCourse.courses[0]));
+          dispatch(setCourse(removeUserFromCourse.courses[0]));
         } else {
           dispatch(setCurrCourse({ name: '', id: '' }));
           localStorage.removeItem(CURRENT_COURSE);

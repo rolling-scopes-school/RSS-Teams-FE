@@ -5,6 +5,7 @@ export const AUTH_TOKEN = 'AUTH_TOKEN';
 export const SET_TOKEN = 'SET_TOKEN';
 export const SET_CURR_COURSE = 'SET_CURR_COURSE';
 export const SET_COMMON_ERROR = 'SET_COMMON_ERROR';
+export const SET_BURGER_MENU_OPEN = 'SET_BURGER_MENU_OPEN';
 export const ACTIVE_MODAL_EXPEL = 'ACTIVE_MODAL_EXPEL';
 export const ACTIVE_MODAL_LEAVE = 'ACTIVE_MODAL_LEAVE';
 export const ACTIVE_MODAL_JOIN = 'ACTIVE_MODAL_JOIN';
@@ -14,11 +15,14 @@ export const ACTIVE_MODAL_UPDATE_SOCIAL_LINK =
   'ACTIVE_MODAL_UPDATE_SOCIAL_LINK';
 export const ACTIVE_MODAL_REMOVE_COURSE = 'ACTIVE_MODAL_REMOVE_COURSE';
 export const ACTIVE_MODAL_SORT_STUDENTS = 'ACTIVE_MODAL_SORT_STUDENTS';
+export const ACTIVE_MODAL_LEAVE_PAGE = 'ACTIVE_MODAL_LEAVE_PAGE';
 export const SET_TEAM_MEMBER_EXPEL_ID = 'SET_TEAM_MEMBER_EXPEL_ID';
 export const SET_TEAM_PASSWORD = 'SET_TEAM_PASSWORD';
 export const SET_SOCIAL_LINK = 'SET_SOCIAL_LINK';
 export const SET_FILTER_DATA = 'SET_FILTER_DATA';
 export const SET_CURR_LANG = 'SET_CURR_LANG';
+export const SET_EDIT_PROFILE_DATA_CHANGE = 'SET_EDIT_PROFILE_DATA_CHANGE';
+export const SET_PATH_TO_THE_PAGE = 'SET_PATH_TO_THE_PAGE';
 
 export const USERS_PER_PAGE = 20;
 export const TEAMS_PER_PAGE = 10;
@@ -28,7 +32,7 @@ export const CURRENT_COURSE = 'currentCourse';
 export const CURRENT_LANG = 'currentLanguage';
 
 export const TABLE_HEADERS = [
-  '#',
+  '№',
   'First / Last Name',
   'Score',
   'Team Number',
@@ -40,7 +44,7 @@ export const TABLE_HEADERS = [
 ];
 
 export const TABLE_TEAMS_HEADERS = [
-  '#',
+  '№',
   'First / Last Name',
   'Score',
   'Telegram',
@@ -85,7 +89,7 @@ export const APP_NAVIGATION_LINKS = {
     isAlwaysVisible: true,
   },
   ['/tutorial']: {
-    name: 'FAQ',
+    name: 'Tutorial',
     isAlwaysVisible: true,
   },
 };
@@ -94,8 +98,8 @@ export const DEFAULT_LANGUAGE = 'en';
 export const LANGUAGES: string[] = [DEFAULT_LANGUAGE, 'ru'];
 
 export const Language: { [key: string]: string } = {
-  en: 'English',
-  ru: 'Русский',
+  en: 'EN',
+  ru: 'RU',
 };
 
 export const FOOTER_INFO = [

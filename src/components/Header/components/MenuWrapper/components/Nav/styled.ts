@@ -16,23 +16,21 @@ export const StyledNav = styled.nav`
   justify-content: center;
   align-items: center;
   align-self: flex-end;
+  margin-right: 60px;
   font: 400 1rem/24px 'Poppins', sans-serif;
 `;
 
 export const StyledNavList = styled.ul`
+  @media (max-width: 1260px) {
+    display: none;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding-inline-start: 0;
   gap: 60px;
-
-  @media (max-width: 550px) {
-    gap: 10%;
-  }
-  @media (max-width: 440px) {
-    gap: 8%;
-  }
 `;
 
 export const StyledHeaderActiveElement = styled(HeaderActiveElement)`
@@ -42,12 +40,6 @@ export const StyledHeaderActiveElement = styled(HeaderActiveElement)`
 
 export const StyledNavListItem = styled.li<TStyledNavListItemProps>`
   list-style-type: none;
-
-  @media (max-width: 470px) {
-    &:last-child {
-      display: ${({ newUserCheck }) => newUserCheck && 'none'};
-    }
-  }
 
   a {
     display: flex;
@@ -68,16 +60,6 @@ export const StyledNavListItem = styled.li<TStyledNavListItemProps>`
       transition: all 0.5s ease-in-out;
       animation: ${open} 0.5s ease-in-out;
     }
-
-    @media (max-width: 768px) {
-      height: 46px;
-    }
-    @media (max-width: 550px) {
-      height: 42px;
-    }
-    @media (max-width: 440px) {
-      height: 38px;
-    }
   }
 
   a.activeNavLink {
@@ -86,29 +68,6 @@ export const StyledNavListItem = styled.li<TStyledNavListItemProps>`
     svg {
       height: 22px;
       margin-bottom: 0;
-
-      @media (max-width: 768px) {
-        height: 18px;
-      }
-      @media (max-width: 550px) {
-        height: 16px;
-      }
-      @media (max-width: 440px) {
-        height: 14px;
-      }
     }
-  }
-
-  @media (max-width: 1200px) {
-    font-size: 0.95rem;
-  }
-  @media (max-width: 992px) {
-    font-size: 0.9rem;
-  }
-  @media (max-width: 550px) {
-    font-size: 0.825rem;
-  }
-  @media (max-width: 440px) {
-    font-size: 0.72rem;
   }
 `;

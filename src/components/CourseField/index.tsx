@@ -1,10 +1,8 @@
-import React, { FC, SelectHTMLAttributes, useState } from 'react';
+import React, { FC, SelectHTMLAttributes } from 'react';
 import { Label, Select, SelectInner } from 'typography';
-import { FieldWrapper, SelectCourse, PlusButton } from './styled';
+import { FieldWrapper, SelectCourse } from './styled';
 import { ValidationAlert } from '../InputField/styled';
 import { useTranslation } from 'react-i18next';
-
-import { ReactComponent as CheckSvgIcon } from 'assets/svg/check.svg';
 
 type Course = {
   id: string;
@@ -19,21 +17,17 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   courses: Course[];
   onAdd?: any;
   isValid?: boolean;
-  widthSelect?: string | undefined;
 }
 
 export const CourseField: FC<SelectFieldProps> = ({
   labelText,
   placeholder,
-  multi = false,
   register,
   courses,
   onAdd,
   isValid,
   ...rest
 }) => {
-  const [selectedCourse, setSelectedCourse] = useState<any>(0);
-  const [isAddCourse, setAddCourse] = useState(false);
   const { t } = useTranslation();
   const courseOptions = courses
     ? courses.map((course: Course) => {
@@ -52,12 +46,11 @@ export const CourseField: FC<SelectFieldProps> = ({
           <SelectInner
             placeholder={t(placeholder)}
             ref={register}
-            value={selectedCourse.id || 0}
+            value={0}
             onChange={(e: any) => {
-              setSelectedCourse(
+              onAdd(
                 courses.find((course: Course) => course.id === e.target.value)
               );
-              setAddCourse(true);
             }}
             {...rest}
           >
@@ -67,19 +60,6 @@ export const CourseField: FC<SelectFieldProps> = ({
             {courseOptions}
           </SelectInner>
         </Select>
-        {multi && (
-          <PlusButton
-            onClick={() => {
-              onAdd(selectedCourse);
-              setSelectedCourse(0);
-              setAddCourse(false);
-            }}
-            type="button"
-            active={isAddCourse}
-          >
-            <CheckSvgIcon />
-          </PlusButton>
-        )}
       </SelectCourse>
       {!isValid && (
         <ValidationAlert>

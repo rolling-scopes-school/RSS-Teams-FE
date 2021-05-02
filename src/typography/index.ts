@@ -30,10 +30,6 @@ type ModalInputProps = {
   autoComplete?: string;
 };
 
-type SelectProps = {
-  widthSelect?: string | undefined;
-};
-
 export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   width: 84px;
   height: 30px;
@@ -51,9 +47,6 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
     width: 76px;
     height: 24px;
   }
-  @media (max-width: 700px) {
-    margin-bottom: 0;
-  }
   @media (max-width: 550px) {
     width: 72px;
     height: 22px;
@@ -61,7 +54,6 @@ export const RSLogo = styled(RSLogoIcon)<TRSLogoProps>`
   @media (max-width: 440px) {
     width: 70px;
     height: 20px;
-    margin-bottom: -1%;
   }
 `;
 
@@ -111,6 +103,20 @@ export const GeneralAdaptiveFont = css`
   @media (max-width: 440px) {
     font-size: 0.68rem;
     line-height: 18px;
+  }
+`;
+
+export const HeaderAdaptiveFont = css`
+  font-size: 1rem;
+  line-height: 24px;
+
+  @media (max-width: 768px) {
+    font-size: 0.925rem;
+    line-height: 22px;
+  }
+  @media (max-width: 440px) {
+    font-size: 0.85rem;
+    line-height: 20px;
   }
 `;
 
@@ -240,6 +246,35 @@ export const ScrollBar = css`
   }
 `;
 
+export const MainComponentHeight = css`
+  height: calc(100vh - 191px);
+
+  @media (max-width: 992px) {
+    height: calc(100vh - 181px);
+  }
+  @media (max-width: 880px) {
+    height: calc(100vh - 161px);
+  }
+  @media (max-width: 768px) {
+    height: calc(100vh - 146px);
+  }
+  @media (max-width: 550px) {
+    height: calc(100vh - 141px);
+  }
+  @media (max-width: 440px) {
+    height: calc(100vh - 131px);
+  }
+`;
+
+export const ContentPageWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  overflow-y: scroll;
+  ${ScrollBar};
+  ${MainComponentHeight};
+`;
+
 export const PageTitle = styled.h1`
   ${TextBold};
   font-size: ${(props) => props.fontSize || '30px'};
@@ -323,13 +358,12 @@ export const ModalInput = styled(Input)<ModalInputProps>`
   margin-top: 20px;
 `;
 
-export const Select = styled.div<SelectProps>`
+export const Select = styled.div`
   display: grid;
   position: relative;
   grid-template-areas: 'select';
   align-items: center;
   width: 100%;
-  max-width: ${({ widthSelect }) => widthSelect ?? '250px'};
   background-color: ${BG_COLOR};
   border-radius: 10px;
   cursor: pointer;
@@ -342,7 +376,7 @@ export const Select = styled.div<SelectProps>`
     background-color: ${LIGHT_TEXT_COLOR};
     clip-path: polygon(100% 0%, 50% 70%, 0% 0%, 0% 40%, 50% 100%, 100% 40%);
     justify-self: end;
-    right: 10px;
+    right: 15px;
   }
 `;
 

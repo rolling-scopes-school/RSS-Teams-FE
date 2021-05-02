@@ -1,30 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CURRENT_COURSE } from 'appConstants';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { Course } from 'types';
-import {
-  StyledCoursesSelectWrapper,
-  StyledCoursesSelectHeaderWrapper,
-  StyledCoursesList,
-  StyledCoursesSelectInfo,
-  StyledCoursesSelectArrow,
-} from './styled';
-import { useTranslation } from 'react-i18next';
-import { setCurrCourse } from 'modules/LoginPage/loginPageReducer';
+import { CommonSelectList } from 'components';
+import { setCourse } from 'modules/LoginPage/loginPageMiddleware';
 
-type CoursesSelectProps = {
-  displayCoursesList: boolean;
-  setDisplayCoursesList: (display: boolean) => void;
-};
-
-export const CoursesSelect: FC<CoursesSelectProps> = ({
-  displayCoursesList,
-  setDisplayCoursesList,
-}) => {
+export const CoursesSelect: FC = () => {
+  const [isCourseSelectOpen, setCourseSelectOpen] = useState(false);
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
 
@@ -32,37 +16,18 @@ export const CoursesSelect: FC<CoursesSelectProps> = ({
     userData.courses.filter((item) => item.id !== currCourse.id) ?? null;
 
   const onCourseChange = (course: Course) => {
-    setDisplayCoursesList(false);
-    localStorage.setItem(CURRENT_COURSE, JSON.stringify(course));
-    dispatch(setCurrCourse(course));
+    setCourseSelectOpen(false);
+    dispatch(setCourse(course));
   };
 
   return (
-    <StyledCoursesSelectWrapper isClicked={displayCoursesList}>
-      <StyledCoursesSelectHeaderWrapper isClicked={displayCoursesList}>
-        <p>{t('Course')}</p>
-        <StyledCoursesSelectInfo
-          hover={!!userCourses.length}
-          onClick={() => setDisplayCoursesList(!displayCoursesList)}
-        >
-          <p>{currCourse.name}</p>
-          {!!userCourses.length && <StyledCoursesSelectArrow />}
-        </StyledCoursesSelectInfo>
-      </StyledCoursesSelectHeaderWrapper>{' '}
-      {!!userCourses.length && (
-        <StyledCoursesList>
-          {userCourses.map((course: Course) => {
-            return (
-              <li
-                key={JSON.stringify(course)}
-                onClick={() => onCourseChange(course)}
-              >
-                {course.name}
-              </li>
-            );
-          })}
-        </StyledCoursesList>
-      )}
-    </StyledCoursesSelectWrapper>
+    <CommonSelectList
+      title="Course"
+      listItems={userCourses}
+      onClickHandler={onCourseChange}
+      currItem={currCourse.name}
+      displayList={isCourseSelectOpen}
+      setDisplayList={setCourseSelectOpen}
+    />
   );
 };

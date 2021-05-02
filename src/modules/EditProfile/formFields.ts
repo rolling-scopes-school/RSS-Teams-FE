@@ -1,3 +1,5 @@
+import { INPUT_VALUES_EDIT_PROFILE } from 'appConstants';
+import { Course } from 'types';
 import { InputFieldProps } from '../../components/InputField';
 
 export const formFields: InputFieldProps[] = [
@@ -142,3 +144,23 @@ export const formFields: InputFieldProps[] = [
     },
   },
 ];
+
+export const checkIsCoursesEqual = (
+  newCourses: Course[],
+  userCourses: Course[]
+) => {
+  return (
+    JSON.stringify(newCourses.map((newCourse) => newCourse.name).sort()) ===
+    JSON.stringify(userCourses.map((userCourse) => userCourse.name).sort())
+  );
+};
+
+export const checkIsFormFieldsEqual = (inputValues: any, userData: any) => {
+  let isEqual = true;
+  INPUT_VALUES_EDIT_PROFILE.forEach((item: string) => {
+    if (inputValues[item] !== userData[item]) {
+      isEqual = false;
+    }
+  });
+  return isEqual;
+};
