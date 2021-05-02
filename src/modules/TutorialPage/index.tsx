@@ -32,18 +32,9 @@ export const TutorialPage: FC = () => {
           altText="Profile example"
         />
         <NoteBlock
-          listItems={[
-            'The “score” field should be filled in with your score',
-            'You should press the “check mark” button',
-          ]}
+          listItems={['The “score” field should be filled in with your score']}
           isNote="Note"
-        >
-          <img
-            src={selectCourseExample}
-            alt="Select course example"
-            className="SelectCourseExample"
-          />
-        </NoteBlock>
+        />
         <StepBlock
           title="Step 2"
           subtitle="On the teams page you will see two available buttons"
