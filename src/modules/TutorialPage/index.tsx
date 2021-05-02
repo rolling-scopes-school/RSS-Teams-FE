@@ -43,8 +43,11 @@ export const TutorialPage: FC = () => {
           altText="Team actions example"
         />
         {TUTORIAL_PAGE_NOTES_INFO().map(
-          ({ title, subtitle, listItems, isNote, children }, index) => (
-            <NoteBlock {...{ title, subtitle, listItems, isNote }} key={index}>
+          ({ title, subtitle, listItems, isNote, children }) => (
+            <NoteBlock
+              {...{ title, subtitle, listItems, isNote }}
+              key={listItems ? JSON.stringify(listItems) : title}
+            >
               {children}
             </NoteBlock>
           )

@@ -110,7 +110,7 @@ export const FilterForm: FC<TFilter> = ({
       <FilterButtonsWrapper>
         {isValuesInnerEqual && (
           <FilterButton
-            clearBtn={true}
+            clearBtn
             type="button"
             onClick={() => {
               reset(defaultFilterData);

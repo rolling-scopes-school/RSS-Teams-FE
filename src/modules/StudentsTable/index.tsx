@@ -81,11 +81,7 @@ export const StudentsTable: FC = () => {
         <TeamsTitleWrapper>
           <TableTitle>{t('Dashboard')}</TableTitle>
           {isValuesEqual && !isFilterOpen && (
-            <FilterButton
-              clearBtn={true}
-              outerBtn={true}
-              onClick={onClickClearBtnHandler}
-            >
+            <FilterButton clearBtn outerBtn onClick={onClickClearBtnHandler}>
               {<img src={crossIcon} alt="clear filter icon" />}
               {t('Clear filter')}
             </FilterButton>
