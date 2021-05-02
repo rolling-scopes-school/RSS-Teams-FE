@@ -4,12 +4,12 @@ import { useTeamsQuery } from 'hooks/graphql';
 import { Loader, ErrorModal, Pagination } from 'components';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
-import { StyledTeams, ContentPageWrapper } from './styled';
+import { StyledTeams } from './styled';
 import { TEAMS_PER_PAGE } from 'appConstants';
 import { Team } from 'types';
 import { TeamListModals, Teams } from './components';
 import { useCommonMutations } from './components/TeamListModals/useCommonMutations';
-import { AdditionalWrapper } from 'typography';
+import { AdditionalWrapper, ContentPageWrapper } from 'typography';
 
 export const TeamsList: FC = () => {
   const [page, setPage] = useState<number>(0);

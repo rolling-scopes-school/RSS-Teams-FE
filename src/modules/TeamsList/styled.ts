@@ -1,14 +1,4 @@
 import styled from 'styled-components';
-import { ScrollBar, MainComponentHeight } from 'typography';
-
-export const ContentPageWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  overflow-y: scroll;
-  ${ScrollBar};
-  ${MainComponentHeight};
-`;
 
 export const StyledTeams = styled.div`
   max-width: 1320px;

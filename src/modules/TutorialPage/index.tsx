@@ -9,7 +9,7 @@ import { NoteBlock, StepBlock } from './components';
 import { tutorialNoteInfo } from './tutorialPageInfo';
 import { useSelector } from 'react-redux';
 import { selectCurrLanguage } from 'modules/LoginPage/selectors';
-import { ContentPageWrapper } from 'modules/TeamsList/styled';
+import { ContentPageWrapper } from 'typography';
 import { useTranslation } from 'react-i18next';
 
 export const TutorialPage: FC = () => {

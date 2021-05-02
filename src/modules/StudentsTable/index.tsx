@@ -6,10 +6,7 @@ import { useUsersQuery } from 'hooks/graphql';
 import { selectCurrCourse } from 'modules/LoginPage/selectors';
 import { Dashboard } from './components/Dashboard';
 import { StudentTableWrapper, TableTitle } from './styled';
-import {
-  ContentPageWrapper,
-  TeamsTitleWrapper,
-} from 'modules/TeamsList/styled';
+import { TeamsTitleWrapper } from 'modules/TeamsList/styled';
 import { FilterButton } from 'components/FilterForm/styled';
 import filterIcon from 'assets/svg/filterIcon.svg';
 import crossIcon from 'assets/svg/cross.svg';
@@ -23,6 +20,7 @@ import { TFilterForm } from 'types';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { setFilterData } from './studentsTableReducer';
+import { ContentPageWrapper } from 'typography';
 
 export const StudentsTable: FC = () => {
   const [page, setPage] = useState<number>(0);

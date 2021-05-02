@@ -266,6 +266,15 @@ export const MainComponentHeight = css`
   }
 `;
 
+export const ContentPageWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  overflow-y: scroll;
+  ${ScrollBar};
+  ${MainComponentHeight};
+`;
+
 export const PageTitle = styled.h1`
   ${TextBold};
   font-size: ${(props) => props.fontSize || '30px'};

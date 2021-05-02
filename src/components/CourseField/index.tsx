@@ -1,6 +1,6 @@
 import React, { FC, SelectHTMLAttributes } from 'react';
 import { Label, Select, SelectInner } from 'typography';
-import { FieldWrapper, SelectCourse, PlusButton } from './styled';
+import { FieldWrapper, SelectCourse } from './styled';
 import { ValidationAlert } from '../InputField/styled';
 import { useTranslation } from 'react-i18next';
 
@@ -22,7 +22,6 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
 export const CourseField: FC<SelectFieldProps> = ({
   labelText,
   placeholder,
-  multi = false,
   register,
   courses,
   onAdd,
@@ -43,7 +42,7 @@ export const CourseField: FC<SelectFieldProps> = ({
     <FieldWrapper>
       {labelText && <Label>{labelText}</Label>}
       <SelectCourse>
-        <Select >
+        <Select>
           <SelectInner
             placeholder={t(placeholder)}
             ref={register}
