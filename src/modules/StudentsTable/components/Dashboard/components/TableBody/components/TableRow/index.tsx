@@ -1,14 +1,13 @@
-import React, { CSSProperties, FC } from 'react';
+import React, { FC } from 'react';
+import { ListChildComponentProps } from 'react-window';
 import { TableItem } from './components/TableItem';
 import { StyledTableRow } from './styled';
 
-type TableItemProps = {
-  index: number;
-  style: CSSProperties;
-  data: string[][];
-};
-
-export const TableRow: FC<TableItemProps> = ({ index, style, data }) => {
+export const TableRow: FC<ListChildComponentProps> = ({
+  data,
+  index,
+  style,
+}) => {
   const optimalItemIndexCount = 2;
   return (
     <StyledTableRow style={style}>
