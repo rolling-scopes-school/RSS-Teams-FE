@@ -25,7 +25,7 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
         return [
           `${index + 1 + page * USERS_PER_PAGE}`,
           `${user.firstName} ${user.lastName || null}`,
-          user.score,
+          `${user.score}`,
           user.teams.find((team: Team) => team.courseId === currCourse.id)
             ? `${
                 user.teams.find((team: Team) => team.courseId === currCourse.id)
