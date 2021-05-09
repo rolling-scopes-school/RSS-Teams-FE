@@ -399,3 +399,10 @@ export const SelectInner = styled.select`
     color: ${DARK_TEXT_COLOR};
   }
 `;
+
+export const ButtonsBlock = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 10px;
+`;

@@ -7,4 +7,10 @@ export const AppStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .helper {
+    --reactour-accent: #5cb7b7;
+    line-height: 1.3;
+    color: #2d2323;
+  }
 `;

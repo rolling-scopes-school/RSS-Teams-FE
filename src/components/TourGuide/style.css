@@ -1,0 +1,78 @@
+span[data-tour-elem="badge"] {
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.reactour__helper.helper {
+  width: 350px;
+  padding: 64px 20px 20px;
+  font-family: "Poppins", sans-serif;
+  text-align: justify;
+  box-shadow: none;
+}
+
+.reactour__helper.helper p {
+  text-align: center;
+}
+
+.reactour__helper.helper > .reactour__close {
+  top: 18px;
+  right: 18px;
+  width: 18px;
+  height: 18px;
+  color: #7e96c2;
+  background: center / contain url("../../assets/svg/cross.svg") no-repeat;
+}
+
+.reactour__close > svg {
+  display: none;
+}
+
+button[data-tour-elem="right-arrow"] {
+  order: 2;
+  margin-left: 0;
+}
+
+button[data-tour-elem="left-arrow"] {
+  order: 1;
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+button[data-tour-elem="right-arrow"],
+button[data-tour-elem="left-arrow"] {
+  width: 40px;
+  height: 40px;
+  background-color: #f2f8fd;
+  border-radius: 10px;
+}
+
+button[data-tour-elem="right-arrow"] > img,
+button[data-tour-elem="left-arrow"] > img {
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+div[data-tour-elem="controls"] {
+  align-items: flex-end;
+}
+
+nav > .reactour__dot {
+  background-color: #e1eefa;
+  border: none;
+}
+
+nav > .reactour__dot--is-active {
+  background-color: #6550f6;
+}
+
+.mask {
+  color: transparent;
+}

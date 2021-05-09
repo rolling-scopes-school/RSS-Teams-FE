@@ -34,15 +34,25 @@ import {
   CommonWrapper,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import { CURRENT_YEAR, INPUT_VALUES_EDIT_PROFILE } from 'appConstants';
+import {
+  CURRENT_YEAR,
+  INPUT_VALUES_EDIT_PROFILE,
+  TOUR_OPENING,
+} from 'appConstants';
 import {
   IOldCourses,
   UserCourseListItem,
 } from './components/UserCourseListItem';
 import { useTranslation } from 'react-i18next';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
-import { setCourse } from 'modules/LoginPage/loginPageMiddleware';
-import { setEditProfileDataChange } from 'modules/LoginPage/loginPageReducer';
+import {
+  setCourse,
+  setTourOpening,
+} from 'modules/LoginPage/loginPageMiddleware';
+import {
+  setEditProfileDataChange,
+  setIsTourOpen,
+} from 'modules/LoginPage/loginPageReducer';
 import { activeModalLeavePage } from 'modules/TeamsList/teamsListReducer';
 import { selectIsActiveModalLeavePage } from 'modules/TeamsList/selectors';
 
@@ -133,6 +143,10 @@ export const EditProfile: FC = () => {
         dispatch(setCourse(newCurrentCourse));
         dispatch(setUserData(updateUser));
         history.push('/');
+        if (!localStorage.getItem(TOUR_OPENING)) {
+          dispatch(setIsTourOpen(true));
+          dispatch(setTourOpening(TOUR_OPENING));
+        }
       });
     } else {
       setValidCoursesList(false);

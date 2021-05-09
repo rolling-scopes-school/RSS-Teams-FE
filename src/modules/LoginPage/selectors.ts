@@ -19,3 +19,6 @@ export const selectIsEditProfileDataChange = (state: State) =>
 
 export const selectPathToThePage = (state: State) =>
   state.loginPageReducer.pathToThePage;
+
+export const selectIsTourOpen = (state: State) =>
+  state.loginPageReducer.isTourOpen;
