@@ -10,9 +10,10 @@ Stack:
 Used libs:  
 1 styled-components - https://askd.rocks/pres/styled-gdg/  
 2 react-router/react-router-dom - https://reactrouter.com/  
-3 react-hook-form
-4 react-window
-5 react-paginate
+3 react-hook-form  
+4 react-window  
+5 react-paginate  
+6 reactour  
 
 Linters: prettier, eslint.
 
