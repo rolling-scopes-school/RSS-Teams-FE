@@ -68,7 +68,7 @@ export const App: FC = () => {
   if (errorW) return <ErrorModal />;
 
   return (
-    <AppStyled className="firstStep">
+    <AppStyled>
       <Header />
 
       <Switch>
