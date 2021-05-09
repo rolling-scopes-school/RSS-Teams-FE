@@ -76,3 +76,14 @@ nav > .reactour__dot--is-active {
 .mask {
   color: transparent;
 }
+
+.linkToRepo {
+  font-weight: bold;
+  color: #6550f6;
+  text-decoration: none;
+  outline: none;
+}
+
+.linkToRepo:hover {
+  text-decoration: underline;
+}

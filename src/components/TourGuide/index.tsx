@@ -8,14 +8,19 @@ import { MAIN1_COLOR } from 'appConstants/colors';
 import leftArrow from 'assets/svg/paginateArrowLeft.svg';
 import rightArrow from 'assets/svg/paginateArrowRight.svg';
 import './style.css';
+import { useHistory } from 'react-router';
 
 export const TourGuide: FC = () => {
   const dispatch = useDispatch();
   const isTourOpen = useSelector(selectIsTourOpen);
+  const history = useHistory();
 
   const onRequestCloseHandler = () => dispatch(setIsTourOpen(false));
 
-  const tourConfigInfo = useCallback(() => tourConfig(dispatch), [dispatch]);
+  const tourConfigInfo = useCallback(() => tourConfig(history, dispatch), [
+    history,
+    dispatch,
+  ]);
 
   return (
     <Tour

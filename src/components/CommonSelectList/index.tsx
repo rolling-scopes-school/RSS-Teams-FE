@@ -58,7 +58,7 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
     <StyledCoursesSelectWrapper
       isClicked={displayList}
       {...{ isLang, menuToggle }}
-      className="CommonSelectList"
+      className={`CommonSelectList${!isLang && ' sixthStep'}`}
     >
       <StyledCoursesSelectHeaderWrapper
         isClicked={displayList}

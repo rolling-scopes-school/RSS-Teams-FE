@@ -76,7 +76,7 @@ export const StudentsTable: FC = () => {
   };
 
   return (
-    <ContentPageWrapper>
+    <ContentPageWrapper className="seventhStep">
       <StudentTableWrapper>
         <TeamsTitleWrapper>
           <TableTitle>{t('Dashboard')}</TableTitle>
@@ -89,6 +89,7 @@ export const StudentsTable: FC = () => {
           <FilterButton
             onClick={onClickOpenFilterBtnHandler}
             bgColor={WHITE_COLOR}
+            className="eighthStep"
           >
             {<img src={filterIcon} alt="Filter icon" />} {t('Filter')}
           </FilterButton>

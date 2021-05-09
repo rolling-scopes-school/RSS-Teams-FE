@@ -123,3 +123,6 @@ export const FOOTER_INFO = [
 
 export const LINK_TO_DESIGN_BLOCK =
   'https://www.linkedin.com/in/nastya-kapylova-54126215a';
+
+export const LINK_TO_REPO =
+  'https://github.com/rolling-scopes-school/RSS-Teams-FE';
