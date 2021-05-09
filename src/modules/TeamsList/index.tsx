@@ -41,15 +41,15 @@ export const TeamsList: FC = () => {
     isLoading,
   } = useCommonMutations(page);
 
-  if (!localStorage.getItem(TOUR_OPENING) && !userTeam)
+  if (!localStorage.getItem(TOUR_OPENING) && !userTeam) {
     dispatch(setIsTourOpen(true));
+  }
+  dispatch(setTourOpening(TOUR_OPENING));
 
   if (loading || isLoading) return <Loader />;
   if (error || isError) return <ErrorModal />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
-
-  // dispatch(setTourOpening(TOUR_OPENING));
 
   return (
     <ContentPageWrapper>

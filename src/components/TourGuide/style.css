@@ -74,7 +74,8 @@ nav > .reactour__dot--is-active {
 }
 
 .mask {
-  color: transparent;
+  color: #363d48;
+  opacity: 0.4;
 }
 
 .linkToRepo {
@@ -87,3 +88,32 @@ nav > .reactour__dot--is-active {
 .linkToRepo:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 550px) {
+  .reactour__helper.helper {
+    width: 280px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .reactour__helper.helper {
+    width: 280px;
+    font-size: 0.8rem;
+  }
+  span[data-tour-elem="badge"] {
+    line-height: 2.5;
+  }
+  div[data-tour-elem="controls"] {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  div[data-tour-elem="controls"] > nav {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  button[data-tour-elem="left-arrow"] {
+    margin-left: unset;
+  }
+}
+

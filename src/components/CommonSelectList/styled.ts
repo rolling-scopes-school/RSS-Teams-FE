@@ -76,6 +76,12 @@ export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectL
     font-weight: 400;
   }
 
+  & > p {
+    @media (max-width: 440px) {
+      display: none;
+    }
+  }
+
   svg {
     transform: ${({ isClicked }) =>
       isClicked ? 'rotate(180deg)' : 'rotate(0deg)'};
@@ -129,7 +135,8 @@ export const StyledCoursesSelectInfo = styled.div<TStyledCoursesSelectInfo>`
     white-space: nowrap;
     text-overflow: ellipsis;
     @media (max-width: 440px) {
-      display: ${({ isLang }) => !isLang && 'none'};
+      margin-left: 0;
+      margin-right: ${({ hover }) => (hover ? '10px' : '0')};
     }
   }
 
