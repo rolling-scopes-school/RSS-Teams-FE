@@ -11,7 +11,8 @@ span[data-tour-elem="badge"] {
 }
 
 .reactour__helper.helper {
-  width: 350px;
+  width: 440px;
+  max-width: 440px;
   padding: 64px 20px 20px;
   font-family: "Poppins", sans-serif;
   text-align: justify;
@@ -69,6 +70,10 @@ nav > .reactour__dot {
   border: none;
 }
 
+nav > .reactour__dot:disabled {
+  cursor: unset;
+}
+
 nav > .reactour__dot--is-active {
   background-color: #6550f6;
 }
@@ -91,8 +96,9 @@ nav > .reactour__dot--is-active {
 
 @media (max-width: 550px) {
   .reactour__helper.helper {
-    width: 280px;
+    width: 320px;
     font-size: 0.9rem;
+    line-height: 1.1rem;
   }
 }
 
@@ -100,6 +106,7 @@ nav > .reactour__dot--is-active {
   .reactour__helper.helper {
     width: 280px;
     font-size: 0.8rem;
+    line-height: 1rem;
   }
   span[data-tour-elem="badge"] {
     line-height: 2.5;

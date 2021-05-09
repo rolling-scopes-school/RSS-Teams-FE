@@ -9,17 +9,20 @@ import leftArrow from 'assets/svg/paginateArrowLeft.svg';
 import rightArrow from 'assets/svg/paginateArrowRight.svg';
 import './style.css';
 import { useHistory } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 export const TourGuide: FC = () => {
   const dispatch = useDispatch();
   const isTourOpen = useSelector(selectIsTourOpen);
   const history = useHistory();
+  const { t } = useTranslation();
 
   const onRequestCloseHandler = () => dispatch(setIsTourOpen(false));
 
-  const tourConfigInfo = useCallback(() => tourConfig(history, dispatch), [
+  const tourConfigInfo = useCallback(() => tourConfig(history, dispatch, t), [
     history,
     dispatch,
+    t,
   ]);
 
   return (
@@ -31,6 +34,7 @@ export const TourGuide: FC = () => {
       nextButton={<img src={rightArrow} alt="Next" />}
       accentColor={MAIN1_COLOR}
       maskClassName="mask"
+      disableDotsNavigation={true}
       closeWithMask={false}
       className="helper"
       rounded={20}
