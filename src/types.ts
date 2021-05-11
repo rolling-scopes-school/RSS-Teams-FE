@@ -133,6 +133,7 @@ export type StateLoginPage = {
   isBurgerMenuOpen: boolean;
   isEditProfileDataChange: boolean;
   pathToThePage: string;
+  isTourOpen: boolean;
 };
 
 export type State = {

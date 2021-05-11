@@ -4,7 +4,13 @@ import ReactDOM from 'react-dom';
 import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
 import styled from 'styled-components';
 import styles from './index.module.css';
-import { PageTitle, Label, Button, InvertedButton } from 'typography';
+import {
+  PageTitle,
+  Label,
+  Button,
+  InvertedButton,
+  ButtonsBlock,
+} from 'typography';
 import { useTranslation } from 'react-i18next';
 
 type ModalProps = {
@@ -32,13 +38,6 @@ const ModalWindow = styled.div`
   top: 315px;
   background: #ffffff;
   border-radius: 20px;
-`;
-
-const ButtonsBlock = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
-  margin-bottom: 10px;
 `;
 
 export const Modal: FC<ModalProps> = ({

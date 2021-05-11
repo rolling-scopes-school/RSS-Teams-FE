@@ -10,7 +10,14 @@ import {
   EditProfile,
   TutorialPage,
 } from 'modules';
-import { Loader, PrivateRoute, Header, Footer, ErrorModal } from 'components';
+import {
+  Loader,
+  PrivateRoute,
+  Header,
+  Footer,
+  ErrorModal,
+  TourGuide,
+} from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
 import {
   AUTH_TOKEN,
@@ -85,6 +92,8 @@ export const App: FC = () => {
         <Route exact path="/tutorial" component={TutorialPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
+
+      <TourGuide />
 
       {!!loginToken && <Footer />}
     </AppStyled>

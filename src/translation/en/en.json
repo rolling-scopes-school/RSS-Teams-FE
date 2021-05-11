@@ -114,5 +114,20 @@
   "You will see the following after joining the team": "You will see the following after joining the team:",
   "To leave the team": "To leave the team, click the “Leave Team” button or ask someone from your teammates to exclude you from the team.",
   "Data is unsaved": "Data is unsaved",
-  "Are sure want to leave page without saving data?": "Are sure want to leave page without saving data?"
+  "Are you sure want to leave page without saving data": "Are you sure want to leave page without saving data?",
+  "Welcome to RSS Teams": "Welcome to RSS Teams!",
+  "Skip": "Skip",
+  "Next": "Next",
+  "You can create new team": "You can create new team - you need only the link to your future team chat.",
+  "Or join existing team": "Or join existing team! You should have the password from your team.",
+  "You can always leave the course": "You can always leave the course.",
+  "On Teams page you can see other teams": "On Teams page you can also see other teams.",
+  "With dropdown you can switch the course": "With dropdown you can switch the course in case if you have several courses.",
+  "On Dashboard page": "On Dashboard page you can check/find another students.",
+  "With filter usage": "With filter usage you can make the search for students easier.",
+  "On Edit profile page": "On Edit profile page you can add/remove course or edit your profile.",
+  "If you forget something": "If you forgot something, you can use Tutorial tab.",
+  "Support us": "Support us by pressing a star in",
+  "our repo": "our repo",
+  "Got it": "Got it!"  
 }

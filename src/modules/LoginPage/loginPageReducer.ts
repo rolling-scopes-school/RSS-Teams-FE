@@ -7,6 +7,7 @@ import {
   SET_BURGER_MENU_OPEN,
   SET_EDIT_PROFILE_DATA_CHANGE,
   SET_PATH_TO_THE_PAGE,
+  SET_IS_TOUR_OPEN,
 } from 'appConstants';
 import { createActions, handleActions } from 'redux-actions';
 import { StateLoginPage } from 'types';
@@ -22,6 +23,7 @@ export const loginPageState = {
   isBurgerMenuOpen: false,
   isEditProfileDataChange: false,
   pathToThePage: '',
+  isTourOpen: false,
 };
 
 export const {
@@ -32,6 +34,7 @@ export const {
   setBurgerMenuOpen,
   setEditProfileDataChange,
   setPathToThePage,
+  setIsTourOpen,
 } = createActions({
   SET_TOKEN: (loginToken) => ({ loginToken }),
   SET_CURR_COURSE: (currCourse) => ({ currCourse }),
@@ -43,6 +46,9 @@ export const {
   }),
   SET_PATH_TO_THE_PAGE: (pathToThePage) => ({
     pathToThePage,
+  }),
+  SET_IS_TOUR_OPEN: (isTourOpen) => ({
+    isTourOpen,
   }),
 });
 
@@ -78,6 +84,10 @@ export const loginPageReducer = handleActions<StateLoginPage, any>(
     [SET_PATH_TO_THE_PAGE]: (state, { payload: { pathToThePage } }) => ({
       ...state,
       pathToThePage,
+    }),
+    [SET_IS_TOUR_OPEN]: (state, { payload: { isTourOpen } }) => ({
+      ...state,
+      isTourOpen,
     }),
   },
   loginPageState
