@@ -18,9 +18,9 @@ export const TeamsList: FC = () => {
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
-  const userTeam =
-    userData.teams.find((team: Team) => team.courseId === currCourse.id) ??
-    undefined;
+  const userTeam = userData.teams?.find(
+    (team: Team) => team.courseId === currCourse.id
+  );
 
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId: currCourse.id,

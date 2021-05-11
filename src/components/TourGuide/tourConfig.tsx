@@ -1,8 +1,15 @@
 import { Button, InvertedButton, ButtonsBlock } from 'typography';
 import { setIsTourOpen } from 'modules/LoginPage/loginPageReducer';
 import { LINK_TO_REPO } from 'appConstants';
+import { LinkButton } from './styled';
+import { Dispatch } from 'redux';
+import { History, LocationState } from 'history';
 
-export const tourConfig = (history: any, dispatch: any, t: any) => [
+export const tourConfig = (
+  history: History<LocationState>,
+  dispatch: Dispatch,
+  t: (text: string) => string
+) => [
   {
     content: ({ goTo }: { goTo: (step: number) => void }) => (
       <div>
@@ -22,7 +29,7 @@ export const tourConfig = (history: any, dispatch: any, t: any) => [
   },
   {
     selector: '.thirdStep',
-    content: t('Or join exited team'),
+    content: t('Or join existing team'),
     action: () => history.push('/'),
   },
   {
@@ -74,9 +81,16 @@ export const tourConfig = (history: any, dispatch: any, t: any) => [
           !
         </p>
         <ButtonsBlock>
-          <Button onClick={() => dispatch(setIsTourOpen(false))}>
+          <LinkButton
+            onClick={() => {
+              dispatch(setIsTourOpen(false));
+            }}
+            href={LINK_TO_REPO}
+            target="_blank"
+            rel="noreferrer"
+          >
             {t('Got it')}
-          </Button>
+          </LinkButton>
         </ButtonsBlock>
       </div>
     ),

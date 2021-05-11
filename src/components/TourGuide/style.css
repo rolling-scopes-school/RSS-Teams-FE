@@ -48,11 +48,21 @@ button[data-tour-elem="left-arrow"] {
 }
 
 button[data-tour-elem="right-arrow"],
-button[data-tour-elem="left-arrow"] {
+button[data-tour-elem="left-arrow"],
+.LastStepNextButton {
   width: 40px;
   height: 40px;
-  background-color: #f2f8fd;
   border-radius: 10px;
+}
+
+button[data-tour-elem="right-arrow"],
+button[data-tour-elem="left-arrow"] {
+  background-color: #f2f8fd;
+}
+
+.LastStepNextButton {
+  background-color: #ffffff;
+  cursor: default;
 }
 
 button[data-tour-elem="right-arrow"] > img,
