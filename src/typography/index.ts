@@ -175,16 +175,16 @@ export const GeneralButtonPadding = css`
     padding: 11px 45px;
   }
   @media (max-width: 992px) {
-    padding: 10px 40px;
+    padding: 14px 40px;
   }
   @media (max-width: 768px) {
-    padding: 8px 30px;
+    padding: 12px 30px;
   }
   @media (max-width: 550px) {
-    padding: 5px 25px;
+    padding: 10px 25px;
   }
   @media (max-width: 440px) {
-    padding: 5px 20px;
+    padding: 10px 20px;
   }
 `;
 
@@ -398,4 +398,11 @@ export const SelectInner = styled.select`
   option {
     color: ${DARK_TEXT_COLOR};
   }
+`;
+
+export const ButtonsBlock = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 10px;
 `;

@@ -16,3 +16,4 @@ export { FilterSelect } from './FilterSelect';
 export { Footer } from './Footer';
 export { ErrorModal } from './ErrorModal';
 export { CommonSelectList } from './CommonSelectList';
+export { TourGuide } from './TourGuide';

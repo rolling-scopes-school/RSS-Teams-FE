@@ -23,6 +23,7 @@ export const SET_FILTER_DATA = 'SET_FILTER_DATA';
 export const SET_CURR_LANG = 'SET_CURR_LANG';
 export const SET_EDIT_PROFILE_DATA_CHANGE = 'SET_EDIT_PROFILE_DATA_CHANGE';
 export const SET_PATH_TO_THE_PAGE = 'SET_PATH_TO_THE_PAGE';
+export const SET_IS_TOUR_OPEN = 'SET_IS_TOUR_OPEN';
 
 export const USERS_PER_PAGE = 20;
 export const TEAMS_PER_PAGE = 10;
@@ -30,6 +31,7 @@ export const CURRENT_YEAR = new Date(Date.now()).getFullYear();
 
 export const CURRENT_COURSE = 'currentCourse';
 export const CURRENT_LANG = 'currentLanguage';
+export const TOUR_OPENING = 'tourOpening';
 
 export const TABLE_HEADERS = [
   '№',
@@ -121,3 +123,6 @@ export const FOOTER_INFO = [
 
 export const LINK_TO_DESIGN_BLOCK =
   'https://www.linkedin.com/in/nastya-kapylova-54126215a';
+
+export const LINK_TO_REPO =
+  'https://github.com/rolling-scopes-school/RSS-Teams-FE';

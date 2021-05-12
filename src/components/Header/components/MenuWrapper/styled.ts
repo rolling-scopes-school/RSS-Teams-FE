@@ -8,6 +8,12 @@ export const StyledMenuWrapper = styled.div`
   @media (max-width: 1260px) {
     height: 40px;
   }
+  @media (max-width: 550px) {
+    margin-left: -30px;
+  }
+  @media (max-width: 440px) {
+    margin-left: -50px;
+  }
 `;
 
 export const MenuButton = styled(MenuToggle)`

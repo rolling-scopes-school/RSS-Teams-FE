@@ -271,7 +271,7 @@ export const EditProfile: FC = () => {
       </CommonWrapper>
       <ModalExpel
         title="Data is unsaved"
-        text="Are sure want to leave page without saving data?"
+        text="Are you sure want to leave page without saving data"
         open={isActiveModalLeavePage}
         onSubmit={onSubmitLeavePage}
         isCrossIconVisible={false}

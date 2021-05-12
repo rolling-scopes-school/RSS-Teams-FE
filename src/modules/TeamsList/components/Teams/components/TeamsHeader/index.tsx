@@ -21,18 +21,25 @@ import {
 export const TeamsHeader: FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const buttonsInfo: { name: string; callback: () => void }[] = [
+  const buttonsInfo: {
+    name: string;
+    callback: () => void;
+    className: string;
+  }[] = [
     {
       name: 'Create team',
       callback: () => dispatch(activeModalCreateTeam(true)),
+      className: 'secondStep',
     },
     {
       name: 'Join team',
       callback: () => dispatch(activeModalJoin(true)),
+      className: 'thirdStep',
     },
     {
       name: 'Leave course',
       callback: () => dispatch(activeModalRemoveCourse(true)),
+      className: 'fourthStep',
     },
   ];
 
@@ -51,6 +58,7 @@ export const TeamsHeader: FC = () => {
                 color={DARK_TEXT_COLOR}
                 type="button"
                 onClick={item.callback}
+                className={item.className}
                 key={JSON.stringify(item)}
               >
                 {t(item.name)}

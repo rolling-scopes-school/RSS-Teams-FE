@@ -89,6 +89,7 @@ export const StudentsTable: FC = () => {
           <FilterButton
             onClick={onClickOpenFilterBtnHandler}
             bgColor={WHITE_COLOR}
+            className="seventhStep"
           >
             {<img src={filterIcon} alt="Filter icon" />} {t('Filter')}
           </FilterButton>
