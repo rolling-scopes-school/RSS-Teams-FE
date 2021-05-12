@@ -68,11 +68,7 @@ export const ModalCreateEditTeam: FC<Props> = ({
     return () => document.removeEventListener('keydown', listener);
   }, [onSubmitModal, open]);
 
-  const isValid = (
-    value: string,
-    validateRules: any,
-    needValidate: boolean
-  ) => {
+  const isValid = (value: string, validateRules: any, needValidate: boolean) => {
     if (!needValidate) return true;
 
     let valid = true;

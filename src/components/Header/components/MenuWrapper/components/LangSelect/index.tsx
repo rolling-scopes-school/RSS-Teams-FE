@@ -21,9 +21,7 @@ export const LangSelect: FC<LangSelectProps> = ({ menuToggle }) => {
     i18n.changeLanguage(item);
   };
 
-  const languages: string[] = LANGUAGES.filter(
-    (lang) => lang !== currentLanguage
-  );
+  const languages: string[] = LANGUAGES.filter((lang) => lang !== currentLanguage);
 
   return (
     <CommonSelectList

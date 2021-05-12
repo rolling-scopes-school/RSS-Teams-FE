@@ -25,9 +25,7 @@ export const TutorialPage: FC = () => {
         <StepBlock
           title="Step 1"
           subtitle="The app will suggest"
-          imageSrc={
-            currentLang === 'en' ? editProfileExampleEN : editProfileExampleRU
-          }
+          imageSrc={currentLang === 'en' ? editProfileExampleEN : editProfileExampleRU}
           altText="Profile example"
         />
         <NoteBlock
@@ -37,21 +35,17 @@ export const TutorialPage: FC = () => {
         <StepBlock
           title="Step 2"
           subtitle="On the teams page you will see two available buttons"
-          imageSrc={
-            currentLang === 'en' ? teamActionsExampleEN : teamActionsExampleRU
-          }
+          imageSrc={currentLang === 'en' ? teamActionsExampleEN : teamActionsExampleRU}
           altText="Team actions example"
         />
-        {TUTORIAL_PAGE_NOTES_INFO().map(
-          ({ title, subtitle, listItems, isNote, children }) => (
-            <NoteBlock
-              {...{ title, subtitle, listItems, isNote }}
-              key={listItems ? JSON.stringify(listItems) : title}
-            >
-              {children}
-            </NoteBlock>
-          )
-        )}
+        {TUTORIAL_PAGE_NOTES_INFO().map(({ title, subtitle, listItems, isNote, children }) => (
+          <NoteBlock
+            {...{ title, subtitle, listItems, isNote }}
+            key={listItems ? JSON.stringify(listItems) : title}
+          >
+            {children}
+          </NoteBlock>
+        ))}
       </TutorialPageWrapper>
     </ContentPageWrapper>
   );

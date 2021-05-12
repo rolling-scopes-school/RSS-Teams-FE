@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RSLogo } from 'typography';
 import { StyledHeader, Container } from './styled';
-import {
-  selectIsEditProfileDataChange,
-  selectToken,
-} from 'modules/LoginPage/selectors';
+import { selectIsEditProfileDataChange, selectToken } from 'modules/LoginPage/selectors';
 import { MenuWrapper, BurgerMenu } from './components';
 import { selectUserData } from 'modules/StudentsTable/selectors';
 import { activeModalLeavePage } from 'modules/TeamsList/teamsListReducer';
@@ -19,10 +16,7 @@ export const Header: FC = () => {
   const isEditProfileDataChange = useSelector(selectIsEditProfileDataChange);
   const newUserCheck = !!userData?.courses.length;
 
-  const navOnClickHandler = (
-    e: React.MouseEvent<HTMLElement>,
-    path: string
-  ) => {
+  const navOnClickHandler = (e: React.MouseEvent<HTMLElement>, path: string) => {
     if (isEditProfileDataChange) {
       e.preventDefault();
       dispatch(activeModalLeavePage(true));

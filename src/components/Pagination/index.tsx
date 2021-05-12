@@ -10,11 +10,7 @@ type PaginationProps = {
   page: number;
 };
 
-export const Pagination: FC<PaginationProps> = ({
-  pageCount,
-  changePage,
-  page,
-}) => {
+export const Pagination: FC<PaginationProps> = ({ pageCount, changePage, page }) => {
   return (
     <ReactPaginate
       previousLabel={<img src={leftArrow} alt="Previous" />}

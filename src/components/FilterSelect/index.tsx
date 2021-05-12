@@ -32,12 +32,7 @@ export const FilterSelect: FC<SelectFieldProps> = ({
       {labelText && <Label>{labelText}</Label>}
       <SelectCourse>
         <Select>
-          <SelectInner
-            placeholder={t(placeholder)}
-            ref={register}
-            value={currentOption}
-            {...rest}
-          >
+          <SelectInner placeholder={t(placeholder)} ref={register} value={currentOption} {...rest}>
             {filterFieldOptions}
           </SelectInner>
         </Select>

@@ -18,9 +18,7 @@ export const TeamsList: FC = () => {
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
-  const userTeam = userData.teams?.find(
-    (team: Team) => team.courseId === currCourse.id
-  );
+  const userTeam = userData.teams?.find((team: Team) => team.courseId === currCourse.id);
 
   const { loadingT, errorT, teams } = useTeamsQuery({
     reactCourseId: currCourse.id,
@@ -54,12 +52,7 @@ export const TeamsList: FC = () => {
   return (
     <ContentPageWrapper>
       <StyledTeams>
-        <Teams
-          teams={teams}
-          myTeam={userTeam}
-          userId={userData.id}
-          isAdmin={userData.isAdmin}
-        />
+        <Teams teams={teams} myTeam={userTeam} userId={userData.id} isAdmin={userData.isAdmin} />
         {!!teams.results.length && (
           <Pagination pageCount={pageCount} changePage={setPage} page={page} />
         )}

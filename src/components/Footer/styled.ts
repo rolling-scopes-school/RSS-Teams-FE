@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  DARK_TEXT_COLOR,
-  FOOTER_NAMES_COLOR,
-  WHITE_COLOR,
-} from 'appConstants/colors';
+import { DARK_TEXT_COLOR, FOOTER_NAMES_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import { GeneralAdaptiveFont } from 'typography';
 
 export const StyledFooter = styled.footer`

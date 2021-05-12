@@ -47,9 +47,7 @@ export const TeamsHeader: FC = () => {
     <TeamsHeaderStyled>
       <TeamsHeaderRightStyled>
         <TeamHeaderTitle>{t('Become a member of the team!')}</TeamHeaderTitle>
-        <TeamsHeaderSubtitleStyled>
-          {t('To become a member')}
-        </TeamsHeaderSubtitleStyled>
+        <TeamsHeaderSubtitleStyled>{t('To become a member')}</TeamsHeaderSubtitleStyled>
         <TeamsHeaderButtonsBlockStyled>
           {buttonsInfo.map((item) => {
             return (

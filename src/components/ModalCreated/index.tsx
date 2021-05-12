@@ -64,12 +64,7 @@ export const ModalCreated: FC<Props> = ({
       hideOnEsc={true}
     >
       <InputWithCopy>
-        <ModalInput
-          name="InputValue"
-          value={password}
-          readOnly
-          blink={isCopy}
-        />
+        <ModalInput name="InputValue" value={password} readOnly blink={isCopy} />
         <CopyButton onClick={onClickCopyButton} />
       </InputWithCopy>
     </Modal>

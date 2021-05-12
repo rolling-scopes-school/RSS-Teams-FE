@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { WHITE_COLOR, DARK_TEXT_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import {
-  GeneralAdaptiveFont,
-  GeneralButtonPadding,
-  H1AdaptiveFont,
-} from 'typography';
+import { GeneralAdaptiveFont, GeneralButtonPadding, H1AdaptiveFont } from 'typography';
 
 export const StyledLoginInfoBlock = styled.div`
   display: flex;

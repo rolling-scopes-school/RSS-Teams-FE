@@ -1,8 +1,4 @@
-import {
-  WHITE_COLOR,
-  DARK_TEXT_COLOR,
-  TABLE_POPUP_BORDER_COLOR,
-} from 'appConstants/colors';
+import { WHITE_COLOR, DARK_TEXT_COLOR, TABLE_POPUP_BORDER_COLOR } from 'appConstants/colors';
 import styled from 'styled-components';
 import { GeneralAdaptiveFont } from 'typography';
 

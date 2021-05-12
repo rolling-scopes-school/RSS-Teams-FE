@@ -1,9 +1,5 @@
 import { useSelector } from 'react-redux';
-import {
-  selectSocialLink,
-  selectTeamMemberExpelId,
-  selectTeamPassword,
-} from '../../selectors';
+import { selectSocialLink, selectTeamMemberExpelId, selectTeamPassword } from '../../selectors';
 import { Team } from 'types';
 import {
   useAddUserToTeamMutation,
@@ -38,9 +34,7 @@ export const useCommonMutations = (page: number) => {
     loadingM: loadingRemoveTeam,
   } = useRemoveUserFromTeamMutation({
     data: {
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
+      teamId: userData.teams.find((team: Team) => team.courseId === currCourse.id)?.id ?? '',
       userId: userData.id,
       courseId: currCourse.id,
       page,
@@ -53,9 +47,7 @@ export const useCommonMutations = (page: number) => {
     loadingM: loadingExpel,
   } = useExpelUserFromTeamMutation({
     data: {
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
+      teamId: userData.teams.find((team: Team) => team.courseId === currCourse.id)?.id ?? '',
       userId: teamMemberId,
       courseId: currCourse.id,
       page,
@@ -82,9 +74,7 @@ export const useCommonMutations = (page: number) => {
   } = useUpdateTeamMutation({
     team: {
       socialLink,
-      id:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? '',
+      id: userData.teams.find((team: Team) => team.courseId === currCourse.id)?.id ?? '',
     },
   });
 
@@ -96,9 +86,7 @@ export const useCommonMutations = (page: number) => {
     data: {
       courseId: currCourse.id,
       userId: userData.id,
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === currCourse.id)
-          ?.id ?? null,
+      teamId: userData.teams.find((team: Team) => team.courseId === currCourse.id)?.id ?? null,
       page,
     },
   });

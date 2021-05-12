@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  LIGHT_TEXT_COLOR,
-  DASHBOARD_HEADER_BG_COLOR,
-} from 'appConstants/colors';
+import { LIGHT_TEXT_COLOR, DASHBOARD_HEADER_BG_COLOR } from 'appConstants/colors';
 
 export const StyledTableHead = styled.div`
   display: flex;

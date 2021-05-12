@@ -80,10 +80,7 @@ export const teamsListReducer = handleActions<StateTeamsList, any>(
       ...state,
       teamPassword,
     }),
-    [SET_TEAM_MEMBER_EXPEL_ID]: (
-      state,
-      { payload: { teamMemberExpelId } }
-    ) => ({
+    [SET_TEAM_MEMBER_EXPEL_ID]: (state, { payload: { teamMemberExpelId } }) => ({
       ...state,
       teamMemberExpelId,
     }),
@@ -99,10 +96,7 @@ export const teamsListReducer = handleActions<StateTeamsList, any>(
       ...state,
       isActiveModalJoin,
     }),
-    [ACTIVE_MODAL_CREATE_TEAM]: (
-      state,
-      { payload: { isActiveModalCreateTeam } }
-    ) => ({
+    [ACTIVE_MODAL_CREATE_TEAM]: (state, { payload: { isActiveModalCreateTeam } }) => ({
       ...state,
       isActiveModalCreateTeam,
     }),
@@ -110,31 +104,19 @@ export const teamsListReducer = handleActions<StateTeamsList, any>(
       ...state,
       isActiveModalCreated,
     }),
-    [ACTIVE_MODAL_UPDATE_SOCIAL_LINK]: (
-      state,
-      { payload: { isActiveModalUpdateSocialLink } }
-    ) => ({
+    [ACTIVE_MODAL_UPDATE_SOCIAL_LINK]: (state, { payload: { isActiveModalUpdateSocialLink } }) => ({
       ...state,
       isActiveModalUpdateSocialLink,
     }),
-    [ACTIVE_MODAL_REMOVE_COURSE]: (
-      state,
-      { payload: { isActiveModalRemoveCourse } }
-    ) => ({
+    [ACTIVE_MODAL_REMOVE_COURSE]: (state, { payload: { isActiveModalRemoveCourse } }) => ({
       ...state,
       isActiveModalRemoveCourse,
     }),
-    [ACTIVE_MODAL_SORT_STUDENTS]: (
-      state,
-      { payload: { isActiveModalSortStudents } }
-    ) => ({
+    [ACTIVE_MODAL_SORT_STUDENTS]: (state, { payload: { isActiveModalSortStudents } }) => ({
       ...state,
       isActiveModalSortStudents,
     }),
-    [ACTIVE_MODAL_LEAVE_PAGE]: (
-      state,
-      { payload: { isActiveModalLeavePage } }
-    ) => ({
+    [ACTIVE_MODAL_LEAVE_PAGE]: (state, { payload: { isActiveModalLeavePage } }) => ({
       ...state,
       isActiveModalLeavePage,
     }),

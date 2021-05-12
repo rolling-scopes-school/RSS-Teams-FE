@@ -1,14 +1,6 @@
 import styled, { css } from 'styled-components';
-import {
-  WHITE_COLOR,
-  MAIN2_LIGHT_COLOR,
-  MAIN2_COLOR,
-} from 'appConstants/colors';
-import {
-  TextRegular,
-  GeneralAdaptiveFont,
-  SVGParamsAdaptive,
-} from 'typography';
+import { WHITE_COLOR, MAIN2_LIGHT_COLOR, MAIN2_COLOR } from 'appConstants/colors';
+import { TextRegular, GeneralAdaptiveFont, SVGParamsAdaptive } from 'typography';
 
 export const StyledMyTeamInfoBlock = styled.div`
   position: relative;

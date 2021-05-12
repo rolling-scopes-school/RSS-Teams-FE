@@ -14,10 +14,7 @@ const appReducer = combineReducers<State>({
   loginPageReducer,
 });
 
-const store = createStore(
-  appReducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware))
-);
+const store = createStore(appReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
 
 export const AppState: FC = ({ children }) => {
   return <Provider store={store}>{children}</Provider>;

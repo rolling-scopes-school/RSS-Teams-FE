@@ -36,11 +36,7 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
 
   useEffect(() => {
     const closeEventHandler = (ev: MouseEvent) => {
-      if (
-        ((selectRef.current as unknown) as HTMLDivElement).contains(
-          ev.target as HTMLDivElement
-        )
-      ) {
+      if ((selectRef.current as unknown as HTMLDivElement).contains(ev.target as HTMLDivElement)) {
         setDisplayList(!displayList);
         return;
       }
@@ -60,10 +56,7 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
       {...{ isLang, menuToggle }}
       className={`CommonSelectList${!isLang && ' eighthStep'}`}
     >
-      <StyledCoursesSelectHeaderWrapper
-        isClicked={displayList}
-        {...{ isLang, menuToggle }}
-      >
+      <StyledCoursesSelectHeaderWrapper isClicked={displayList} {...{ isLang, menuToggle }}>
         {title && <p>{t(title)}</p>}
         <StyledCoursesSelectInfo
           hover={!!listItems.length}

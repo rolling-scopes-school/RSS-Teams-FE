@@ -35,32 +35,26 @@ export const FilterButton = styled(Button)<TFilerButtonProps>`
   align-items: center;
   gap: ${({ clearBtn = false }) => (clearBtn ? '11px' : '20px')};
   margin-left: ${({ outerBtn = false }) => (outerBtn ? 'auto' : '0')};
-  padding: ${({ clearBtn = false }) =>
-    clearBtn ? '13px 20px 13px 0' : '20px 30px'};
+  padding: ${({ clearBtn = false }) => (clearBtn ? '13px 20px 13px 0' : '20px 30px')};
 
   @media (max-width: 1200px) {
-    padding: ${({ clearBtn = false }) =>
-      clearBtn ? '12px 16px 12px 0' : '18px 28px'};
+    padding: ${({ clearBtn = false }) => (clearBtn ? '12px 16px 12px 0' : '18px 28px')};
     gap: ${({ clearBtn = false }) => (clearBtn ? '10px' : '18px')};
   }
   @media (max-width: 992px) {
-    padding: ${({ clearBtn = false }) =>
-      clearBtn ? '13px 12px 13px 0' : '14px 26px'};
+    padding: ${({ clearBtn = false }) => (clearBtn ? '13px 12px 13px 0' : '14px 26px')};
     gap: ${({ clearBtn = false }) => (clearBtn ? '10px' : '17px')};
   }
   @media (max-width: 768px) {
-    padding: ${({ clearBtn = false }) =>
-      clearBtn ? '13px 8px 13px 0' : '8px 26px'};
+    padding: ${({ clearBtn = false }) => (clearBtn ? '13px 8px 13px 0' : '8px 26px')};
     gap: ${({ clearBtn = false }) => (clearBtn ? '10px' : '16px')};
   }
   @media (max-width: 550px) {
-    padding: ${({ clearBtn = false }) =>
-      clearBtn ? '11px 5px 11px 0' : '5px 25px'};
+    padding: ${({ clearBtn = false }) => (clearBtn ? '11px 5px 11px 0' : '5px 25px')};
     gap: ${({ clearBtn = false }) => (clearBtn ? '8px' : '13px')};
   }
   @media (max-width: 440px) {
-    padding: ${({ clearBtn = false }) =>
-      clearBtn ? '9px 5px 9px 0' : '5px 20px'};
+    padding: ${({ clearBtn = false }) => (clearBtn ? '9px 5px 9px 0' : '5px 20px')};
     gap: ${({ clearBtn = false }) => (clearBtn ? '6px' : '10px')};
   }
 

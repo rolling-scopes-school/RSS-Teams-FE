@@ -21,10 +21,7 @@ type BurgerMenuProps = {
   navOnClickHandler: (e: React.MouseEvent<HTMLElement>, path: string) => void;
 };
 
-export const BurgerMenu: FC<BurgerMenuProps> = ({
-  newUserCheck,
-  navOnClickHandler,
-}) => {
+export const BurgerMenu: FC<BurgerMenuProps> = ({ newUserCheck, navOnClickHandler }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const isBurgerMenuOpen = useSelector(selectIsBurgerMenuOpen);
@@ -35,37 +32,29 @@ export const BurgerMenu: FC<BurgerMenuProps> = ({
 
   return (
     <BurgerMenuWrapper {...{ isBurgerMenuOpen }}>
-      <BurgerMenuOverlay
-        {...{ isBurgerMenuOpen }}
-        onClick={onClickMenuToggle}
-      />
+      <BurgerMenuOverlay {...{ isBurgerMenuOpen }} onClick={onClickMenuToggle} />
       <BurgerMenuLayout>
         <CrossButton onClick={onClickMenuToggle} />
         <BurgerMenuNavList>
-          {Object.values(APP_NAVIGATION_LINKS).map(
-            (link: TNavLink, index: number) => {
-              if (+newUserCheck + +link.isAlwaysVisible) {
-                return (
-                  <BurgerMenuNavListItem key={JSON.stringify(link)}>
-                    <NavLink
-                      to={Object.keys(APP_NAVIGATION_LINKS)[index]}
-                      exact
-                      activeClassName="activeNavLink"
-                      onClick={(e) => {
-                        onClickMenuToggle();
-                        navOnClickHandler(
-                          e,
-                          Object.keys(APP_NAVIGATION_LINKS)[index]
-                        );
-                      }}
-                    >
-                      {t(link.name)}
-                    </NavLink>
-                  </BurgerMenuNavListItem>
-                );
-              }
+          {Object.values(APP_NAVIGATION_LINKS).map((link: TNavLink, index: number) => {
+            if (+newUserCheck + +link.isAlwaysVisible) {
+              return (
+                <BurgerMenuNavListItem key={JSON.stringify(link)}>
+                  <NavLink
+                    to={Object.keys(APP_NAVIGATION_LINKS)[index]}
+                    exact
+                    activeClassName="activeNavLink"
+                    onClick={(e) => {
+                      onClickMenuToggle();
+                      navOnClickHandler(e, Object.keys(APP_NAVIGATION_LINKS)[index]);
+                    }}
+                  >
+                    {t(link.name)}
+                  </NavLink>
+                </BurgerMenuNavListItem>
+              );
             }
-          )}
+          })}
         </BurgerMenuNavList>
         <LangSelect menuToggle="menuToggle" />
       </BurgerMenuLayout>

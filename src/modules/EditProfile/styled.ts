@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import {
-  BG_COLOR,
-  DARK_TEXT_COLOR,
-  LIGHT_TEXT_COLOR,
-  WHITE_COLOR,
-} from 'appConstants/colors';
+import { BG_COLOR, DARK_TEXT_COLOR, LIGHT_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import {
   PageTitle,
   H1AdaptiveFont,

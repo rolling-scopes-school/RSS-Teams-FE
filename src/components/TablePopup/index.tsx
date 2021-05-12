@@ -6,10 +6,7 @@ type TablePopupProps = {
   popupElements: string[];
 };
 
-export const TablePopup: FC<TablePopupProps> = ({
-  popupElements,
-  dataLength,
-}) => {
+export const TablePopup: FC<TablePopupProps> = ({ popupElements, dataLength }) => {
   return (
     <StyledPopup dataLength={dataLength}>
       {popupElements?.map((element: string) => (

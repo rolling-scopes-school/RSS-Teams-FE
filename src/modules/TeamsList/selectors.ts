@@ -1,13 +1,10 @@
 import { State } from 'types';
 
-export const selectIsActiveModalExpel = (state: State) =>
-  state.teamsListReducer.isActiveModalExpel;
+export const selectIsActiveModalExpel = (state: State) => state.teamsListReducer.isActiveModalExpel;
 
-export const selectIsActiveModalLeave = (state: State) =>
-  state.teamsListReducer.isActiveModalLeave;
+export const selectIsActiveModalLeave = (state: State) => state.teamsListReducer.isActiveModalLeave;
 
-export const selectIsActiveModalJoin = (state: State) =>
-  state.teamsListReducer.isActiveModalJoin;
+export const selectIsActiveModalJoin = (state: State) => state.teamsListReducer.isActiveModalJoin;
 
 export const selectIsActiveModalCreateTeam = (state: State) =>
   state.teamsListReducer.isActiveModalCreateTeam;
@@ -27,11 +24,8 @@ export const selectIsActiveModalSortStudents = (state: State) =>
 export const selectIsActiveModalLeavePage = (state: State) =>
   state.teamsListReducer.isActiveModalLeavePage;
 
-export const selectTeamMemberExpelId = (state: State) =>
-  state.teamsListReducer.teamMemberExpelId;
+export const selectTeamMemberExpelId = (state: State) => state.teamsListReducer.teamMemberExpelId;
 
-export const selectTeamPassword = (state: State) =>
-  state.teamsListReducer.teamPassword;
+export const selectTeamPassword = (state: State) => state.teamsListReducer.teamPassword;
 
-export const selectSocialLink = (state: State) =>
-  state.teamsListReducer.socialLink;
+export const selectSocialLink = (state: State) => state.teamsListReducer.socialLink;

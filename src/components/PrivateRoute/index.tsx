@@ -26,11 +26,7 @@ export const PrivateRoute: FC<Props> = ({
           return <Redirect to={'/editProfile'} />;
         }
         if (!isLoggedIn) {
-          return (
-            <Redirect
-              to={{ pathname: '/login', state: { from: props.location } }}
-            />
-          );
+          return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
         }
       }}
     />

@@ -48,9 +48,7 @@ export const CourseField: FC<SelectFieldProps> = ({
             ref={register}
             value={0}
             onChange={(e: any) => {
-              onAdd(
-                courses.find((course: Course) => course.id === e.target.value)
-              );
+              onAdd(courses.find((course: Course) => course.id === e.target.value));
             }}
             {...rest}
           >
@@ -61,11 +59,7 @@ export const CourseField: FC<SelectFieldProps> = ({
           </SelectInner>
         </Select>
       </SelectCourse>
-      {!isValid && (
-        <ValidationAlert>
-          {t('You need to choose at least one course')}
-        </ValidationAlert>
-      )}
+      {!isValid && <ValidationAlert>{t('You need to choose at least one course')}</ValidationAlert>}
     </FieldWrapper>
   );
 };

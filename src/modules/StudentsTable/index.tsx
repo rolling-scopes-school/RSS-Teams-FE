@@ -11,10 +11,7 @@ import { FilterButton } from 'components/FilterForm/styled';
 import filterIcon from 'assets/svg/filterIcon.svg';
 import crossIcon from 'assets/svg/cross.svg';
 import { WHITE_COLOR } from 'appConstants/colors';
-import {
-  defaultFilterData,
-  filterSelectFields,
-} from 'components/FilterForm/filterFormFields';
+import { defaultFilterData, filterSelectFields } from 'components/FilterForm/filterFormFields';
 import { selectFilterData } from './selectors';
 import { TFilterForm } from 'types';
 import { useForm } from 'react-hook-form';
@@ -25,9 +22,7 @@ import { ContentPageWrapper } from 'typography';
 export const StudentsTable: FC = () => {
   const [page, setPage] = useState<number>(0);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [inputValues, setInputValues] = useState<TFilterForm>(
-    defaultFilterData
-  );
+  const [inputValues, setInputValues] = useState<TFilterForm>(defaultFilterData);
   const { t } = useTranslation();
   const { register, handleSubmit, errors, reset } = useForm<TFilterForm>({
     defaultValues: inputValues,
@@ -42,12 +37,15 @@ export const StudentsTable: FC = () => {
   const { loadingU, errorU, users } = useUsersQuery({
     filter: {
       ...filterData,
-      sortingOrder: (filterSelectFields[0][1].find(
-        (item) => item[0] === filterData.sortingOrder
-      ) as string[])[1],
-      teamFilter: (filterSelectFields[1][1].find(
-        (item) => item[0] === filterData.teamFilter
-      ) as [string, boolean])[1],
+      sortingOrder: (
+        filterSelectFields[0][1].find((item) => item[0] === filterData.sortingOrder) as string[]
+      )[1],
+      teamFilter: (
+        filterSelectFields[1][1].find((item) => item[0] === filterData.teamFilter) as [
+          string,
+          boolean
+        ]
+      )[1],
     },
     reactCourseId: currCourse.id,
     page,
@@ -61,8 +59,7 @@ export const StudentsTable: FC = () => {
 
   const pageCount: number = Math.ceil(users.count / USERS_PER_PAGE);
   const isValuesEqual =
-    Object.values(defaultFilterData).toString() !==
-    Object.values(filterData).toString();
+    Object.values(defaultFilterData).toString() !== Object.values(filterData).toString();
   const onClickClearBtnHandler = () => {
     setInputValues(defaultFilterData);
     dispatch(setFilterData(defaultFilterData));
