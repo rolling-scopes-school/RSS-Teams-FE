@@ -5,11 +5,7 @@ import { FilterSelect, InputField } from 'components';
 import { InputsWrapper } from 'modules/EditProfile/styled';
 import { TFilterForm } from 'types';
 import { FilterFormBase, FilterButtonsWrapper, FilterButton } from './styled';
-import {
-  filterFormFields,
-  filterSelectFields,
-  defaultFilterData,
-} from './filterFormFields';
+import { filterFormFields, filterSelectFields, defaultFilterData } from './filterFormFields';
 import { DARK_TEXT_COLOR } from 'appConstants/colors';
 import { Button } from 'typography';
 import crossIcon from 'assets/svg/cross.svg';
@@ -42,9 +38,7 @@ export const FilterForm: FC<TFilter> = ({
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const changeInputValue = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ): void => {
+  const changeInputValue = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
     setInputValues({
       ...inputValues,
@@ -57,34 +51,28 @@ export const FilterForm: FC<TFilter> = ({
   };
 
   const isValuesInnerEqual =
-    Object.values(defaultFilterData).toString() !==
-    Object.values(inputValues).toString();
+    Object.values(defaultFilterData).toString() !== Object.values(inputValues).toString();
   const isValuesOuterEqual =
-    Object.values(filterData).toString() !==
-    Object.values(inputValues).toString();
+    Object.values(filterData).toString() !== Object.values(inputValues).toString();
 
   return (
     <FilterFormBase onSubmit={handleSubmit(onFilterFormSubmit)}>
       <InputsWrapper>
-        {filterSelectFields.map(
-          (item: [string, [string, string | boolean][], string, string]) => {
-            return (
-              <FilterSelect
-                key={JSON.stringify(item)}
-                name={item[3]}
-                labelText={t(item[0])}
-                placeholder={t(item[0])}
-                register={register}
-                options={item[1].map((it) => it[0])}
-                onChange={changeInputValue}
-                currentOption={
-                  inputValues[item[3] as keyof TFilterForm] as string
-                }
-                color={DARK_TEXT_COLOR}
-              />
-            );
-          }
-        )}
+        {filterSelectFields.map((item: [string, [string, string | boolean][], string, string]) => {
+          return (
+            <FilterSelect
+              key={JSON.stringify(item)}
+              name={item[3]}
+              labelText={t(item[0])}
+              placeholder={t(item[0])}
+              register={register}
+              options={item[1].map((it) => it[0])}
+              onChange={changeInputValue}
+              currentOption={inputValues[item[3] as keyof TFilterForm] as string}
+              color={DARK_TEXT_COLOR}
+            />
+          );
+        })}
         {filterFormFields.map((item) => {
           return (
             <InputField
@@ -94,13 +82,9 @@ export const FilterForm: FC<TFilter> = ({
               labelText={item.labelText}
               placeholder={item.placeholder}
               aria-invalid={
-                (errors[item.name as keyof TFilterForm] as FieldError)
-                  ? 'true'
-                  : 'false'
+                (errors[item.name as keyof TFilterForm] as FieldError) ? 'true' : 'false'
               }
-              message={
-                (errors[item.name as keyof TFilterForm] as FieldError)?.message
-              }
+              message={(errors[item.name as keyof TFilterForm] as FieldError)?.message}
               onChange={changeInputValue}
               register={register(item.register)}
             />

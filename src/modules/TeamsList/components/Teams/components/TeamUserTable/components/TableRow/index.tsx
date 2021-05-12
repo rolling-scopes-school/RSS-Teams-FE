@@ -3,10 +3,7 @@ import { User } from 'types';
 import { TableCell } from './components';
 import { ExpelButton } from './components';
 import { useDispatch } from 'react-redux';
-import {
-  activeModalExpel,
-  setTeamMemberExpelId,
-} from 'modules/TeamsList/teamsListReducer';
+import { activeModalExpel, setTeamMemberExpelId } from 'modules/TeamsList/teamsListReducer';
 
 type TableRowProps = {
   member: User;
@@ -23,17 +20,7 @@ export const TableRow: FC<TableRowProps> = ({
   userId,
   secondTable = false,
 }) => {
-  const {
-    firstName,
-    lastName,
-    score,
-    telegram,
-    discord,
-    github,
-    country,
-    city,
-    id,
-  } = member;
+  const { firstName, lastName, score, telegram, discord, github, country, city, id } = member;
   const dispatch = useDispatch();
   return (
     <tr className={secondTable ? 'SecondTable' : 'FirstTable'}>

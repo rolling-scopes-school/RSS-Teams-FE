@@ -10,21 +10,9 @@ import {
   EditProfile,
   TutorialPage,
 } from 'modules';
-import {
-  Loader,
-  PrivateRoute,
-  Header,
-  Footer,
-  ErrorModal,
-  TourGuide,
-} from 'components';
+import { Loader, PrivateRoute, Header, Footer, ErrorModal, TourGuide } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
-import {
-  AUTH_TOKEN,
-  CURRENT_COURSE,
-  CURRENT_LANG,
-  DEFAULT_LANGUAGE,
-} from 'appConstants';
+import { AUTH_TOKEN, CURRENT_COURSE, CURRENT_LANG, DEFAULT_LANGUAGE } from 'appConstants';
 import { useWhoAmIQuery } from 'hooks/graphql';
 import { AppStyled } from './styled';
 import { setToken } from 'modules/LoginPage/loginPageReducer';
@@ -50,14 +38,9 @@ export const App: FC = () => {
       dispatch(setUserData(whoAmI));
     }
     if (whoAmI?.courses[0]) {
+      dispatch(setLanguage(localStorage.getItem(CURRENT_LANG) ?? DEFAULT_LANGUAGE));
       dispatch(
-        setLanguage(localStorage.getItem(CURRENT_LANG) ?? DEFAULT_LANGUAGE)
-      );
-      dispatch(
-        setCourse(
-          JSON.parse(localStorage.getItem(CURRENT_COURSE) as string) ??
-            whoAmI?.courses[0]
-        )
+        setCourse(JSON.parse(localStorage.getItem(CURRENT_COURSE) as string) ?? whoAmI?.courses[0])
       );
     }
 

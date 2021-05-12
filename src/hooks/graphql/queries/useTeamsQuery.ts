@@ -8,11 +8,7 @@ type Props = {
   page?: number;
 };
 
-export const useTeamsQuery = ({
-  reactCourseId,
-  skip = false,
-  page = 0,
-}: Props) => {
+export const useTeamsQuery = ({ reactCourseId, skip = false, page = 0 }: Props) => {
   const { data, loading, error } = useQuery(TEAMS_QUERY, {
     skip,
     variables: {

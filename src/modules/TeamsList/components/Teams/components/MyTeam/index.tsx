@@ -9,10 +9,7 @@ import { MembersListToggle } from '../MemberListToggle';
 import { MyTeamInfoBlock } from './components/MyTeamInfoBlock';
 import { TeamUserTable } from '../TeamUserTable';
 import { useTranslation } from 'react-i18next';
-import {
-  activeModalLeave,
-  activeModalRemoveCourse,
-} from 'modules/TeamsList/teamsListReducer';
+import { activeModalLeave, activeModalRemoveCourse } from 'modules/TeamsList/teamsListReducer';
 
 type MyTeamProps = {
   team: Team;
@@ -36,16 +33,8 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
           {t('My team - Team')} {team.number}
         </h2>
         <div className="myTeam__info-wrapper">
-          <MyTeamInfoBlock
-            title="Invitation password"
-            value={team.password}
-            icon="info"
-          />
-          <MyTeamInfoBlock
-            title="Link to group"
-            value={team.socialLink}
-            icon="edit"
-          />
+          <MyTeamInfoBlock title="Invitation password" value={team.password} icon="info" />
+          <MyTeamInfoBlock title="Link to group" value={team.socialLink} icon="edit" />
         </div>
         <div className="myTeam__leave">
           <TeamButton
@@ -58,12 +47,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
           </TeamButton>
         </div>
         <div className="myTeam__button">
-          <TeamButton
-            bgc={WHITE_COLOR}
-            color={DARK_TEXT_COLOR}
-            type="button"
-            onClick={leaveTeam}
-          >
+          <TeamButton bgc={WHITE_COLOR} color={DARK_TEXT_COLOR} type="button" onClick={leaveTeam}>
             {t('Leave team')}
           </TeamButton>
         </div>
@@ -77,13 +61,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
         <HeaderDecor />
       </div>
       <TableWrapper open={isOpen}>
-        {isOpen && (
-          <TeamUserTable
-            members={team.members}
-            isMyTeam={true}
-            userId={userId}
-          />
-        )}
+        {isOpen && <TeamUserTable members={team.members} isMyTeam={true} userId={userId} />}
       </TableWrapper>
     </StyledMyTeam>
   );

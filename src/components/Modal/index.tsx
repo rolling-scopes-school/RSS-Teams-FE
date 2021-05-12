@@ -4,13 +4,7 @@ import ReactDOM from 'react-dom';
 import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
 import styled from 'styled-components';
 import styles from './index.module.css';
-import {
-  PageTitle,
-  Label,
-  Button,
-  InvertedButton,
-  ButtonsBlock,
-} from 'typography';
+import { PageTitle, Label, Button, InvertedButton, ButtonsBlock } from 'typography';
 import { useTranslation } from 'react-i18next';
 
 type ModalProps = {
@@ -102,9 +96,7 @@ export const Modal: FC<ModalProps> = ({
   return ReactDOM.createPortal(
     <div className={styles.overlay} onClick={onOutClick}>
       <div className={styles.container} ref={insideRef}>
-        {isCrossIconVisible && (
-          <IconClose className={styles.icon} onClick={close} />
-        )}
+        {isCrossIconVisible && <IconClose className={styles.icon} onClick={close} />}
         <ModalWindow>
           <PageTitle>{t(title)}</PageTitle>
           <Label>{t(text)}</Label>
@@ -116,9 +108,7 @@ export const Modal: FC<ModalProps> = ({
             {onSubmit ? (
               cancelText ? (
                 <>
-                  <InvertedButton onClick={onClose}>
-                    {t(cancelText)}
-                  </InvertedButton>
+                  <InvertedButton onClick={onClose}>{t(cancelText)}</InvertedButton>
                   <Button
                     onClick={(e) => {
                       onSubmit(e);
@@ -137,9 +127,7 @@ export const Modal: FC<ModalProps> = ({
                 </Button>
               )
             ) : (
-              <Button onClick={onClose}>
-                {cancelText ? t(cancelText) : ''}
-              </Button>
+              <Button onClick={onClose}>{cancelText ? t(cancelText) : ''}</Button>
             )}
           </ButtonsBlock>
         </ModalWindow>

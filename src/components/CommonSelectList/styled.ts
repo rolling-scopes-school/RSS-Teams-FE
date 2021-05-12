@@ -34,8 +34,7 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
   overflow: hidden;
   font: 400 1rem/24px 'Poppins', sans-serif;
   color: ${({ menuToggle }) => (menuToggle ? DARK_TEXT_COLOR : WHITE_COLOR)};
-  background-color: ${({ menuToggle }) =>
-    menuToggle ? BG_COLOR : MAIN1_DARK_COLOR};
+  background-color: ${({ menuToggle }) => (menuToggle ? BG_COLOR : MAIN1_DARK_COLOR)};
   border-radius: 10px;
   ${HeaderAdaptiveFont}
 
@@ -66,8 +65,7 @@ export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectL
   align-items: center;
   height: 40px;
   padding: 8px 15px;
-  background-color: ${({ menuToggle }) =>
-    menuToggle ? BG_COLOR : MAIN1_DARK_COLOR};
+  background-color: ${({ menuToggle }) => (menuToggle ? BG_COLOR : MAIN1_DARK_COLOR)};
   border-radius: 10px;
   ${HeaderAdaptiveFont};
 
@@ -83,8 +81,7 @@ export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectL
   }
 
   svg {
-    transform: ${({ isClicked }) =>
-      isClicked ? 'rotate(180deg)' : 'rotate(0deg)'};
+    transform: ${({ isClicked }) => (isClicked ? 'rotate(180deg)' : 'rotate(0deg)')};
     path {
       stroke: ${({ menuToggle }) => menuToggle && LIGHT_TEXT_COLOR};
     }
@@ -105,8 +102,7 @@ export const StyledCoursesList = styled.ul<TFooterProp>`
   li {
     padding: 5px;
     list-style: none;
-    background-color: ${({ menuToggle }) =>
-      menuToggle ? WHITE_COLOR : MAIN1_COLOR};
+    background-color: ${({ menuToggle }) => (menuToggle ? WHITE_COLOR : MAIN1_COLOR)};
     border-radius: 10px;
     cursor: pointer;
 

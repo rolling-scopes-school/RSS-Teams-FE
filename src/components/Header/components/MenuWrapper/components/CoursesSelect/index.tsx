@@ -12,8 +12,7 @@ export const CoursesSelect: FC = () => {
   const currCourse = useSelector(selectCurrCourse);
   const userData = useSelector(selectUserData);
 
-  const userCourses =
-    userData.courses.filter((item) => item.id !== currCourse.id) ?? null;
+  const userCourses = userData.courses.filter((item) => item.id !== currCourse.id) ?? null;
 
   const onCourseChange = (course: Course) => {
     setCourseSelectOpen(false);

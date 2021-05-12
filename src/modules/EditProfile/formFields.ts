@@ -145,10 +145,7 @@ export const formFields: InputFieldProps[] = [
   },
 ];
 
-export const checkIsCoursesEqual = (
-  newCourses: Course[],
-  userCourses: Course[]
-) => {
+export const checkIsCoursesEqual = (newCourses: Course[], userCourses: Course[]) => {
   return (
     JSON.stringify(newCourses.map((newCourse) => newCourse.name).sort()) ===
     JSON.stringify(userCourses.map((userCourse) => userCourse.name).sort())

@@ -64,12 +64,7 @@ export const filterFormFields: InputFieldProps[] = [
   },
 ];
 
-export const filterSelectFields: [
-  string,
-  [string, string | boolean][],
-  string,
-  string
-][] = [
+export const filterSelectFields: [string, [string, string | boolean][], string, string][] = [
   [
     'Sort by score',
     [

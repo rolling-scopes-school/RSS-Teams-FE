@@ -27,10 +27,7 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
           `${user.firstName} ${user.lastName || null}`,
           `${user.score}`,
           user.teams.find((team: Team) => team.courseId === currCourse.id)
-            ? `${
-                user.teams.find((team: Team) => team.courseId === currCourse.id)
-                  ?.number
-              }`
+            ? `${user.teams.find((team: Team) => team.courseId === currCourse.id)?.number}`
             : (t('No team yet.') as string),
           user.telegram || `${t('No')} telegram.`,
           user.discord || `${t('No')} discord.`,

@@ -3,11 +3,7 @@ import { ListChildComponentProps } from 'react-window';
 import { TableItem } from './components/TableItem';
 import { StyledTableRow } from './styled';
 
-export const TableRow: FC<ListChildComponentProps> = ({
-  data,
-  index,
-  style,
-}) => {
+export const TableRow: FC<ListChildComponentProps> = ({ data, index, style }) => {
   const optimalItemIndexCount = 2;
   return (
     <StyledTableRow style={style}>
@@ -15,9 +11,7 @@ export const TableRow: FC<ListChildComponentProps> = ({
         <TableItem
           item={item}
           index={ind}
-          dataLength={
-            index > optimalItemIndexCount ? index / (data.length - 1) : 0
-          }
+          dataLength={index > optimalItemIndexCount ? index / (data.length - 1) : 0}
           key={`TableItemKey-${ind}`}
         />
       ))}

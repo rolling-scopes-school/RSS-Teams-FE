@@ -20,11 +20,10 @@ export const TourGuide: FC = () => {
 
   const onRequestCloseHandler = () => dispatch(setIsTourOpen(false));
 
-  const tourConfigInfo = useCallback(() => tourConfig(history, dispatch, t), [
-    history,
-    dispatch,
-    t,
-  ]);
+  const tourConfigInfo = useCallback(
+    () => tourConfig(history, dispatch, t),
+    [history, dispatch, t]
+  );
 
   return (
     <Tour

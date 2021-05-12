@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import {
-  BG_COLOR,
-  LIGHT_TEXT_COLOR,
-  MAIN1_COLOR,
-  WHITE_COLOR,
-} from 'appConstants/colors';
+import { BG_COLOR, LIGHT_TEXT_COLOR, MAIN1_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import { SVGParamsAdaptive } from 'typography';
 
 type TPlusButton = {

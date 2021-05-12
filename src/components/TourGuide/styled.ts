@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { MAIN1_COLOR, WHITE_COLOR } from 'appConstants/colors';
-import {
-  TextSemiBold,
-  GeneralAdaptiveFont,
-  GeneralButtonPadding,
-} from 'typography';
+import { TextSemiBold, GeneralAdaptiveFont, GeneralButtonPadding } from 'typography';
 
 export const LinkButton = styled.a`
   ${TextSemiBold};

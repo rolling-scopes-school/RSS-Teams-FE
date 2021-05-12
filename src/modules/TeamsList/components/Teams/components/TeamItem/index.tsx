@@ -12,12 +12,7 @@ type TeamItemProps = {
   members: User[];
 };
 
-export const TeamItem: FC<TeamItemProps> = ({
-  name,
-  countMember,
-  description,
-  members,
-}) => {
+export const TeamItem: FC<TeamItemProps> = ({ name, countMember, description, members }) => {
   const [isOpen, setToggle] = useState(false);
   const toggleListHandler = () => {
     setToggle(!isOpen);
@@ -26,9 +21,7 @@ export const TeamItem: FC<TeamItemProps> = ({
     <TeamItemStyled>
       <div className="teamItem__header">
         <div className="teamItem__name">{name}</div>
-        {description && (
-          <div className="teamItem__description">{description}</div>
-        )}
+        {description && <div className="teamItem__description">{description}</div>}
         <MembersListToggle
           countMembers={countMember}
           isOpen={isOpen}

@@ -74,10 +74,7 @@ export const loginPageReducer = handleActions<StateLoginPage, any>(
       ...state,
       isBurgerMenuOpen,
     }),
-    [SET_EDIT_PROFILE_DATA_CHANGE]: (
-      state,
-      { payload: { isEditProfileDataChange } }
-    ) => ({
+    [SET_EDIT_PROFILE_DATA_CHANGE]: (state, { payload: { isEditProfileDataChange } }) => ({
       ...state,
       isEditProfileDataChange,
     }),

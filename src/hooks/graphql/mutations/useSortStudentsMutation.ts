@@ -9,27 +9,24 @@ type Props = {
 };
 
 export const useSortStudentsMutation = ({ courseId, page }: Props) => {
-  const [sortStudents, { loading, error }] = useMutation(
-    SORT_STUDENTS_MUTATION,
-    {
-      variables: {
-        courseId,
-      },
-      refetchQueries: [
-        {
-          query: TEAMS_QUERY,
-          variables: {
-            courseId,
-            pagination: {
-              skip: page * TEAMS_PER_PAGE,
-              take: TEAMS_PER_PAGE,
-            },
+  const [sortStudents, { loading, error }] = useMutation(SORT_STUDENTS_MUTATION, {
+    variables: {
+      courseId,
+    },
+    refetchQueries: [
+      {
+        query: TEAMS_QUERY,
+        variables: {
+          courseId,
+          pagination: {
+            skip: page * TEAMS_PER_PAGE,
+            take: TEAMS_PER_PAGE,
           },
         },
-      ],
-      awaitRefetchQueries: true,
-    }
-  );
+      },
+    ],
+    awaitRefetchQueries: true,
+  });
   return {
     sortStudents,
     loadingM: loading,

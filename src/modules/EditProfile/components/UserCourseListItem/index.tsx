@@ -28,9 +28,7 @@ export const UserCourseListItem: FC<TUserCourseListItem> = ({
     data: {
       courseId: course.id,
       userId: userData.id,
-      teamId:
-        userData.teams.find((team: Team) => team.courseId === course.id)?.id ??
-        null,
+      teamId: userData.teams.find((team: Team) => team.courseId === course.id)?.id ?? null,
       page: 0,
     },
   });

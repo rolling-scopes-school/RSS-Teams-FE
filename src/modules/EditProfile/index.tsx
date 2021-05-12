@@ -2,27 +2,13 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldError, useForm } from 'react-hook-form';
-import {
-  Loader,
-  InputField,
-  CourseField,
-  ErrorModal,
-  ModalExpel,
-} from 'components';
+import { Loader, InputField, CourseField, ErrorModal, ModalExpel } from 'components';
 import { useCoursesQuery, useUpdUserMutation } from 'hooks/graphql';
 import { Button, AdditionalWrapper } from 'typography';
 import { selectUserData } from 'modules/StudentsTable/selectors';
-import {
-  selectIsCommonError,
-  selectPathToThePage,
-  selectToken,
-} from 'modules/LoginPage/selectors';
+import { selectIsCommonError, selectPathToThePage, selectToken } from 'modules/LoginPage/selectors';
 import { Course, UpdateUserInput, User } from 'types';
-import {
-  checkIsCoursesEqual,
-  formFields,
-  checkIsFormFieldsEqual,
-} from './formFields';
+import { checkIsCoursesEqual, formFields, checkIsFormFieldsEqual } from './formFields';
 import {
   EditProfileWrapper,
   InputsWrapper,
@@ -35,10 +21,7 @@ import {
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR, INPUT_VALUES_EDIT_PROFILE } from 'appConstants';
-import {
-  IOldCourses,
-  UserCourseListItem,
-} from './components/UserCourseListItem';
+import { IOldCourses, UserCourseListItem } from './components/UserCourseListItem';
 import { useTranslation } from 'react-i18next';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
 import { setCourse } from 'modules/LoginPage/loginPageMiddleware';
@@ -94,8 +77,7 @@ export const EditProfile: FC = () => {
   const currentCourses = courses
     ?.filter(({ name }: Course) => name.includes(`${CURRENT_YEAR}`))
     .filter(
-      (item: Course) =>
-        !userCourses.filter((uItem: Course) => uItem.name === item.name).length
+      (item: Course) => !userCourses.filter((uItem: Course) => uItem.name === item.name).length
     );
 
   const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
@@ -127,8 +109,7 @@ export const EditProfile: FC = () => {
       updateUser().then(({ data: { updateUser } }) => {
         const newCurrentCourse =
           updateUser.courses.find(
-            (course: Course) =>
-              course.id === userCourses[userCourses.length - 1].id
+            (course: Course) => course.id === userCourses[userCourses.length - 1].id
           ) ?? updateUser.courses[0];
         dispatch(setCourse(newCurrentCourse));
         dispatch(setUserData(updateUser));
@@ -190,10 +171,7 @@ export const EditProfile: FC = () => {
   return (
     <FormWrapper>
       <CommonWrapper>
-        <EditProfileWrapper
-          autoComplete="off"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           <FormTitle>{t('Enter your profile information')}</FormTitle>
           <InputsWrapper>
             {formFields.map((item, index) => {
@@ -201,11 +179,7 @@ export const EditProfile: FC = () => {
                 <InputField
                   key={JSON.stringify(item)}
                   name={item.name}
-                  value={
-                    userData[
-                      INPUT_VALUES_EDIT_PROFILE[index] as keyof User
-                    ] as string
-                  }
+                  value={userData[INPUT_VALUES_EDIT_PROFILE[index] as keyof User] as string}
                   labelText={item.labelText}
                   placeholder={item.placeholder}
                   aria-invalid={
@@ -216,9 +190,11 @@ export const EditProfile: FC = () => {
                       : 'false'
                   }
                   message={
-                    (errors[
-                      INPUT_VALUES_EDIT_PROFILE[index] as keyof UpdateUserInput
-                    ] as FieldError)?.message
+                    (
+                      errors[
+                        INPUT_VALUES_EDIT_PROFILE[index] as keyof UpdateUserInput
+                      ] as FieldError
+                    )?.message
                   }
                   onChange={changeInputValue}
                   register={register(item.register)}

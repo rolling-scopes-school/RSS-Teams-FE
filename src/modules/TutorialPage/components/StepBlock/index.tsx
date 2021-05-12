@@ -10,12 +10,7 @@ type StepBlockProps = {
   altText: string;
 };
 
-export const StepBlock: FC<StepBlockProps> = ({
-  title,
-  subtitle,
-  imageSrc,
-  altText,
-}) => {
+export const StepBlock: FC<StepBlockProps> = ({ title, subtitle, imageSrc, altText }) => {
   const { t } = useTranslation();
   return (
     <StepBlockWrapper>

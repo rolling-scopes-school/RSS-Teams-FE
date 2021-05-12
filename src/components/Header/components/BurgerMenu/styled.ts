@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  DARK_TEXT_COLOR,
-  OVERLAY_COLOR,
-  WHITE_COLOR,
-} from 'appConstants/colors';
+import { DARK_TEXT_COLOR, OVERLAY_COLOR, WHITE_COLOR } from 'appConstants/colors';
 import { ReactComponent as IconClose } from 'assets/svg/cross.svg';
 
 type BurgerMenuProps = {
@@ -18,15 +14,13 @@ export const BurgerMenuWrapper = styled.div<BurgerMenuProps>`
   width: 100vw;
   height: 100vh;
   transition: transform 0.6s ease-in-out;
-  transform: ${({ isBurgerMenuOpen }) =>
-    isBurgerMenuOpen ? 'translateX(0)' : 'translateX(100%)'};
+  transform: ${({ isBurgerMenuOpen }) => (isBurgerMenuOpen ? 'translateX(0)' : 'translateX(100%)')};
 `;
 
 export const BurgerMenuOverlay = styled.div<BurgerMenuProps>`
   width: calc(100% - 250px);
   height: 100%;
-  background-color: ${({ isBurgerMenuOpen }) =>
-    isBurgerMenuOpen ? OVERLAY_COLOR : 'none'};
+  background-color: ${({ isBurgerMenuOpen }) => (isBurgerMenuOpen ? OVERLAY_COLOR : 'none')};
   transition: background-color 0.6s ease-in-out;
 
   @media (max-width: 440px) {

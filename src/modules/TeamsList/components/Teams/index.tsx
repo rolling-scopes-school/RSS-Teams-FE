@@ -25,11 +25,7 @@ export const Teams: FC<TeamsProps> = ({ teams, myTeam, userId, isAdmin }) => {
     <>
       <TeamsTitleWrapper>
         <TableTitle>{t('Teams')}</TableTitle>
-        {isAdmin && (
-          <TeamButton onClick={onClickSortStudents}>
-            {t('Sort students')}
-          </TeamButton>
-        )}
+        {isAdmin && <TeamButton onClick={onClickSortStudents}>{t('Sort students')}</TeamButton>}
       </TeamsTitleWrapper>
       {myTeam ? <MyTeam team={myTeam} userId={userId} /> : <TeamsHeader />}
       {!!teams.count &&

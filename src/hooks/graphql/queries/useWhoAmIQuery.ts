@@ -6,7 +6,11 @@ type Props = {
 };
 
 export const useWhoAmIQuery = ({ skip = false }: Props) => {
-  const { data, loading: loadingW, error } = useQuery(WHOAMI_QUERY, {
+  const {
+    data,
+    loading: loadingW,
+    error,
+  } = useQuery(WHOAMI_QUERY, {
     skip,
   });
 

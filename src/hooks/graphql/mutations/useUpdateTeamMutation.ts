@@ -19,14 +19,12 @@ export const useUpdateTeamMutation = ({ team }: Props) => {
         query: WHOAMI_QUERY,
       });
 
-      const updatedUserTeam = (userData?.whoAmI.teams as Team[]).map(
-        (team: Team) => {
-          if (team.id === id) {
-            return updateTeam;
-          }
-          return team;
+      const updatedUserTeam = (userData?.whoAmI.teams as Team[]).map((team: Team) => {
+        if (team.id === id) {
+          return updateTeam;
         }
-      );
+        return team;
+      });
 
       cache.writeQuery({
         query: WHOAMI_QUERY,

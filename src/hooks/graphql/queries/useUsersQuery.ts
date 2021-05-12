@@ -11,12 +11,7 @@ type Props = {
   filter?: UserFilterInput;
 };
 
-export const useUsersQuery = ({
-  reactCourseId,
-  skip = false,
-  page = 0,
-  filter,
-}: Props) => {
+export const useUsersQuery = ({ reactCourseId, skip = false, page = 0, filter }: Props) => {
   const { data, loading, error } = useQuery(USERS_QUERY, {
     skip,
     variables: {

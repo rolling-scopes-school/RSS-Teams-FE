@@ -14,11 +14,7 @@ type MyTeamInfoBlockProps = {
   value: string;
 };
 
-export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
-  title,
-  icon,
-  value,
-}) => {
+export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({ title, icon, value }) => {
   const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
   const { t } = useTranslation();
@@ -27,15 +23,10 @@ export const MyTeamInfoBlock: FC<MyTeamInfoBlockProps> = ({
       <div className="infoBlock__title">{t(title)}</div>
       <MyTeamInfoLine value={value} />
       {icon === 'info' ? (
-        <InfoButton
-          onMouseOver={() => setHover(true)}
-          onMouseOut={() => setHover(false)}
-        >
+        <InfoButton onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>
           <InfoIcon />
           {hover && (
-            <NotificationPopup>
-              {t('The password is required to join the team.')}
-            </NotificationPopup>
+            <NotificationPopup>{t('The password is required to join the team.')}</NotificationPopup>
           )}
         </InfoButton>
       ) : (

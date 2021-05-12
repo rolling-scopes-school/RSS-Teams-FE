@@ -8,23 +8,20 @@ type Props = {
 };
 
 export const useAddUserToTeamMutation = ({ data }: Props) => {
-  const [addUserToTeam, { loading, error }] = useMutation(
-    ADD_USER_TO_TEAM_MUTATION,
-    {
-      variables: {
-        data,
-      },
+  const [addUserToTeam, { loading, error }] = useMutation(ADD_USER_TO_TEAM_MUTATION, {
+    variables: {
+      data,
+    },
 
-      update(cache, { data: { addUserToTeam } }) {
-        cache.writeQuery({
-          query: WHOAMI_QUERY,
-          data: {
-            addUserToTeam,
-          },
-        });
-      },
-    }
-  );
+    update(cache, { data: { addUserToTeam } }) {
+      cache.writeQuery({
+        query: WHOAMI_QUERY,
+        data: {
+          addUserToTeam,
+        },
+      });
+    },
+  });
   return {
     addUserToTeam,
     loadingM: loading,

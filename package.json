@@ -43,7 +43,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pre-build": "node pre-build",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "fix:prettier": "prettier --write \"{,!(node_modules)/**/}*.{ts,tsx}\""
   },
   "eslintConfig": {
     "extends": [
