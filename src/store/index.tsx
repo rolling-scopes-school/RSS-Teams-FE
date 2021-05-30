@@ -4,7 +4,7 @@ import { studentsTableReducer } from 'modules/StudentsTable/studentsTableReducer
 import { teamsListReducer } from 'modules/TeamsList/teamsListReducer';
 import { loginPageReducer } from 'modules/LoginPage/loginPageReducer';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import thunkMiddleware from 'redux-thunk';
 import { State } from 'types';
 

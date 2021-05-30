@@ -44,7 +44,9 @@
     "eject": "react-scripts eject",
     "pre-build": "node pre-build",
     "deploy": "firebase deploy",
-    "fix:prettier": "prettier --write \"{,!(node_modules)/**/}*.{ts,tsx}\""
+    "lint:eslint": "eslint \"{,!(node_modules)/**/}*.{ts,tsx}\"",
+    "fix:prettier": "prettier --write \"{,!(node_modules)/**/}*.{ts,tsx}\"",
+    "fix:eslint": "eslint --fix \"{,!(node_modules)/**/}*.{{ts,tsx}\""
   },
   "eslintConfig": {
     "extends": [
