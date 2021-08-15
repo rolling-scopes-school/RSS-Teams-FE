@@ -31,6 +31,7 @@ export const Header: FC = () => {
           <Link to="/">
             <RSLogo login={loginToken} />
           </Link>
+
           {loginToken && <MenuWrapper {...{ navOnClickHandler }} />}
         </Container>
       </StyledHeader>

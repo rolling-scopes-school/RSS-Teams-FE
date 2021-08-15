@@ -86,3 +86,11 @@ export const CommonWrapper = styled.div`
   align-items: center;
   width: 100%;
 `;
+
+export const BorderImage = styled.div`
+  border: 30px solid;
+  margin-bottom: 40px;
+  color: ${WHITE_COLOR};
+  border-image: url('http://usabili.ru/news_imgs/151/border7.png') 120 100 140 fill / auto / 36px
+    30px 58px 28px repeat stretch;
+`;
