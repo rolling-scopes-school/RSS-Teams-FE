@@ -18,7 +18,6 @@ import {
   FormTitle,
   CoursesWrapper,
   CommonWrapper,
-  BorderImage,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { CURRENT_YEAR, INPUT_VALUES_EDIT_PROFILE } from 'appConstants';
@@ -45,7 +44,6 @@ export const EditProfile: FC = () => {
   }));
 
   const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
-  const [showCongrats, setShowCongrats] = useState(true);
   const { loading, courses, error } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
@@ -175,15 +173,6 @@ export const EditProfile: FC = () => {
       <CommonWrapper>
         <EditProfileWrapper autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           <FormTitle>{t('Enter your profile information')}</FormTitle>
-          {showCongrats && (
-            <BorderImage onClick={() => setShowCongrats(false)}>
-              Андрей! Поздравляем с Днём Рождения! Надеемся ты подготовился и он пройдёт отлично!
-              Будь здоров, расти умницей, не выгорай и оставайся таким же отзывчивым и хорошим
-              парнем.
-              <br />
-              <b style={{ textAlign: 'right', display: 'block' }}>RSSTeams Team</b>
-            </BorderImage>
-          )}
           <InputsWrapper>
             {formFields.map((item, index) => {
               return (
