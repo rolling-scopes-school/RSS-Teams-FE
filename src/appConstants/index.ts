@@ -166,5 +166,5 @@ export const addCourseInputsInfo = [
 export const SHOW_COURSES_OPTIONS = [
   { id: '1', name: 'All' },
   { id: '2', name: 'Active' },
-  { id: '3', name: 'Terminative' },
+  { id: '3', name: 'Terminated' },
 ];

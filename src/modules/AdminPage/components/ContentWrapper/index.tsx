@@ -17,7 +17,7 @@ const filterCourseList = (courses: Course[], filter: string, searchValue?: strin
       return courses.filter(
         ({ isActive, name }) => isActive && (searchValue ? name.includes(searchValue) : true)
       );
-    case 'Terminative':
+    case 'Terminated':
       return courses.filter(
         ({ isActive, name }) => !isActive && (searchValue ? name.includes(searchValue) : true)
       );
