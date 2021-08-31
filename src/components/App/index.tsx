@@ -9,6 +9,7 @@ import {
   NotFoundPage,
   EditProfile,
   TutorialPage,
+  AdminPage,
 } from 'modules';
 import { Loader, PrivateRoute, Header, Footer, ErrorModal, TourGuide } from 'components';
 import { selectToken } from 'modules/LoginPage/selectors';
@@ -27,6 +28,7 @@ export const App: FC = () => {
     skip: loginToken === null,
   });
   const newUserCheck = !!whoAmI?.courses.length;
+  const isUserAdmin = !!whoAmI?.isAdmin;
 
   useEffect(() => {
     if (!loginToken) {
@@ -68,6 +70,13 @@ export const App: FC = () => {
           isLoggedIn={!!loginToken}
           newUserCheck={newUserCheck}
           component={StudentsTable}
+        />
+        <PrivateRoute
+          exact
+          path="/admin"
+          isLoggedIn={!!loginToken && isUserAdmin}
+          newUserCheck={newUserCheck}
+          component={AdminPage}
         />
         <Route exact path="/token/:id" component={TokenPage} />
         <Route exact path="/login" component={LoginPage} />

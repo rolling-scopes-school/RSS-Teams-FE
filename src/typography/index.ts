@@ -13,6 +13,7 @@ interface StyledTextProps {
   color?: string;
   fontSize?: string;
   lineHeight?: string;
+  marginBottom?: string;
 }
 
 type ButtonProps = {
@@ -26,6 +27,7 @@ type TRSLogoProps = {
 };
 
 type ModalInputProps = {
+  mt?: string;
   blink?: boolean;
   autoComplete?: string;
 };
@@ -313,6 +315,12 @@ export const TeamButton = styled(Button)`
   }
 `;
 
+export const CourseButton = styled(TeamButton)`
+  background-color: ${WHITE_COLOR};
+  color: ${DARK_TEXT_COLOR};
+  border-radius: 10px;
+`;
+
 export const InvertedButton = styled(Button)`
   background-color: ${BG_COLOR};
   color: ${MAIN1_COLOR};
@@ -322,7 +330,7 @@ export const Label = styled.label`
   ${TextRegular};
   ${GeneralAdaptiveFont};
   max-width: 300px;
-  margin-bottom: 10px;
+  margin-bottom: ${(props) => props.marginBottom || '10px'};
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
 `;
 
@@ -355,7 +363,7 @@ export const ModalInput = styled(Input)<ModalInputProps>`
   }
 
   animation: ${({ blink }) => (blink ? 'blinkInput 1s' : 'none')};
-  margin-top: 20px;
+  margin-top: ${({ mt }) => mt || '20px'};
 `;
 
 export const Select = styled.div`

@@ -20,7 +20,7 @@ import {
   CommonWrapper,
 } from './styled';
 import { BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
-import { CURRENT_YEAR, INPUT_VALUES_EDIT_PROFILE } from 'appConstants';
+import { INPUT_VALUES_EDIT_PROFILE } from 'appConstants';
 import { IOldCourses, UserCourseListItem } from './components/UserCourseListItem';
 import { useTranslation } from 'react-i18next';
 import { setUserData } from 'modules/StudentsTable/studentsTableReducer';
@@ -54,8 +54,8 @@ export const EditProfile: FC = () => {
       telegram: userData.telegram || '',
       city: userData.city || '',
       country: userData.country || '',
-      courseIds: ['9c5a1bee-efb7-4eae-b306-c3d2061e9a32'],
-      score: userData.score,
+      courseIds: [],
+      score: userData.score || 9999,
     }),
     [userData]
   );
@@ -64,7 +64,7 @@ export const EditProfile: FC = () => {
   const { updateUser, loadingM, errorM } = useUpdUserMutation({
     user: {
       ...inputValues,
-      courseIds: userCourses.map((course: Course) => course.id),
+      courseIds: userCourses.map(({ id }: Course) => id),
     },
   });
 
@@ -74,11 +74,10 @@ export const EditProfile: FC = () => {
 
   const isUserNew = !!userData.courses.length;
 
-  const currentCourses = courses
-    ?.filter(({ name }: Course) => name.includes(`${CURRENT_YEAR}`))
-    .filter(
-      (item: Course) => !userCourses.filter((uItem: Course) => uItem.name === item.name).length
-    );
+  const currentCourses = courses?.filter(
+    ({ isActive, name }: Course) =>
+      isActive && !userCourses.find((uItem: Course) => uItem.name === name)
+  );
 
   const { register, handleSubmit, errors, reset } = useForm<UpdateUserInput>({
     defaultValues: inputValues,

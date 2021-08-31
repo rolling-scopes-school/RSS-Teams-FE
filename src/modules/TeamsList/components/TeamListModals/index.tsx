@@ -9,7 +9,6 @@ import {
   selectIsActiveModalJoin,
   selectIsActiveModalLeave,
   selectIsActiveModalRemoveCourse,
-  selectIsActiveModalSortStudents,
   selectIsActiveModalUpdateSocialLink,
   selectSocialLink,
   selectTeamPassword,
@@ -26,7 +25,6 @@ import {
   activeModalCreated,
   activeModalUpdateSocialLink,
   activeModalRemoveCourse,
-  activeModalSortStudents,
 } from 'modules/TeamsList/teamsListReducer';
 
 type TeamListModalsProps = {
@@ -36,7 +34,6 @@ type TeamListModalsProps = {
   createTeam: any;
   updateTeam: any;
   removeUserFromCourse: any;
-  sortStudents: any;
 };
 
 export const TeamListModals: FC<TeamListModalsProps> = ({
@@ -46,7 +43,6 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
   createTeam,
   updateTeam,
   removeUserFromCourse,
-  sortStudents,
 }) => {
   const [textJoinModal, setTextJoinModal] = useState<string>('Please, enter your team password.');
   const dispatch = useDispatch();
@@ -56,7 +52,6 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
   const isActiveModalCreateTeam = useSelector(selectIsActiveModalCreateTeam);
   const isActiveModalCreated = useSelector(selectIsActiveModalCreated);
   const isActiveModalUpdateSocialLink = useSelector(selectIsActiveModalUpdateSocialLink);
-  const isActiveModalSortStudents = useSelector(selectIsActiveModalSortStudents);
   const isActiveModalRemoveCourse = useSelector(selectIsActiveModalRemoveCourse);
   const teamPassword = useSelector(selectTeamPassword);
   const socialLink = useSelector(selectSocialLink);
@@ -103,10 +98,6 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
     updateTeam();
   };
 
-  const onSubmitSortStudents = () => {
-    sortStudents();
-  };
-
   return (
     <>
       <ModalExpel
@@ -133,16 +124,6 @@ export const TeamListModals: FC<TeamListModalsProps> = ({
         open={isActiveModalRemoveCourse}
         onSubmit={onSubmitRemoveCourseModal}
         onClose={() => dispatch(activeModalRemoveCourse(false))}
-        okText="Yes"
-        cancelText="No"
-      />
-      <ModalExpel
-        title="Sort students"
-        text="Sort students?"
-        open={isActiveModalSortStudents}
-        onSubmit={onSubmitSortStudents}
-        isCrossIconVisible={false}
-        onClose={() => dispatch(activeModalSortStudents(false))}
         okText="Yes"
         cancelText="No"
       />

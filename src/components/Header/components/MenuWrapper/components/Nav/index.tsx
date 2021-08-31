@@ -17,12 +17,10 @@ export const Nav: FC<NavProps> = ({ newUserCheck, navOnClickHandler }) => {
     <StyledNav>
       <StyledNavList>
         {Object.values(APP_NAVIGATION_LINKS).map((link: TNavLink, index: number) => {
-          if (+newUserCheck + +link.isAlwaysVisible) {
+          const isNavLinkAvailable = !!(+newUserCheck + +link.isAlwaysVisible);
+          if (isNavLinkAvailable) {
             return (
-              <StyledNavListItem
-                key={JSON.stringify(link)}
-                newUserCheck={!!(+newUserCheck + +link.isAlwaysVisible) && newUserCheck}
-              >
+              <StyledNavListItem key={JSON.stringify(link)} newUserCheck={newUserCheck}>
                 <NavLink
                   to={Object.keys(APP_NAVIGATION_LINKS)[index]}
                   exact

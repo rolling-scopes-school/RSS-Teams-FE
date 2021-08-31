@@ -7,10 +7,11 @@ import { CommonSelectList } from 'components';
 import { setLanguage } from 'modules/LoginPage/loginPageMiddleware';
 
 type LangSelectProps = {
-  menuToggle?: string;
+  menuToggle?: boolean;
+  customStyle?: boolean;
 };
 
-export const LangSelect: FC<LangSelectProps> = ({ menuToggle }) => {
+export const LangSelect: FC<LangSelectProps> = ({ menuToggle, customStyle }) => {
   const [displayLangList, setDisplayLangList] = useState(false);
   const dispatch = useDispatch();
   const currentLanguage = useSelector(selectCurrLanguage);
@@ -30,8 +31,8 @@ export const LangSelect: FC<LangSelectProps> = ({ menuToggle }) => {
       currItem={currentLanguage.toUpperCase()}
       setDisplayList={setDisplayLangList}
       displayList={displayLangList}
-      isLang="Lang"
-      {...{ menuToggle }}
+      isLang
+      {...{ menuToggle, customStyle }}
     />
   );
 };

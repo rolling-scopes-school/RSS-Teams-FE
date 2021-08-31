@@ -61,7 +61,7 @@ export const MyTeam: FC<MyTeamProps> = ({ team, userId }) => {
         <HeaderDecor />
       </div>
       <TableWrapper open={isOpen}>
-        {isOpen && <TeamUserTable members={team.members} isMyTeam={true} userId={userId} />}
+        {isOpen && <TeamUserTable members={team.members} isMyTeam userId={userId} />}
       </TableWrapper>
     </StyledMyTeam>
   );

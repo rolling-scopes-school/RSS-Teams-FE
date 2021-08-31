@@ -20,6 +20,8 @@ export type User = {
 export interface Course {
   id: string;
   name: string;
+  isActive: boolean;
+  teamSize: number | null;
   teamIds?: string[];
   userIds?: string[];
   teams?: Team[];
@@ -84,6 +86,19 @@ export type CreateTeamInput = {
   page: number;
 };
 
+export type CreateCourseInput = {
+  name: string;
+  isActive: boolean;
+  teamSize: number;
+};
+
+export type UpdateCourseInput = {
+  id: string;
+  name: string;
+  isActive: boolean;
+  teamSize: number;
+};
+
 export type UpdateTeamInput = {
   id: string;
   socialLink: string;
@@ -99,6 +114,8 @@ export type StateTeamsList = {
   isActiveModalRemoveCourse: boolean;
   isActiveModalSortStudents: boolean;
   isActiveModalLeavePage: boolean;
+  isActiveModalCreatedCourse: boolean;
+  isActiveModalEditCourse: boolean;
   teamMemberExpelId: string;
   teamPassword: string;
   socialLink: string;

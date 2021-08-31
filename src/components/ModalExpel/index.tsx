@@ -53,8 +53,8 @@ export const ModalExpel: FC<Props> = ({
         cancelText,
       }}
       onSubmit={onSubmitModal}
-      hideOnOutsideClick={true}
-      hideOnEsc={true}
+      hideOnOutsideClick
+      hideOnEsc
     />
   );
 };

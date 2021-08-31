@@ -56,7 +56,7 @@ export const BurgerMenu: FC<BurgerMenuProps> = ({ newUserCheck, navOnClickHandle
             }
           })}
         </BurgerMenuNavList>
-        <LangSelect menuToggle="menuToggle" />
+        <LangSelect menuToggle customStyle />
       </BurgerMenuLayout>
     </BurgerMenuWrapper>
   );

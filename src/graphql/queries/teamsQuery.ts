@@ -6,7 +6,6 @@ export const TEAMS_QUERY = gql`
       count
       results {
         id
-        password
         number
         courseId
         socialLink

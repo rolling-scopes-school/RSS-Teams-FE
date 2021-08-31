@@ -34,11 +34,11 @@ export const TourGuide: FC = () => {
       nextButton={<img src={rightArrow} alt="Next" />}
       accentColor={MAIN1_COLOR}
       maskClassName="mask"
-      disableDotsNavigation={true}
-      disableKeyboardNavigation={true}
+      disableDotsNavigation
+      disableKeyboardNavigation
       showNavigationNumber={false}
       showButtons={isButtonsVisible}
-      disableInteraction={true}
+      disableInteraction
       lastStepNextButton={<div className="LastStepNextButton" />}
       getCurrentStep={(currStep) => setIsButtonsVisible(!!currStep)}
       closeWithMask={false}

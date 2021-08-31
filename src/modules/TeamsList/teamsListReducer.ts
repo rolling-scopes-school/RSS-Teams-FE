@@ -11,6 +11,8 @@ import {
   ACTIVE_MODAL_REMOVE_COURSE,
   ACTIVE_MODAL_SORT_STUDENTS,
   ACTIVE_MODAL_LEAVE_PAGE,
+  ACTIVE_MODAL_CREATED_COURSE,
+  ACTIVE_MODAL_EDIT_COURSE,
 } from 'appConstants';
 import { StateTeamsList } from 'types';
 import { createActions, handleActions } from 'redux-actions';
@@ -28,6 +30,8 @@ export const teamsListState = {
   isActiveModalRemoveCourse: false,
   isActiveModalSortStudents: false,
   isActiveModalLeavePage: false,
+  isActiveModalCreatedCourse: false,
+  isActiveModalEditCourse: false,
 };
 
 export const {
@@ -43,6 +47,8 @@ export const {
   activeModalRemoveCourse,
   activeModalSortStudents,
   activeModalLeavePage,
+  activeModalCreatedCourse,
+  activeModalEditCourse,
 } = createActions({
   SET_SOCIAL_LINK: (socialLink) => ({ socialLink }),
   SET_TEAM_PASSWORD: (teamPassword) => ({ teamPassword }),
@@ -67,6 +73,12 @@ export const {
   }),
   ACTIVE_MODAL_LEAVE_PAGE: (isActiveModalLeavePage) => ({
     isActiveModalLeavePage,
+  }),
+  ACTIVE_MODAL_CREATED_COURSE: (isActiveModalCreatedCourse) => ({
+    isActiveModalCreatedCourse,
+  }),
+  ACTIVE_MODAL_EDIT_COURSE: (isActiveModalEditCourse) => ({
+    isActiveModalEditCourse,
   }),
 });
 
@@ -119,6 +131,14 @@ export const teamsListReducer = handleActions<StateTeamsList, any>(
     [ACTIVE_MODAL_LEAVE_PAGE]: (state, { payload: { isActiveModalLeavePage } }) => ({
       ...state,
       isActiveModalLeavePage,
+    }),
+    [ACTIVE_MODAL_CREATED_COURSE]: (state, { payload: { isActiveModalCreatedCourse } }) => ({
+      ...state,
+      isActiveModalCreatedCourse,
+    }),
+    [ACTIVE_MODAL_EDIT_COURSE]: (state, { payload: { isActiveModalEditCourse } }) => ({
+      ...state,
+      isActiveModalEditCourse,
     }),
   },
   teamsListState

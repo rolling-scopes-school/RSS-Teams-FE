@@ -30,7 +30,7 @@ export const TeamItem: FC<TeamItemProps> = ({ name, countMember, description, me
         />
       </div>
       <TeamItemTableWrapper open={isOpen}>
-        {isOpen && <TeamUserTable members={members} secondTable={true} />}
+        {isOpen && <TeamUserTable members={members} secondTable />}
       </TeamItemTableWrapper>
     </TeamItemStyled>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ALERT_COLOR } from 'appConstants/colors';
-import { Label } from 'typography';
+import { GeneralAdaptiveFont, Label } from 'typography';
 
 export const FieldWrapper = styled.div`
   display: flex;
@@ -9,6 +9,7 @@ export const FieldWrapper = styled.div`
 `;
 
 export const ValidationAlert = styled.div`
+  ${GeneralAdaptiveFont}
   color: ${ALERT_COLOR};
   font-size: 14px;
   height: 22px;

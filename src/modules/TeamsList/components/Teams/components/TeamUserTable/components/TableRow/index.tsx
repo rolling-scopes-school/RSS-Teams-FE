@@ -27,9 +27,9 @@ export const TableRow: FC<TableRowProps> = ({
       <TableCell value={count.toString(10)} />
       <TableCell value={`${firstName} ${lastName}`} />
       <TableCell value={score} />
-      <TableCell value={telegram} isSocialLink={true} />
-      <TableCell value={discord} isSocialLink={true} />
-      <TableCell value={github} isSocialLink={true} />
+      <TableCell value={telegram} isSocialLink />
+      <TableCell value={discord} isSocialLink />
+      <TableCell value={github} isSocialLink />
       <TableCell value={`${city}, ${country}`} />
       {isMyTeam && (
         <TableCell
