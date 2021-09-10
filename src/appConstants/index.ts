@@ -131,7 +131,7 @@ export const APP_NAVIGATION_LINKS = {
   },
   ['/admin']: {
     name: 'Admin',
-    isAlwaysVisible: false,
+    isAlwaysVisible: true,
   },
 };
 

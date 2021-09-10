@@ -18,6 +18,7 @@ export const MenuWrapper: FC<MenuWrapperProps> = ({ navOnClickHandler }) => {
   const isBurgerMenuOpen = useSelector(selectIsBurgerMenuOpen);
 
   const newUserCheck = !!userData?.courses.length;
+  const isUserAdmin = !!userData?.isAdmin;
 
   const onClickMenuToggle = () => {
     dispatch(setBurgerMenuOpen(!isBurgerMenuOpen));
@@ -25,7 +26,7 @@ export const MenuWrapper: FC<MenuWrapperProps> = ({ navOnClickHandler }) => {
 
   return (
     <StyledMenuWrapper>
-      <Nav {...{ newUserCheck, navOnClickHandler }} />
+      <Nav {...{ newUserCheck, navOnClickHandler, isUserAdmin }} />
       {newUserCheck && <CoursesSelect />}
       <LangSelect />
       <MenuButton onClick={onClickMenuToggle} />

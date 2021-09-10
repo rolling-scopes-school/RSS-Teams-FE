@@ -8,9 +8,10 @@ import { TNavLink } from 'types';
 type NavProps = {
   newUserCheck: boolean;
   navOnClickHandler: (e: React.MouseEvent<HTMLElement>, path: string) => void;
+  isUserAdmin: boolean;
 };
 
-export const Nav: FC<NavProps> = ({ newUserCheck, navOnClickHandler }) => {
+export const Nav: FC<NavProps> = ({ newUserCheck, navOnClickHandler, isUserAdmin }) => {
   const { t } = useTranslation();
 
   return (
@@ -19,6 +20,7 @@ export const Nav: FC<NavProps> = ({ newUserCheck, navOnClickHandler }) => {
         {Object.values(APP_NAVIGATION_LINKS).map((link: TNavLink, index: number) => {
           const isNavLinkAvailable = !!(+newUserCheck + +link.isAlwaysVisible);
           if (isNavLinkAvailable) {
+            if (link.name === 'Admin' && !isUserAdmin) return null;
             return (
               <StyledNavListItem key={JSON.stringify(link)} newUserCheck={newUserCheck}>
                 <NavLink
