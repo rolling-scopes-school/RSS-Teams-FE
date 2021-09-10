@@ -10,3 +10,5 @@ export { useAddUserToTeamMutation } from './mutations/useAddUserToTeamMutation';
 export { useUpdateTeamMutation } from './mutations/useUpdateTeamMutation';
 export { useSortStudentsMutation } from './mutations/useSortStudentsMutation';
 export { useRemoveUserFromCourseMutation } from './mutations/useRemoveUserFromCourseMutation';
+export { useCreateCourseMutation } from './mutations/useCreateCourseMutation';
+export { useUpdateCourseMutation } from './mutations/useUpdateCourseMutation';

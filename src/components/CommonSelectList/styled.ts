@@ -16,14 +16,18 @@ type TStyledCoursesSelectInfo = {
 
 type TStyledCoursesSelectList = {
   isClicked: boolean;
+  showOptionsSelect?: boolean;
 } & TFooterProp;
 
 type TFooterProp = {
-  isLang?: string;
-  menuToggle?: string;
+  isLang?: boolean;
+  menuToggle?: boolean;
+  customStyle?: boolean;
 };
 
 export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
+  position: ${({ showOptionsSelect }) => showOptionsSelect && 'absolute'};
+  left: ${({ showOptionsSelect }) => showOptionsSelect && '5%'};
   z-index: 1;
   display: ${({ menuToggle }) => (menuToggle ? 'none' : 'flex')};
   flex-direction: column;
@@ -33,8 +37,8 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
   margin: ${({ isLang }) => !isLang && '0 20px 0 0'};
   overflow: hidden;
   font: 400 1rem/24px 'Poppins', sans-serif;
-  color: ${({ menuToggle }) => (menuToggle ? DARK_TEXT_COLOR : WHITE_COLOR)};
-  background-color: ${({ menuToggle }) => (menuToggle ? BG_COLOR : MAIN1_DARK_COLOR)};
+  color: ${({ customStyle }) => (customStyle ? DARK_TEXT_COLOR : WHITE_COLOR)};
+  background-color: ${({ customStyle }) => (customStyle ? BG_COLOR : MAIN1_DARK_COLOR)};
   border-radius: 10px;
   ${HeaderAdaptiveFont}
 
@@ -42,6 +46,13 @@ export const StyledCoursesSelectWrapper = styled.div<TStyledCoursesSelectList>`
     margin-top: ${({ isClicked }) => (isClicked ? '-5px' : '-150%')};
   }
 
+  @media (max-width: 1100px) {
+    left: ${({ showOptionsSelect }) => showOptionsSelect && '9%'};
+    top: ${({ showOptionsSelect }) => showOptionsSelect && '50%'};
+  }
+  @media (max-width: 768px) {
+    left: ${({ showOptionsSelect }) => showOptionsSelect && '10%'};
+  }
   @media (max-width: 700px) {
     width: ${({ isLang }) => !isLang && '260px'};
   }
@@ -65,7 +76,7 @@ export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectL
   align-items: center;
   height: 40px;
   padding: 8px 15px;
-  background-color: ${({ menuToggle }) => (menuToggle ? BG_COLOR : MAIN1_DARK_COLOR)};
+  background-color: ${({ customStyle }) => (customStyle ? BG_COLOR : MAIN1_DARK_COLOR)};
   border-radius: 10px;
   ${HeaderAdaptiveFont};
 
@@ -83,7 +94,7 @@ export const StyledCoursesSelectHeaderWrapper = styled.div<TStyledCoursesSelectL
   svg {
     transform: ${({ isClicked }) => (isClicked ? 'rotate(180deg)' : 'rotate(0deg)')};
     path {
-      stroke: ${({ menuToggle }) => menuToggle && LIGHT_TEXT_COLOR};
+      stroke: ${({ customStyle }) => customStyle && LIGHT_TEXT_COLOR};
     }
   }
 `;
@@ -102,7 +113,7 @@ export const StyledCoursesList = styled.ul<TFooterProp>`
   li {
     padding: 5px;
     list-style: none;
-    background-color: ${({ menuToggle }) => (menuToggle ? WHITE_COLOR : MAIN1_COLOR)};
+    background-color: ${({ customStyle }) => (customStyle ? WHITE_COLOR : MAIN1_COLOR)};
     border-radius: 10px;
     cursor: pointer;
 

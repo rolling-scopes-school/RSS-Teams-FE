@@ -60,8 +60,8 @@ export const ModalJoin: FC<Props> = ({
     <Modal
       {...{ title, text, open, onClose, okText, cancelText }}
       onSubmit={onSubmitModal}
-      hideOnOutsideClick={true}
-      hideOnEsc={true}
+      hideOnOutsideClick
+      hideOnEsc
     >
       <ModalInput
         placeholder={t('Enter team password')}

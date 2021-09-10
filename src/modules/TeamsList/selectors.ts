@@ -24,6 +24,12 @@ export const selectIsActiveModalSortStudents = (state: State) =>
 export const selectIsActiveModalLeavePage = (state: State) =>
   state.teamsListReducer.isActiveModalLeavePage;
 
+export const selectIsActiveModalCreatedCourse = (state: State) =>
+  state.teamsListReducer.isActiveModalCreatedCourse;
+
+export const selectIsActiveModalEditCourse = (state: State) =>
+  state.teamsListReducer.isActiveModalEditCourse;
+
 export const selectTeamMemberExpelId = (state: State) => state.teamsListReducer.teamMemberExpelId;
 
 export const selectTeamPassword = (state: State) => state.teamsListReducer.teamPassword;

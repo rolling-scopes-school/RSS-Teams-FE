@@ -34,7 +34,6 @@ export const TeamsList: FC = () => {
     createTeam,
     updateTeam,
     removeUserFromCourse,
-    sortStudents,
     isError,
     isLoading,
   } = useCommonMutations(page);
@@ -52,7 +51,7 @@ export const TeamsList: FC = () => {
   return (
     <ContentPageWrapper>
       <StyledTeams>
-        <Teams teams={teams} myTeam={userTeam} userId={userData.id} isAdmin={userData.isAdmin} />
+        <Teams teams={teams} myTeam={userTeam} userId={userData.id} />
         {!!teams.results.length && (
           <Pagination pageCount={pageCount} changePage={setPage} page={page} />
         )}
@@ -67,7 +66,6 @@ export const TeamsList: FC = () => {
           createTeam,
           updateTeam,
           removeUserFromCourse,
-          sortStudents,
         }}
       />
     </ContentPageWrapper>

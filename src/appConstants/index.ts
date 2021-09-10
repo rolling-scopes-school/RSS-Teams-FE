@@ -15,6 +15,8 @@ export const ACTIVE_MODAL_UPDATE_SOCIAL_LINK = 'ACTIVE_MODAL_UPDATE_SOCIAL_LINK'
 export const ACTIVE_MODAL_REMOVE_COURSE = 'ACTIVE_MODAL_REMOVE_COURSE';
 export const ACTIVE_MODAL_SORT_STUDENTS = 'ACTIVE_MODAL_SORT_STUDENTS';
 export const ACTIVE_MODAL_LEAVE_PAGE = 'ACTIVE_MODAL_LEAVE_PAGE';
+export const ACTIVE_MODAL_CREATED_COURSE = 'ACTIVE_MODAL_CREATED_COURSE';
+export const ACTIVE_MODAL_EDIT_COURSE = 'ACTIVE_MODAL_EDIT_COURSE';
 export const SET_TEAM_MEMBER_EXPEL_ID = 'SET_TEAM_MEMBER_EXPEL_ID';
 export const SET_TEAM_PASSWORD = 'SET_TEAM_PASSWORD';
 export const SET_SOCIAL_LINK = 'SET_SOCIAL_LINK';
@@ -77,6 +79,39 @@ export const MODAL_INPUT_VALIDATION = {
   },
 };
 
+export const COURSE_NAME_VALIDATION = {
+  pattern: {
+    value: `${CURRENT_YEAR}`,
+    message: 'Please, enter correct course name',
+  },
+  minLength: {
+    value: 5,
+    message: 'Minimal length is 5.',
+  },
+  maxLength: {
+    value: 55,
+    message: 'This input exceed maxLength.',
+  },
+  uniq: {
+    message: 'Please, enter unique course name',
+  },
+};
+
+export const TEAM_SIZE_VALIDATION = {
+  pattern: {
+    value: /^[2-9]$/i,
+    message: 'Please, enter correct team size',
+  },
+  minLength: {
+    value: 1,
+    message: 'Minimal length is 1.',
+  },
+  maxLength: {
+    value: 1,
+    message: 'This input exceed maxLength.',
+  },
+};
+
 export const APP_NAVIGATION_LINKS = {
   ['/studentsTable']: {
     name: 'Dashboard',
@@ -93,6 +128,10 @@ export const APP_NAVIGATION_LINKS = {
   ['/tutorial']: {
     name: 'Tutorial',
     isAlwaysVisible: true,
+  },
+  ['/admin']: {
+    name: 'Admin',
+    isAlwaysVisible: false,
   },
 };
 
@@ -118,3 +157,14 @@ export const FOOTER_INFO = [
 export const LINK_TO_DESIGN_BLOCK = 'https://www.linkedin.com/in/nastya-kapylova-54126215a';
 
 export const LINK_TO_REPO = 'https://github.com/rolling-scopes-school/RSS-Teams-FE';
+
+export const addCourseInputsInfo = [
+  { label: 'Course name', placeholder: 'Enter course name' },
+  { label: 'Team size', placeholder: 'Enter team size' },
+];
+
+export const SHOW_COURSES_OPTIONS = [
+  { id: '1', name: 'All' },
+  { id: '2', name: 'Active' },
+  { id: '3', name: 'Terminated' },
+];

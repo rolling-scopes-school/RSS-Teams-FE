@@ -21,7 +21,7 @@ export const StyledNav = styled.nav`
 `;
 
 export const StyledNavList = styled.ul`
-  @media (max-width: 1260px) {
+  @media (max-width: 1430px) {
     display: none;
   }
 

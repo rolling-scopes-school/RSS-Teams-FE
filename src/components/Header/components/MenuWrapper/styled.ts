@@ -21,7 +21,7 @@ export const MenuButton = styled(MenuToggle)`
   height: 0;
   cursor: pointer;
 
-  @media (max-width: 1260px) {
+  @media (max-width: 1430px) {
     width: 24px;
     height: 24px;
     margin: 8px 0 0 40px;
