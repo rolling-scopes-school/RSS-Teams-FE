@@ -225,6 +225,9 @@ export const EditProfile: FC = () => {
                   isValid={isValidCoursesList}
                 />
               )}
+              {userCourses.length === 0 && currentCourses.length === 0 && (
+                <span>No courses available, try again later</span>
+              )}
             </CoursesWrapper>
           </InputsWrapper>
           <ButtonWrapper>

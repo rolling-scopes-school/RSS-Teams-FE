@@ -75,7 +75,7 @@ export const App: FC = () => {
           exact
           path="/admin"
           isLoggedIn={!!loginToken && isUserAdmin}
-          newUserCheck={newUserCheck}
+          newUserCheck={isUserAdmin}
           component={AdminPage}
         />
         <Route exact path="/token/:id" component={TokenPage} />
