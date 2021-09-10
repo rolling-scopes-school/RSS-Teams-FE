@@ -14,8 +14,8 @@ import { useState } from 'react';
 
 export const CoursesList: FC<{
   courses: Course[];
-  isCourseNameUniq: (courseName: string) => boolean;
-}> = ({ courses, isCourseNameUniq }) => {
+  checkIsCourseNameUniq: (courseName: string) => boolean;
+}> = ({ courses, checkIsCourseNameUniq }) => {
   const [courseInfoToSort, setCourseInfoToSort] = useState<Partial<Course> | null>(null);
   const [courseEditMeta, setCourseEditMeta] = useState<Course | null>(null);
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ export const CoursesList: FC<{
         okText="Yes"
         cancelText="No"
       />
-      {courseEditMeta ? (
+      {!!courseEditMeta && (
         <ModalEditCourse
           title="Edit course"
           text="Please, enter new course information"
@@ -66,10 +66,10 @@ export const CoursesList: FC<{
           okText="Save"
           cancelText="Close"
           courseEditMeta={courseEditMeta}
-          isCourseNameUniq={isCourseNameUniq}
+          checkIsCourseNameUniq={checkIsCourseNameUniq}
           setCourseEditMeta={setCourseEditMeta}
         />
-      ) : null}
+      )}
     </>
   );
 };

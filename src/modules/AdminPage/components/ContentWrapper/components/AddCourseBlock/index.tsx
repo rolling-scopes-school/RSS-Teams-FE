@@ -32,8 +32,8 @@ export const onChangeField =
     setInputValue(e.target.value);
   };
 
-export const AddCourseBlock: FC<{ isCourseNameUniq: (courseName: string) => boolean }> = ({
-  isCourseNameUniq,
+export const AddCourseBlock: FC<{ checkIsCourseNameUniq: (courseName: string) => boolean }> = ({
+  checkIsCourseNameUniq,
 }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -87,7 +87,7 @@ export const AddCourseBlock: FC<{ isCourseNameUniq: (courseName: string) => bool
               setIsCourseNameFieldValid,
               setCourseNameErrorMessage,
               setCourseName,
-              isCourseNameUniq
+              checkIsCourseNameUniq
             )}
             isFieldValid={isCourseNameFieldValid}
             errorMessage={courseNameErrorMessage}

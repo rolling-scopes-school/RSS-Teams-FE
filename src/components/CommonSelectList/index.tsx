@@ -54,7 +54,7 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
     };
   }, [displayList, setDisplayList]);
 
-  const doListItemsExist = !!listItems.length;
+  const isListItemsExists = !!listItems.length;
 
   return (
     <StyledCoursesSelectWrapper
@@ -68,15 +68,15 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
       >
         {title && <p>{t(title)}</p>}
         <StyledCoursesSelectInfo
-          hover={doListItemsExist}
+          hover={isListItemsExists}
           ref={selectRef}
           {...{ isLang, menuToggle, customStyle }}
         >
           <p>{t(currItem)}</p>
-          {doListItemsExist && <StyledCoursesSelectArrow />}
+          {isListItemsExists && <StyledCoursesSelectArrow />}
         </StyledCoursesSelectInfo>
       </StyledCoursesSelectHeaderWrapper>{' '}
-      {doListItemsExist && (
+      {isListItemsExists && (
         <StyledCoursesList {...{ isLang, menuToggle, customStyle }}>
           {listItems.map((item: Course | string) => {
             return (

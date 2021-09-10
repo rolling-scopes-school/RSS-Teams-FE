@@ -8,7 +8,7 @@ import { InputBlock } from 'modules/AdminPage/components/ContentWrapper/componen
 import { Course } from 'types';
 import { COURSE_NAME_VALIDATION, TEAM_SIZE_VALIDATION } from 'appConstants';
 import { onChangeField } from 'modules/AdminPage/components/ContentWrapper/components/AddCourseBlock';
-import { DARK_TEXT_COLOR, WHITE_COLOR } from 'appConstants/colors';
+import { DASHBOARD_HEADER_BG_COLOR, MAIN1_COLOR } from 'appConstants/colors';
 import { useUpdateCourseMutation } from 'hooks/graphql';
 import { ErrorModal } from 'components/ErrorModal';
 
@@ -19,7 +19,7 @@ type Props = {
   okText?: string;
   cancelText?: string;
   courseEditMeta: Course;
-  isCourseNameUniq: (courseName: string) => boolean;
+  checkIsCourseNameUniq: (courseName: string) => boolean;
   setCourseEditMeta: (course: Course | null) => void;
 };
 
@@ -37,7 +37,7 @@ export const ModalEditCourse: FC<Props> = ({
   okText,
   cancelText,
   courseEditMeta,
-  isCourseNameUniq,
+  checkIsCourseNameUniq,
   setCourseEditMeta,
 }) => {
   const { t } = useTranslation();
@@ -131,7 +131,7 @@ export const ModalEditCourse: FC<Props> = ({
           setIsCourseNameFieldValid,
           setCourseNameErrorMessage,
           setCourseName,
-          isCourseNameUniq
+          checkIsCourseNameUniq
         )}
         isFieldValid={isCourseNameFieldValid}
         errorMessage={courseNameErrorMessage}
@@ -152,8 +152,8 @@ export const ModalEditCourse: FC<Props> = ({
         isModal
       />
       <TeamButton
-        bgc={WHITE_COLOR}
-        color={DARK_TEXT_COLOR}
+        bgc={DASHBOARD_HEADER_BG_COLOR}
+        color={MAIN1_COLOR}
         type="button"
         onClick={onChangeCourseState}
       >

@@ -35,7 +35,7 @@ export const AdminPageWrapper: FC = () => {
   );
   const [searchValue, setSearchValue] = useState('');
 
-  const isCourseNameUniq = (courseName: string) => {
+  const checkIsCourseNameUniq = (courseName: string) => {
     return !courses.find(({ name }: Course) => name === courseName);
   };
 
@@ -50,7 +50,7 @@ export const AdminPageWrapper: FC = () => {
   return (
     <AdminPageContentWrapper>
       <HeaderDecor />
-      <AddCourseBlock isCourseNameUniq={isCourseNameUniq} />
+      <AddCourseBlock checkIsCourseNameUniq={checkIsCourseNameUniq} />
       <ListTitle>{t('Courses list')}</ListTitle>
       <CourseListSettings>
         <ShowCourseSelect
@@ -64,12 +64,12 @@ export const AdminPageWrapper: FC = () => {
           mt="0px"
           autoComplete={'off'}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setSearchValue(e.target.value.trim())
+            setSearchValue(e.target.value.trimLeft())
           }
           placeholder={t('Search course')}
         />
       </CourseListSettings>
-      <CoursesList courses={filteredCourseList} isCourseNameUniq={isCourseNameUniq} />
+      <CoursesList courses={filteredCourseList} checkIsCourseNameUniq={checkIsCourseNameUniq} />
     </AdminPageContentWrapper>
   );
 };
