@@ -5,6 +5,7 @@ import { ModalInput } from 'typography';
 import { ValidationAlert } from '../InputField/styled';
 import { useTranslation } from 'react-i18next';
 import { setSocialLink } from 'modules/TeamsList/teamsListReducer';
+import { isFieldValid } from 'utils/isFieldValid';
 
 type Props = {
   title: string;
@@ -48,7 +49,13 @@ export const ModalCreateEditTeam: FC<Props> = ({
 
   const onChangeModal = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSocialLink(e.target.value.trim()));
-    isValid(e.target.value.trim(), validateRules, !!validateRules);
+    isFieldValid(
+      e.target.value.trim(),
+      validateRules,
+      !!validateRules,
+      setInputValid,
+      setErrorMessage
+    );
   };
 
   const onCloseModal = () => {
@@ -68,36 +75,13 @@ export const ModalCreateEditTeam: FC<Props> = ({
     return () => document.removeEventListener('keydown', listener);
   }, [onSubmitModal, open]);
 
-  const isValid = (value: string, validateRules: any, needValidate: boolean) => {
-    if (!needValidate) return true;
-
-    let valid = true;
-
-    if (validateRules.maxLength) {
-      valid = value.trim().length < validateRules.maxLength.value + 1 && valid;
-      if (!(value.trim().length < validateRules.maxLength.value + 1)) {
-        setErrorMessage(validateRules.maxLength.message);
-      }
-    }
-
-    if (validateRules.pattern) {
-      const regExp = new RegExp(validateRules.pattern.value);
-      valid = regExp.test(value) && valid;
-      if (!regExp.test(value)) {
-        setErrorMessage(validateRules.pattern.message);
-      }
-    }
-
-    setInputValid(valid);
-  };
-
   return (
     <Modal
       {...{ title, text, open, okText }}
       onClose={onCloseModal}
       onSubmit={onSubmitModal}
-      hideOnOutsideClick={true}
-      hideOnEsc={true}
+      hideOnOutsideClick
+      hideOnEsc
     >
       <ModalInput
         name="inputValue"

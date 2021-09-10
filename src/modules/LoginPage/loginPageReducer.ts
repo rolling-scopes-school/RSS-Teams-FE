@@ -17,6 +17,8 @@ export const loginPageState = {
   currCourse: {
     id: '',
     name: '',
+    teamSize: null,
+    isActive: true,
   },
   currLanguage: DEFAULT_LANGUAGE,
   isCommonError: false,

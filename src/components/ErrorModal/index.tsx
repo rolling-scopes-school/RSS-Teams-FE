@@ -24,8 +24,8 @@ export const ErrorModal: FC<Props> = ({
   return (
     <Modal
       {...{ title, text, text2, open, onClose, isCrossIconVisible, cancelText }}
-      hideOnOutsideClick={true}
-      hideOnEsc={true}
+      hideOnOutsideClick
+      hideOnEsc
     ></Modal>
   );
 };

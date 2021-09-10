@@ -17,8 +17,10 @@ type CommonSelectProps = {
   onClickHandler: any;
   title?: string;
   currItem: string;
-  isLang?: string;
-  menuToggle?: string;
+  isLang?: boolean;
+  menuToggle?: boolean;
+  customStyle?: boolean;
+  showOptionsSelect?: boolean;
 };
 
 export const CommonSelectList: FC<CommonSelectProps> = ({
@@ -30,13 +32,15 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
   currItem,
   isLang,
   menuToggle,
+  customStyle,
+  showOptionsSelect,
 }) => {
   const selectRef = useRef(null);
   const { t } = useTranslation();
 
   useEffect(() => {
     const closeEventHandler = (ev: MouseEvent) => {
-      if ((selectRef.current as unknown as HTMLDivElement).contains(ev.target as HTMLDivElement)) {
+      if ((selectRef.current as unknown as HTMLDivElement)?.contains(ev.target as HTMLDivElement)) {
         setDisplayList(!displayList);
         return;
       }
@@ -50,32 +54,37 @@ export const CommonSelectList: FC<CommonSelectProps> = ({
     };
   }, [displayList, setDisplayList]);
 
+  const isListItemsExists = !!listItems.length;
+
   return (
     <StyledCoursesSelectWrapper
       isClicked={displayList}
-      {...{ isLang, menuToggle }}
+      {...{ isLang, menuToggle, customStyle, showOptionsSelect }}
       className={`CommonSelectList${!isLang && ' eighthStep'}`}
     >
-      <StyledCoursesSelectHeaderWrapper isClicked={displayList} {...{ isLang, menuToggle }}>
+      <StyledCoursesSelectHeaderWrapper
+        isClicked={displayList}
+        {...{ isLang, menuToggle, customStyle }}
+      >
         {title && <p>{t(title)}</p>}
         <StyledCoursesSelectInfo
-          hover={!!listItems.length}
+          hover={isListItemsExists}
           ref={selectRef}
-          {...{ isLang, menuToggle }}
+          {...{ isLang, menuToggle, customStyle }}
         >
-          <p>{currItem}</p>
-          {!!listItems.length && <StyledCoursesSelectArrow />}
+          <p>{t(currItem)}</p>
+          {isListItemsExists && <StyledCoursesSelectArrow />}
         </StyledCoursesSelectInfo>
       </StyledCoursesSelectHeaderWrapper>{' '}
-      {!!listItems.length && (
-        <StyledCoursesList {...{ isLang, menuToggle }}>
+      {isListItemsExists && (
+        <StyledCoursesList {...{ isLang, menuToggle, customStyle }}>
           {listItems.map((item: Course | string) => {
             return (
               <li
                 key={typeof item === 'string' ? item : item.id}
                 onClick={() => onClickHandler(item)}
               >
-                {typeof item === 'string' ? Language[item] : item.name}
+                {typeof item === 'string' ? Language[item] : t(item.name)}
               </li>
             );
           })}

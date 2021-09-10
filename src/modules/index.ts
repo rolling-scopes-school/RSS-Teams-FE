@@ -5,3 +5,4 @@ export { TokenPage } from './TokenPage';
 export { NotFoundPage } from './NotFoundPage';
 export { EditProfile } from './EditProfile';
 export { TutorialPage } from './TutorialPage';
+export { AdminPage } from './AdminPage';

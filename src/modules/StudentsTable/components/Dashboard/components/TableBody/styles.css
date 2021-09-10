@@ -38,12 +38,12 @@
   width: 9.93%;
 }
 
-.TableItem--7 {
+.TableItem--7, .TableItem--8 {
   width: 14%;
 }
 
-.TableItem--8 {
-  width: 14%;
+.TableItem--9 {
+  width: 11%;
 }
 
 @media (max-width: 1320px) {

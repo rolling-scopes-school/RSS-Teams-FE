@@ -58,11 +58,7 @@ export const ModalCreated: FC<Props> = ({
   const onClickCopyButton = () => CopyToClipboard(password);
 
   return (
-    <Modal
-      {...{ title, text, text2, open, onClose, cancelText }}
-      hideOnOutsideClick={true}
-      hideOnEsc={true}
-    >
+    <Modal {...{ title, text, text2, open, onClose, cancelText }} hideOnOutsideClick hideOnEsc>
       <InputWithCopy>
         <ModalInput name="InputValue" value={password} readOnly blink={isCopy} />
         <CopyButton onClick={onClickCopyButton} />
