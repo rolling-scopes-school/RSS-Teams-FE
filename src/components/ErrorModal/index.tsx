@@ -24,7 +24,6 @@ export const ErrorModal: FC<Props> = ({
   cancelText = 'Ok',
   error,
 }) => {
-  console.log('🚀 ~ file: index.tsx ~ line 27 ~ error', error);
   const dispatch = useDispatch();
 
   const isUserUnauthorized = !!error?.graphQLErrors.find(
