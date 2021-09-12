@@ -112,7 +112,7 @@ export const ModalEditCourse: FC<Props> = ({
   const changeCourseStateButtonText = isCourseActive ? 'Terminate course' : 'Activate course';
   const onChangeCourseState = () => setIsCourseActive(!isCourseActive);
 
-  if (errorUpdateCourse) return <ErrorModal />;
+  if (errorUpdateCourse) return <ErrorModal error={errorUpdateCourse} />;
 
   return (
     <Modal

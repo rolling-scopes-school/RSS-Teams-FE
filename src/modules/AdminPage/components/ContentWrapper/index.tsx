@@ -45,7 +45,7 @@ export const AdminPageWrapper: FC = () => {
   );
 
   if (loading) return <Loader />;
-  if (error) return <ErrorModal />;
+  if (error) return <ErrorModal error={error} />;
 
   return (
     <AdminPageContentWrapper>

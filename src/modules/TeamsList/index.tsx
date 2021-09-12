@@ -34,7 +34,7 @@ export const TeamsList: FC = () => {
     createTeam,
     updateTeam,
     removeUserFromCourse,
-    isError,
+    commonMutationError,
     isLoading,
   } = useCommonMutations(page);
 
@@ -44,7 +44,7 @@ export const TeamsList: FC = () => {
   dispatch(setTourOpening(TOUR_OPENING));
 
   if (loading || isLoading) return <Loader />;
-  if (error || isError) return <ErrorModal />;
+  if (error || commonMutationError) return <ErrorModal error={error || commonMutationError} />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
 

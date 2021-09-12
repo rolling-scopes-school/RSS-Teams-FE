@@ -165,7 +165,7 @@ export const EditProfile: FC = () => {
 
   if (!loginToken) return <Redirect to={'/login'} />;
   if (loading || loadingM) return <Loader />;
-  if (error || errorM || isCommonError) return <ErrorModal />;
+  if (error || errorM || isCommonError) return <ErrorModal error={error || errorM} />;
 
   return (
     <FormWrapper>
