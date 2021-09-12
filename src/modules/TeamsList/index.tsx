@@ -43,8 +43,8 @@ export const TeamsList: FC = () => {
   }
   dispatch(setTourOpening(TOUR_OPENING));
 
-  if (loading || isLoading) return <Loader />;
   if (error || commonMutationError) return <ErrorModal error={error || commonMutationError} />;
+  if (loading || isLoading) return <Loader />;
 
   const pageCount: number = Math.ceil(teams.count / TEAMS_PER_PAGE);
 

@@ -44,8 +44,8 @@ export const AdminPageWrapper: FC = () => {
     [courses, currentShowCoursesOption, searchValue]
   );
 
-  if (loading) return <Loader />;
   if (error) return <ErrorModal error={error} />;
+  if (loading) return <Loader />;
 
   return (
     <AdminPageContentWrapper>
