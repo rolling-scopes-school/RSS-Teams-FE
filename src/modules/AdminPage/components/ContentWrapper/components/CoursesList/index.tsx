@@ -30,7 +30,7 @@ export const CoursesList: FC<{
     sortStudents();
   };
 
-  if (errorSortStudents) return <ErrorModal />;
+  if (errorSortStudents) return <ErrorModal error={errorSortStudents} />;
 
   return (
     <>

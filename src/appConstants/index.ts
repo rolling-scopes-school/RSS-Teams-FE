@@ -168,3 +168,5 @@ export const SHOW_COURSES_OPTIONS = [
   { id: '2', name: 'Active' },
   { id: '3', name: 'Terminated' },
 ];
+
+export const UNAUTHORIZED_ERROR_MESSAGE = 'Unauthorized';

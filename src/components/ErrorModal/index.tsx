@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 import { Modal } from 'components';
+import { ApolloError } from '@apollo/client';
+import { UNAUTHORIZED_ERROR_MESSAGE } from 'appConstants';
 
 type Props = {
   title?: string;
@@ -8,6 +10,7 @@ type Props = {
   open?: boolean;
   cancelText?: string;
   isCrossIconVisible?: boolean;
+  error?: ApolloError;
 };
 
 export const ErrorModal: FC<Props> = ({
@@ -17,10 +20,20 @@ export const ErrorModal: FC<Props> = ({
   open = true,
   isCrossIconVisible = false,
   cancelText = 'Ok',
+  error,
 }) => {
+  const isUserUnauthorized = !!error?.graphQLErrors.find(
+    ({ message }) => message === UNAUTHORIZED_ERROR_MESSAGE
+  );
+
+  if (isUserUnauthorized) {
+    return null;
+  }
+
   const onClose = () => {
     location.reload();
   };
+
   return (
     <Modal
       {...{ title, text, text2, open, onClose, isCrossIconVisible, cancelText }}

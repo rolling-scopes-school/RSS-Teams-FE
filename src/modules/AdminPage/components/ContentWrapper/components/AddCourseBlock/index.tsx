@@ -72,7 +72,7 @@ export const AddCourseBlock: FC<{ checkIsCourseNameUniq: (courseName: string) =>
     }
   }, [isCourseNameFieldValid, isTeamSizeFieldValid, courseName, teamSize, createCourse, dispatch]);
 
-  if (errorCreateCourse) return <ErrorModal />;
+  if (errorCreateCourse) return <ErrorModal error={errorCreateCourse} />;
 
   return (
     <>
