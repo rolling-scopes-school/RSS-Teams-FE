@@ -11,6 +11,7 @@ import 'typography/normalize.css';
 import 'typography/fonts.css';
 import 'typography/common.css';
 import './translation/resources';
+import ErrorBoundary from 'components/ErrorBoundary';
 
 const httpLink = createHttpLink({
   uri: BACKEND_LINK,
@@ -68,13 +69,15 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <Router>
-      <AppState>
-        <App />
-      </AppState>
-    </Router>
-  </ApolloProvider>,
+  <ErrorBoundary>
+    <ApolloProvider client={client}>
+      <Router>
+        <AppState>
+          <App />
+        </AppState>
+      </Router>
+    </ApolloProvider>
+  </ErrorBoundary>,
   document.getElementById('root')
 );
 
