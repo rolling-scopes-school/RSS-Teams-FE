@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import { Modal } from 'components';
 import { ApolloError } from '@apollo/client';
-import { AUTH_TOKEN, UNAUTHORIZED_ERROR_MESSAGE } from 'appConstants';
-import { useDispatch } from 'react-redux';
-import { setToken } from 'modules/LoginPage/loginPageReducer';
+import { UNAUTHORIZED_ERROR_MESSAGE } from 'appConstants';
 
 type Props = {
   title?: string;
@@ -24,16 +22,12 @@ export const ErrorModal: FC<Props> = ({
   cancelText = 'Ok',
   error,
 }) => {
-  const dispatch = useDispatch();
-
   const isUserUnauthorized = !!error?.graphQLErrors.find(
     ({ message }) => message === UNAUTHORIZED_ERROR_MESSAGE
   );
 
   if (isUserUnauthorized) {
-    sessionStorage.removeItem(AUTH_TOKEN);
-    dispatch(setToken(null));
-    location.reload();
+    return null;
   }
 
   const onClose = () => {
