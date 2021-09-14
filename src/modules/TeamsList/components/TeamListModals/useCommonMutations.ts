@@ -90,14 +90,14 @@ export const useCommonMutations = (page: number) => {
     },
   });
 
-  const isError = [
+  const commonMutationError = [
     errorAdd,
     errorCreateTeam,
     errorExpel,
     errorRemoveCourse,
     errorRemoveTeam,
     errorUpdateTeam,
-  ].some((item) => !!item);
+  ].find((item) => !!item);
 
   const isLoading = [
     loadingCreateTeam,
@@ -114,7 +114,7 @@ export const useCommonMutations = (page: number) => {
     createTeam,
     updateTeam,
     removeUserFromCourse,
-    isError,
+    commonMutationError,
     isLoading,
   };
 };

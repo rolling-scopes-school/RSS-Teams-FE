@@ -49,8 +49,8 @@ export const App: FC = () => {
     if (!loadingW) setLoading(false);
   }, [dispatch, loginToken, loadingW, loading, whoAmI]);
 
+  if (errorW) return <ErrorModal error={errorW} />;
   if (loading || loadingW) return <Loader />;
-  if (errorW) return <ErrorModal />;
 
   return (
     <AppStyled>
