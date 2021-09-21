@@ -60,7 +60,6 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const CoursesWrapper = styled.div`
-  max-width: 300px;
   width: 100%;
 `;
 export const UserCoursesListTitle = styled.div`

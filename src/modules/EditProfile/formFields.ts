@@ -123,27 +123,30 @@ export const formFields: InputFieldProps[] = [
       },
     },
   },
-  {
-    name: 'score',
-    labelText: 'Score',
-    placeholder: 'Enter score',
-    register: {
-      required: 'This is required.',
-      pattern: {
-        value: /^[1-9]+\d*$/i,
-        message: 'This input is number only.',
-      },
-      minLength: {
-        value: 1,
-        message: 'Minimal length is 1.',
-      },
-      maxLength: {
-        value: 5,
-        message: 'This input exceed maxLength.',
-      },
+];
+
+export const scoreFormField = {
+  name: 'score',
+  labelText: 'Score',
+  placeholder: 'Enter score',
+  register: {
+    required: 'This is required.',
+    pattern: {
+      value: /^[1-9]+\d*$/i,
+      message: 'This input is number only.',
+    },
+    minLength: {
+      value: 1,
+      message: 'Minimal length is 1.',
+    },
+    maxLength: {
+      value: 5,
+      message: 'This input exceed maxLength.',
     },
   },
-];
+};
+
+export const roles = ['Student', 'Mentor'];
 
 export const checkIsCoursesEqual = (newCourses: Course[], userCourses: Course[]) => {
   return (

@@ -7,6 +7,7 @@ import {
   DARK_TEXT_COLOR,
   LIGHT_TEXT_COLOR,
   TABLE_POPUP_BORDER_COLOR,
+  DISABLED_COLOR,
 } from 'appConstants/colors';
 
 interface StyledTextProps {
@@ -24,6 +25,11 @@ type ButtonProps = {
 
 type TRSLogoProps = {
   login: string | null;
+};
+type InputProps = {
+  uncommonWidth?: string;
+  disabled?: boolean;
+  mr?: string;
 };
 
 type ModalInputProps = {
@@ -334,18 +340,22 @@ export const Label = styled.label`
   color: ${(props) => props.color || LIGHT_TEXT_COLOR};
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<InputProps>`
   ${TextMedium};
-  width: 300px;
+  width: ${({ uncommonWidth }) => uncommonWidth || '300px'};
+  margin-right: ${({ mr }) => mr};
   padding: 8px 15px;
   border-radius: 10px;
   border: none;
-  background-color: ${BG_COLOR};
+  background-color: ${({ disabled }) => (disabled && DISABLED_COLOR) || BG_COLOR};
   color: ${(props) => props.color || DARK_TEXT_COLOR};
   outline: none;
   ${GeneralAdaptiveFont};
+  @media (max-width: 768px) {
+    width: ${({ uncommonWidth }) => uncommonWidth === 'auto' && '60px'};
+  }
   @media (max-width: 440px) {
-    width: 100%;
+    width: ${({ uncommonWidth }) => (uncommonWidth === 'auto' && '90%') || '100%'};
   }
   &::placeholder {
     color: ${LIGHT_TEXT_COLOR};
