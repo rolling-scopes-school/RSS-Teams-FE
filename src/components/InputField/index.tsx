@@ -9,6 +9,9 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   message?: string | undefined;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  uncommonWidth?: string;
+  mr?: string;
+  disabled?: boolean;
 }
 
 export const InputField: FC<InputFieldProps> = ({
@@ -18,18 +21,21 @@ export const InputField: FC<InputFieldProps> = ({
   name,
   message,
   onChange,
+  uncommonWidth,
+  disabled,
+  mr,
 }) => {
   const { t } = useTranslation();
   return (
     <FieldWrapper>
       <FLabel htmlFor={name}>{labelText ? t(labelText) : ''}</FLabel>
       <Input
+        {...{ mr, uncommonWidth, onChange, name }}
         id={`id-${name}`}
-        name={name}
         placeholder={placeholder ? t(placeholder) : ''}
         ref={register}
         autoComplete="off"
-        onChange={onChange}
+        disabled={disabled}
       />
       <ValidationAlert>{message ? t(message) : ''}</ValidationAlert>
     </FieldWrapper>

@@ -30,20 +30,24 @@ import { activeModalLeavePage } from 'modules/TeamsList/teamsListReducer';
 import { selectIsActiveModalLeavePage } from 'modules/TeamsList/selectors';
 
 export const EditProfile: FC = () => {
+  const { t } = useTranslation();
   const history = useHistory();
+  const dispatch = useDispatch();
   const loginToken = useSelector(selectToken);
   const userData = useSelector(selectUserData);
   const isCommonError = useSelector(selectIsCommonError);
-  const { t } = useTranslation();
   const isActiveModalLeavePage = useSelector(selectIsActiveModalLeavePage);
   const pathToThePage = useSelector(selectPathToThePage);
+
+  const [isValidCoursesList, setValidCoursesList] = useState(true);
 
   const oldCourses: IOldCourses[] = userData.courses.map((course: Course) => ({
     ...course,
     isNew: true,
   }));
-
+  const isUserNew = !!userData.courses.length;
   const [userCourses, setUserCourses] = useState<IOldCourses[]>(oldCourses);
+
   const { loading, courses, error } = useCoursesQuery();
   const defaultData = useMemo(
     () => ({
@@ -67,12 +71,6 @@ export const EditProfile: FC = () => {
       courseIds: userCourses.map(({ id }: Course) => id),
     },
   });
-
-  const [isValidCoursesList, setValidCoursesList] = useState(true);
-
-  const dispatch = useDispatch();
-
-  const isUserNew = !!userData.courses.length;
 
   const currentCourses = courses?.filter(
     ({ isActive, name }: Course) =>
