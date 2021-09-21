@@ -217,7 +217,6 @@ export const EditProfile: FC = () => {
                   name="courses"
                   placeholder={t('Select course')}
                   register={register}
-                  multi
                   onAdd={localCourseUpdate}
                   courses={currentCourses}
                   isValid={isValidCoursesList}

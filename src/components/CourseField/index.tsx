@@ -14,7 +14,6 @@ type Course = {
 interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   labelText?: string;
   placeholder: string;
-  multi?: boolean;
   register: any;
   courses: Course[];
   onAdd?: any;
@@ -28,7 +27,6 @@ export const CourseField: FC<SelectFieldProps> = ({
   onAdd,
   isValid,
   name,
-  multi,
 }) => {
   const { t } = useTranslation();
   const [score, setScore] = useState(0);
@@ -65,7 +63,7 @@ export const CourseField: FC<SelectFieldProps> = ({
             placeholder={t(placeholder)}
             value={course}
             onChange={(e) => setCourse(e.target.value)}
-            {...{ name, multi }}
+            name={name}
           >
             <option disabled hidden value="">
               {t('Select course')}
