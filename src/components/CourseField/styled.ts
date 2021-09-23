@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { BG_COLOR, LIGHT_TEXT_COLOR, MAIN1_COLOR, WHITE_COLOR } from 'appConstants/colors';
-import { Button, SVGParamsAdaptive } from 'typography';
+import { Button, Input, SVGParamsAdaptive } from 'typography';
 
 type TPlusButton = {
   active?: boolean;
@@ -11,14 +11,14 @@ export const FieldWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const SelectCourse = styled.div`
-  width: 300px;
+export const SelectCourse = styled.div<{ customWidth?: string; mr?: string }>`
+  width: ${({ customWidth }) => customWidth || '300px'};
   height: 38px;
   margin-bottom: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-right: 20px;
+  margin-right: ${({ mr }) => mr || '20px'};
   margin-top: 8px;
   @media (max-width: 440px) {
     width: 100%;
@@ -66,4 +66,11 @@ export const JoinButton = styled(Button)`
 
 export const PlaceholderOption = styled.option`
   display: none;
+`;
+
+export const AddScoreInput = styled(Input)`
+  max-width: 120px;
+  height: 40px;
+  margin-top: 8px;
+  text-align: center;
 `;

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { MinusButton, UserCourseListItemStyled, InfoBox, UserCourseInput } from './styled';
+import { MinusButton, UserCourseListItemStyled, InfoBox, UserScoreInput } from './styled';
 import { Course, Team } from 'types';
 import { ReactComponent as CrossSvgIcon } from 'assets/svg/cross.svg';
 import { selectUserData } from 'modules/StudentsTable/selectors';
@@ -26,8 +26,9 @@ export const UserCourseListItem: FC<TUserCourseListItem> = ({
   course,
 }) => {
   const userData = useSelector(selectUserData);
+  //temp states. need to be removed when BE part will be ready
   const [score, setScore] = useState(0); //course.score
-  const [role, setRole] = useState('Mentor'); // course.role
+  const [role, setRole] = useState('Student'); // course.role
 
   const { removeUserFromCourse } = useRemoveUserFromCourseMutation({
     data: {
@@ -55,15 +56,16 @@ export const UserCourseListItem: FC<TUserCourseListItem> = ({
   });
 
   const changeRole = (role: string) => {
+    // we will update course in userCourses and will send mutation onSubmit
     setRole(role);
     if (role === 'Mentor') {
+      //if user change role to mentor we will also set score to 0
       setScore(0);
     }
   };
   return (
     <UserCourseListItemStyled>
       <InfoBox>{children}</InfoBox>
-      {/* course role */}
       <SelectCourse>
         <Select>
           <SelectInner value={role} onChange={(e) => changeRole(e.target.value)} name="roles">
@@ -71,8 +73,7 @@ export const UserCourseListItem: FC<TUserCourseListItem> = ({
           </SelectInner>
         </Select>
       </SelectCourse>
-      {/* course score */}
-      <UserCourseInput
+      <UserScoreInput
         autoComplete="off"
         disabled={role === 'Mentor'}
         uncommonWidth="auto"
