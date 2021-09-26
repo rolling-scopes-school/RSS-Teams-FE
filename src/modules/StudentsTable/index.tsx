@@ -34,18 +34,22 @@ export const StudentsTable: FC = () => {
   const currCourse = useSelector(selectCurrCourse);
   const filterData = useSelector(selectFilterData);
 
+  // TODO remove after backend role filter
+  const filterDataWithoutRoleFilter = {
+    discord: filterData.discord,
+    github: filterData.github,
+    location: filterData.location,
+    courseName: filterData.courseName,
+  };
+
   const { loadingU, errorU, users } = useUsersQuery({
     filter: {
-      ...filterData,
-      sortingOrder: (
-        filterSelectFields[0][1].find((item) => item[0] === filterData.sortingOrder) as string[]
-      )[1],
-      teamFilter: (
-        filterSelectFields[1][1].find((item) => item[0] === filterData.teamFilter) as [
-          string,
-          boolean
-        ]
-      )[1],
+      ...filterDataWithoutRoleFilter,
+      sortingOrder: `${
+        filterSelectFields[0].options.find(({ name }) => name === filterData.sortingOrder)?.value
+      }`,
+      teamFilter: !!filterSelectFields[1].options.find(({ name }) => name === filterData.teamFilter)
+        ?.value,
     },
     reactCourseId: currCourse.id,
     page,
