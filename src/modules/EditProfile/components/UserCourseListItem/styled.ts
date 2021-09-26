@@ -34,7 +34,9 @@ export const MinusButton = styled(PlusButton)`
   margin-left: 0;
 `;
 
-export const UserCourseInput = styled(Input)`
+export const UserScoreInput = styled(Input)`
   height: 40px;
   margin-top: 8px;
+  max-width: 70px;
+  text-align: center;
 `;
