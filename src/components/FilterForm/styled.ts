@@ -17,14 +17,15 @@ export const FilterFormBase = styled(EditProfileWrapper)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 412px;
+  height: 530px;
+  box-shadow: 0px 0px 10px 1px rgba(34, 60, 80, 0.1);
   @media screen and (max-width: 768px) {
     height: auto;
   }
   @media (max-width: 440px) {
     top: 5px;
-    right: -13px;
-    width: 320px;
+    right: -12px;
+    width: 295px;
   }
 `;
 

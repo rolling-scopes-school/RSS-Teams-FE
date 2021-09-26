@@ -15,6 +15,7 @@ export const StyledPopup = styled.div<TStyledPopup>`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: fit-content;
   padding: 10px;
   font-size: 1rem;
   color: ${DARK_TEXT_COLOR};
