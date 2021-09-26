@@ -36,23 +36,24 @@ export const TOUR_OPENING = 'tourOpening';
 
 export const TABLE_HEADERS = [
   '№',
-  'First / Last Name',
+  'User',
   'Score',
   'Team Number',
+  'Role',
   'Telegram',
   'Discord',
-  'Github',
+  'GitHub',
   'Location',
   'Courses',
 ];
 
 export const TABLE_TEAMS_HEADERS = [
   '№',
-  'First / Last Name',
+  'User',
   'Score',
   'Telegram',
   'Discord',
-  'Github',
+  'GitHub',
   'Location',
   'Action',
 ];
