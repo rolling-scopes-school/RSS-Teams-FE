@@ -58,17 +58,17 @@ export const FilterForm: FC<TFilter> = ({
   return (
     <FilterFormBase onSubmit={handleSubmit(onFilterFormSubmit)}>
       <InputsWrapper>
-        {filterSelectFields.map((item: [string, [string, string | boolean][], string, string]) => {
+        {filterSelectFields.map((item) => {
           return (
             <FilterSelect
-              key={JSON.stringify(item)}
-              name={item[3]}
-              labelText={t(item[0])}
-              placeholder={t(item[0])}
+              key={item.id}
+              name={item.id}
+              labelText={t(item.name)}
+              placeholder={t(item.name)}
               register={register}
-              options={item[1].map((it) => it[0])}
+              options={item.options.map(({ name }) => name)}
               onChange={changeInputValue}
-              currentOption={inputValues[item[3] as keyof TFilterForm] as string}
+              currentOption={inputValues[item.id as keyof TFilterForm] ?? ''}
               color={DARK_TEXT_COLOR}
             />
           );

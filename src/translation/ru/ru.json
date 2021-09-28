@@ -1,7 +1,7 @@
 {
-  "First / Last Name": "Имя и фамилия",
+  "User": "Юзер",
   "Score": "Рейтинг",
-  "Team Number": "№ команды",
+  "Team Number": "Команда",
   "Location": "Локация",
   "Courses": "Курсы",
   "Course": "Курс",
@@ -45,7 +45,6 @@
   "Not found!": "Не найдено!",
   "Dashboard": "Таблица",
   "Filter": "Фильтр",
-  "No team yet.": "Нет команды.",
   "No": "Нет",
   "No courses.": "Нет курсов.",
   "Redirecting...": "Перенаправление...",
@@ -87,6 +86,7 @@
   "Max score": "Максимальный",
   "Min score": "Минимальный",
   "Sort by team": "Сортировать по командам",
+  "Sort by role": "Сортировать по роли",
   "All": "Все",
   "Without team": "Без команды",
   "Enter location": "Введите локацию",
@@ -162,5 +162,8 @@
   "Save changes": "Сохранить изменения",
   "Unset": "Не заданo",
   "Select role": "Выбери роль",
-  "Join": "Готово"
+  "Join": "Готово",
+  "Role": "Роль",
+  "Student": "Студент",
+  "Mentor": "Ментор"
 }

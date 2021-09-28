@@ -15,6 +15,7 @@ export type User = {
   courseIds: string[];
   teamIds: string[];
   teams: Team[];
+  role?: string | null;
 };
 
 export interface Course {
@@ -51,6 +52,7 @@ export type TFilterForm = {
   courseName: string | null;
   sortingOrder: string;
   teamFilter: string;
+  roleFilter: string;
 };
 
 export type UpdateUserInput = {

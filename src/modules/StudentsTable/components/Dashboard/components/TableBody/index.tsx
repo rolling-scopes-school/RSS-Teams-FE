@@ -22,21 +22,20 @@ export const TableBody: FC<TableBodyProps> = ({ users, page }) => {
   const usersData: Array<string[] | ReactText[]> = useMemo(
     () =>
       users.map((user: User, index: number) => {
+        const userOrder = index + 1 + page * USERS_PER_PAGE;
+        const currentCourseTeam = user.teams.find((team: Team) => team.courseId === currCourse.id);
         return [
-          `${index + 1 + page * USERS_PER_PAGE}`,
+          `${userOrder}`,
           `${user.firstName} ${user.lastName || null}`,
-          `${user.score}`,
-          user.teams.find((team: Team) => team.courseId === currCourse.id)
-            ? `${user.teams.find((team: Team) => team.courseId === currCourse.id)?.number}`
-            : (t('No team yet.') as string),
-          user.telegram || `${t('No')} telegram.`,
-          user.discord || `${t('No')} discord.`,
-          user.github || `${t('No')} GitHub.`,
+          user.score || `1000`,
+          currentCourseTeam ? `${currentCourseTeam.number}` : `-`,
+          user.role ? `${t(user.role)}` : `-`,
+          user.telegram || `-`,
+          user.discord || `-`,
+          user.github || `-`,
           `${user.country},
           ${user.city}`,
-          user.courses.length
-            ? user.courses.map((course: Course) => course.name).join(', ')
-            : (t('No courses.') as string),
+          user.courses.length ? user.courses.map((course: Course) => course.name).join(', ') : `-`,
         ];
       }),
     [users, page, currCourse.id, t]

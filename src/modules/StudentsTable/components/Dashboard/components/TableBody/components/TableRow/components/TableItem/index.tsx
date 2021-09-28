@@ -17,7 +17,7 @@ export const TableItem: FC<TableItemProps> = ({ item, index, dataLength }) => {
     const target = event.target as HTMLDivElement;
     if (target.scrollWidth !== target.clientWidth) {
       setShowPopup(true);
-      setPopupElements(target?.textContent?.split(',') as string[]);
+      setPopupElements(target?.textContent?.split(',') ?? []);
       setTableItemCursor(true);
     }
   };

@@ -64,25 +64,43 @@ export const filterFormFields: InputFieldProps[] = [
   },
 ];
 
-export const filterSelectFields: [string, [string, string | boolean][], string, string][] = [
-  [
-    'Sort by score',
-    [
-      ['Max score', 'DESC'],
-      ['Min score', 'ASC'],
+export const filterSelectFields: {
+  id: string;
+  name: string;
+  options: {
+    name: string;
+    value: string | boolean;
+  }[];
+  value: string;
+}[] = [
+  {
+    id: 'sortingOrder',
+    name: 'Sort by score',
+    options: [
+      { name: 'Max score', value: 'DESC' },
+      { name: 'Min score', value: 'ASC' },
     ],
-    '100%',
-    'sortingOrder',
-  ],
-  [
-    'Sort by team',
-    [
-      ['All', false],
-      ['Without team', true],
+    value: '100%',
+  },
+  {
+    id: 'teamFilter',
+    name: 'Sort by team',
+    options: [
+      { name: 'All', value: false },
+      { name: 'Without team', value: true },
     ],
-    '100%',
-    'teamFilter',
-  ],
+    value: '100%',
+  },
+  {
+    id: 'roleFilter',
+    name: 'Sort by role',
+    options: [
+      { name: 'All', value: 'all' },
+      { name: 'Student', value: 'student' },
+      { name: 'Mentor', value: 'mentor' },
+    ],
+    value: '100%',
+  },
 ];
 
 export const defaultFilterData: TFilterForm = {
@@ -90,6 +108,7 @@ export const defaultFilterData: TFilterForm = {
   github: null,
   location: null,
   courseName: null,
-  sortingOrder: filterSelectFields[0][1][0][0],
-  teamFilter: filterSelectFields[1][1][0][0],
+  sortingOrder: 'Max score',
+  teamFilter: 'All',
+  roleFilter: 'All',
 };

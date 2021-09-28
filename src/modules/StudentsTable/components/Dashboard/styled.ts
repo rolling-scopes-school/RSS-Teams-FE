@@ -15,4 +15,8 @@ export const StyledTable = styled.div`
   background-color: ${WHITE_COLOR};
   border-radius: 20px;
   ${GeneralAdaptiveFont};
+
+  @media (max-width: 768px) {
+    min-height: 655px;
+  }
 `;

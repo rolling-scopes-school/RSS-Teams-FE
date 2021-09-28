@@ -1,7 +1,11 @@
 import React, { FC, SelectHTMLAttributes } from 'react';
 import { Label, Select, SelectInner } from 'typography';
-import { FieldWrapper, SelectCourse } from 'components/CourseField/styled';
+import { SelectCourse } from 'components/CourseField/styled';
 import { useTranslation } from 'react-i18next';
+import { FilterSelectWrapper } from './styled';
+import { selectCurrLanguage } from 'modules/LoginPage/selectors';
+import { useSelector } from 'react-redux';
+import { DEFAULT_LANGUAGE } from 'appConstants';
 interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
   labelText?: string;
   placeholder: string;
@@ -19,16 +23,17 @@ export const FilterSelect: FC<SelectFieldProps> = ({
   ...rest
 }) => {
   const { t } = useTranslation();
+  const currentLanguage = useSelector(selectCurrLanguage);
+
   const filterFieldOptions =
-    options.map((option: string) => {
-      return (
-        <option key={option} value={option}>
-          {t(option)}
-        </option>
-      );
-    }) ?? null;
+    options.map((option: string) => (
+      <option key={option} value={option}>
+        {t(option)}
+      </option>
+    )) ?? null;
+
   return (
-    <FieldWrapper>
+    <FilterSelectWrapper responsiveByLang={currentLanguage !== DEFAULT_LANGUAGE}>
       {labelText && <Label>{labelText}</Label>}
       <SelectCourse>
         <Select>
@@ -37,6 +42,6 @@ export const FilterSelect: FC<SelectFieldProps> = ({
           </SelectInner>
         </Select>
       </SelectCourse>
-    </FieldWrapper>
+    </FilterSelectWrapper>
   );
 };
