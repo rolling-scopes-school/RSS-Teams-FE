@@ -22,12 +22,12 @@ export const TableRow: FC<TableRowProps> = ({
 }) => {
   const { firstName, lastName, score, telegram, discord, github, country, city, id } = member;
   const dispatch = useDispatch();
+  const trClassNames = secondTable
+    ? `SecondTable ${!count && 'MentorRow'}`
+    : `FirstTable ${!count && 'MentorRow'}`;
+
   return (
-    <tr
-      className={
-        secondTable ? `SecondTable ${!count && 'MentorRow'}` : `FirstTable ${!count && 'MentorRow'}`
-      }
-    >
+    <tr className={trClassNames}>
       <TableCell value={!count ? '' : count.toString(10)} />
       <TableCell value={`${firstName} ${lastName}`} />
       <TableCell value={!count ? 'Mentor' : score} />
