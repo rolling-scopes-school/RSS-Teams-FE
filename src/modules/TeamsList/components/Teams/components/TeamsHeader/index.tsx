@@ -21,6 +21,8 @@ import {
 export const TeamsHeader: FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const role = 'Mentor';
+
   const buttonsInfo: {
     name: string;
     callback: () => void;
@@ -32,7 +34,7 @@ export const TeamsHeader: FC = () => {
       className: 'secondStep',
     },
     {
-      name: 'Join team',
+      name: role === 'Mentor' ? 'Join as a mentor' : 'Join team',
       callback: () => dispatch(activeModalJoin(true)),
       className: 'thirdStep',
     },
@@ -46,10 +48,15 @@ export const TeamsHeader: FC = () => {
   return (
     <TeamsHeaderStyled>
       <TeamsHeaderRightStyled>
-        <TeamHeaderTitle>{t('Become a member of the team!')}</TeamHeaderTitle>
-        <TeamsHeaderSubtitleStyled>{t('To become a member')}</TeamsHeaderSubtitleStyled>
+        <TeamHeaderTitle>
+          {t(role === 'Mentor' ? 'Become a mentor of the team!' : 'Become a member of the team!')}
+        </TeamHeaderTitle>
+        <TeamsHeaderSubtitleStyled>
+          {t(role === 'Mentor' ? 'To become a mentor' : 'To become a member')}
+        </TeamsHeaderSubtitleStyled>
         <TeamsHeaderButtonsBlockStyled>
           {buttonsInfo.map((item) => {
+            if (item.name === 'Create team' && role === 'Mentor') return;
             return (
               <TeamButton
                 bgc={WHITE_COLOR}
