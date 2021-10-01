@@ -88,6 +88,10 @@ export const StyledTeamUserTable = styled.table`
   tr:nth-child(even) {
     background-color: ${BG_COLOR};
   }
+
+  tr.MentorRow {
+    font-weight: bold;
+  }
   td {
     color: ${DARK_TEXT_COLOR};
     padding: 10px;

@@ -12,6 +12,25 @@ type TeamUserTableProps = {
   secondTable?: boolean;
 };
 
+const mockMentorData = {
+  id: 'q',
+  firstName: 'Dan',
+  lastName: 'Abramov',
+  github: 'danAbr',
+  telegram: 'null',
+  discord: 'abrdan',
+  score: 0,
+  country: 'USA',
+  city: 'Boston',
+  avatar: '',
+  isAdmin: false,
+  courses: [],
+  email: null,
+  courseIds: [],
+  teamIds: [],
+  teams: [],
+};
+
 export const TeamUserTable: FC<TeamUserTableProps> = ({
   members,
   isMyTeam,
@@ -19,6 +38,9 @@ export const TeamUserTable: FC<TeamUserTableProps> = ({
   secondTable = false,
 }) => {
   const { t } = useTranslation();
+  // temp logic for mock data. will be removed after backend is ready
+  // const mentor = members?.find((member) => member.role === 'Mentor');
+  const mentor = mockMentorData;
   return (
     <StyledTeamUserTable>
       <thead>
@@ -31,16 +53,19 @@ export const TeamUserTable: FC<TeamUserTableProps> = ({
         </tr>
       </thead>
       <tbody>
-        {members &&
-          members.map((member: User, index: number) => {
-            return (
-              <TableRow
-                key={member.id}
-                count={index + 1}
-                {...{ secondTable, userId, isMyTeam, member }}
-              />
-            );
-          })}
+        <>
+          {mentor && <TableRow count={0} {...{ secondTable, userId, isMyTeam, member: mentor }} />}
+          {members &&
+            members.map((member: User, index: number) => {
+              return (
+                <TableRow
+                  key={member.id}
+                  count={index + 1}
+                  {...{ secondTable, userId, isMyTeam, member }}
+                />
+              );
+            })}
+        </>
       </tbody>
     </StyledTeamUserTable>
   );
