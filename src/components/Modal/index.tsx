@@ -34,6 +34,7 @@ const ModalWindow = styled.div`
   border-radius: 20px;
 `;
 
+// TODO: refactoring spaghetti
 export const Modal: FC<ModalProps> = ({
   title,
   text,
