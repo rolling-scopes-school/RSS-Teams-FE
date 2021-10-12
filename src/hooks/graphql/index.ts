@@ -12,4 +12,3 @@ export { useSortStudentsMutation } from './mutations/useSortStudentsMutation';
 export { useRemoveUserFromCourseMutation } from './mutations/useRemoveUserFromCourseMutation';
 export { useCreateCourseMutation } from './mutations/useCreateCourseMutation';
 export { useUpdateCourseMutation } from './mutations/useUpdateCourseMutation';
-export { useOutsideClick } from './useOutsideClick';

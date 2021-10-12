@@ -12,7 +12,7 @@ import crossIcon from 'assets/svg/cross.svg';
 import { selectFilterData } from 'modules/StudentsTable/selectors';
 import { useTranslation } from 'react-i18next';
 import { setFilterData } from 'modules/StudentsTable/studentsTableReducer';
-import { useOutsideClick } from 'hooks/graphql';
+import { useOutsideClick } from 'hooks/useOutsideClick';
 
 type TFilter = {
   inputValues: TFilterForm;
