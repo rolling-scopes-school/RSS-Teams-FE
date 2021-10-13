@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldError, FieldErrors } from 'react-hook-form';
 import { FilterSelect, InputField } from 'components';
@@ -12,6 +12,7 @@ import crossIcon from 'assets/svg/cross.svg';
 import { selectFilterData } from 'modules/StudentsTable/selectors';
 import { useTranslation } from 'react-i18next';
 import { setFilterData } from 'modules/StudentsTable/studentsTableReducer';
+import { useOutsideClick } from 'hooks/useOutsideClick';
 
 type TFilter = {
   inputValues: TFilterForm;
@@ -38,6 +39,8 @@ export const FilterForm: FC<TFilter> = ({
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  const ref = useRef(null);
+
   const changeInputValue = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
     setInputValues({
@@ -50,13 +53,19 @@ export const FilterForm: FC<TFilter> = ({
     e.preventDefault();
   };
 
+  const handleOutsideClick = useCallback(() => {
+    setIsFilterOpen(false);
+  }, [setIsFilterOpen]);
+
+  useOutsideClick(ref, handleOutsideClick);
+
   const isValuesInnerEqual =
     Object.values(defaultFilterData).toString() !== Object.values(inputValues).toString();
   const isValuesOuterEqual =
     Object.values(filterData).toString() !== Object.values(inputValues).toString();
 
   return (
-    <FilterFormBase onSubmit={handleSubmit(onFilterFormSubmit)}>
+    <FilterFormBase onSubmit={handleSubmit(onFilterFormSubmit)} ref={ref}>
       <InputsWrapper>
         {filterSelectFields.map((item) => {
           return (
