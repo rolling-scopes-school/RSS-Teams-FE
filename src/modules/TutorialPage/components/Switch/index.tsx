@@ -8,13 +8,13 @@ type SwitchProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Student = (
+const Student: FC = () => (
   <FirstOption color={MAIN1_COLOR} fontSize="20px">
     Student
   </FirstOption>
 );
 
-const Mentor = (
+const Mentor: FC = () => (
   <SecondOption color={MAIN1_COLOR} fontSize="20px">
     Mentor
   </SecondOption>
@@ -31,7 +31,7 @@ export const Switch: FC<SwitchProps> = ({ id, toggled, onChange }) => {
         onChange={onChange}
       />
       <SwitchLabel className="switch-label" htmlFor={id}>
-        {toggled ? Student : Mentor}
+        {toggled ? <Student /> : <Mentor />}
         <SwitchButton className="switch-button" />
       </SwitchLabel>
     </>

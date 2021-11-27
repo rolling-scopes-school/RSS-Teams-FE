@@ -44,9 +44,11 @@ export const SwitchButton = styled.span`
 export const FirstOption = styled.span`
   ${TextSemiBold}
   margin-left: 10px;
+  user-select: none;
 `;
 
 export const SecondOption = styled.span`
   ${TextSemiBold}
   margin-left: 57px;
+  user-select: none;
 `;
