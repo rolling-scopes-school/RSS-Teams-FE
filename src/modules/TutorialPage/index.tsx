@@ -1,17 +1,19 @@
-import React, { FC, useCallback } from 'react';
-import { TutorialPageWrapper } from './styled';
+import React, { FC, useCallback, useState } from 'react';
+import { TutorialPageWrapper, StyledTitle, SwitchWrapper } from './styled';
 import editProfileExampleEN from 'assets/images/editProfileExampleEN.png';
 import editProfileExampleRU from 'assets/images/editProfileExampleRU.png';
 import teamActionsExampleEN from 'assets/images/teamActionsExampleEN.png';
 import teamActionsExampleRU from 'assets/images/teamActionsExampleRU.png';
-import { NoteBlock, StepBlock } from './components';
+import { NoteBlock, StepBlock, Switch } from './components';
 import { tutorialNoteInfo } from './tutorialPageInfo';
 import { useSelector } from 'react-redux';
 import { selectCurrLanguage } from 'modules/LoginPage/selectors';
+import { MAIN1_COLOR } from 'appConstants/colors';
 import { ContentPageWrapper } from 'typography';
 import { useTranslation } from 'react-i18next';
 
 export const TutorialPage: FC = () => {
+  const [isToggled, setIsToggled] = useState(false);
   const currentLang = useSelector(selectCurrLanguage);
   const { t } = useTranslation();
   const TUTORIAL_PAGE_NOTES_INFO = useCallback(
@@ -19,9 +21,19 @@ export const TutorialPage: FC = () => {
     [currentLang, t]
   );
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsToggled(e.target.checked);
+  };
+
   return (
     <ContentPageWrapper>
       <TutorialPageWrapper>
+        <SwitchWrapper>
+          <StyledTitle color={MAIN1_COLOR} fontSize="22px">
+            Tutorial for
+          </StyledTitle>
+          <Switch id="tutorial" toggled={isToggled} onChange={handleChange} />
+        </SwitchWrapper>
         <StepBlock
           title="Step 1"
           subtitle="The app will suggest"

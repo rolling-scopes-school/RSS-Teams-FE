@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GeneralAdaptiveFont } from 'typography';
+import { GeneralAdaptiveFont, TextSemiBold } from 'typography';
 
 export const TutorialPageWrapper = styled.div`
   display: flex;
@@ -98,4 +98,16 @@ export const TutorialPageWrapper = styled.div`
       line-height: 22px;
     }
   }
+`;
+
+export const SwitchWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledTitle = styled.p`
+  ${TextSemiBold}
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 10px;
 `;
