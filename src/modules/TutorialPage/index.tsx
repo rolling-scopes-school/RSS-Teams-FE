@@ -30,7 +30,7 @@ export const TutorialPage: FC = () => {
       <TutorialPageWrapper>
         <SwitchWrapper>
           <StyledTitle color={MAIN1_COLOR} fontSize="21px">
-            Tutorial for
+            {t('Tutorial for')}
           </StyledTitle>
           <Switch id="tutorial" toggled={isToggled} onChange={handleChange} />
         </SwitchWrapper>

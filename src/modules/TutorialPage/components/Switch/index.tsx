@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { SwitchInput, SwitchLabel, SwitchButton, FirstOption, SecondOption } from './styled';
 import { MAIN1_COLOR } from 'appConstants/colors';
+import { useTranslation } from 'react-i18next';
 
 type SwitchProps = {
   id: string;
@@ -8,17 +9,23 @@ type SwitchProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Student: FC = () => (
-  <FirstOption color={MAIN1_COLOR} fontSize="20px">
-    Student
-  </FirstOption>
-);
+const Student: FC = () => {
+  const { t } = useTranslation();
+  return (
+    <FirstOption color={MAIN1_COLOR} fontSize="20px">
+      {t('Student')}
+    </FirstOption>
+  );
+};
 
-const Mentor: FC = () => (
-  <SecondOption color={MAIN1_COLOR} fontSize="20px">
-    Mentor
-  </SecondOption>
-);
+const Mentor: FC = () => {
+  const { t } = useTranslation();
+  return (
+    <SecondOption color={MAIN1_COLOR} fontSize="20px">
+      {t('Mentor')}
+    </SecondOption>
+  );
+};
 
 export const Switch: FC<SwitchProps> = ({ id, toggled, onChange }) => {
   return (
