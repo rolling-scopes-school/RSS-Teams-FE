@@ -29,7 +29,7 @@ export const TutorialPage: FC = () => {
     <ContentPageWrapper>
       <TutorialPageWrapper>
         <SwitchWrapper>
-          <StyledTitle color={MAIN1_COLOR} fontSize="22px">
+          <StyledTitle color={MAIN1_COLOR} fontSize="21px">
             Tutorial for
           </StyledTitle>
           <Switch id="tutorial" toggled={isToggled} onChange={handleChange} />

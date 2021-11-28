@@ -105,7 +105,7 @@ export const SwitchWrapper = styled.div`
   align-items: center;
 `;
 
-export const StyledTitle = styled.p`
+export const StyledTitle = styled.h2`
   ${TextSemiBold}
   margin-top: 0;
   margin-bottom: 0;
