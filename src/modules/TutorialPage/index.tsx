@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { TutorialPageWrapper, StyledTitle, SwitchWrapper } from './styled';
-import { Switch, TutorialStudent } from './components';
+import { Switch, TutorialForStudent } from './components';
 import { MAIN1_COLOR } from 'appConstants/colors';
 import { ContentPageWrapper } from 'typography';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +22,7 @@ export const TutorialPage: FC = () => {
           </StyledTitle>
           <Switch id="tutorial" toggled={isToggled} onChange={handleChange} />
         </SwitchWrapper>
-        <TutorialStudent />
+        <TutorialForStudent />
       </TutorialPageWrapper>
     </ContentPageWrapper>
   );

@@ -10,7 +10,7 @@ import editProfileExampleRU from 'assets/images/editProfileExampleRU.png';
 import teamActionsExampleEN from 'assets/images/teamActionsExampleEN.png';
 import teamActionsExampleRU from 'assets/images/teamActionsExampleRU.png';
 
-export const TutorialStudent: FC = () => {
+export const TutorialForStudent: FC = () => {
   const currentLang = useSelector(selectCurrLanguage);
   const { t } = useTranslation();
   const TUTORIAL_PAGE_NOTES_INFO = useCallback(
