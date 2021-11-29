@@ -1,7 +1,8 @@
+import { TFunction } from 'react-i18next';
 import myTeamExampleEN from 'assets/images/myTeamExampleEN.png';
 import myTeamExampleRU from 'assets/images/myTeamExampleRU.png';
 
-export const tutorialPageInfo = (currentLang: string, t: any) => {
+export const tutorialPageInfo = (currentLang: string, t: TFunction<'translation'>) => {
   const TUTORIAL_PAGE_NOTES_INFO = [
     {
       title: 'Create team',

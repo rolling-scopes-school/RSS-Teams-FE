@@ -4,11 +4,12 @@ import { LINK_TO_REPO } from 'appConstants';
 import { LinkButton } from './styled';
 import { Dispatch } from 'redux';
 import { History, LocationState } from 'history';
+import { TFunction } from 'react-i18next';
 
 export const tourConfig = (
   history: History<LocationState>,
   dispatch: Dispatch,
-  t: (text: string) => string
+  t: TFunction<'translation'>
 ) => [
   {
     content: ({ goTo }: { goTo: (step: number) => void }) => (
