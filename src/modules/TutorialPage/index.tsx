@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import { TutorialPageWrapper, StyledTitle, SwitchWrapper } from './styled';
-import { Switch, TutorialForStudent } from './components';
+import { Switch, TutorialForStudent, TutorialForMentor } from './components';
 import { MAIN1_COLOR } from 'appConstants/colors';
 import { ContentPageWrapper } from 'typography';
 import { useTranslation } from 'react-i18next';
 
 export const TutorialPage: FC = () => {
-  const [isToggled, setIsToggled] = useState(false);
+  const [isToggled, setIsToggled] = useState(true);
   const { t } = useTranslation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +22,7 @@ export const TutorialPage: FC = () => {
           </StyledTitle>
           <Switch id="tutorial" toggled={isToggled} onChange={handleChange} />
         </SwitchWrapper>
-        <TutorialForStudent />
+        {isToggled ? <TutorialForStudent /> : <TutorialForMentor />}
       </TutorialPageWrapper>
     </ContentPageWrapper>
   );

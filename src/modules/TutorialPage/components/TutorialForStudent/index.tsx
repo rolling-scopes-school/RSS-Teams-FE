@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { selectCurrLanguage } from 'modules/LoginPage/selectors';
-import { tutorialNoteInfo } from 'modules/TutorialPage/tutorialPageInfo';
+import { tutorialPageInfo } from './tutorialPageInfo';
 import { NoteBlock } from '../NoteBlock';
 import { StepBlock } from '../StepBlock';
 import editProfileExampleEN from 'assets/images/editProfileExampleEN.png';
@@ -14,7 +14,7 @@ export const TutorialForStudent: FC = () => {
   const currentLang = useSelector(selectCurrLanguage);
   const { t } = useTranslation();
   const TUTORIAL_PAGE_NOTES_INFO = useCallback(
-    () => tutorialNoteInfo(currentLang, t),
+    () => tutorialPageInfo(currentLang, t),
     [currentLang, t]
   );
 

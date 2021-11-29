@@ -168,5 +168,9 @@
   "Join": "Join",
   "Role": "Role",
   "Student": "Student",
-  "Mentor": "Mentor"
+  "Mentor": "Mentor",
+  "Tutorial for Mentor note 1": "The score field for a Mentor role is blocked.",
+  "Step 2 for Mentor": "Step 2 - Team joining",
+  "Step 2 description": "On the teams page you will see the button - “Join as a mentor”:",
+  "Press the “Join as a mentor” button": "Press the “Join as a mentor” button;"
 }

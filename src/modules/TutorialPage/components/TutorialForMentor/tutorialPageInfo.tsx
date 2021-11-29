@@ -1,22 +1,12 @@
 import myTeamExampleEN from 'assets/images/myTeamExampleEN.png';
 import myTeamExampleRU from 'assets/images/myTeamExampleRU.png';
 
-export const tutorialNoteInfo = (currentLang: string, t: any) => {
+export const tutorialPageInfo = (currentLang: string) => {
   const TUTORIAL_PAGE_NOTES_INFO = [
-    {
-      title: 'Create team',
-      subtitle: 'The team creation process is taken place in three steps',
-      listItems: [
-        'Press the “Create team” button',
-        'Provide a link to a team chat',
-        'Specify password',
-      ],
-      children: <p>{t('The only person who creates the team is Team Lead')}</p>,
-    },
     {
       title: 'Join team',
       subtitle: 'To join an existing team',
-      listItems: [`Press the “Join team” button`, `Specify the password`],
+      listItems: [`Press the “Join as a mentor” button`, `Specify the password`],
     },
     {
       listItems: [
