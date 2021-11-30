@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { selectIsBurgerMenuOpen } from 'modules/LoginPage/selectors';
 import {
-  BurgerMenuWrapper,
   BurgerMenuLayout,
   CrossButton,
   BurgerMenuNavList,
@@ -31,9 +30,9 @@ export const BurgerMenu: FC<BurgerMenuProps> = ({ newUserCheck, navOnClickHandle
   };
 
   return (
-    <BurgerMenuWrapper {...{ isBurgerMenuOpen }}>
+    <>
       <BurgerMenuOverlay {...{ isBurgerMenuOpen }} onClick={onClickMenuToggle} />
-      <BurgerMenuLayout>
+      <BurgerMenuLayout {...{ isBurgerMenuOpen }}>
         <CrossButton onClick={onClickMenuToggle} />
         <BurgerMenuNavList>
           {Object.values(APP_NAVIGATION_LINKS).map((link: TNavLink, index: number) => {
@@ -58,6 +57,6 @@ export const BurgerMenu: FC<BurgerMenuProps> = ({ newUserCheck, navOnClickHandle
         </BurgerMenuNavList>
         <LangSelect menuToggle customStyle />
       </BurgerMenuLayout>
-    </BurgerMenuWrapper>
+    </>
   );
 };

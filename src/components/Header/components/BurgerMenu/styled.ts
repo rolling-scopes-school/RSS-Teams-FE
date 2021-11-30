@@ -6,39 +6,32 @@ type BurgerMenuProps = {
   isBurgerMenuOpen: boolean;
 };
 
-export const BurgerMenuWrapper = styled.div<BurgerMenuProps>`
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  transition: transform 0.6s ease-in-out;
-  transform: ${({ isBurgerMenuOpen }) => (isBurgerMenuOpen ? 'translateX(0)' : 'translateX(100%)')};
-`;
-
 export const BurgerMenuOverlay = styled.div<BurgerMenuProps>`
-  width: calc(100% - 250px);
-  height: 100%;
+  position: absolute;
+  width: 100vw;
+  height: ${({ isBurgerMenuOpen }) => (isBurgerMenuOpen ? '100vh' : 0)};
   background-color: ${({ isBurgerMenuOpen }) => (isBurgerMenuOpen ? OVERLAY_COLOR : 'none')};
   transition: background-color 0.6s ease-in-out;
-
-  @media (max-width: 440px) {
-    width: calc(100% - 180px);
-  }
+  z-index: 3;
 `;
 
-export const BurgerMenuLayout = styled.nav`
+export const BurgerMenuLayout = styled.nav<BurgerMenuProps>`
+  position: fixed;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   gap: 40px;
   width: 250px;
-  height: 100%;
+  height: 100vh;
   padding: 20px 20px 20px 40px;
   background: ${WHITE_COLOR};
+  z-index: 5;
+  transition: transform 0.6s ease-in-out;
+  transform: ${({ isBurgerMenuOpen }) => (isBurgerMenuOpen ? 'translateX(0)' : 'translateX(100%)')};
 
   @media (max-width: 440px) {
-    width: 180px;
+    width: 195px;
     padding-left: 20px;
   }
 `;
