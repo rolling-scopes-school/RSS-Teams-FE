@@ -107,7 +107,5 @@ export const SwitchWrapper = styled.div`
 
 export const StyledTitle = styled.h2`
   ${TextSemiBold}
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
 `;
