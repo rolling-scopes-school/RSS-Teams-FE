@@ -11,7 +11,7 @@ import mentorActionsExampleRU from 'assets/images/mentorActionsExampleRU.png';
 
 export const TutorialForMentor: FC = () => {
   const currentLang = useSelector(selectCurrLanguage);
-  const TUTORIAL_PAGE_NOTES_INFO = useCallback(() => tutorialPageInfo(currentLang), [currentLang]);
+  const tutorialPageNotesInfo = useCallback(() => tutorialPageInfo(currentLang), [currentLang]);
 
   return (
     <>
@@ -28,7 +28,7 @@ export const TutorialForMentor: FC = () => {
         imageSrc={currentLang === 'en' ? mentorActionsExampleEN : mentorActionsExampleRU}
         altText="Team actions example"
       />
-      {TUTORIAL_PAGE_NOTES_INFO().map(({ title, subtitle, listItems, isNote, children }) => (
+      {tutorialPageNotesInfo().map(({ title, subtitle, listItems, isNote, children }) => (
         <NoteBlock
           {...{ title, subtitle, listItems, isNote }}
           key={listItems ? JSON.stringify(listItems) : title}

@@ -13,7 +13,7 @@ import teamActionsExampleRU from 'assets/images/teamActionsExampleRU.png';
 export const TutorialForStudent: FC = () => {
   const currentLang = useSelector(selectCurrLanguage);
   const { t } = useTranslation();
-  const TUTORIAL_PAGE_NOTES_INFO = useCallback(
+  const tutorialPageNotesInfo = useCallback(
     () => tutorialPageInfo(currentLang, t),
     [currentLang, t]
   );
@@ -36,7 +36,7 @@ export const TutorialForStudent: FC = () => {
         imageSrc={currentLang === 'en' ? teamActionsExampleEN : teamActionsExampleRU}
         altText="Team actions example"
       />
-      {TUTORIAL_PAGE_NOTES_INFO().map(({ title, subtitle, listItems, isNote, children }) => (
+      {tutorialPageNotesInfo().map(({ title, subtitle, listItems, isNote, children }) => (
         <NoteBlock
           {...{ title, subtitle, listItems, isNote }}
           key={listItems ? JSON.stringify(listItems) : title}
