@@ -158,7 +158,7 @@
   "Enter new team size": "Введите новое количество участников",
   "Please, enter new course information": "Пожалуйста, введите новую информацию о курсе",
   "Please, enter unique course name": "Имя курса должно быть уникально",
-  "Please, enter correct course name": "Должен содержать текущий год",
+  "Please, enter correct course name": "Должен содержать текущий или прошлый год",
   "Please, enter correct team size": "Пожалуйста, введите корректное количество участников (2-9)",
   "Terminate course": "Закрыть курс",
   "Activate course": "Активировать курс",
