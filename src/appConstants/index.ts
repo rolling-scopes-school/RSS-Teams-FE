@@ -29,6 +29,7 @@ export const SET_IS_TOUR_OPEN = 'SET_IS_TOUR_OPEN';
 export const USERS_PER_PAGE = 20;
 export const TEAMS_PER_PAGE = 10;
 export const CURRENT_YEAR = new Date(Date.now()).getFullYear();
+export const PREVIOUS_YEAR = CURRENT_YEAR - 1;
 
 export const CURRENT_COURSE = 'currentCourse';
 export const CURRENT_LANG = 'currentLanguage';
@@ -82,7 +83,7 @@ export const MODAL_INPUT_VALIDATION = {
 
 export const COURSE_NAME_VALIDATION = {
   pattern: {
-    value: `${CURRENT_YEAR}`,
+    value: `${PREVIOUS_YEAR}|${CURRENT_YEAR}`,
     message: 'Please, enter correct course name',
   },
   minLength: {

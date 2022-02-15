@@ -158,7 +158,7 @@
   "Enter new team size": "Enter new team size",
   "Please, enter new course information": "Please, enter new course information",
   "Please, enter unique course name": "Please, enter unique course name",
-  "Please, enter correct course name": "Should include current year",
+  "Please, enter correct course name": "Should include current or previous year",
   "Please, enter correct team size": "Please, enter correct team size (2-9)",
   "Terminate course": "Terminate course",
   "Activate course": "Activate course",
