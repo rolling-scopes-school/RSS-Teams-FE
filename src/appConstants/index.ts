@@ -148,7 +148,14 @@ export const Language: { [key: string]: string } = {
 export const FOOTER_INFO = [
   {
     title: 'Development',
-    members: ['besovadevka', 'MadaShindeInai', 'self067', 'manuminsk', 'Malagor', 'dariavv'],
+    members: [
+      'besovadevka',
+      'MadaShindeInai',
+      'self067',
+      'andrei-shelenhouski',
+      'Malagor',
+      'dariavv',
+    ],
   },
   {
     title: 'Design',
