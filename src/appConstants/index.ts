@@ -179,3 +179,5 @@ export const SHOW_COURSES_OPTIONS = [
 ];
 
 export const UNAUTHORIZED_ERROR_MESSAGE = 'Unauthorized';
+
+export const EMERGENCY_CONTACT = 'ValeryDl';
