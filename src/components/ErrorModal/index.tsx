@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { Modal } from 'components';
 import { ApolloError } from '@apollo/client';
-import { UNAUTHORIZED_ERROR_MESSAGE } from 'appConstants';
+import { EMERGENCY_CONTACT, UNAUTHORIZED_ERROR_MESSAGE } from 'appConstants';
+import { Label } from 'typography';
 
 type Props = {
   title?: string;
@@ -16,7 +17,6 @@ type Props = {
 export const ErrorModal: FC<Props> = ({
   title = 'Something went wrong!',
   text = 'Please, try again later.',
-  text2 = '@yliaka71',
   open = true,
   isCrossIconVisible = false,
   cancelText = 'Ok',
@@ -36,9 +36,22 @@ export const ErrorModal: FC<Props> = ({
 
   return (
     <Modal
-      {...{ title, text, text2, open, onClose, isCrossIconVisible, cancelText }}
+      {...{ title, text, open, onClose, isCrossIconVisible, cancelText }}
       hideOnOutsideClick
       hideOnEsc
-    ></Modal>
+    >
+      <p>
+        <Label>
+          <a
+            href={`https://t.me/${EMERGENCY_CONTACT}`}
+            target="_blank"
+            rel="noreferrer"
+            className="custom-link"
+          >
+            @{EMERGENCY_CONTACT}
+          </a>
+        </Label>
+      </p>
+    </Modal>
   );
 };

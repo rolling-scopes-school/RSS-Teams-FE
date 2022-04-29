@@ -79,11 +79,7 @@ export const Modal: FC<ModalProps> = ({
   }, [open, onClose, hideOnEsc, onSubmit]);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = open ? 'hidden' : '';
 
     return () => {
       document.body.style.overflow = '';

@@ -71,7 +71,7 @@ export const tourConfig = (
       <div>
         <p>
           {t('Support us')}{' '}
-          <a href={LINK_TO_REPO} className="linkToRepo" target="_blank" rel="noreferrer">
+          <a href={LINK_TO_REPO} className="custom-link" target="_blank" rel="noreferrer">
             {t('our repo')}
           </a>
           !
