@@ -43,23 +43,23 @@ export const tourConfig = (
   },
   {
     content: t('On Dashboard page'),
-    action: () => history.push('/studentsTable'),
+    action: () => history.push('/students'),
   },
   {
     selector: '.seventhStep',
     content: t('With filter usage'),
     position: 'bottom',
-    action: () => history.push('/studentsTable'),
+    action: () => history.push('/students'),
   },
   {
     selector: '.eighthStep',
     content: t('With dropdown you can switch the course'),
     position: 'bottom',
-    action: () => history.push('/studentsTable'),
+    action: () => history.push('/students'),
   },
   {
     content: t('On Edit profile page'),
-    action: () => history.push('/editProfile'),
+    action: () => history.push('/edit-profile'),
   },
   {
     content: t('If you forget something'),
