@@ -113,7 +113,7 @@ export const TEAM_SIZE_VALIDATION = {
 };
 
 export const APP_NAVIGATION_LINKS = {
-  ['/studentsTable']: {
+  ['/students-table']: {
     name: 'Dashboard',
     isAlwaysVisible: false,
   },
@@ -121,7 +121,7 @@ export const APP_NAVIGATION_LINKS = {
     name: 'Teams',
     isAlwaysVisible: false,
   },
-  ['/editProfile']: {
+  ['/edit-profile']: {
     name: 'Edit Profile',
     isAlwaysVisible: true,
   },

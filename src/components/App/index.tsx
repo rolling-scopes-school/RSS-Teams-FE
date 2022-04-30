@@ -66,7 +66,7 @@ export const App: FC = () => {
         />
         <PrivateRoute
           exact
-          path="/studentsTable"
+          path="/students-table"
           isLoggedIn={!!loginToken}
           newUserCheck={newUserCheck}
           component={StudentsTable}
@@ -80,7 +80,7 @@ export const App: FC = () => {
         />
         <Route exact path="/token/:id" component={TokenPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/editProfile" component={EditProfile} />
+        <Route exact path="/edit-profile" component={EditProfile} />
         <Route exact path="/tutorial" component={TutorialPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
