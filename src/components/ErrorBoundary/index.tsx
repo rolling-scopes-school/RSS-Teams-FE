@@ -38,7 +38,7 @@ class ErrorBoundary extends Component<any, ErrorBoundaryState> {
       );
     }
 
-    return children;
+    return <>{children}</>;
   }
 }
 

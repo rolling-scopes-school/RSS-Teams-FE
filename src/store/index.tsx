@@ -17,5 +17,9 @@ const appReducer = combineReducers<State>({
 const store = createStore(appReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
 
 export const AppState: FC = ({ children }) => {
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <Provider store={store}>
+      <>{children}</>
+    </Provider>
+  );
 };

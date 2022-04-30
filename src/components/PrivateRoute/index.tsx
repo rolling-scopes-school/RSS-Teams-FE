@@ -13,11 +13,13 @@ export const PrivateRoute: FC<Props> = ({
   component: Component,
   isLoggedIn,
   newUserCheck,
-  ...rest
+  path,
+  exact,
 }) => {
   return (
     <Route
-      {...rest}
+      exact={exact}
+      path={path}
       render={(props) => {
         if (isLoggedIn && newUserCheck) {
           return <Component {...props} />;
