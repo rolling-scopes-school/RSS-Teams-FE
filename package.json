@@ -34,7 +34,7 @@
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.1",
-    "typescript": "^4.0.3",
+    "typescript": "4.2.4",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
