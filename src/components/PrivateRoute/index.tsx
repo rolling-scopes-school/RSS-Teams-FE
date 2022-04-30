@@ -25,7 +25,7 @@ export const PrivateRoute: FC<Props> = ({
           return <Component {...props} />;
         }
         if (isLoggedIn && !newUserCheck) {
-          return <Redirect to={'/editProfile'} />;
+          return <Redirect to={'/edit-profile'} />;
         }
         if (!isLoggedIn) {
           return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
