@@ -66,7 +66,7 @@ export const App: FC = () => {
         />
         <PrivateRoute
           exact
-          path="/students-table"
+          path="/students"
           isLoggedIn={!!loginToken}
           newUserCheck={newUserCheck}
           component={StudentsTable}

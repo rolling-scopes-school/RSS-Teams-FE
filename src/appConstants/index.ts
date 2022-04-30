@@ -113,7 +113,7 @@ export const TEAM_SIZE_VALIDATION = {
 };
 
 export const APP_NAVIGATION_LINKS = {
-  ['/students-table']: {
+  ['/students']: {
     name: 'Dashboard',
     isAlwaysVisible: false,
   },
