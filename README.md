@@ -1,4 +1,4 @@
-# RSS-Teams-FE 
+# RSS-Teams-FE - Deprecated and no longer maintained. The latest deployed version will become unavailable from 28/10/2022 due to Heroky limitations.
 Link to deployment - https://rss-teams.web.app/login
 
 Stack:  
